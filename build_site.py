@@ -469,7 +469,10 @@ def build():
 <div class="hero">
   <div class="container">
     <div class="badge">&#x1f4d0; Live Benchmark &mdash; Updated Monthly</div>
-    <h1>LiveMathematicianBench</h1>
+    <div style="display:flex;align-items:center;justify-content:center;gap:20px;margin:16px 0;">
+      <img src="lmb_logo.svg" alt="LiveMathematicianBench" style="height:80px;">
+      <h1 style="margin:0;"><span style="color:#fbbf24;">Live</span>MathematicianBench</h1>
+    </div>
     <p class="subtitle">
       A live benchmark for evaluating LLMs' capability as mathematicians,
       featuring research-level theorem comprehension from the latest arXiv papers.
