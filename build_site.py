@@ -475,7 +475,7 @@ def build():
       featuring research-level theorem comprehension from the latest arXiv papers.
     </p>
     <div class="hero-links">
-      <a class="btn-primary" href="https://github.com/hendrydong/LiveMathematicianBench" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn-primary" href="https://github.com/BaohaoLiao/LiveMathematicianBench" target="_blank" rel="noopener">GitHub</a>
       <a class="btn-primary" href="https://huggingface.co/datasets/hendrydong/bench0303" target="_blank" rel="noopener">Dataset</a>
     </div>
   </div>
@@ -599,7 +599,7 @@ def build():
 <footer>
   <div class="container">
     LiveMathematicianBench &copy; 2025&ndash;2026 &middot;
-    <a href="https://github.com/hendrydong/LiveMathematicianBench" target="_blank" rel="noopener">GitHub</a> &middot;
+    <a href="https://github.com/BaohaoLiao/LiveMathematicianBench" target="_blank" rel="noopener">GitHub</a> &middot;
     <a href="https://huggingface.co/datasets/hendrydong/bench0303" target="_blank" rel="noopener">HuggingFace</a>
   </div>
 </footer>
