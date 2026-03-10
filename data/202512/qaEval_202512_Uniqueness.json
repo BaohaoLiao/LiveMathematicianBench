@@ -1,0 +1,319 @@
+[
+  {
+    "id": "2512.21187v1",
+    "paper_link": "http://arxiv.org/abs/2512.21187v1",
+    "theorems_cnt": 2,
+    "theorem": {
+      "env_name": "theorem",
+      "content": "[Local well-posedness]\\label{thm:intro_LWP}\nFor initial data bounded in suitable weighted \\(L^\\infty\\) spaces in both space and\nmomentum, the inhomogeneous kinetic FPU equation admits a unique mild solution on a\ntime interval \\(0 \\le t \\le T\\), with lifespan\n\\[\nT \\sim \\|f_0\\|^{-2},\n\\]\nwhere \\(\\|\\cdot\\|\\) denotes the corresponding weighted \\(L^\\infty\\) norm.",
+      "start_pos": 11765,
+      "end_pos": 12153,
+      "label": "thm:intro_LWP"
+    },
+    "ref_dict": {
+      "eq:kinetic": "\\begin{equation}\\label{eq:kinetic}\n    \\partial_t f(t,x,p) + \\omega'(p)\\,\\nabla_x f(t,x,p)\n    = \\mathcal{C}[f](t,x,p),\n\\end{equation}"
+    },
+    "post_theorem_intro_text_len": 5171,
+    "post_theorem_intro_text": "\\medskip\n\nBeyond this classical local theory, dispersive effects induced by the transport\nflow allow one to work in finer mixed space--momentum norms and to propagate\nsmallness on longer time scales.\n\n\\begin{theorem}[Long-time existence near the vacuum]\\label{thm:intro_longtime}\nThere exists \\(\\varepsilon_0>0\\) such that for all \\(0<\\varepsilon\\le\\varepsilon_0\\),\nif the initial datum satisfies suitable smallness, integrability, and dispersive\nbounds of size \\(\\varepsilon\\), then the inhomogeneous kinetic FPU equation admits\na unique mild solution on a time interval \\(0 \\le t \\le T\\) with\n\\[\nT \\sim \\varepsilon^{-4}.\n\\]\nHere \\(\\varepsilon\\) measures the size of the initial datum in the norms appearing\nin the above assumptions (see Sections~5 for precise statements).\n\\end{theorem}\n\\medskip\n\nThe above results show that transport-induced dispersion plays a central role in\nthe inhomogeneous kinetic FPU equation.\nAt the linear level, we establish dispersive bounds for the free transport flow\nin weighted spaces adapted to the degeneracy of the FPU dispersion relation.\nAt the nonlinear level, we derive refined estimates for the gain and loss terms\nof the collision operator based on the geometry of the resonant manifold.\nCombining these two ingredients yields a dispersive stabilization mechanism that\nupgrades the classical quadratic lifespan to a quartic time scale.\n\n\\vspace{1em}\n\\subsection{Outline of the Paper}\nThis paper is organized as follows.\n\n\\begin{enumerate}[leftmargin=2em]\n\n\\item \\textbf{Section~2: Gain--loss decomposition and resonant parametrization.}\nWe recall the gain--loss decomposition of the collision operator and the\nparametrization of the nontrivial resonant manifold introduced in~\\cite{LS08}\nand used in~\\cite{GermainLaMenegaki2024RJ}.\nThese tools allow one to rewrite the collision operator in a form suitable\nfor the weighted estimates developed later.\n\n\\item \\textbf{Section~3: Dispersive estimates and short-time well-posedness.}\nWe establish weighted dispersive estimates for the free transport semigroup\nassociated with~\\eqref{eq:kinetic}.\nThese linear bounds are formulated in mixed space--momentum norms adapted to\nthe degeneracy of the group velocity and yield a short-time well-posedness\ntheory for mild solutions.\n\n\\item \\textbf{Section~4: A priori bounds for the collision operator.}\nSection~4 is devoted to the nonlinear analysis of \\(\\mathcal{C}\\).\nUsing the resonant parametrization, we prove weighted a priori bounds for all\ngain and loss components.\nThe main step is the control of the principal gain term via geometric properties\nof the resonant manifold, ensuring compatibility with the dispersive framework\nintroduced in Section~5.\n\n\\item \\textbf{Section~5: Long-time existence via dispersive propagation.}\nWe combine the dispersive decay of the transport flow with the collision bounds\nfrom Section~4 to propagate smallness on long time intervals.\nWe introduce a dispersive control norm and implement a bootstrap argument that\nupgrades the classical quadratic lifespan to a quartic time scale, yielding the\nmain long-time well-posedness result for small data.\nWe also show that the resulting mild solutions preserve the physical invariants\nof mass and energy.\n\n\\end{enumerate}\n\n\\medskip\n\\paragraph{Difficulties of the proof.}\nWe briefly outline the main analytical difficulties addressed in this work.\nThe inhomogeneous kinetic FPU equation is studied here in one spatial dimension and\nnear the vacuum, which constitutes the most challenging regime from a dispersive\nviewpoint due to the extremely weak decay of the free transport flow.\nIn this setting, neither entropy methods nor spectral gap arguments are available.\n\nMoreover, the dispersion relation $\\omega(p)=|\\sin(p/2)|$ is degenerate at low\nfrequencies, and the associated resonant manifold has a nontrivial geometry and low\ncodimension.\nAs a consequence, the collision operator exhibits strong singularities, making its\ncontrol delicate even at the perturbative level.\n\nFrom a mathematical viewpoint, controlling long-time dynamics in this regime requires\ncombining dispersive decay generated by the transport flow with refined geometric\ninformation on resonant interactions.\nThis difficulty is already present for classical collisional kinetic equations such as\nthe Boltzmann equation, where long-time well-posedness near vacuum is known only under\nrestrictive assumptions.\nThe present work addresses these obstacles by exploiting the interplay between weak\ndispersive decay and the precise geometry of the FPU resonance manifold.\n\n\\medskip\n\n\\noindent\\textbf{Notational conventions.}\nWe set $\\langle t\\rangle := (1+t^2)^{1/2}$.\nThroughout the paper, $C$ denotes a positive constant whose value may change from\nline to line.\nWe write $a\\lesssim b$ to indicate that $a\\le C\\,b$ for such a constant $C$.\nUnless otherwise specified, all $L_p^q$ norms are taken over the torus $\\mathbb{T}$.\n\nWe use the standard mixed Lebesgue norms\n\\[\n\\|f\\|_{L_x^rL_p^q}\n:= \\left( \\int_{\\mathbb{R}}\n   \\Big( \\int_{\\mathbb{T}} |f(x,p)|^q\\,dp \\Big)^{r/q} dx \\right)^{1/r},\n\\qquad 1\\le r,q\\le\\infty,\n\\]\nwith the usual modification when $r=\\infty$ or $q=\\infty$.\n\\vspace{1em}",
+    "sketch": "To go beyond the classical local theory of Theorem~\\ref{thm:intro_LWP}, the introduction explains that one uses “dispersive effects induced by the transport flow” to work in “finer mixed space--momentum norms” and “propagate smallness on longer time scales.” The proof strategy is described as:\n\n- **Linear ingredient:** “establish dispersive bounds for the free transport flow in weighted spaces adapted to the degeneracy of the FPU dispersion relation.”\n- **Nonlinear ingredient:** “derive refined estimates for the gain and loss terms of the collision operator based on the geometry of the resonant manifold.”\n- **Combination mechanism:** “Combining these two ingredients yields a dispersive stabilization mechanism that upgrades the classical quadratic lifespan to a quartic time scale.”\n\nIn the paper outline, this is implemented by: (i) rewriting the collision operator via “gain--loss decomposition” and a “parametrization of the nontrivial resonant manifold”; (ii) proving “weighted dispersive estimates” for the transport semigroup that “yield a short-time well-posedness theory”; (iii) proving “weighted a priori bounds for all gain and loss components,” with the “main step” being control of the “principal gain term via geometric properties of the resonant manifold”; and (iv) “combine the dispersive decay of the transport flow with the collision bounds” by introducing “a dispersive control norm” and “a bootstrap argument that upgrades the classical quadratic lifespan to a quartic time scale.”",
+    "expanded_sketch": "To go beyond the classical local theory of Theorem~\\ref{thm:intro_LWP}, the introduction explains that one uses “dispersive effects induced by the transport flow” to work in “finer mixed space--momentum norms” and “propagate smallness on longer time scales.” The proof strategy is described as:\n\n- **Linear ingredient:** “establish dispersive bounds for the free transport flow in weighted spaces adapted to the degeneracy of the FPU dispersion relation.”\n- **Nonlinear ingredient:** “derive refined estimates for the gain and loss terms of the collision operator based on the geometry of the resonant manifold.”\n- **Combination mechanism:** “Combining these two ingredients yields a dispersive stabilization mechanism that upgrades the classical quadratic lifespan to a quartic time scale.”\n\nIn the paper outline, this is implemented by: (i) rewriting the collision operator via “gain--loss decomposition” and a “parametrization of the nontrivial resonant manifold”; (ii) proving “weighted dispersive estimates” for the transport semigroup that “yield a short-time well-posedness theory”; (iii) proving “weighted a priori bounds for all gain and loss components,” with the “main step” being control of the “principal gain term via geometric properties of the resonant manifold”; and (iv) “combine the dispersive decay of the transport flow with the collision bounds” by introducing “a dispersive control norm” and “a bootstrap argument that upgrades the classical quadratic lifespan to a quartic time scale.”",
+    "expanded_theorem": "[Local well-posedness]\\label{thm:intro_LWP}\nFor initial data bounded in suitable weighted \\(L^\\infty\\) spaces in both space and\nmomentum, the inhomogeneous kinetic FPU equation admits a unique mild solution on a\ntime interval \\(0 \\le t \\le T\\), with lifespan\n\\[\nT \\sim \\|f_0\\|^{-2},\n\\]\nwhere \\(\\|\\cdot\\|\\) denotes the corresponding weighted \\(L^\\infty\\) norm.",
+    "theorem_type": [
+      "Existence",
+      "Uniqueness"
+    ],
+    "mcq": {
+      "question": "Let \\(f_0\\) be initial data for the inhomogeneous kinetic FPU equation such that \\(f_0\\) is bounded in the suitable weighted \\(L^\\infty\\) spaces in both space and momentum (so that the corresponding weighted \\(L^\\infty\\) norm \\(\\|f_0\\|\\) is finite). Under these conditions, what is the strongest statement asserting both existence and uniqueness of a solution, including the size of the time interval of existence?",
+      "correct_choice": {
+        "label": "A",
+        "text": "There exists a time \\(T>0\\) with lifespan \\(T\\sim \\|f_0\\|^{-2}\\) such that on the interval \\(0\\le t\\le T\\) the inhomogeneous kinetic FPU equation has exactly one mild solution with initial data \\(f(0)=f_0\\)."
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "There exists a time $T>0$ with lifespan $T\\sim \\|f_0\\|^{-1}$ such that on the interval $0\\le t\\le T$ the inhomogeneous kinetic FPU equation has exactly one mild solution with initial data $f(0)=f_0$."
+        },
+        {
+          "label": "C",
+          "text": "There exists a time $T>0$ such that on the interval $0\\le t\\le T$ the inhomogeneous kinetic FPU equation admits at least one mild solution with initial data $f(0)=f_0$."
+        },
+        {
+          "label": "D",
+          "text": "For every $T>0$ with $T\\sim \\|f_0\\|^{-2}$, on the interval $0\\le t\\le T$ the inhomogeneous kinetic FPU equation has exactly one mild solution with initial data $f(0)=f_0$."
+        },
+        {
+          "label": "E",
+          "text": "There exists a time $T>0$ with lifespan $T\\sim \\|f_0\\|^{-4}$ such that on the interval $0\\le t\\le T$ the inhomogeneous kinetic FPU equation has exactly one mild solution with initial data $f(0)=f_0$."
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "E"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "other",
+          "tampered_component": "quadratic_lifespan_exponent",
+          "template_used": "boundary_range"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "other",
+          "tampered_component": "uniqueness_and_lifespan_scaling_removed",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "other",
+          "tampered_component": "existential_T_replaced_by_forall_T",
+          "template_used": "quantifier_dependence"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "geometric_construction",
+          "tampered_component": "quartic_timescale_claimed_at_LWP_level",
+          "template_used": "wildcard"
+        }
+      ]
+    },
+    "qa quality eval": {
+      "ALS": {
+        "score": 2,
+        "justification": "The stem does not state the lifespan scaling or the exact existence/uniqueness formulation; it asks for the strongest statement. No explicit cues single out choice A beyond content knowledge."
+      },
+      "TAS": {
+        "score": 1,
+        "justification": "It is essentially a recall-of-theorem style item (“under these conditions, what is the strongest existence/uniqueness statement including lifespan?”). The presence of multiple nearby formulations (different scaling and quantifiers) adds some choice, but it still largely restates a known local well-posedness theorem."
+      },
+      "GPS": {
+        "score": 1,
+        "justification": "Requires some reasoning/recognition: selecting the strongest correct statement among options that vary by uniqueness vs mere existence, correct quantifier on T, and correct scaling exponent. However, it is mostly theorem recall rather than multi-step derivation from given data."
+      },
+      "DQS": {
+        "score": 2,
+        "justification": "Distractors target common failure modes: wrong lifespan exponent (B, E), dropping uniqueness and scaling (C), and quantifier error (D). They are distinct, plausible, and aligned with typical misconceptions in PDE well-posedness statements."
+      },
+      "total_score": 6,
+      "overall_assessment": "Solid MCQ with no answer leakage and strong distractors; it moderately tests conceptual precision (lifespan scaling, uniqueness, quantifiers) but leans toward theorem recall rather than requiring genuinely generative reasoning from the stated hypotheses."
+    }
+  },
+  {
+    "id": "2512.15682v1",
+    "paper_link": "http://arxiv.org/abs/2512.15682v1",
+    "theorems_cnt": 1,
+    "theorem": {
+      "env_name": "thm",
+      "content": "\\label{thm:1.1}\nGiven $\\varphi\\in C(\\partial\\Omega)$, there exist a unique harmonic function $u_\\varphi$ on $\\Omega$ and an extension $\\Phi\\in C(\\overline{\\Omega})$ of $\\varphi$ such that $\\Phi-u_\\varphi\\in H^1_0(\\Omega)$.",
+      "start_pos": 993002,
+      "end_pos": 993229,
+      "label": "thm:1.1"
+    },
+    "ref_dict": {
+      "thm:1.1": "\\begin{thm}\\label{thm:1.1}\nGiven $\\phi\\in C(\\partial\\Omega)$, there exist a unique harmonic function $u_\\phi$ on $\\Omega$ and an extension $\\Phi\\in C(\\clos{\\Omega})$ of $\\phi$ such that $\\Phi-u_\\phi\\in H^1_0(\\Omega)$.\n\\end{thm}",
+      "eq:D": "\\begin{equation}\n  \\tag*{$D(\\varphi)$}\n  \\label{eq:D}\n  \\left\\{\n    \\begin{aligned}\n      &\\text{find $u\\in C(\\clos{\\Omega})$ which is harmonic on $\\Omega$} \\\\\n      &\\text{such that $\\restrict{u}{\\partial\\Omega}=\\phi$.}\n    \\end{aligned}\n  \\right.\n\\end{equation}"
+    },
+    "post_theorem_intro_text_len": 4394,
+    "post_theorem_intro_text": "We call $u_\\varphi$ the \\textbf{\\boldmath variational solution\\unboldmath} of~\\ref{eq:D}.\nIt attains the given boundary value $\\varphi$ in the Sobolev sense.\nThe existence of such a variational solution is difficult to prove and was an open problem for general $\\varphi\\in C(\\partial\\Omega)$ until recently.\n\nIn the first part of this paper we start with a simple proof of Theorem~\\ref{thm:1.1}, making use of a nontrivial extension result that we shall take as given.\nWe then establish diverse properties of the variational solution defined as above.\nWe show that it is well-defined; i.e.\\ $u_\\varphi$ does not depend on the extension $\\Phi$ of $\\varphi$ and it coincides with the classical solution of~\\ref{eq:D} whenever a classical solution exists.\nMoreover, we show that the weak maximum principle is valid for variational solutions.\nIn Section~\\ref{sec:3} we will see that $u_\\varphi$ coincides with the Perron solution.\nThis notion was defined by Perron in 1923~\\cite{Per1923} and has been a subject of intense research.\nOne subject is the way in which $u_\\varphi(x)$ attains the value $\\varphi(z)$ as $x\\to z$.\nSo Theorem~\\ref{thm:1.1} can be interpreted as a new description of the behaviour of the Perron solution at the boundary.\n\nIn the second part of the paper, from Section~\\ref{sec:4} on, we investigate the behaviour of $u_\\varphi(x)$ at a fixed singular point $z_0\\in\\partial\\Omega$, i.e.\\ a point where $\\lim_{x\\to z_0} u_\\varphi(x)=\\varphi(z_0)$ is violated for some $\\varphi\\in C(\\partial\\Omega)$.\n\nIn a single page paper Lebesgue~\\cite{Leb1913} considered a potential in $\\mathbb{R}^3$ of a thin rod modelled by a simple mass distribution concentrated along a line segment.\nHe chooses two suitable level sets of that potential and considers the bounded, open, simply connected region enclosed by these level sets.\nWe call this region \\textbf{\\boldmath Lebesgue's domain\\unboldmath}.\n\nLebesgue's domain has a unique singular point $z_0$ which is the tip of an inward pointing cusp, the famous \\textbf{\\boldmath Lebesgue cusp\\unboldmath}.\nTaking the intersection of Lebesgue's domain with a small ball, one obtains a simply connected domain with connected boundary and a singular point.\nThis is of great interest since in $\\mathbb{R}^2$ each simply connected domain is \\textbf{\\boldmath Dirichlet regular\\unboldmath}; i.e.\\ $u_\\varphi$ is a classical solution for all $\\varphi\\in C(\\partial\\Omega)$.\nOur point is to consider the original Lebesgue domain, whose boundary has two connected components.\nIt demonstrates two striking features of the generalised solution $u_\\varphi$.\n\n\\begin{enumerate}[1.]\n\\item It is impossible to deduce from the regularity properties of $\\varphi$ whether or not $u_\\varphi$ is a classical solution.\nThe boundary of Lebesgue's domain is the disjoint union of two closed sets $\\Gamma_2$ and $\\Gamma_{\\frac{1}{2}}$ (which are level sets of the considered potential).\nIf $\\varphi$ is constant on each of these two closed sets with two different constants, $u_\\varphi$ is not a classical solution.\nTo prove this, the variational definition of $u_\\varphi$ will be most useful.\n\n\\item The irregular behaviour of $u_\\varphi(x)$ as $x\\to z_0$ is a non-local and unstable phenomenon.\nFor $\\phi_0\\equiv 0$ one has $u_{\\phi_0}\\equiv 0$, but if we perturb $\\phi_0$ by a small compactly supported positive smooth bump in the neighbourhood of some point far away from $z_0$, then $u_\\varphi$ is no longer a classical solution.\nThis can be seen easily at Lebesgue's domain, but we prove it for a singular point of an arbitrary domain in Section~\\ref{sec:5}.\n\\end{enumerate}\n\nAs explained above, there seems to be no reasonable condition on the boundary function $\\varphi$ to ensure that $u_\\varphi$ is a classical solution of~\\ref{eq:D} -- even though there are always many classical solutions.\nThe situation is different if we instead consider the question of when $u_\\varphi$ has finite energy $\\int_\\Omega\\abs{\\nabla u_\\varphi}^2$.\nThis is the case if and only if $\\varphi$ has an extension $\\Phi\\in C(\\overline{\\Omega})\\cap H^1(\\Omega)$, and then $u_\\varphi$ may be determined by the Dirichlet principle as the unique minimiser of the Dirichlet energy.\nAs an easy consequence, if $\\varphi$ is Lipschitz continuous, then $u_\\varphi$ has finite energy.\nThese results are proved in Section~\\ref{sec:2} along with other properties of the variational solution.",
+    "sketch": "In the introduction they only say that they “start with a simple proof of Theorem~\\ref{thm:1.1}, making use of a nontrivial extension result that we shall take as given,” but they do not outline any further steps of that proof. The rest of the text describes properties proved later (well-definedness/independence of the extension $\\Phi$, agreement with the classical solution when it exists, weak maximum principle, and coincidence with the Perron solution), not a proof sketch of Theorem~\\ref{thm:1.1} itself.",
+    "expanded_sketch": "In the introduction they only say that they “start with a simple proof to establish the main theorem, making use of a nontrivial extension result that we shall take as given,” but they do not outline any further steps of that proof. The rest of the text describes properties proved later (well-definedness/independence of the extension $\\Phi$, agreement with the classical solution when it exists, weak maximum principle, and coincidence with the Perron solution), not a proof sketch of the main theorem itself.",
+    "expanded_theorem": "\\label{thm:1.1}\nGiven $\\varphi\\in C(\\partial\\Omega)$, there exist a unique harmonic function $u_\\varphi$ on $\\Omega$ and an extension $\\Phi\\in C(\\overline{\\Omega})$ of $\\varphi$ such that $\\Phi-u_\\varphi\\in H^1_0(\\Omega)$.,",
+    "theorem_type": [
+      "Uniqueness",
+      "Existence"
+    ],
+    "mcq": {
+      "question": "Let \\(\\Omega\\) be a domain and let \\(\\varphi\\in C(\\partial\\Omega)\\). Under these assumptions, what is the precise existence-and-uniqueness statement about a harmonic function on \\(\\Omega\\) and an extension of \\(\\varphi\\) to \\(\\overline\\Omega\\)?",
+      "correct_choice": {
+        "label": "A",
+        "text": "For every \\(\\varphi\\in C(\\partial\\Omega)\\), there exists a unique harmonic function \\(u_\\varphi\\) on \\(\\Omega\\) and there exists an extension \\(\\Phi\\in C(\\overline\\Omega)\\) with \\(\\Phi|_{\\partial\\Omega}=\\varphi\\) such that \\(\\Phi-u_\\varphi\\in H^1_0(\\Omega)\\)."
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "For every \\(\\varphi\\in C(\\partial\\Omega)\\), there exists a harmonic function \\(u_\\varphi\\) on \\(\\Omega\\) and there exists an extension \\(\\Phi\\in C(\\overline\\Omega)\\) with \\(\\Phi|_{\\partial\\Omega}=\\varphi\\) such that \\(\\Phi-u_\\varphi\\in H^1_0(\\Omega)\\); moreover, the extension \\(\\Phi\\) is unique."
+        },
+        {
+          "label": "C",
+          "text": "For every \\(\\varphi\\in C(\\partial\\Omega)\\), there exists a unique harmonic function \\(u_\\varphi\\) on \\(\\Omega\\) and there exists an extension \\(\\Phi\\in C(\\overline\\Omega)\\) with \\(\\Phi|_{\\partial\\Omega}=\\varphi\\) such that \\(\\Phi-u_\\varphi\\in H^1_0(\\Omega)\\)."
+        },
+        {
+          "label": "D",
+          "text": "There exists an extension operator \\(E: C(\\partial\\Omega)\\to C(\\overline\\Omega)\\) such that for every \\(\\varphi\\in C(\\partial\\Omega)\\), with \\(\\Phi=E\\varphi\\) there exists a unique harmonic function \\(u_\\varphi\\) on \\(\\Omega\\) satisfying \\(\\Phi-u_\\varphi\\in H^1_0(\\Omega)\\)."
+        },
+        {
+          "label": "E",
+          "text": "For every \\(\\varphi\\in C(\\partial\\Omega)\\), there exists a unique harmonic function \\(u_\\varphi\\in C(\\overline\\Omega)\\) on \\(\\Omega\\) with \\(u_\\varphi|_{\\partial\\Omega}=\\varphi\\), and there exists an extension \\(\\Phi\\in C(\\overline\\Omega)\\) such that \\(\\Phi-u_\\varphi\\in H^1_0(\\Omega)\\)."
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "D"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "regularity",
+          "tampered_component": "uniqueness_of_extension_Phi",
+          "template_used": "stronger_trap"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "regularity",
+          "tampered_component": "dropped_explicit_existence_of_extension_in_statement",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "other",
+          "tampered_component": "existence_of_single_operator_E_uniform_in_varphi",
+          "template_used": "wildcard"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "regularity",
+          "tampered_component": "added_boundary_continuity_and_trace_equality_for_u",
+          "template_used": "property_confusion"
+        }
+      ]
+    },
+    "qa quality eval": {
+      "ALS": {
+        "score": 1,
+        "justification": "The stem doesn’t state the answer, but the item effectively telegraphs that the correct option is the one matching a very specific theorem statement. More seriously, the provided options include a statement (choice C) that is text-identical to the marked correct choice A, creating answer ambiguity (two correct answers) rather than genuine concealment."
+      },
+      "TAS": {
+        "score": 0,
+        "justification": "The question asks for the “precise existence-and-uniqueness statement” under given hypotheses, which is essentially a direct recall/restatement task of a standard theorem rather than applying it to a new situation."
+      },
+      "GPS": {
+        "score": 1,
+        "justification": "Solving mainly requires careful reading and recall of which parts are unique/exist (e.g., uniqueness of u vs non-uniqueness of extensions), but there is little mathematical derivation or generative reasoning beyond parsing quantifiers."
+      },
+      "DQS": {
+        "score": 1,
+        "justification": "Distractors target realistic misconceptions (uniqueness of extension Φ, existence of a uniform extension operator E, boundary continuity/trace equality for u). However, the distractor set is undermined by a construction flaw: choice C duplicates the (marked) correct statement, and the correct label A is not present in the choices list."
+      },
+      "total_score": 3,
+      "overall_assessment": "Conceptually the distractors are plausible, but the MCQ has a critical technical flaw (the marked correct answer label isn’t in the choices, and an identical statement appears as another choice), making it ambiguous and reducing its validity. It also primarily tests theorem recall rather than deeper reasoning."
+    }
+  },
+  {
+    "id": "2512.12621v1",
+    "paper_link": "http://arxiv.org/abs/2512.12621v1",
+    "theorems_cnt": 10,
+    "theorem": {
+      "env_name": "thm",
+      "content": "\\label{Thm-Existence}\n\tFor all $n\\geq 2$, $0<\\alpha<n$ and $\\gamma>0$, there exists a positive constant $m_1$ depending on $n,\\alpha$ and $\\gamma$ such that for $0<m\\leq m_1$, the unique minimizer (up to hyberbolic isometries) to the minimization problem \\eqref{Prob-mini} with volume $m$ is given by a geodesic ball.",
+      "start_pos": 16440,
+      "end_pos": 16779,
+      "label": "Thm-Existence"
+    },
+    "ref_dict": {
+      "Subsec-model": "\\label{Subsec-model} The $n$-dimensional hyperbolic space $\\mathbb{H}^n$ can be viewed as $\\mathbb{H}^n=(\\mathbb{R}^n_{+},g)$, where $\\mathbb{R}^n_{+}=\\{(x_1,x_2,\\dots,x_n)\\in\\mathbb{R}^n:x_n>0\\}$ is",
+      "Prob-mini": "\\begin{equation}\\label{Prob-mini}\n \tE(m)=\\inf_{|F|_g=m}\\mathcal{E}(F).\n \\end{equation}",
+      "Thm-Nonexistence": "\\begin{thm}\\label{Thm-Nonexistence}\n\tFor all $n\\geq 2$, $0<\\alpha<2$ and $\\gamma>0$, there exists a positive constant $m_2$ depending on $n,\\alpha$ and $\\gamma$ such that for $m\\geq m_2$, the minimization problem \\eqref{Prob-mini} does not admit a minimizer with volume $m$.\n\\end{thm}",
+      "defn-Functional": "\\begin{equation}\\label{defn-Functional}\n\t\\mathcal{E}(F)=P(F)+\\gamma NL_{\\alpha}(F),\n\\end{equation}",
+      "Thm-Existence": "\\begin{thm}\\label{Thm-Existence}\n\tFor all $n\\geq 2$, $0<\\alpha<n$ and $\\gamma>0$, there exists a positive constant $m_1$ depending on $n,\\alpha$ and $\\gamma$ such that for $0<m\\leq m_1$, the unique minimizer (up to hyberbolic isometries) to the minimization problem \\eqref{Prob-mini} with volume $m$ is given by a geodesic ball. \n\\end{thm}"
+    },
+    "post_theorem_intro_text_len": 5717,
+    "post_theorem_intro_text": "\\begin{rem}\n\tIt remains an open problem to provide  explicit lower bounds on $m_1$.\n\\end{rem}\n\\begin{rem}\n\tThrough a more refined analysis of the constants appearing in the estimates, we can further show that if $0<\\alpha\\leq\\bar{\\alpha}$ and $0<\\gamma\\leq\\bar{\\gamma}$ for two fixed $\\bar{\\alpha}\\in(0,n)$ and $\\bar{\\gamma}>0$, then the positive constant $m_1$ in Theorem \\ref{Thm-Existence} can be chosen to depend only on $n$, $\\bar{\\alpha}$ and $\\bar{\\gamma}$.\n\\end{rem}\nThe proof of this theorem in $\\mathbb{H}^n$ differs significantly from that in $\\mathbb{R}^n$. In $\\mathbb{R}^n$, scaling transformations possess particularly convenient geometric properties. In particular, they allow one to rescale the volume to an arbitrary prescribed value while preserving the shape of the underlying set, and geodesic balls are mapped to geodesic balls under such transformations. Consequently, the analysis of the shape of minimizers in the small-volume regime can be reduced to the study of the corresponding minimization problem for a fixed reference volume $b_n$, as presented in \\cites{Bonacini-Cristoferi14,Knupfer-Muratov13,Knupfer-Muratov14,Figalli15}. \n\nHowever, such transformations are lacking in $\\mathbb{H}^n$. Fortunately, after comparing several common models of $\\mathbb{H}^n$, we have adopted the $\\Phi_{\\lambda}$-transformation (see \\S\\ref{Subsec-model} for details) in the upper half-space model of $\\mathbb{H}^n$, which has the advantage that by adjusting the value of parameter $\\lambda$, the volume of any set in $\\mathbb{H}^n$ can be scaled to a given multiple. By means of the $\\Phi_{\\lambda}$-transformation, we can establish several fundamental properties of the minimizers, including their regularity, essential boundedness and indecomposability, and we can further deduce the existence of minimizers for all sufficiently small volumes $m\\leq m_0$ for some positive $m_0$ depending only on $n,\\alpha$ and $\\gamma$. \n\nWhen proving that geodesic balls are the unique minimizers for small volumes, we encounter a new difficulty. Since our $\\Phi_{\\lambda}$-transformation cannot map geodesic balls to geodesic balls, the argument for a fixed volume of $b_n$ in $\\mathbb{R}^n$ is inapplicable. A key observation is that if the minimizer $E$ satisfies $|E|_g=|B_r|_g=m$ for $m\\leq m_0$ and some positive $r$, then $E$ is contained in a geodesic ball of radius $(1+C_3 r^{\\frac{1}{2n}})r$ for some uniform constant $C_3$. Combining this observation with a notion of quasiminimizer of the perimeter, we are able to show that $\\partial E$ can be viewed as a radial graph over $\\mathbb{S}^{n-1}$ with the radial function close to $r$ provided the volume $m$ is small enough. Then by means of proof by contradiction and Fuglede's type estiamtes for the perimeter and the nonlocal term, we are able to prove that for small volumes $m$, geodesic balls are unique minimizers up to hyperbolic isometries.\n\nOn the other hand, by adopting similar ideas from \\cite{Knupfer-Muratov14} and leveraging the $\\Phi_{\\lambda}$-transformation, we can prove that the functional $\\mathcal{E}(\\cdot)$ does not admit a minimizer for large volume $m$ with an extra assumption that $\\alpha<2$.\n\\begin{thm}\\label{Thm-Nonexistence}\n\tFor all $n\\geq 2$, $0<\\alpha<2$ and $\\gamma>0$, there exists a positive constant $m_2$ depending on $n,\\alpha$ and $\\gamma$ such that for $m\\geq m_2$, the minimization problem \\eqref{Prob-mini} does not admit a minimizer with volume $m$.\n\\end{thm}\n\\begin{rem}\n\tWe find it difficult to extend Theorem \\ref{Thm-Nonexistence} to the case of $\\alpha=2$, as in the work of Frank and Nam \\cite{Frank-Nam21}, the reason being that we are unsure how to obtain the estimate in \\cite[Lemma 7]{Frank-Nam21}.\n\\end{rem}\n\\begin{rem}\n\tMotivated by the classical results in $\\mathbb{R}^n$ (cf. \\cite[Theorem 2.9]{Bonacini-Cristoferi14} and \\cite[Theorem 1.5]{Figalli15}), we intend to calculate the first and second variations of the functional \\eqref{defn-Functional} in our subsequent work, so as to provide explicit bounds for the volume within which geodesic balls are local minimizers. As an application, we aim to derive similar quantitative results regarding parameter $m_1$ as those presented in \\cite{Chodosh-Ruohomiemi25}.\n\\end{rem}\nThe paper is organized as follows: In \\S\\ref{Sec-pre}, we collect some preliminaries which will be used later in this paper, including the upper-half space model of $\\mathbb{H}^n$, some isperimetric-type inequalities in $\\mathbb{H}^n$, two notions of quasiminimizer of the perimeter, and Fuglede’s type estimates of $P(E)$ and $NL_{\\alpha}(E)$ for a nearly spherical set $E\\subset\\mathbb{H}^n$. In \\S\\ref{Sec-Basic es}, we prove some basic properties for the minimizer of the functional $\\mathcal{E}(\\cdot)$, including the regularity result, the boundedness, the indecomposability and then prove a uniform lower density bound. During this process, we also derive a general criterion on a set of finite perimeter being not a minimizer. In \\S\\ref{Sec-Existence}, we prove that there exists a minimizer if the volume $m$ is small and it is contained in a geodesic ball with small radius. In \\S\\ref{Sec-Ball}, we prove that the functional $\\mathcal{E}(\\cdot)$ admits geodesic ball as unique minimizers (up to hyperbolic isometries) when volumes $m$ are small. In \\S\\ref{Sec-Nonex}, we firstly prove that both the the minimization value \\eqref{Prob-mini} and the diameter of the essential closure of a minimizer can be two-sided controlled by the volume $m$, and then complete the proof that there exist no minimizers for large volumes.\n\n\\begin{ack}\n\tThe research was supported by NSFC Grant No.12471047 and  China Postdoctoral Science Foundation No.2024M751605.\n\\end{ack}",
+    "sketch": "The introduction explains that the proof of Theorem~\\ref{Thm-Existence} in $\\mathbb{H}^n$ cannot follow the $\\mathbb{R}^n$ strategy based on scaling, since in $\\mathbb{H}^n$ such transformations are lacking. The authors instead adopt a $\\Phi_{\\lambda}$-transformation in the upper half-space model, which allows scaling the volume of sets by adjusting $\\lambda$.\n\nUsing the $\\Phi_{\\lambda}$-transformation, they \"establish several fundamental properties of the minimizers, including their regularity, essential boundedness and indecomposability,\" and \"further deduce the existence of minimizers for all sufficiently small volumes $m\\leq m_0$\" (for some $m_0$ depending on $n,\\alpha,\\gamma$).\n\nFor uniqueness and identification of minimizers as geodesic balls in the small-volume regime, they note a key difficulty: $\\Phi_{\\lambda}$ \"cannot map geodesic balls to geodesic balls,\" so the usual fixed-volume argument from $\\mathbb{R}^n$ does not apply. A \"key observation\" is that if a minimizer $E$ has $|E|_g=|B_r|_g=m\\leq m_0$, then $E$ is contained in a slightly larger geodesic ball of radius $(1+C_3 r^{\\frac{1}{2n}})r$.\n\nCombining this containment with \"a notion of quasiminimizer of the perimeter,\" they show $\\partial E$ is \"a radial graph over $\\mathbb{S}^{n-1}$\" with radial function close to $r$ when $m$ is small. Finally, \"by means of proof by contradiction and Fuglede's type estiamtes for the perimeter and the nonlocal term,\" they conclude that for sufficiently small volumes $m$, geodesic balls are the unique minimizers up to hyperbolic isometries.",
+    "expanded_sketch": "The introduction explains that the proof of the main theorem in $\\mathbb{H}^n$ cannot follow the $\\mathbb{R}^n$ strategy based on scaling, since in $\\mathbb{H}^n$ such transformations are lacking. The authors instead adopt a $\\Phi_{\\lambda}$-transformation in the upper half-space model, which allows scaling the volume of sets by adjusting $\\lambda$.\n\nUsing the $\\Phi_{\\lambda}$-transformation, they \"establish several fundamental properties of the minimizers, including their regularity, essential boundedness and indecomposability,\" and \"further deduce the existence of minimizers for all sufficiently small volumes $m\\leq m_0$\" (for some $m_0$ depending on $n,\\alpha,\\gamma$).\n\nFor uniqueness and identification of minimizers as geodesic balls in the small-volume regime, they note a key difficulty: $\\Phi_{\\lambda}$ \"cannot map geodesic balls to geodesic balls,\" so the usual fixed-volume argument from $\\mathbb{R}^n$ does not apply. A \"key observation\" is that if a minimizer $E$ has $|E|_g=|B_r|_g=m\\leq m_0$, then $E$ is contained in a slightly larger geodesic ball of radius $(1+C_3 r^{\\frac{1}{2n}})r$.\n\nCombining this containment with \"a notion of quasiminimizer of the perimeter,\" they show $\\partial E$ is \"a radial graph over $\\mathbb{S}^{n-1}$\" with radial function close to $r$ when $m$ is small. Finally, \"by means of proof by contradiction and Fuglede's type estiamtes for the perimeter and the nonlocal term,\" they conclude that for sufficiently small volumes $m$, geodesic balls are the unique minimizers up to hyperbolic isometries.",
+    "expanded_theorem": "\\label{Thm-Existence}\n\tFor all $n\\geq 2$, $0<\\alpha<n$ and $\\gamma>0$, there exists a positive constant $m_1$ depending on $n,\\alpha$ and $\\gamma$ such that for $0<m\\leq m_1$, the unique minimizer (up to hyberbolic isometries) to the minimization problem \\begin{equation}\\label{Prob-mini}\n \tE(m)=\\inf_{|F|_g=m}\\mathcal{E}(F).\n \\end{equation}\n with volume $m$ is given by a geodesic ball.,",
+    "theorem_type": [
+      "Existential–Universal",
+      "Uniqueness"
+    ],
+    "mcq": {
+      "question": "Let $n\\ge 2$, $0<\\alpha<n$, and $\\gamma>0$. Consider the minimization problem\n\\[\nE(m)=\\inf_{|F|_g=m}\\mathcal{E}(F),\n\\]\nwhere the infimum is taken over sets $F$ with hyperbolic volume $|F|_g=m$. Under these assumptions, what is the strongest correct statement asserting both existence and uniqueness of a minimizer for sufficiently small volumes $m$?",
+      "correct_choice": {
+        "label": "A",
+        "text": "There exists a constant $m_1>0$, depending only on $n,\\alpha,$ and $\\gamma$, such that for every $m$ with $0<m\\le m_1$, the problem $E(m)=\\inf_{|F|_g=m}\\mathcal{E}(F)$ admits a minimizer, and this minimizer is unique up to hyperbolic isometries; moreover, any such minimizer is a geodesic ball."
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "There exists a constant $m_1>0$, depending only on $n,\\alpha,$ and $\\gamma$, such that for every $m$ with $0<m\\le m_1$, the problem $E(m)=\\inf_{|F|_g=m}\\mathcal{E}(F)$ admits a minimizer, and this minimizer is unique up to hyperbolic isometries; moreover, any such minimizer is the image of a geodesic ball under the $\\Phi_{\\lambda}$-transformation."
+        },
+        {
+          "label": "C",
+          "text": "There exists a constant $m_1>0$, depending only on $n,\\alpha,$ and $\\gamma$, such that for every $m$ with $0<m\\le m_1$, the problem $E(m)=\\inf_{|F|_g=m}\\mathcal{E}(F)$ admits at least one minimizer."
+        },
+        {
+          "label": "D",
+          "text": "For all $m>0$, the problem $E(m)=\\inf_{|F|_g=m}\\mathcal{E}(F)$ admits a minimizer, and this minimizer is unique up to hyperbolic isometries; moreover, any such minimizer is a geodesic ball."
+        },
+        {
+          "label": "E",
+          "text": "There exists a constant $m_1>0$, depending only on $n,\\alpha,$ and $\\gamma$, such that for every $m$ with $0<m\\le m_1$, the problem $E(m)=\\inf_{|F|_g=m}\\mathcal{E}(F)$ admits a minimizer which is a geodesic ball; furthermore, in this regime any two minimizers coincide (without applying hyperbolic isometries)."
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "B"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "geometric_construction",
+          "tampered_component": "$\\Phi_\\lambda$ preserves geodesic balls / identification via $\\Phi_\\lambda$",
+          "template_used": "wildcard"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "finiteness",
+          "tampered_component": "dropped uniqueness-up-to-isometries and dropped identification as geodesic ball",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "boundary_range",
+          "tampered_component": "small-volume restriction $0<m\\le m_1$",
+          "template_used": "boundary_range"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "quantifier_dependence",
+          "tampered_component": "uniqueness only up to hyperbolic isometries (not literal equality)",
+          "template_used": "quantifier_dependence"
+        }
+      ]
+    },
+    "qa quality eval": {
+      "ALS": {
+        "score": 2,
+        "justification": "The stem does not state or hint at the specific conclusion (existence threshold, uniqueness up to isometries, and geodesic-ball characterization). The correct option is not recoverable from phrasing alone."
+      },
+      "TAS": {
+        "score": 2,
+        "justification": "The question asks for the \"strongest correct statement\" combining existence and uniqueness for small volumes; it is not a direct restatement of a named theorem in the stem and requires comparing competing logical strengths (small m vs all m, uniqueness notions, shape characterization)."
+      },
+      "GPS": {
+        "score": 1,
+        "justification": "Some reasoning is needed to rank statements by strength and detect common failure points (global-in-m claims, too-strong uniqueness, extraneous transformation). However, without additional context about the functional \\(\\mathcal{E}\\), it leans toward a meta-logic exercise about quantifiers rather than deep mathematical derivation."
+      },
+      "DQS": {
+        "score": 2,
+        "justification": "Distractors are plausible and target standard failure modes: (C) omits uniqueness/structure (weaker true), (D) overgeneralizes to all volumes, (E) uses an overly strong equality notion vs uniqueness up to isometries, and (B) introduces a tempting but unjustified transformation-based characterization."
+      },
+      "total_score": 7,
+      "overall_assessment": "High-quality MCQ with no answer leakage and strong non-tautological structure. It effectively tests the ability to select the strongest valid conclusion among close logical alternatives, though it assesses quantifier/statement-strength reasoning more than domain-specific computation unless the surrounding lesson has established the relevant theorem."
+    }
+  }
+]

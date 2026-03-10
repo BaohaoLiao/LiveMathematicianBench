@@ -1,0 +1,420 @@
+[
+  {
+    "id": "2511.17328v2",
+    "paper_link": "http://arxiv.org/abs/2511.17328v2",
+    "theorems_cnt": 1,
+    "theorem": {
+      "env_name": "theorem",
+      "content": "[Existence and Uniqueness of Fast Pulses]\\label{thm: E}\nWhen $0<\\epsilon \\ll 1,$ there exists a unique $C^2$ (modulo translation) fast traveling pulse solution $(U_\\epsilon,Q_\\epsilon)$ to system \\eqref{eq: intro_system_1}-\\eqref{eq: intro_system_2}. In particular, with $z=x+ct$, there exists unique $C^1$ curves $c_\\epsilon=c(\\epsilon)$ and $a_\\epsilon=a(\\epsilon)$ such that $U_\\epsilon(z)<\\theta$ on $(-\\infty,0)\\cup(a_\\epsilon,\\infty)$ and $U_\\epsilon(z)>\\theta$ on $(0,a_\\epsilon)$. The parameters satisfy $c_\\epsilon\\to c_f$ and $a_\\epsilon\\to +\\infty$ as $\\epsilon \\to 0$, where $c_f>0$ is the unique speed of the front solution to \\eqref{eq: intro_scalar}. As a homoclinic orbit, $\\mathcal{S}_\\epsilon=\\Bigl\\{(U_\\epsilon(z),Q_\\epsilon(z)): z\\in \\R \\Bigr\\}$ satisfies $d_H(\\mathcal{S}_\\epsilon,\\mathcal{S}_0)\\to 0$ as $\\epsilon\\to 0$. Here, \n$$\nd_H(\\mathcal{S}_\\epsilon,\\mathcal{S}_0)=\\max\\left\\lbrace \\sup_{(U,Q)\\in \\mathcal{S}_0}d\\Bigl(\\mathcal{S}_\\epsilon,(U,Q)\\Bigr),\\sup_{(U_\\epsilon,Q_\\epsilon)\\in \\mathcal{S}_\\epsilon}d\\Bigl((U_\\epsilon,Q_\\epsilon),\\mathcal{S}_0\\Bigr) \\right\\rbrace\n$$ \nis the Hausdorff distance between sets in $(U,Q)$ space with respect to the standard Euclidean metric, and $\\mathcal{S}_0$ is the singular homoclinic orbit at $\\epsilon=0$.",
+      "start_pos": 78396,
+      "end_pos": 79699,
+      "label": "thm: E"
+    },
+    "ref_dict": {
+      "eq: intro_system_2": "\\begin{align}\nu_t&=-u-q+ \\integ{y}{\\R}[]<K(x-y)H(u(y,t)-\\theta)>, \\label{eq: intro_system_1}\\\\\nq_t &=\\epsilon (u-\\gamma q). \\label{eq: intro_system_2}\n\\end{align}",
+      "eq: intro_system_1": "\\begin{align}\nu_t&=-u-q+ \\integ{y}{\\R}[]<K(x-y)H(u(y,t)-\\theta)>, \\label{eq: intro_system_1}\\\\\nq_t &=\\epsilon (u-\\gamma q). \\label{eq: intro_system_2}\n\\end{align}",
+      "thm: E": "\\begin{theorem}[Existence and Uniqueness of Fast Pulses]\\label{thm: E}\nWhen $0<\\epsilon \\ll 1,$ there exists a unique $C^2$ (modulo translation) fast traveling pulse solution $(U_\\epsilon,Q_\\epsilon)$ to system \\eqref{eq: intro_system_1}-\\eqref{eq: intro_system_2}. In particular, with $z=x+ct$, there exists unique $C^1$ curves $c_\\epsilon=c(\\epsilon)$ and $a_\\epsilon=a(\\epsilon)$ such that $U_\\epsilon(z)<\\theta$ on $(-\\infty,0)\\cup(a_\\epsilon,\\infty)$ and $U_\\epsilon(z)>\\theta$ on $(0,a_\\epsilon)$. The parameters satisfy $c_\\epsilon\\to c_f$ and $a_\\epsilon\\to +\\infty$ as $\\epsilon \\to 0$, where $c_f>0$ is the unique speed of the front solution to \\eqref{eq: intro_scalar}. As a homoclinic orbit, $\\mathcal{S}_\\epsilon=\\Bigl\\{(U_\\epsilon(z),Q_\\epsilon(z)): z\\in \\R \\Bigr\\}$ satisfies $d_H(\\mathcal{S}_\\epsilon,\\mathcal{S}_0)\\to 0$ as $\\epsilon\\to 0$. Here, \n$$\nd_H(\\mathcal{S}_\\epsilon,\\mathcal{S}_0)=\\max\\left\\lbrace \\sup_{(U,Q)\\in \\mathcal{S}_0}d\\Bigl(\\mathcal{S}_\\epsilon,(U,Q)\\Bigr),\\sup_{(U_\\epsilon,Q_\\epsilon)\\in \\mathcal{S}_\\epsilon}d\\Bigl((U_\\epsilon,Q_\\epsilon),\\mathcal{S}_0\\Bigr) \\right\\rbrace\n$$ \nis the Hausdorff distance between sets in $(U,Q)$ space with respect to the standard Euclidean metric, and $\\mathcal{S}_0$ is the singular homoclinic orbit at $\\epsilon=0$.\n\\end{theorem}"
+    },
+    "post_theorem_intro_text_len": 4357,
+    "post_theorem_intro_text": "As a result of the original work of Pinto and Ermentrout \\cite{PintoandErmentrout-SpatiallyStructuredActivityinSynapticallyCoupledI.TravelingWaves}, as well as follow-up mathematical analysis (such as  by Pinto et al. \\cite{Pinto2005}), there is a heuristically and computationally justified acceptance of much of \\cref{thm: E} (especially for nonnegative kernels), but a complete proof of existence and uniqueness is lacking prior to this paper. \n\nIn particular, to the author's knowledge, there have been no other results that rigorously study the fast pulse solutions in the Heaviside model when they are broken down by fast and slow representations in inner and outer regions for $\\epsilon \\ll 1$. Unlike the singular homoclinic orbit, when $\\epsilon>0$, the fast and slow dynamics need to be analyzed when they overlap. When $K$ is chosen as the exponential type. we have PDE reductions and applications of classic geometric singular perturbation theory can be applied. We avoid requiring this reduction.\n\nIn order to prove \\cref{thm: E}, we derive a number of new estimates of the solutions and their wave speeds and widths. The following corollary summarizes first-order approximations of the parameters. Denote $\\tau(\\epsilon):=\\epsilon a(\\epsilon)$, a natural change of variable since $a(\\epsilon)=O\\left(\\f{\\epsilon}\\right)$ is known based on the fast and slow time scales. The functions $f$ and $g$ are discussed at length in \\cref{sec: calc}.\n\\begin{corollary}[First-Order Approximations of $\\tau(\\epsilon)$ and $c(\\epsilon)$] \\label{thm: first_order}Consider the unique pair of $C^1$ curves $\\tau_\\epsilon=\\tau(\\epsilon)$ and $c_\\epsilon=c(\\epsilon)$ from \\cref{thm: E}. The limits $\\tau(\\epsilon)\\to \\tau_0$ and $c(\\epsilon)\\to c_f$ hold, where\n$$\n\\tau_0=-\\f{c_f}{1+\\gamma}\\ln(2\\theta(1+\\gamma)-\\gamma).\n$$\nThe derivative of the vector $(\\tau(\\epsilon),c(\\epsilon))^T$ satisfies\n\\begin{equation}\n \\begin{pmatrix}\n\\tau'(0) \\\\ c'(0)\n\\end{pmatrix}\n=-J^{-1}(\\tau_0,c_f,0)\n\\begin{pmatrix}\nf_\\epsilon(\\tau_0,c_f,0) \\\\ g_\\epsilon(\\tau_0,c_f,0)\n\\end{pmatrix},\n\\end{equation}\nwhere $f(\\tau(\\epsilon),c(\\epsilon),\\epsilon)=U(0)=\\theta$ and $g(\\tau(\\epsilon),c(\\epsilon),\\epsilon)=U(a(\\epsilon))=\\theta$ are the speed index equations for the pulse. Hence, $\\tau(\\epsilon)\\approx \\tau_0 +\\tau'(0)\\epsilon$ and $c(\\epsilon)\\approx c_f +c'(0)\\epsilon$ are first-order approximations of $\\tau(\\epsilon)$ and $c(\\epsilon)$, respectively. In particular,\n\\begin{equation}\\label{eq: cp_zero}\nc'(0)=-\\f{\\phi_f'(c_f)}\\left\\lbrace 2\\theta-\\f{c_f}\\integ{x}{-\\infty}[0]<|x|\\left(e^{\\f{x}{c_f}}+1\\right)K(x)>\\right\\rbrace,\n\\end{equation}\nwhere $\\phi_f$ is the speed index function for the front that satisfies $\\phi_f'(c_f)<0$.\n\\end{corollary}\n\\subsection{Hypotheses} \\label{subsec: hyp}\nWe state our main hypotheses and then offer some remarks as to why they are necessary.\n\\begin{itemize}\n\\item[(H1)] The parameters satisfy $0<\\theta<\\min\\{\\f{2},\\int_{-\\infty}^0 K\\}$, \\, $\\f{\\gamma}{1+\\gamma}<\\theta,\\,$ and $\\epsilon \\ll 1$.\n\\item[(H2)] When $\\epsilon=0$, there exists a traveling front solution $u(x,t)=U_f(x+c_ft)$ to \\eqref{eq: intro_scalar} with $U_f(\\cdot)<\\theta$ on $(-\\infty,0)$, $U_f(\\cdot)>\\theta$ on $(0,\\infty)$, $U_f(-\\infty)=0$, and $U_f(\\infty)=1$. The solution is translation invariant, but we will assume $U_f(0)=\\theta$ unless stated otherwise.\n\\item[(H3)] There exists $\\alpha>0$ and $\\rho>0$ such that $|K(x)|\\leq \\alpha e^{-\\rho|x|}$. Moreover, assume $K$ is continuous and $\\int_\\R K = 1$.\n\\end{itemize}\nWe require $0<\\theta<\\int_{-\\infty}^0 K$ because it is necessary in order for the front to exist, while $\\theta <\\f{2}$ is required for the pulse. Often $K$ is symmetrical so these conditions are equivalent. To conclude remarks on (H1), we note that the assumption $\\frac{\\gamma}{1+\\gamma}<\\theta$ ensures that the line $Q=\\frac{U}{\\gamma}$ does not intersect $Q=-U+H(U-\\theta)$ when $U>\\theta$, which would lead to a second fixed point, and the homoclinic orbit would be replaced by a heteroclinic orbit. Hypothesis (H2) ensures we have a leading order inner solution. Finally, hypothesis (H3) is a common assumption in nonlocal problems. Biologically, long-range synaptic interaction strengths decay sharply, while mathematically, exponential decay ensures that terms of order $O\\left(\\epsilon^{-k}e^{-\\f{|C|}{\\epsilon}}\\right)$ vanish.",
+    "sketch": "To prove \\cref{thm: E}, the introduction indicates that the paper (unlike prior heuristic/computational work) provides a complete proof by \\emph{deriving “a number of new estimates of the solutions and their wave speeds and widths.”} It emphasizes that, for $\\epsilon>0$, \\emph{“the fast and slow dynamics need to be analyzed when they overlap”} (in contrast to the singular homoclinic orbit at $\\epsilon=0$), and that the approach \\emph{“avoid[s] requiring”} a PDE reduction available for exponential-type kernels.\n\nA key structural element of the argument is to characterize the pulse parameters via the \\emph{“speed index equations”} for the pulse, namely $f(\\tau(\\epsilon),c(\\epsilon),\\epsilon)=U(0)=\\theta$ and $g(\\tau(\\epsilon),c(\\epsilon),\\epsilon)=U(a(\\epsilon))=\\theta$, after introducing the rescaled width $\\tau(\\epsilon):=\\epsilon a(\\epsilon)$ as a \\emph{“natural change of variable”} (since $a(\\epsilon)$ is tied to fast/slow time scales). The corollary then summarizes the resulting first-order parameter information: $\\tau(\\epsilon)\\to\\tau_0$ and $c(\\epsilon)\\to c_f$, and $(\\tau'(0),c'(0))^T$ is obtained from an implicit-differentiation/Jacobian formula $-J^{-1}(\\tau_0,c_f,0)(f_\\epsilon(\\tau_0,c_f,0),g_\\epsilon(\\tau_0,c_f,0))^T$, yielding first-order approximations $\\tau(\\epsilon)\\approx \\tau_0+\\tau'(0)\\epsilon$ and $c(\\epsilon)\\approx c_f+c'(0)\\epsilon$ (with an explicit expression for $c'(0)$ in \\eqref{eq: cp_zero}).",
+    "expanded_sketch": "To prove the main theorem, the introduction indicates that the paper (unlike prior heuristic/computational work) provides a complete proof by \\emph{deriving “a number of new estimates of the solutions and their wave speeds and widths.”} It emphasizes that, for $\\epsilon>0$, \\emph{“the fast and slow dynamics need to be analyzed when they overlap”} (in contrast to the singular homoclinic orbit at $\\epsilon=0$), and that the approach \\emph{“avoid[s] requiring”} a PDE reduction available for exponential-type kernels.\n\nA key structural element of the argument is to characterize the pulse parameters via the \\emph{“speed index equations”} for the pulse, namely $f(\\tau(\\epsilon),c(\\epsilon),\\epsilon)=U(0)=\\theta$ and $g(\\tau(\\epsilon),c(\\epsilon),\\epsilon)=U(a(\\epsilon))=\\theta$, after introducing the rescaled width $\\tau(\\epsilon):=\\epsilon a(\\epsilon)$ as a \\emph{“natural change of variable”} (since $a(\\epsilon)$ is tied to fast/slow time scales). The corollary then summarizes the resulting first-order parameter information: $\\tau(\\epsilon)\\to\\tau_0$ and $c(\\epsilon)\\to c_f$, and $(\\tau'(0),c'(0))^T$ is obtained from an implicit-differentiation/Jacobian formula $-J^{-1}(\\tau_0,c_f,0)(f_\\epsilon(\\tau_0,c_f,0),g_\\epsilon(\\tau_0,c_f,0))^T$, yielding first-order approximations $\\tau(\\epsilon)\\approx \\tau_0+\\tau'(0)\\epsilon$ and $c(\\epsilon)\\approx c_f+c'(0)\\epsilon$ (with an explicit expression for $c'(0)$ in \\eqref{eq: cp_zero}).,",
+    "expanded_theorem": "[Existence and Uniqueness of Fast Pulses]\\label{thm: E}\nWhen $0<\\epsilon \\ll 1,$ there exists a unique $C^2$ (modulo translation) fast traveling pulse solution $(U_\\epsilon,Q_\\epsilon)$ to the system\n\\begin{align}\\nu_t&=-u-q+ \\\\integ{y}{\\R}[]<K(x-y)H(u(y,t)-\\theta)>, \\\\label{eq: intro_system_1}\\\\\nq_t &=\\epsilon (u-\\gamma q). \\\\label{eq: intro_system_2}\n\\end{align}\nIn particular, with $z=x+ct$, there exists unique $C^1$ curves $c_\\epsilon=c(\\epsilon)$ and $a_\\epsilon=a(\\epsilon)$ such that $U_\\epsilon(z)<\\theta$ on $(-\\infty,0)\\cup(a_\\epsilon,\\infty)$ and $U_\\epsilon(z)>\\theta$ on $(0,a_\\epsilon)$. The parameters satisfy $c_\\epsilon\\to c_f$ and $a_\\epsilon\\to +\\infty$ as $\\epsilon \\to 0$, where $c_f>0$ is the unique speed of the front solution to \\eqref{eq: intro_scalar}. As a homoclinic orbit, $\\mathcal{S}_\\epsilon=\\Bigl\\{(U_\\epsilon(z),Q_\\epsilon(z)): z\\in \\R \\Bigr\\}$ satisfies $d_H(\\mathcal{S}_\\epsilon,\\mathcal{S}_0)\\to 0$ as $\\epsilon\\to 0$. Here, \n$$\nd_H(\\mathcal{S}_\\epsilon,\\mathcal{S}_0)=\\max\\left\\lbrace \\sup_{(U,Q)\\in \\mathcal{S}_0}d\\Bigl(\\mathcal{S}_\\epsilon,(U,Q)\\Bigr),\\sup_{(U_\\epsilon,Q_\\epsilon)\\in \\mathcal{S}_\\epsilon}d\\Bigl((U_\\epsilon,Q_\\epsilon),\\mathcal{S}_0\\Bigr) \\right\\rbrace\n$$ \nis the Hausdorff distance between sets in $(U,Q)$ space with respect to the standard Euclidean metric, and $\\mathcal{S}_0$ is the singular homoclinic orbit at $\\epsilon=0$.",
+    "theorem_type": [
+      "Uniqueness",
+      "Asymptotic or Limit"
+    ],
+    "mcq": {
+      "question": "Let $0<\\epsilon\\ll1$ and consider the system\n\\[\n u_t=-u-q+\\int_{\\mathbb R}K(x-y)H\\bigl(u(y,t)-\\theta\\bigr)\\,dy,\\qquad\n q_t=\\epsilon\\,(u-\\gamma q).\n\\]\nUnder these assumptions, what is the strongest statement asserting existence together with uniqueness of a fast traveling pulse solution (including the associated traveling-wave parameters and the $\\epsilon\\to0$ limit behavior)?",
+      "correct_choice": {
+        "label": "A",
+        "text": "For $0<\\epsilon\\ll1$, there exists a unique $C^2$ (modulo translation) fast traveling pulse solution $(U_\\epsilon,Q_\\epsilon)$ of the system. In particular, writing the traveling-wave variable as $z=x+ct$, there exist unique $C^1$ curves $c_\\epsilon=c(\\epsilon)$ and $a_\\epsilon=a(\\epsilon)$ such that $U_\\epsilon(z)<\\theta$ on $(-\\infty,0)\\cup(a_\\epsilon,\\infty)$ and $U_\\epsilon(z)>\\theta$ on $(0,a_\\epsilon)$. Moreover, as $\\epsilon\\to0$, one has $c_\\epsilon\\to c_f$ and $a_\\epsilon\\to+\\infty$, where $c_f>0$ is the unique speed of the front solution to the corresponding scalar equation. If $\\mathcal S_\\epsilon=\\{(U_\\epsilon(z),Q_\\epsilon(z)):\\, z\\in\\mathbb R\\}$ denotes the associated homoclinic orbit, then $d_H(\\mathcal S_\\epsilon,\\mathcal S_0)\\to0$ as $\\epsilon\\to0$, where $\\mathcal S_0$ is the singular homoclinic orbit at $\\epsilon=0$ and\n\\[\n d_H(\\mathcal S_\\epsilon,\\mathcal S_0)=\\max\\left\\{\\sup_{(U,Q)\\in\\mathcal S_0} d\\bigl(\\mathcal S_\\epsilon,(U,Q)\\bigr),\\ \\sup_{(U_\\epsilon,Q_\\epsilon)\\in\\mathcal S_\\epsilon} d\\bigl((U_\\epsilon,Q_\\epsilon),\\mathcal S_0\\bigr)\\right\\}\n\\]\nwith $d$ the standard Euclidean distance in $(U,Q)$-space."
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "For $0<\\epsilon\\ll1$, there exists a unique $C^2$ (modulo translation) fast traveling pulse solution $(U_\\epsilon,Q_\\epsilon)$ of the system. In particular, writing $z=x+ct$, there exist unique $C^1$ curves $c_\\epsilon=c(\\epsilon)$ and $a_\\epsilon=a(\\epsilon)$ such that $U_\\epsilon(z)<\\theta$ on $(-\\infty,0)\\cup(a_\\epsilon,\\infty)$ and $U_\\epsilon(z)>\\theta$ on $(0,a_\\epsilon)$. Moreover, as $\\epsilon\\to0$, one has $c_\\epsilon\\to c_f$ and $a_\\epsilon\\to a_0<\\infty$, where $c_f>0$ is the unique speed of the front solution to the corresponding scalar equation. If $\\mathcal S_\\epsilon=\\{(U_\\epsilon(z),Q_\\epsilon(z)):\\, z\\in\\mathbb R\\}$ denotes the associated homoclinic orbit, then $d_H(\\mathcal S_\\epsilon,\\mathcal S_0)\\to0$ as $\\epsilon\\to0$."
+        },
+        {
+          "label": "C",
+          "text": "For $0<\\epsilon\\ll1$, there exists a $C^2$ fast traveling pulse solution $(U_\\epsilon,Q_\\epsilon)$ of the system, unique up to translation. Writing $z=x+ct$, there exist (possibly nonunique) $C^1$ functions $c_\\epsilon=c(\\epsilon)$ and $a_\\epsilon=a(\\epsilon)$ such that $U_\\epsilon(z)<\\theta$ on $(-\\infty,0)\\cup(a_\\epsilon,\\infty)$ and $U_\\epsilon(z)>\\theta$ on $(0,a_\\epsilon)$, and as $\\epsilon\\to0$ one has $c_\\epsilon\\to c_f$."
+        },
+        {
+          "label": "D",
+          "text": "For $0<\\epsilon\\ll1$, there exists a unique $C^2$ (modulo translation) fast traveling pulse solution $(U_\\epsilon,Q_\\epsilon)$ of the system. In particular, in traveling-wave coordinates $z=x+ct$, there exist unique $C^1$ curves $c_\\epsilon=c(\\epsilon)$ and $a_\\epsilon=a(\\epsilon)$ such that $U_\\epsilon(z)<\\theta$ on $(-\\infty,0)\\cup(a_\\epsilon,\\infty)$ and $U_\\epsilon(z)>\\theta$ on $(0,a_\\epsilon)$. Moreover, as $\\epsilon\\to0$, one has $c_\\epsilon=c_f+O(\\epsilon)$ and $a_\\epsilon\\to+\\infty$. If $\\mathcal S_\\epsilon=\\{(U_\\epsilon(z),Q_\\epsilon(z)):\\, z\\in\\mathbb R\\}$ denotes the associated homoclinic orbit, then there is a constant $C>0$, independent of $\\epsilon$, such that $d_H(\\mathcal S_\\epsilon,\\mathcal S_0)\\le C\\epsilon$ for all sufficiently small $\\epsilon$."
+        },
+        {
+          "label": "E",
+          "text": "For $0<\\epsilon\\ll1$, there exists a unique $C^2$ (modulo translation) fast traveling pulse solution $(U_\\epsilon,Q_\\epsilon)$ of the system. In particular, writing the traveling-wave variable as $z=x+ct$, there exist unique $C^1$ curves $c_\\epsilon=c(\\epsilon)$ and $a_\\epsilon=a(\\epsilon)$ such that $U_\\epsilon(z)<\\theta$ on $(-\\infty,0)\\cup(a_\\epsilon,\\infty)$ and $U_\\epsilon(z)>\\theta$ on $(0,a_\\epsilon)$. Moreover, as $\\epsilon\\to0$, one has $c_\\epsilon\\to c_f$ and $a_\\epsilon\\to+\\infty$. If $\\mathcal S_\\epsilon=\\{(U_\\epsilon(z),Q_\\epsilon(z)):\\, z\\in\\mathbb R\\}$ denotes the associated homoclinic orbit, then $d_H(\\mathcal S_\\epsilon,\\mathcal S_0)=0$ for all sufficiently small $\\epsilon$, i.e. $\\mathcal S_\\epsilon=\\mathcal S_0$ as subsets of $(U,Q)$-space."
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "E"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "other",
+          "tampered_component": "divergence_of_width_a(epsilon) to +infty (via rescaled width tau=epsilon a)",
+          "template_used": "boundary_range"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "other",
+          "tampered_component": "uniqueness of parameter curves (c_epsilon,a_epsilon) and full Hausdorff-limit statement",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "counting_estimate",
+          "tampered_component": "nonquantitative convergence upgraded to uniform linear rate d_H<=C epsilon independent of epsilon",
+          "template_used": "uniformity_effectivity"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "case_split",
+          "tampered_component": "overlap of fast/slow dynamics: false identification S_epsilon=S_0 for small epsilon",
+          "template_used": "wildcard"
+        }
+      ]
+    },
+    "qa quality eval": {
+      "ALS": {
+        "score": 1,
+        "justification": "The stem asks for the “strongest statement asserting existence together with uniqueness … and ε→0 limit behavior,” which strongly cues that the correct option will be the most comprehensive theorem-like package (existence+uniqueness+parameter curves+limit+Hausdorff convergence). This is not an explicit giveaway, but it narrows the target to the longest/most detailed option."
+      },
+      "TAS": {
+        "score": 1,
+        "justification": "The item is essentially a theorem-selection question: it asks for the strongest correct existence/uniqueness/limit statement under the stated assumptions, rather than requiring derivation. There is some nontrivial discrimination among variants (e.g., aε→∞ vs finite, exact equality of orbits, quantitative rates), but it still largely restates a result."
+      },
+      "GPS": {
+        "score": 1,
+        "justification": "To choose correctly, one must compare subtle asymptotic/uniqueness claims (e.g., divergence of pulse width, nature of convergence, uniqueness of parameter curves). However, because the choices are near-copies differing by small phrases, the task is more about recognizing the right theorem-strength than generating/deriving reasoning from the system."
+      },
+      "DQS": {
+        "score": 2,
+        "justification": "Distractors are plausible and target common over/under-claiming failure modes: (B) wrong limit for aε, (C) weaker but potentially true statement, (D) unjustified quantitative rate, (E) impossible exact identification Sε=S0. They are distinct, aligned with typical errors, and not obviously absurd."
+      },
+      "total_score": 6,
+      "overall_assessment": "A solid theorem-strength discrimination MCQ with good, realistic distractors. Main weakness is mild answer-leakage via the stem’s “strongest statement” framing and the fact that it functions more as theorem recognition than a problem that forces substantive derivation from the model."
+    }
+  },
+  {
+    "id": "2511.15933v1",
+    "paper_link": "http://arxiv.org/abs/2511.15933v1",
+    "theorems_cnt": 5,
+    "theorem": {
+      "env_name": "theorem",
+      "content": "\\label{thmd}\nThe optimal Jordan constant for the volume-preserving plane Cremona group $\\mathrm{Bir}(\\mathbb{P}^2, \\Delta)$ is $12$.",
+      "start_pos": 134734,
+      "end_pos": 134888,
+      "label": "thmd"
+    },
+    "ref_dict": {},
+    "post_theorem_intro_text_len": 2406,
+    "post_theorem_intro_text": "Based on the Jordan constant $12$ of $\\mathrm{Bir}(\\mathbb{P}^2, \\Delta)$, we establish a Jordan constant for the three-dimensional volume-preserving Cremona group $\\mathrm{Bir}(\\mathbb{P}^3, \\Delta)$.\n\\begin{theorem} \\label{thmthree}\nA Jordan constant for \\( \\mathrm{Bir}(\\mathbb P^3, \\Delta) \\) is \\( 60\\).\n\\end{theorem}\n\nWe extend the analysis to the geometric Jordan property, which further requires the abelian normal subgroup to be embedded in an algebraic torus. We show the weak geometric Jordan property for $\\mathrm{Bir}(\\mathbb{P}^2)$, which allows the abelian group $A$ in each finite subgroup $G$ to be not necessarily normal.\n\\begin{definition}\\label{def2}\nA group $\\mathcal{G}$ has the \\emph{weak geometric Jordan property} if there exists a constant $J$ such that any finite subgroup $G \\leqslant \\mathcal{G}$ contains an abelian subgroup $A \\leqslant G$ with index $[G:A] \\leq J$, and $A$ is contained in an algebraic torus of $\\mathcal{G}$.\n\\end{definition}\n\n\\begin{theorem} \\label{thmgeo}\n$\\mathrm {Bir}(\\mathbb P^2)$ satisfies the weak geometric Jordan property with a constant $288\\cdot 16$.\n\\end{theorem}\nIn Section 2, we will review some preliminaries regarding finite subgroups of $\\mathrm{Bir}(\\mathbb{P}^2)$ and volume-preserving maps. In Section 3, we will derive the exact sequence as above, which reduces the task of finding a Jordan constant to enumerating certain Calabi-Yau pairs on $G$-minimal surfaces. In Section 4, we explicitly find the Jordan constant for $\\mathrm{Bir}(\\mathbb{P}^2, \\Delta)$. In Section 5, we show that this Jordan constant is optimal and we present a way to find volume-preserving subgroups regularized on del Pezzo surfaces. In Section 6, we extend the analysis of the Jordan property to the three-dimensional volume-preserving Cremona group $\n\\mathrm{Bir}(\\mathbb{P}^3, \\Delta)$. In Section 7, we find a weak geometric Jordan constant for the plane Cremona group.\n\\subsection*{Acknowledgments}\n\nI sincerely thank Joaquín Moraga for proposing this project and helpful discussions, the ideas from which essentially form the outline of the paper. Special thanks to Zhijia Zhang for valuable comments and for the idea of finding volume-preserving subgroups on del Pezzo surfaces. I am grateful to Burt Totaro for helpful conversations and comments. I also thank Ko Honda, Raphaël Rouquier, Jas Singh and José Yáñez for helpful comments.\n\\vspace{0.3cm}",
+    "sketch": "To find the Jordan constant in Theorem~\\ref{thmd}, the paper outlines the following strategy: in Section~2 it reviews preliminaries on finite subgroups of $\\mathrm{Bir}(\\mathbb{P}^2)$ and volume-preserving maps; in Section~3 it ``derive[s] the exact sequence as above, which reduces the task of finding a Jordan constant to enumerating certain Calabi-Yau pairs on $G$-minimal surfaces''; in Section~4 it ``explicitly find[s] the Jordan constant for $\\mathrm{Bir}(\\mathbb{P}^2, \\Delta)$''; and in Section~5 it shows ``that this Jordan constant is optimal'' and gives ``a way to find volume-preserving subgroups regularized on del Pezzo surfaces.''",
+    "expanded_sketch": "To find the Jordan constant in the main theorem, the paper outlines the following strategy: next it reviews preliminaries on finite subgroups of $\\mathrm{Bir}(\\mathbb{P}^2)$ and volume-preserving maps; then it ``derive[s] the exact sequence as above, which reduces the task of finding a Jordan constant to enumerating certain Calabi-Yau pairs on $G$-minimal surfaces''; next it ``explicitly find[s] the Jordan constant for $\\mathrm{Bir}(\\mathbb{P}^2, \\Delta)$''; and finally it shows ``that this Jordan constant is optimal'' and gives ``a way to find volume-preserving subgroups regularized on del Pezzo surfaces.''",
+    "expanded_theorem": "\\label{thmd}\nThe optimal Jordan constant for the volume-preserving plane Cremona group $\\mathrm{Bir}(\\mathbb{P}^2, \\Delta)$ is $12$.",
+    "theorem_type": [
+      "Existence",
+      "Uniqueness"
+    ],
+    "mcq": {
+      "question": "Let $G=\\mathrm{Bir}(\\mathbb{P}^2,\\Delta)$ be the volume-preserving plane Cremona group. Recall that a Jordan constant for $G$ is an integer $J$ such that every finite subgroup of $G$ contains an abelian normal subgroup of index at most $J$, and the optimal Jordan constant is the smallest such $J$. What is the strongest statement asserting existence and uniqueness of the optimal Jordan constant for $G$?",
+      "correct_choice": {
+        "label": "A",
+        "text": "There exists a unique optimal (i.e. minimal) Jordan constant for $\\mathrm{Bir}(\\mathbb{P}^2,\\Delta)$, and this optimal Jordan constant equals $12$."
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "There exists a (not necessarily unique) optimal Jordan constant for $\\mathrm{Bir}(\\mathbb{P}^2,\\Delta)$, and the optimal Jordan constant is at most $12$."
+        },
+        {
+          "label": "C",
+          "text": "There exists a Jordan constant for $\\mathrm{Bir}(\\mathbb{P}^2,\\Delta)$, and one may take $J=12$."
+        },
+        {
+          "label": "D",
+          "text": "There exists a unique optimal Jordan constant for $\\mathrm{Bir}(\\mathbb{P}^2,\\Delta)$, and this optimal Jordan constant equals $60$."
+        },
+        {
+          "label": "E",
+          "text": "There exists a unique optimal Jordan constant for $\\mathrm{Bir}(\\mathbb{P}^2,\\Delta)$, and for every finite subgroup $F\\le \\mathrm{Bir}(\\mathbb{P}^2,\\Delta)$ there is an abelian subgroup $A\\le F$ (not assumed normal) of index at most $12$."
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "E"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "counting_estimate",
+          "tampered_component": "uniqueness/minimality vs mere upper bound phrasing",
+          "template_used": "quantifier_dependence"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "counting_estimate",
+          "tampered_component": "drops optimality/uniqueness; keeps existence with explicit bound",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "counting_estimate",
+          "tampered_component": "replaces enumerated optimal constant $12$ by classical Cremona bound $60$",
+          "template_used": "property_confusion"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "other",
+          "tampered_component": "replaces 'abelian normal subgroup' by 'abelian subgroup' while keeping index bound $12$",
+          "template_used": "wildcard"
+        }
+      ]
+    },
+    "qa quality eval": {
+      "ALS": {
+        "score": 0,
+        "justification": "The stem effectively telegraphs the intended answer by asking for the “strongest statement” about existence/uniqueness and then offering an option that asserts uniqueness/minimality and a specific value (12). The presence of a clearly weaker-true option (“one may take J=12”) also points toward the stronger version with the same number."
+      },
+      "TAS": {
+        "score": 0,
+        "justification": "The question is essentially a restatement/comparison of definitions (“optimal = smallest”) plus a memorized fact (the value 12). It does not set up a scenario requiring application; it mainly asks which phrasing is strongest."
+      },
+      "GPS": {
+        "score": 0,
+        "justification": "Little to no generative reasoning is needed beyond recognizing that ‘unique optimal constant’ is tautologically true once existence is known, and recalling/spotting the correct numeric constant. The task is primarily selecting the most assertive wording rather than deriving anything."
+      },
+      "DQS": {
+        "score": 1,
+        "justification": "Distractors reflect common failure modes (confusing normal vs not-necessarily-normal; mixing up 12 vs 60; weakening to an upper bound; dropping optimality). However, option B is awkward (“optimal constant … at most 12” contradicts ‘optimal/minimal’ phrasing), and overall the set makes A stand out as the only fully coherent ‘strongest’ formulation."
+      },
+      "total_score": 1,
+      "overall_assessment": "Low-quality as a reasoning-assessment item: it largely tests recall/recognition of the claimed Jordan constant and the ability to pick the most strongly worded statement, with noticeable answer leakage and limited genuine mathematical reasoning. Distractors are somewhat aligned to typical confusions but not uniformly well-formed."
+    }
+  },
+  {
+    "id": "2511.16295v1",
+    "paper_link": "http://arxiv.org/abs/2511.16295v1",
+    "theorems_cnt": 1,
+    "theorem": {
+      "env_name": "conjecture",
+      "content": "(\\cite[conjecture~1.20]{KaKuMGSt})\n\\label{conj1}\n$\\xi_{g,1}$ is the unique closed, embedded minimal surface $M$ of genus $g\\geq 2$ in $\\mathbb{S}^3$ whose isometry group contains a Klein subgroup $\\Z_2\\times \\Z_2=\\langle \\phi,\\phi'\\rangle$ such that $\\phi,\\phi'$ are reflections across orthogonal spheres $S,S'\\subset \\mathbb{S}^3$ (orientation-reversing on $M$), the closures $\\Omega^+,\\Omega^-=\\phi(\\Omega^+)$ of the components of $M\\setminus S$\nhave genus zero, and all the boundary components of $\\partial \\Omega^+=\\partial \\Omega^-$ intersect the great circle $S\\cap S'$.",
+      "start_pos": 109508,
+      "end_pos": 110107,
+      "label": "conj1"
+    },
+    "ref_dict": {
+      "mainthm": "\\begin{theorem}\\label{mainthm}\n$\\xi_{2,1}$ is the unique closed embedded minimal surface in $\\esf^3$ with genus 2 and {\\em $D_{4h}$-symmetric}. \n\\end{theorem}",
+      "conj1": "\\begin{conjecture}(\\cite[conjecture~1.20]{KaKuMGSt})\n\\label{conj1}\n$\\xi_{g,1}$ is the unique closed, embedded minimal surface $M$ of genus $g\\geq 2$ in $\\esf^3$ whose isometry group contains a Klein subgroup $\\Z_2\\times \\Z_2=\\langle \\phi,\\phi'\\rangle$ such that $\\phi,\\phi'$ are reflections across orthogonal spheres $S,S'\\subset \\esf^3$ (orientation-reversing on $M$), the closures $\\Omega^+,\\Omega^-=\\phi(\\Omega^+)$ of the components of $M\\setminus S$\nhave genus zero, and all the boundary components of $\\partial \\Omega^+=\\partial \\Omega^-$ intersect the great circle $S\\cap S'$.\n\\end{conjecture}"
+    },
+    "post_theorem_intro_text_len": 3317,
+    "post_theorem_intro_text": "It is worth mentioning a recent work by Kusner, L\\\"{u} and Wang~\\cite{kuluwa1} where they characterize the Lawson surface $\\xi_{m,k}$ among closed embedded surfaces of genus $mk$ in $\\mathbb{S}^3$ that minimize the Willmore functional and are invariant under any group conjugate\nto the maximal rotation-symmetry group within Iso$(\\xi_{m,k})$. As a consequence, the same authors prove (Theorem~4.2 in~\\cite{kuluwa1})\na similar characterization for $\\xi_{m,k}$ as the one by Kapouleas and \nWiygul~\\cite{KaWiy0} among closed embedded minimal surfaces of genus $mk$ in $\\mathbb{S}^3$ which are invariant under certain index-two subroups of Iso$(\\xi_{m,k})$. \n\nWe will prove a result closely related to Conjecture~\\ref{conj1} in the case of genus $g=2$, strengthening the assumption on the Klein subgroup of $O_{48}$ by the product $D_{4h}=\\Z_2\\times D_4$ of $\\Z_2$ (generated by a reflection $\\phi$ across a sphere $S\\subset \\mathbb{S}^3$ so that $S$ disconnects $M$ into two genus zero components) with the dihedral group $D_4$ of order 8, see Theorem~\\ref{mainthm} for a precise statement. For this reason, surfaces invariant by $\\Z_2\\times D_4$ are called $D_{4h}$-symmetric. Our assumption on $D_{4h}$-symmetry in Theorem~\\ref{mainthm} allows to drop the hypothesis of Conjecture~\\ref{conj1} on all boundary components of $\\partial \\Omega_1^+=\\partial \\Omega_1^-$ intersecting a great circle of $S$.\n\nIn order to prove Theorem~\\ref{mainthm}, we first describe \nthe fundamental piece of an embedded, $D_{4h}$-symmetric minimal surface of genus two, and show that under conjugation, an appropriate reflection of \nthis conjugate fundamental piece is bounded by a geodesic pentagon in $\\mathbb{S}^3$ with right angles at all its vertices. We then study the space of such geodesic, right-angled polygons, which is a two-parameter family $\\mathcal P_{l, \\omega}$, $(l, \\omega) \\in [(0, \\pi)\\times (-\\pi/2,\\pi/2)]\\setminus \\{ (\\pi/2,0)\\}$, and related one-parameter family $\\mathcal{P}_{\\sigma}$,\n$\\sigma \\in [0,\\pi/2]$ that describes the parameter choice $(l,\\omega)=\n(\\pi/2,0)$ for the first family. We next show that these pentagons are the boundary of (embedded) area-minimizing disks $\\Sigma _{l , \\omega}$ (resp.\n$\\Sigma_{\\sigma}$), and explore the geometric properties of $\\Sigma _{l, \\omega},\\Sigma_\\sigma$. Among these properties, we are particularly interested in understanding the behavior of the mapping that associates to each $(l, \\omega)$ (resp. $\\sigma$) the length $L$ of a reflective geodesic $\\g_{l,\\omega}\\subset \n\\S_{l,\\omega}$ (resp. $\\g_{\\sigma}\\subset \\S_{\\sigma}$). The level set \n$L=\\pi/2$ of this function consists of the only potential examples that after conjugation and Schwarz reflection, might give rise to fundamental pieces of our desired $D_{4h}$-minimal surfaces of genus two. We then analyze the closing problem\nfor the surfaces arising in the level set $L=\\pi/2$, in the sense of\ndetermining under which conditions the conjugate piece $\\Sigma_{l,\\omega}^*$ of $\\Sigma_{l,\\omega}$ with $L=\\pi/2$, produces after Schwarz \nreflection an embedded, $D_{4h}$-symmetric minimal surface. We will prove that this closing problem has a unique solution, from which we will deduce the desired uniqueness result. See Section~\\ref{sec2.6} for a detailed \ndescription of the distribution of the paper.",
+    "sketch": "In order to prove Theorem~\\ref{mainthm}, the authors: (1) \"first describe the fundamental piece of an embedded, $D_{4h}$-symmetric minimal surface of genus two,\" and show that \"under conjugation, an appropriate reflection of this conjugate fundamental piece is bounded by a geodesic pentagon in $\\mathbb{S}^3$ with right angles at all its vertices.\" (2) They \"study the space of such geodesic, right-angled polygons,\" a two-parameter family $\\mathcal P_{l, \\omega}$ with $(l,\\omega)\\in[(0,\\pi)\\times(-\\pi/2,\\pi/2)]\\setminus\\{(\\pi/2,0)\\}$, and a related one-parameter family $\\mathcal P_\\sigma$, $\\sigma\\in[0,\\pi/2]$, corresponding to the excluded parameter choice $(l,\\omega)=(\\pi/2,0)$. (3) They show these pentagons bound \"(embedded) area-minimizing disks\" $\\Sigma_{l,\\omega}$ (resp. $\\Sigma_\\sigma$) and analyze their geometry, focusing on the map sending $(l,\\omega)$ (resp. $\\sigma$) to the length $L$ of a \"reflective geodesic\" $\\gamma_{l,\\omega}\\subset \\Sigma_{l,\\omega}$ (resp. $\\gamma_\\sigma\\subset \\Sigma_\\sigma$. (4) They identify that the level set $L=\\pi/2$ gives \"the only potential examples\" that, after conjugation and Schwarz reflection, could yield fundamental pieces of the desired surfaces. (5) They then \"analyze the closing problem\" for $L=\\pi/2$: determine when the conjugate piece $\\Sigma_{l,\\omega}^*$ produces, after Schwarz reflection, an embedded $D_{4h}$-symmetric minimal surface, and prove \"this closing problem has a unique solution,\" from which they \"deduce the desired uniqueness result.\"",
+    "expanded_sketch": "In order to prove Theorem~\\ref{mainthm}, the authors: (1) \"first describe the fundamental piece of an embedded, $D_{4h}$-symmetric minimal surface of genus two,\" and show that \"under conjugation, an appropriate reflection of this conjugate fundamental piece is bounded by a geodesic pentagon in $\\mathbb{S}^3$ with right angles at all its vertices.\" (2) They \"study the space of such geodesic, right-angled polygons,\" a two-parameter family $\\mathcal P_{l, \\omega}$ with $(l,\\omega)\\in[(0,\\pi)\\times(-\\pi/2,\\pi/2)]\\setminus\\{(\\pi/2,0)\\}$, and a related one-parameter family $\\mathcal P_\\sigma$, $\\sigma\\in[0,\\pi/2]$, corresponding to the excluded parameter choice $(l,\\omega)=(\\pi/2,0)$. (3) They show these pentagons bound \"(embedded) area-minimizing disks\" $\\Sigma_{l,\\omega}$ (resp. $\\Sigma_\\sigma$) and analyze their geometry, focusing on the map sending $(l,\\omega)$ (resp. $\\sigma$) to the length $L$ of a \"reflective geodesic\" $\\gamma_{l,\\omega}\\subset \\Sigma_{l,\\omega}$ (resp. $\\gamma_\\sigma\\subset \\Sigma_\\sigma$. (4) They identify that the level set $L=\\pi/2$ gives \"the only potential examples\" that, after conjugation and Schwarz reflection, could yield fundamental pieces of the desired surfaces. (5) They then \"analyze the closing problem\" for $L=\\pi/2$: determine when the conjugate piece $\\Sigma_{l,\\omega}^*$ produces, after Schwarz reflection, an embedded $D_{4h}$-symmetric minimal surface, and prove \"this closing problem has a unique solution,\" from which they \"deduce the desired uniqueness result.\"",
+    "expanded_theorem": "(\\cite[conjecture~1.20]{KaKuMGSt})\n\\label{conj1}\n$\\xi_{g,1}$ is the unique closed, embedded minimal surface $M$ of genus $g\\geq 2$ in $\\mathbb{S}^3$ whose isometry group contains a Klein subgroup $\\Z_2\\times \\Z_2=\\langle \\phi,\\phi'\\rangle$ such that $\\phi,\\phi'$ are reflections across orthogonal spheres $S,S'\\subset \\mathbb{S}^3$ (orientation-reversing on $M$), the closures $\\Omega^+,\\Omega^-=\\phi(\\Omega^+)$ of the components of $M\\setminus S$\nhave genus zero, and all the boundary components of $\\partial \\Omega^+=\\partial \\Omega^-$ intersect the great circle $S\\cap S'$.",
+    "theorem_type": [
+      "Uniqueness",
+      "Existence"
+    ],
+    "mcq": {
+      "question": "Fix an integer genus \\(g\\ge 2\\). Consider closed, embedded minimal surfaces \\(M\\subset \\mathbb S^3\\) of genus \\(g\\) whose isometry group contains a Klein four subgroup \\(\\mathbb Z_2\\times\\mathbb Z_2=\\langle\\phi,\\phi'\\rangle\\) such that \\(\\phi\\) and \\(\\phi'\\) are reflections across orthogonal 2-spheres \\(S,S'\\subset\\mathbb S^3\\) (and are orientation-reversing on \\(M\\)); if \\(\\Omega^+\\) and \\(\\Omega^-:=\\phi(\\Omega^+)\\) denote the closures of the components of \\(M\\setminus S\\), then \\(\\Omega^+\\) and \\(\\Omega^-\\) have genus zero; and every boundary component of \\(\\partial\\Omega^+=\\partial\\Omega^-\\) intersects the great circle \\(S\\cap S'\\). Under these conditions, which existence-and-uniqueness statement is asserted?",
+      "correct_choice": {
+        "label": "A",
+        "text": "There exists exactly one closed, embedded minimal surface \\(M\\subset\\mathbb S^3\\) of genus \\(g\\ge 2\\) satisfying all of the stated symmetry and topological conditions, and this unique surface is \\(\\xi_{g,1}\\)."
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "For each integer genus $g\\ge 2$, there exists at least one closed, embedded minimal surface $M\\subset\\mathbb S^3$ satisfying the stated Klein-four symmetry, the genus--zero condition on $\\Omega^\\pm$, and the requirement that every component of $\\partial\\Omega^+=\\partial\\Omega^-$ meets the great circle $S\\cap S'$, and any two such surfaces are congruent up to an ambient isometry of $\\mathbb S^3$ that preserves $S\\cap S'$ setwise."
+        },
+        {
+          "label": "C",
+          "text": "For each integer genus $g\\ge 2$, there exists at most one closed, embedded minimal surface $M\\subset\\mathbb S^3$ satisfying the stated Klein-four symmetry, the genus--zero condition on $\\Omega^\\pm$, and the requirement that every component of $\\partial\\Omega^+=\\partial\\Omega^-$ meets the great circle $S\\cap S'$."
+        },
+        {
+          "label": "D",
+          "text": "For each integer genus $g\\ge 2$, there exists exactly one closed, embedded minimal surface $M\\subset\\mathbb S^3$ satisfying the stated conditions, and moreover the isometry group of this $M$ contains a dihedral subgroup $D_{4h}$ generated by reflections in $S$ and $S'$ together with a half--turn about the great circle $S\\cap S'$."
+        },
+        {
+          "label": "E",
+          "text": "For each integer genus $g\\ge 2$, there exists exactly one closed, embedded minimal surface $M\\subset\\mathbb S^3$ satisfying the stated conditions, and this $M$ is characterized by the fact that in the associated two--parameter family of right--angled geodesic pentagons $\\mathcal P_{l,\\omega}$ one has a unique parameter pair $(l,\\omega)\\in(0,\\pi)\\times(-\\pi/2,\\pi/2)$ producing a reflective geodesic $\\gamma_{l,\\omega}$ of length $L=\\pi/2$."
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "E"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "quantifier_dependence",
+          "tampered_component": "uniqueness_identification_as_xi_{g,1}",
+          "template_used": "property_confusion"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "finiteness",
+          "tampered_component": "dropped_existence_clause_keep_uniqueness_only",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "geometric_construction",
+          "tampered_component": "upgraded_symmetry_from_Klein_four_to_D_{4h}",
+          "template_used": "stronger_trap"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "case_split",
+          "tampered_component": "ignored_excluded_parameter_case_(\\pi/2,0)_and_misstated_closing_problem_as_parameter_uniqueness",
+          "template_used": "wildcard"
+        }
+      ]
+    },
+    "qa quality eval": {
+      "ALS": {
+        "score": 0,
+        "justification": "The correct option A essentially restates the stem’s setup as an 'existence-and-uniqueness statement' and names the purported unique surface \\(\\xi_{g,1}\\). Since the stem asks 'which statement is asserted?' with no additional mathematical task, recognizing the theorem-title-level claim (especially the named object \\(\\xi_{g,1}\\)) makes the answer largely a recall/recognition task rather than inference; the presence of the proper name also makes the correct choice stand out."
+      },
+      "TAS": {
+        "score": 0,
+        "justification": "This is a near-direct restatement question: the stem lists a long set of hypotheses and then asks which existence/uniqueness conclusion is asserted. The correct choice repeats 'exists exactly one' under 'the stated conditions' and identifies it. There is no competing mathematical conclusion to derive; it's largely matching a theorem statement."
+      },
+      "GPS": {
+        "score": 0,
+        "justification": "Little to no generative reasoning is required. One can answer by recognizing the strongest-looking theorem-like option (existence+uniqueness+named surface). The distractors are mainly minor logical variations (existence only / uniqueness only / extra symmetry / construction detail), so the task is logical bookkeeping/recall, not mathematical derivation."
+      },
+      "DQS": {
+        "score": 1,
+        "justification": "Some distractors reflect common logical confusions: B (existence + congruence with extra constraint), C (uniqueness without existence), D (adds stronger symmetry), E (irrelevant/over-specific construction parameter claim). However, several are not very plausible in context: E is highly technical and domain-specific in a way that feels unlike the stem, and A is conspicuously 'the theorem name' option, making distractors less competitive."
+      },
+      "total_score": 1,
+      "overall_assessment": "Low-quality as an assessment of reasoning: it is primarily theorem recognition/restatement with noticeable answer salience (named object), minimal generative pressure, and only moderately plausible distractors."
+    }
+  },
+  {
+    "id": "2511.10759v1",
+    "paper_link": "http://arxiv.org/abs/2511.10759v1",
+    "theorems_cnt": 1,
+    "theorem": {
+      "env_name": "definition",
+      "content": "\\label{def:ubq}\n    Let $X$ be a geodesic metric space. A connected subspace $Z \\subset X$ is called \\emph{narrow} if it is quasi-isometric to a subset of $\\mathbf{R}$, with respect to the ambient metric. If $Z$ is not narrow then it is said to be \\emph{wide}. We define the \\emph{uniformly bisecting quasi-geodesics} property, denoted (\\ref{eq:BQ}), as follows:\n        \\begin{equation}\n  \\tag{$\\rm{UBQ}$}\\label{eq:BQ}\n  \\parbox{4in}{    \\strut\n    There exists $\\sigma > 0$ such that for any connected, bi-infinite quasi-geodesic $\\rho \\subset X$, we have that $X \\setminus N_\\sigma(\\rho)$ contains exactly two wide connected components. \n    \\strut\n  }\n\\end{equation}\nWe call $\\sigma$ the \\emph{separation constant}.",
+      "start_pos": 88057,
+      "end_pos": 88803,
+      "label": "def:ubq"
+    },
+    "ref_dict": {
+      "eq:BQ": "\\begin{equation}\n  \\tag{$\\rm{UBQ}$}\\label{eq:BQ}\n  \\parbox{4in}{    \\strut\n    There exists $\\sigma > 0$ such that for any connected, bi-infinite quasi-geodesic $\\rho \\subset X$, we have that $X \\setminus N_\\sigma(\\rho)$ contains exactly two wide connected components. \n    \\strut\n  }\n\\end{equation}",
+      "thm:main-theorem": "\\begin{restatable}{alphtheorem}{main}\\label{thm:main-theorem}\n    Let $X$ be an infinite, connected, locally finite, quasi-transitive graph with \\property{}. Then $X$ is quasi-isometric to either the Euclidean plane or the hyperbolic plane.  \n\\end{restatable}"
+    },
+    "post_theorem_intro_text_len": 5691,
+    "post_theorem_intro_text": "The property (\\ref{eq:BQ}){} is easily checked to be a quasi-isometry invariant among geodesic spaces. \nThus, it makes sense to say that a finitely generated group has this property. The Euclidean and hyperbolic planes obviously have (\\ref{eq:BQ}){}, by the Jordan curve theorem. It is an exercise in hyperbolic geometry to show that if an infinite hyperbolic group satisfies (\\ref{eq:BQ}){} then its Gromov boundary is circular. Hence, the convergence group theorem implies the following.\n\n\\begin{theorem*}[Corollary of the convergence group theorem]\n    Let $G$ be an infinite hyperbolic group with (\\ref{eq:BQ}){}. Then $G$ is virtually Fuchsian.\n\\end{theorem*}\n\nIn this form, the hypotheses now make sense in any finitely generated group, or indeed in any locally finite, quasi-transitive graph.\nIt is therefore natural to ask whether this theorem extends to non-hyperbolic groups or to arbitrary locally finite, quasi-transitive graphs. This question appears as Problem~14.98 of the Kourovka Notebook \\cite{khukhro2025unsolvedproblemsgrouptheory}, posed by V. A. Churkin in 1999. \nIn this paper, we answer Churkin's question in the affirmative and prove the following.\n\n\\begin{restatable}{alphtheorem}{main}\\label{thm:main-theorem}\n    Let $X$ be an infinite, connected, locally finite, quasi-transitive graph with (\\ref{eq:BQ}){}. Then $X$ is quasi-isometric to either the Euclidean plane or the hyperbolic plane.  \n\\end{restatable}\n\nSince finitely generated abelian groups and Fuchsian groups are known to be quasi-isometrically rigid, this has the consequence that if $G$ is a finitely generated group with (\\ref{eq:BQ}){} then $G$ is a virtual surface group. Thus we provide a new, purely geometric characterisation of virtual surface groups among all finitely generated groups.\n\nWe remark that Theorem~\\ref{thm:main-theorem} can be compared to Bing's characterisation of the 2-sphere \\cite{bing1946kline}. This states that any compact, connected, locally connected space without cut-points or cut-pairs, in which every simple closed curve separates, is homeomorphic to the 2-sphere. Morally, our theorem is a coarse analogue of this statement for locally finite, quasi-transitive graphs.\nWe also point out that our characterisation is similar in spirit to Papasoglu's theorem mentioned above, in the sense that they both characterise virtual surface groups through the separation properties of their quasi-lines. One key difference between the two results is that Papasoglu requires the group to be \\emph{a priori} finitely presented, whereas we do away with this assumption altogether.\n\n\\subsection*{Outline}\n\nBefore we begin, we describe a rough outline of this paper and the proof therein.\nIn order to prove Theorem~\\ref{thm:main-theorem}, we consider separately the cases where $X$ is hyperbolic and where $X$ is not hyperbolic. The hyperbolic case follows from the convergence group theorem as discussed above.\\footnote{The case where $X$ is hyperbolic but not a Cayley graph requires some care, but still follows from known results; see~\\cite[\\S1.1]{macmanus2024note}.} Our attention is thus entirely focused on the case where $X$ is not hyperbolic.\nThe ultimate goal is to prove that non-hyperbolicity plus (\\ref{eq:BQ}){} implies that $X$ has quadratic growth. From here, a theorem of Trofimov  \\cite{trofimov1985graphs}, building on work of Gromov \\cite{gromov1981groups}, plus the Bass--Guivarc'h formula for the degrees of growth of nilpotent groups \\cite{bass1972degree, guivarc1973croissance}, allows us to conclude that $X$ is quasi-isometric to the Euclidean plane.\n\nWe will study this problem through the eyes of \\emph{witnesses}, which are introduced in \\S\\ref{sec:witness}. These are pairs of rays which probe deep into the two wide components bound by a bi-infinite quasi-geodesic. A key tool here will be the \\emph{witness protection lemma}, which asserts that if we perturb a bi-infinite geodesic in a bounded way, then the original witnesses still witness two distinct deep components bound by the new quasi-geodesic. Following this, in \\S\\ref{sec:crosshair} and \\S\\ref{sec:witness-sep} we construct and consider a large figure called a \\emph{cross-examiner}. Attaching paths to the cross-examiner and applying the witness protection lemma allows us to construct closed loops which coarsely bound regions of $X$ in a controlled way. These loops should be compared to Jordan curves in the plane. Combining this with an inequality of Varopoulos, \nin \\S\\ref{sec:jurisdiction} we establish a useful criterion for showing that $X$ has quadratic growth. \n\nFollowing this, we study the separation properties of \\emph{quasi-circles} and, more generally, \\emph{truncated quasi-circles} in \\S\\ref{sec:circles}. We apply our new criterion for quadratic growth and see that either  all (truncated) quasi-circles coarsely bound regions of at most uniformly bounded depth, regardless of length, or $X$ has quadratic growth. In the language of this paper, we prove that truncated quasi-circles have \\emph{limited jurisdiction}. In the final section, \\S\\ref{sec:final}, we apply the Arzel\\`a--Ascoli theorem to construct a sequence of `nested' truncated quasi-circles lying along a bi-infinite quasi-geodesic. We then observe that this `nesting' taken together with the witness protection lemma means the truncated quasi-circles cannot possibly have limited jurisdiction. This enables us to conclude that $X$ has quadratic growth, and deliver our final verdict.\n\n\\subsection*{Acknowledgements}\n\n I thank Panos Papasoglu for helpful discussions about bigons, and Agelos Georgakopoulos for comments. This work was supported by the Heilbronn Institute for Mathematical Research.",
+    "sketch": "In order to prove Theorem~\\ref{thm:main-theorem}, the paper “consider[s] separately the cases where $X$ is hyperbolic and where $X$ is not hyperbolic.” The “hyperbolic case follows from the convergence group theorem as discussed above” (with some care if $X$ is hyperbolic but not a Cayley graph).\n\nFor the non-hyperbolic case, the “ultimate goal is to prove that non-hyperbolicity plus (\\ref{eq:BQ}){} implies that $X$ has quadratic growth.” “From here, a theorem of Trofimov … plus the Bass--Guivarc'h formula … allows us to conclude that $X$ is quasi-isometric to the Euclidean plane.”\n\nTo reach quadratic growth, the argument is organized as follows:\n\\begin{itemize}\n\\item Introduce \\emph{witnesses} (\\S\\ref{sec:witness}), “pairs of rays which probe deep into the two wide components bound by a bi-infinite quasi-geodesic.”\n\\item Use the \\emph{witness protection lemma}: “if we perturb a bi-infinite geodesic in a bounded way, then the original witnesses still witness two distinct deep components bound by the new quasi-geodesic.”\n\\item Construct a large figure called a \\emph{cross-examiner} (\\S\\ref{sec:crosshair}, \\S\\ref{sec:witness-sep}); “attaching paths to the cross-examiner and applying the witness protection lemma allows us to construct closed loops which coarsely bound regions of $X$ in a controlled way,” compared to “Jordan curves in the plane.”\n\\item “Combining this with an inequality of Varopoulos,” in \\S\\ref{sec:jurisdiction} the paper “establish[es] a useful criterion for showing that $X$ has quadratic growth.”\n\\item Study separation for \\emph{quasi-circles} and \\emph{truncated quasi-circles} (\\S\\ref{sec:circles}) and apply the criterion to show “either all (truncated) quasi-circles coarsely bound regions of at most uniformly bounded depth, regardless of length, or $X$ has quadratic growth,” i.e. truncated quasi-circles have “\\emph{limited jurisdiction}.”\n\\item In \\S\\ref{sec:final}, apply Arzel\\`a--Ascoli to “construct a sequence of ‘nested’ truncated quasi-circles lying along a bi-infinite quasi-geodesic,” and observe that this “taken together with the witness protection lemma means the truncated quasi-circles cannot possibly have limited jurisdiction,” forcing “that $X$ has quadratic growth,” which completes the non-hyperbolic case.\n\\end{itemize}\n",
+    "expanded_sketch": "In order to prove Theorem~\\ref{thm:main-theorem}, the paper “consider[s] separately the cases where $X$ is hyperbolic and where $X$ is not hyperbolic.” The “hyperbolic case follows from the convergence group theorem as discussed above” (with some care if $X$ is hyperbolic but not a Cayley graph).\n\nFor the non-hyperbolic case, the “ultimate goal is to prove that non-hyperbolicity plus\n\\begin{equation}\n  \\tag{$\\rm{UBQ}$}\\label{eq:BQ}\n  \\parbox{4in}{    \\strut\n    There exists $\\sigma > 0$ such that for any connected, bi-infinite quasi-geodesic $\\rho \\subset X$, we have that $X \\setminus N_\\sigma(\\rho)$ contains exactly two wide connected components. \n    \\strut\n  }\n\\end{equation}\n implies that $X$ has quadratic growth.” “From here, a theorem of Trofimov … plus the Bass--Guivarc'h formula … allows us to conclude that $X$ is quasi-isometric to the Euclidean plane.”\n\nTo reach quadratic growth, the argument is organized as follows:\n\\begin{itemize}\n\\item Introduce \\emph{witnesses} (\\S\\ref{sec:witness}), “pairs of rays which probe deep into the two wide components bound by a bi-infinite quasi-geodesic.”\n\\item Use the \\emph{witness protection lemma}: “if we perturb a bi-infinite geodesic in a bounded way, then the original witnesses still witness two distinct deep components bound by the new quasi-geodesic.”\n\\item Construct a large figure called a \\emph{cross-examiner} (\\S\\ref{sec:crosshair}, \\S\\ref{sec:witness-sep}); “attaching paths to the cross-examiner and applying the witness protection lemma allows us to construct closed loops which coarsely bound regions of $X$ in a controlled way,” compared to “Jordan curves in the plane.”\n\\item “Combining this with an inequality of Varopoulos,” in \\S\\ref{sec:jurisdiction} the paper “establish[es] a useful criterion for showing that $X$ has quadratic growth.”\n\\item Study separation for \\emph{quasi-circles} and \\emph{truncated quasi-circles} (\\S\\ref{sec:circles}) and apply the criterion to show “either all (truncated) quasi-circles coarsely bound regions of at most uniformly bounded depth, regardless of length, or $X$ has quadratic growth,” i.e. truncated quasi-circles have “\\emph{limited jurisdiction}.”\n\\item In \\S\\ref{sec:final}, apply Arzel\\`a--Ascoli to “construct a sequence of ‘nested’ truncated quasi-circles lying along a bi-infinite quasi-geodesic,” and observe that this “taken together with the witness protection lemma means the truncated quasi-circles cannot possibly have limited jurisdiction,” forcing “that $X$ has quadratic growth,” which completes the non-hyperbolic case.\n\\end{itemize}",
+    "expanded_theorem": "\\label{def:ubq}\n    Let $X$ be a geodesic metric space. A connected subspace $Z \\subset X$ is called \\emph{narrow} if it is quasi-isometric to a subset of $\\mathbf{R}$, with respect to the ambient metric. If $Z$ is not narrow then it is said to be \\emph{wide}. We define the \\emph{uniformly bisecting quasi-geodesics} property, denoted \n\n\\begin{equation}\n  \\tag{$\\rm{UBQ}$}\\label{eq:BQ}\n  \\parbox{4in}{    \\strut\n    There exists $\\sigma > 0$ such that for any connected, bi-infinite quasi-geodesic $\\rho \\subset X$, we have that $X \\setminus N_\\sigma(\\rho)$ contains exactly two wide connected components. \n    \\strut\n  }\n\\end{equation}\n\nas follows:\n        \\begin{equation}\n  \\tag{$\\rm{UBQ}$}\\label{eq:BQ}\n  \\parbox{4in}{    \\strut\n    There exists $\\sigma > 0$ such that for any connected, bi-infinite quasi-geodesic $\\rho \\subset X$, we have that $X \\setminus N_\\sigma(\\rho)$ contains exactly two wide connected components. \n    \\strut\n  }\n\\end{equation}\nWe call $\\sigma$ the \\emph{separation constant}.",
+    "theorem_type": [
+      "Existential–Universal",
+      "Uniqueness"
+    ],
+    "mcq": {
+      "question": "Let $X$ be a geodesic metric space. Call a connected subspace $Z\\subset X$ **narrow** if (with the ambient metric) it is quasi-isometric to a subset of $\\mathbf{R}$, and **wide** otherwise. Under these definitions, what is the precise existence-and-uniqueness statement (in terms of the number of wide connected components) expressing that $X$ has the uniformly bisecting quasi-geodesics property (UBQ)?",
+      "correct_choice": {
+        "label": "A",
+        "text": "There exists $\\sigma>0$ such that for every connected, bi-infinite quasi-geodesic $\\rho\\subset X$, the complement $X\\setminus N_\\sigma(\\rho)$ contains exactly two wide connected components."
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "There exists $\\sigma>0$ such that for every connected, bi-infinite quasi-geodesic $\\rho\\subset X$, the complement $X\\setminus N_\\sigma(\\rho)$ contains at least two wide connected components."
+        },
+        {
+          "label": "C",
+          "text": "For every connected, bi-infinite quasi-geodesic $\\rho\\subset X$, there exists $\\sigma>0$ such that $X\\setminus N_\\sigma(\\rho)$ contains exactly two wide connected components."
+        },
+        {
+          "label": "D",
+          "text": "There exists $\\sigma>0$ such that for every connected, bi-infinite quasi-geodesic $\\rho\\subset X$, the complement $X\\setminus N_\\sigma(\\rho)$ contains exactly two connected components, and both of these components are wide."
+        },
+        {
+          "label": "E",
+          "text": "There exists $\\sigma>0$ such that for every connected, bi-infinite quasi-geodesic $\\rho\\subset X$, the complement $X\\setminus N_\\sigma(\\rho)$ contains exactly two connected components, each of which is wide."
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "E"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "geometric_construction",
+          "tampered_component": "exactly_two_uniqueness",
+          "template_used": "boundary_range"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "geometric_construction",
+          "tampered_component": "uniform_separation_constant_sigma_independent_of_rho",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "geometric_construction",
+          "tampered_component": "ignores_possible_narrow_components_in_complement",
+          "template_used": "property_confusion"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "other",
+          "tampered_component": "forces_complement_to_have_only_two_components_total",
+          "template_used": "wildcard"
+        }
+      ]
+    },
+    "qa quality eval": {
+      "ALS": {
+        "score": 2,
+        "justification": "The stem does not state the answer or give a direct hint like “exactly two wide components”; it asks for the precise quantifier/uniqueness formulation, which must be inferred from the options."
+      },
+      "TAS": {
+        "score": 0,
+        "justification": "It is essentially a “state the definition precisely” item: it asks for the exact existence-and-uniqueness statement that *is* the UBQ property, rather than applying UBQ to a new situation."
+      },
+      "GPS": {
+        "score": 1,
+        "justification": "Selecting the correct choice requires some reasoning about subtle differences (uniform vs. non-uniform σ; 'exactly two' vs 'at least two'; wide components vs all components), but for anyone who knows UBQ it is largely recall/recognition."
+      },
+      "DQS": {
+        "score": 1,
+        "justification": "Most distractors target realistic failure modes (wrong quantifier order; weakening 'exactly' to 'at least'; confusing wide components with total connected components). However D and E are effectively duplicates, reducing distinctiveness and overall distractor quality."
+      },
+      "total_score": 4,
+      "overall_assessment": "A mostly definition-recall MCQ with decent quantifier-based distractors; it avoids answer leakage but is tautological and has some distractor redundancy (D/E)."
+    }
+  }
+]

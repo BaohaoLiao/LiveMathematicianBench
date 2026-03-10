@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LiveMathematicianBench</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --primary: #1a56db;
+    --primary-light: #e1effe;
+    --accent: #7c3aed;
+    --bg: #f8fafc;
+    --card-bg: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, #1e3a5f 0%, #1a56db 50%, #7c3aed 100%);
+    color: white;
+    padding: 80px 0 60px;
+    text-align: center;
+  }
+  .hero h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 12px; letter-spacing: -0.02em; }
+  .hero .subtitle { font-size: 1.25rem; opacity: 0.9; max-width: 700px; margin: 0 auto 24px; }
+  .hero .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 0.9rem;
+    backdrop-filter: blur(4px);
+  }
+  .hero-links { margin-top: 20px; }
+  .hero-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 12px;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+  .hero-links a.btn-primary { background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4); }
+  .hero-links a.btn-primary:hover { background: rgba(255,255,255,0.3); }
+
+  /* Navigation tabs */
+  .nav-tabs {
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .nav-tabs .container { display: flex; gap: 0; overflow-x: auto; }
+  .nav-tab {
+    padding: 14px 20px;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--text-muted);
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .nav-tab:hover { color: var(--primary); }
+  .nav-tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+
+  /* Sections */
+  .section { padding: 48px 0; display: none; }
+  .section.active { display: block; }
+  .section-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; }
+  .section-desc { color: var(--text-muted); margin-bottom: 32px; font-size: 1.05rem; }
+
+  /* Cards */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .card h3 { font-size: 1.1rem; margin-bottom: 12px; }
+
+  /* Stat boxes */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .stat-box {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .stat-box .stat-value {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1.2;
+  }
+  .stat-box .stat-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* Tables */
+  .table-wrap { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  th {
+    background: #f1f5f9;
+    font-weight: 600;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  #stats-table th {
+    position: sticky;
+    top: 52px;
+    z-index: 10;
+  }
+  tr:hover td { background: #f8fafc; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+  /* Charts */
+  .chart-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 32px;
+  }
+  @media (max-width: 768px) {
+    .chart-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 2rem; }
+  }
+  .chart-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .chart-card h3 { font-size: 1rem; margin-bottom: 12px; color: var(--text-muted); }
+  .chart-container { position: relative; height: 300px; }
+
+  /* Examples */
+  .example-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    transition: box-shadow 0.2s;
+  }
+  .example-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+  .example-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .example-header .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .tag-cat { background: var(--primary-light); color: var(--primary); }
+  .tag-month { background: #fef3c7; color: #92400e; }
+  .example-header a {
+    color: var(--primary);
+    font-size: 0.85rem;
+    text-decoration: none;
+    margin-left: auto;
+  }
+  .example-header a:hover { text-decoration: underline; }
+  .example-section { margin-bottom: 14px; }
+  .example-section .label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .example-section .content {
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 0.95rem;
+    overflow-x: auto;
+  }
+  .choices-list { list-style: none; padding: 0; }
+  .choices-list li {
+    padding: 8px 12px;
+    margin: 4px 0;
+    border-radius: 8px;
+    background: #f8fafc;
+    font-size: 0.9rem;
+    border: 1px solid var(--border);
+  }
+  .choices-list li.correct {
+    background: #ecfdf5;
+    border-color: #a7f3d0;
+  }
+  .choices-list li .choice-label {
+    font-weight: 700;
+    margin-right: 8px;
+    color: var(--text-muted);
+  }
+  .choices-list li.correct .choice-label { color: var(--success); }
+
+  /* Filters */
+  .filter-bar {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .filter-bar select, .filter-bar input {
+    padding: 8px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    background: white;
+    color: var(--text);
+  }
+
+  /* Leaderboard */
+  .leaderboard-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    margin-bottom: 24px;
+  }
+  .leaderboard-card h3 {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    font-size: 1rem;
+    background: #f8fafc;
+  }
+  .accuracy-bar {
+    display: inline-block;
+    height: 8px;
+    border-radius: 4px;
+    background: var(--primary);
+    min-width: 2px;
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+  .accuracy-value {
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+  .pct-high { color: var(--success); }
+  .pct-mid { color: var(--warning); }
+  .pct-low { color: var(--danger); }
+
+  /* Pagination for examples */
+  .pagination {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin: 24px 0;
+  }
+  .pagination button {
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+  }
+  .pagination button:hover { background: var(--primary-light); }
+  .pagination button.active { background: var(--primary); color: white; border-color: var(--primary); }
+  .pagination button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* About section */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } }
+  .about-card { padding: 24px; }
+  .about-card h3 { color: var(--primary); margin-bottom: 8px; }
+  .about-card p { color: var(--text-muted); font-size: 0.95rem; }
+  .about-card ul { color: var(--text-muted); font-size: 0.95rem; margin-left: 20px; margin-top: 8px; }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 32px 0;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+  }
+  footer a { color: var(--primary); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="container">
+    <div class="badge">&#x1f4d0; Live Benchmark &mdash; Updated Monthly</div>
+    <h1>LiveMathematicianBench</h1>
+    <p class="subtitle">
+      A live benchmark for evaluating LLMs' capability as mathematicians,
+      featuring research-level theorem comprehension from the latest arXiv papers.
+    </p>
+    <div class="hero-links">
+      <a class="btn-primary" href="https://github.com/hendrydong/LiveMathematicianBench" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn-primary" href="https://huggingface.co/datasets/hendrydong/bench0303" target="_blank" rel="noopener">Dataset</a>
+    </div>
+  </div>
+</div>
+
+<!-- Nav -->
+<div class="nav-tabs">
+  <div class="container">
+    <div class="nav-tab active" data-tab="leaderboard">Leaderboard</div>
+    <div class="nav-tab" data-tab="overview">Overview</div>
+    <div class="nav-tab" data-tab="examples">Examples</div>
+    <div class="nav-tab" data-tab="about">About</div>
+  </div>
+</div>
+
+<!-- Sections -->
+<div class="container">
+
+  <!-- LEADERBOARD -->
+  <div class="section active" id="sec-leaderboard">
+    <h2 class="section-title">Model Leaderboard</h2>
+    <p class="section-desc">How well do frontier LLMs perform on research-level mathematics? Scores will be updated as more models are evaluated.</p>
+    <div id="leaderboard-overall" class="leaderboard-card">
+      <h3>Overall Accuracy</h3>
+      <div class="table-wrap"><table id="lb-overall-table"></table></div>
+    </div>
+    <div id="leaderboard-category" class="leaderboard-card">
+      <h3>Per-Category Accuracy</h3>
+      <div class="table-wrap"><table id="lb-cat-table"></table></div>
+    </div>
+    <div class="chart-grid">
+      <div class="chart-card" style="grid-column: 1 / -1;">
+        <h3>Model Accuracy by Category <span style="font-weight:400;font-size:0.8rem;color:var(--text-muted);margin-left:8px;">Click legend to hide/show a model</span></h3>
+        <div class="chart-container" style="height:360px;"><canvas id="chart-model-cat"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="section" id="sec-overview">
+    <h2 class="section-title">Benchmark Overview</h2>
+    <p class="section-desc">Monthly updated dataset of research-level mathematics MCQs derived from recent arXiv publications.</p>
+    <div class="stat-grid" id="overview-stats"></div>
+    <div class="chart-grid">
+      <div class="chart-card">
+        <h3>Questions per Month</h3>
+        <div class="chart-container"><canvas id="chart-monthly"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <h3>Category Distribution (All Months)</h3>
+        <div class="chart-container"><canvas id="chart-categories"></canvas></div>
+      </div>
+    </div>
+    <div class="chart-grid">
+      <div class="chart-card" style="grid-column: 1 / -1;">
+        <h3>Category Breakdown by Month</h3>
+        <div class="chart-container" style="height:360px;"><canvas id="chart-cat-monthly"></canvas></div>
+      </div>
+    </div>
+    <h3 style="font-size:1.2rem; margin-top:32px; margin-bottom:16px;">Detailed Statistics</h3>
+    <div class="card table-wrap">
+      <table id="stats-table">
+        <thead><tr><th>Category</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- EXAMPLES -->
+  <div class="section" id="sec-examples">
+    <h2 class="section-title">Example Questions</h2>
+    <p class="section-desc">Browse sample MCQs from the benchmark. Each question is derived from a real arXiv paper theorem.</p>
+    <div class="filter-bar">
+      <select id="filter-month"><option value="">All Months</option></select>
+      <select id="filter-cat"><option value="">All Categories</option></select>
+    </div>
+    <div id="examples-container"></div>
+    <div class="pagination" id="examples-pagination"></div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="section" id="sec-about">
+    <h2 class="section-title">About the Benchmark</h2>
+    <p class="section-desc">Understanding the design and methodology behind LiveMathematicianBench.</p>
+    <div class="about-grid">
+      <div class="card about-card">
+        <h3>What is it?</h3>
+        <p>LiveMathematicianBench is a <strong>live, continuously updated</strong> benchmark
+           that evaluates LLMs on their ability to understand and reason about
+           cutting-edge mathematical theorems from newly published arXiv preprints.</p>
+      </div>
+      <div class="card about-card">
+        <h3>Why "Live"?</h3>
+        <p>New papers appear on arXiv every month. We extract theorems from these papers
+           and generate multiple-choice questions that test deep mathematical understanding,
+           ensuring that models cannot rely on memorized training data.</p>
+      </div>
+      <div class="card about-card">
+        <h3>Question Format</h3>
+        <p>Each question presents a theorem statement along with a proof sketch, then
+           asks the model to identify the correct mathematical conclusion from five
+           carefully crafted choices (one correct, one weaker-but-true, and three false).</p>
+      </div>
+      <div class="card about-card">
+        <h3>Theorem Categories</h3>
+        <ul>
+          <li>Asymptotic or Limit</li>
+          <li>Biconditional or Equivalence</li>
+          <li>Classification or Bijection</li>
+          <li>Existence / Uniqueness</li>
+          <li>Implication / Universal</li>
+          <li>Inequality or Bound</li>
+          <li>General / Existential&ndash;Universal</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="container">
+    LiveMathematicianBench &copy; 2025&ndash;2026 &middot;
+    <a href="https://github.com/hendrydong/LiveMathematicianBench" target="_blank" rel="noopener">GitHub</a> &middot;
+    <a href="https://huggingface.co/datasets/hendrydong/bench0303" target="_blank" rel="noopener">HuggingFace</a>
+  </div>
+</footer>
+
+<script>
+// ===== Embedded Data =====
+const MONTHS = ["202511", "202512", "202601", "202602"];
+const CATEGORIES = ["Asymptotic or Limit", "Biconditional or Equivalence", "Classification or Bijection", "Existence", "Existential\u2013Universal", "General", "Implication", "Inequality or Bound", "Uniqueness", "Universal"];
+const MONTH_LABELS = {"202511": "Nov 2025", "202512": "Dec 2025", "202601": "Jan 2026", "202602": "Feb 2026", "202603": "Mar 2026", "202604": "Apr 2026"};
+const STATS = {"202511": {"Asymptotic or Limit": 11, "Biconditional or Equivalence": 10, "Classification or Bijection": 6, "Existence": 24, "Existential\u2013Universal": 10, "General": 23, "Implication": 22, "Inequality or Bound": 14, "Uniqueness": 4, "Universal": 27}, "202512": {"Asymptotic or Limit": 3, "Biconditional or Equivalence": 14, "Classification or Bijection": 13, "Existence": 11, "Existential\u2013Universal": 8, "General": 19, "Implication": 24, "Inequality or Bound": 25, "Uniqueness": 3, "Universal": 35}, "202601": {"Asymptotic or Limit": 25, "Biconditional or Equivalence": 26, "Classification or Bijection": 22, "Existence": 57, "Existential\u2013Universal": 23, "General": 60, "Implication": 72, "Inequality or Bound": 63, "Uniqueness": 11, "Universal": 85}, "202602": {"Asymptotic or Limit": 18, "Biconditional or Equivalence": 3, "Classification or Bijection": 0, "Existence": 55, "Existential\u2013Universal": 0, "General": 52, "Implication": 76, "Inequality or Bound": 64, "Uniqueness": 0, "Universal": 84}};
+const EXAMPLES = [{"id": "2512.01137v1", "month": "202511", "category": "Asymptotic or Limit", "paper_link": "http://arxiv.org/abs/2512.01137v1", "theorem": "For any $n\\ge3$ we have $\\lim\\limits_{d\\to\\infty}\\frac{\\lambda(n,d)}d=0$.", "sketch": "The key idea of the proof of the main theorem is to construct a triangulation of $\\mathbb{S}^n$ which has quite a lot of $n$-simplices with respect to the number of its vertices.", "question": "Let $n\\ge 3$ be fixed, and let $\\lambda(n,d)$ be a quantity depending on $n$ and $d$. As $d\\to\\infty$, which strongest limiting conclusion is justified about the ratio $\\lambda(n,d)/d$?", "correct_choice": {"label": "A", "text": "For every fixed integer $n\\ge 3$, one has $\\displaystyle \\lim_{d\\to\\infty}\\frac{\\lambda(n,d)}{d}=0$."}, "choices": [{"label": "B", "text": "For every fixed integer $n\\ge 3$, one has $\\displaystyle \\lim_{d\\to\\infty}\\frac{\\lambda(n,d)}{d}=c_n>0$ for some constant $c_n$ depending only on $n$."}, {"label": "C", "text": "For every fixed integer $n\\ge 3$, one has $\\displaystyle \\liminf_{d\\to\\infty}\\frac{\\lambda(n,d)}{d}=0$."}, {"label": "D", "text": "For every fixed integer $n\\ge 3$, one has $\\displaystyle \\lim_{d\\to\\infty}\\frac{\\lambda(n,d)}{d^{\\,1-1/n}}=0$."}, {"label": "E", "text": "For every fixed integer $n\\ge 3$, one has $\\displaystyle \\sup_{d\\ge 1}\\frac{\\lambda(n,d)}{d}<\\infty$ (equivalently, $\\lambda(n,d)=O(d)$ as $d\\to\\infty$)."}]}, {"id": "2511.20064v1", "month": "202511", "category": "Biconditional or Equivalence", "paper_link": "http://arxiv.org/abs/2511.20064v1", "theorem": "If \\(\\mathcal{M}\\) and \\(\\mathcal{N}\\) are compact Riemannian manifolds and if \\(p \\in \\intvr{1}{\\infty}\\), then\n\\begin{equation}\n\\soboleh^{1, p}_{\\mathrm{St}} \\brk{\\mathcal{M}, \\mathcal{N}}\n =\n \\soboleh^{1, p}_{\\mathrm{Ei}} \\brk{\\mathcal{M}, \\mathcal{N}}\\,\\text{.}\n\\end{equation}", "sketch": "When either \\(p \\ge \\dim \\mathcal{M}\\) or \\(p \\not \\in \\mathbb{N}\\), then\n\\begin{equation}\n\\label{eq_saeNohshai4pheikiechai7Z}\n \\soboleh^{1, p}_{\\mathrm{St}}\\brk{\\manifold{M}, \\manifold{N}}\n = \\soboleh^{1, p}_{\\mathrm{Bd}} \\brk{\\manifold{M}, \\manifold{N}}\n \\eqpunct{.}\n\\end{equation}\nholds so that\n\\begin{equation}\n\\label{eq_jee6ud9boog1DaMaut7nui3w}\n  \\soboleh^{1, p}_{\\mathrm{St}} \\brk{\\manifold{M}, \\manifold{N}}\n =\n \\soboleh^{1, p}_{\\mathrm{Ei}} \\brk{\\manifold{M}, \\manifold{N}}\\eqpunct{.}\n\\end{equation}\nfollows immediately from\n\\begin{equation}\n\\label{eq_aepopa9oTahquaas6vah2aer}\n \\soboleh^{1, p}_{\\mathrm{St}} \\brk{\\manifold{M}, \\manifold{N}}\n \\subseteq\n \\soboleh^{1, p}_{\\mathrm{Ei}} \\brk{\\manifold{M}, \\manifold{N}}\n  \\subseteq\n \\soboleh^{1, p}_{\\mathrm{Wk}} \\brk{\\manifold{M}, \\manifold{N}}\n =\n \\soboleh^{1, p}_{\\mathrm{Bd}} \\brk{\\manifold{M}, \\manifold{N}}\n \\subseteq \\soboleh^{1, p} \\brk{\\manifold{M}, \\manifold{N}}\n\\end{equation}\n\nFor the remaining (relevant) integer range \\(p \\in \\{1,\\dotsc,\\dim \\mathcal{M}-1\\}\\), the paper\u2019s argument (in \\S \\ref{section_equiint}) \u201crelies on techniques for homotopy of maps with vanishing mean oscillation due to Schoen and Uhlenbeck \\cite{Schoen_Uhlenbeck_1983} and to Brezis and Nirenberg \\cite{Brezis_Nirenberg_1995} combined with suitable Fubini and truncation arguments.\u201d\n\nAs context/comparison: Hang\u2019s proof for \\(p=1\\) \u201crelies on Egorov\u2019s theorem and the continuity of weakly differentiable mappings on a one-dimensional domain.\u201d\n\nAdditionally, for some target manifolds, the theorem \u201ccan then be deduced\u201d (in \\S \\ref{section_jacobian}) from \u201clocal obstructions to the strong approximation through a distributional Jacobian \u2026 or more general cohomological criterion,\u201d together with \u201cthe equi-integrable sequential continuity of Jacobian.\u201d", "question": "Let \\(\\mathcal{M}\\) and \\(\\mathcal{N}\\) be compact Riemannian manifolds and let \\(p \\in \\intvr{1}{\\infty}\\). Which of the following Sobolev classes of maps \\(\\mathcal{M}\\to\\mathcal{N}\\) coincides with \\(\\soboleh^{1, p}_{\\mathrm{St}} \\brk{\\mathcal{M}, \\mathcal{N}}\\)?", "correct_choice": {"label": "A", "text": "\\(\\soboleh^{1, p}_{\\mathrm{St}} \\brk{\\mathcal{M}, \\mathcal{N}} = \\soboleh^{1, p}_{\\mathrm{Ei}} \\brk{\\mathcal{M}, \\mathcal{N}}\\)."}, "choices": [{"label": "B", "text": "\\(\\soboleh^{1, p}_{\\mathrm{St}} \\brk{\\mathcal{M}, \\mathcal{N}} = \\soboleh^{1, p}_{\\mathrm{Bd}} \\brk{\\mathcal{M}, \\mathcal{N}}\\) for every \\(p \\in \\intvr{1}{\\infty}\\)."}, {"label": "C", "text": "\\(\\soboleh^{1, p}_{\\mathrm{St}} \\brk{\\mathcal{M}, \\mathcal{N}} \\subseteq \\soboleh^{1, p}_{\\mathrm{Ei}} \\brk{\\mathcal{M}, \\mathcal{N}}\\)."}, {"label": "D", "text": "\\(\\soboleh^{1, p}_{\\mathrm{St}} \\brk{\\mathcal{M}, \\mathcal{N}} = \\soboleh^{1, p}_{\\mathrm{Ei}} \\brk{\\mathcal{M}, \\mathcal{N}}\\) holds provided that either \\(p \\ge \\dim \\mathcal{M}\\) or \\(p \\not\\in \\mathbb{N}\\)."}, {"label": "E", "text": "\\(\\soboleh^{1, p}_{\\mathrm{St}} \\brk{\\mathcal{M}, \\mathcal{N}} = \\soboleh^{1, p}_{\\mathrm{Wk}} \\brk{\\mathcal{M}, \\mathcal{N}}\\) for every \\(p \\in \\intvr{1}{\\infty}\\)."}]}, {"id": "2511.23130v1", "month": "202511", "category": "Classification or Bijection", "paper_link": "http://arxiv.org/abs/2511.23130v1", "theorem": "Let $\\mu, \\tau > 1/2$. Set $\\alpha_\\mu = (j^{1/\\mu})_{j \\in \\N}$ and  $\\alpha_\\tau = (j^{1/\\tau})_{j \\in \\N}$. Then,\n$$\n\\mathcal{Z}^{(\\mu)}_{(\\tau)} \\cong \\Lambda(\\alpha_\\mu, \\alpha_\\tau).\n$$", "sketch": "The proof of the main theorem \\emph{combines} the Pe\\l czy\\'nski-Vogt decomposition result for the $(\\PLS)$-type power series spaces $\\Lambda_{\\infty}(\\alpha,\\beta)$ of infinite type with properties of Gabor frames. The restriction $\\mu,\\tau>1/2$ is imposed because the argument relies on a result on dual windows of Gabor frames.\n\nAccording to the paper outline, the route to the main theorem is: develop notation and preliminaries (Section~\\ref{sect-prelim}); define and discuss sequence spaces (Section~\\ref{sect-seqsp}); prove a splitting result for $(\\PLS)$-type sequence spaces (Section~\\ref{sect-splitting}); prove the Pe\\l czy\\'nski-Vogt decomposition result for $(\\PLS)$-type power series spaces (Section~\\ref{sect-PV}); then apply this to obtain sequence space representations for multiplier spaces of Gelfand-Shilov spaces of Beurling type (Section~\\ref{sect-appl}), where the main theorem is shown.", "question": "Let \\(\\mu,\\tau>\\tfrac12\\). Define \\(\\alpha_\\mu=(j^{1/\\mu})_{j\\in\\mathbb N}\\) and \\(\\alpha_\\tau=(j^{1/\\tau})_{j\\in\\mathbb N}\\). The space \\(\\mathcal Z^{(\\mu)}_{(\\tau)}\\) is (linearly) isomorphic to which K\u00f6the sequence space?", "correct_choice": {"label": "A", "text": "The K\u00f6the sequence space \\(\\Lambda(\\alpha_\\mu,\\alpha_\\tau)\\), where \\(\\alpha_\\mu=(j^{1/\\mu})_{j\\in\\mathbb N}\\) and \\(\\alpha_\\tau=(j^{1/\\tau})_{j\\in\\mathbb N}\\)."}, "choices": [{"label": "B", "text": "The K\u00f6the sequence space \\(\\Lambda(\\alpha_\\mu,\\alpha_\\tau)\\) for all \\(\\mu,\\tau>0\\), where \\(\\alpha_\\mu=(j^{1/\\mu})_{j\\in\\mathbb N}\\) and \\(\\alpha_\\tau=(j^{1/\\tau})_{j\\in\\mathbb N}\\)."}, {"label": "C", "text": "A K\u00f6the sequence space of the form \\(\\Lambda(\\alpha_\\mu,\\alpha_\\tau)\\) with \\(\\alpha_\\mu=(j^{1/\\mu})_{j\\in\\mathbb N}\\) and \\(\\alpha_\\tau=(j^{1/\\tau})_{j\\in\\mathbb N}\\) (in particular, \\(\\mathcal Z^{(\\mu)}_{(\\tau)}\\) admits a K\u00f6the sequence space representation of this type)."}, {"label": "D", "text": "The K\u00f6the sequence space \\(\\Lambda(\\alpha_\\tau,\\alpha_\\mu)\\), where \\(\\alpha_\\mu=(j^{1/\\mu})_{j\\in\\mathbb N}\\) and \\(\\alpha_\\tau=(j^{1/\\tau})_{j\\in\\mathbb N}\\)."}, {"label": "E", "text": "The K\u00f6the sequence space \\(\\Lambda_{\\infty}(\\alpha_\\mu,\\alpha_\\tau)\\) of infinite type (in the sense of the Pe\\l czy\\'nski--Vogt decomposition theorem), where \\(\\alpha_\\mu=(j^{1/\\mu})_{j\\in\\mathbb N}\\) and \\(\\alpha_\\tau=(j^{1/\\tau})_{j\\in\\mathbb N}\\)."}]}, {"id": "2512.00568v1", "month": "202511", "category": "Existence", "paper_link": "http://arxiv.org/abs/2512.00568v1", "theorem": "Let $p>3$ be prime. Let $K$ be a $p$-adic field that is totally ramified over $\\Q_p$. Let $E_1$ and $E_2$ be elliptic curves defined over $K$ with full $K$-rational 2-torsion and supersingular reduction. Then for any $n>0$, there exists a WR relation $\\{P_1,P_2\\}_{K/K}=0$ in $K(K;E_1,E_2)$ of signature $(n,n)$.", "sketch": "The WR relations in the main theorem are obtained from genus 2 covers of $E_1$ and $E_2$: there is a WR relation in $K(K;E_1,E_2)$ for every curve $C$ over $K$ whose Jacobian maps into $E_1\\times E_2$, together with a choice of $f\\in K(C)^\\times$. The paper uses a construction of J.~Scholten to build a genus 2 hyperelliptic curve $C$ and explicit nonconstant maps $\\f_1:C\\to E_1$ and $\\f_2:C\\to E_2$; since $C$ is hyperelliptic and has \"particularly simple principal divisors,\" the rational function $f$ can be chosen flexibly. With a suitable choice of $C,\\f_1,\\f_2,$ and $f$, one then \"$p$-adically approximate[s] the resulting WR relation to determine its signature\" (producing signature $(n,n)$).", "question": "Let $p>3$ be a prime, let $K$ be a $p$-adic field that is totally ramified over $\\mathbb{Q}_p$, and let $E_1$ and $E_2$ be elliptic curves over $K$ with full $K$-rational $2$-torsion and supersingular reduction. Under these assumptions, which statement correctly asserts an existence result for WR relations in $K(K;E_1,E_2)$?", "correct_choice": {"label": "A", "text": "For every integer $n>0$, there exists a WR relation $\\{P_1,P_2\\}_{K/K}=0$ in $K(K;E_1,E_2)$ of signature $(n,n)$."}, "choices": [{"label": "B", "text": "For every integer $n>0$, there exists a WR relation $\\{P_1,P_2\\}_{K/K}=0$ in $K(K;E_1,E_2)$ of signature $(n,n)$, and moreover the relation may be chosen so that the same pair of points $P_1,P_2\\in (E_1\\times E_2)(K)$ works simultaneously for all $n$."}, {"label": "C", "text": "There exists at least one integer $n>0$ for which there is a WR relation $\\{P_1,P_2\\}_{K/K}=0$ in $K(K;E_1,E_2)$ of signature $(n,n)$."}, {"label": "D", "text": "For every integer $n>0$, there exists a WR relation $\\{P_1,P_2\\}_{K/K}=0$ in $K(K;E_1,E_2)$ of signature $(n,n)$, provided only that $K/\\mathbb{Q}_p$ is a finite extension (not necessarily totally ramified) and $E_1,E_2$ have supersingular reduction."}, {"label": "E", "text": "For every integer $n>0$, there exists a WR relation $\\{P_1,P_2\\}_{K/K}=0$ in $K(K;E_1,E_2)$ of signature $(n,n)$ whenever $E_1$ and $E_2$ have supersingular reduction, without assuming full $K$-rational $2$-torsion."}]}, {"id": "2512.00570v1", "month": "202511", "category": "Existential\u2013Universal", "paper_link": "http://arxiv.org/abs/2512.00570v1", "theorem": "Let $s$ be a collection of strings.\n\nFix an edge $e$.\nOne has\n\\begin{equs}\nC_{G,s,e}\\,\\phi(s) =\\sum_{{\\mathbb O}}  \\mp q({\\mathbb O}) \\sum_{s' \\in {\\mathbb O}^\\pm_{e}(s)}\\phi(s'),\n\\end{equs}\nwhere the sum is over all operations in the first table,\nand $C_{G,s,e}$ is a constant depending on $G,s,e$.\n\nFix  $x\\in \\Lambda$.\nOne has\n\\begin{equs}\nC_{M,s,x}\\,\\phi(s) =\\sum_{{\\mathbb O}}   q({\\mathbb O}) \\sum_{s' \\in \\mO_{x}(s)}\\phi(s'),\n\\end{equs}\nwhere the sum is over all operations in the second table,\nand $C_{M,s,x}$ is a constant depending on $M,s,x$.", "sketch": "The post-theorem introduction indicates the proof strategy for the main theorem as follows:\n\n- \u201cOur main tool to prove the main theorem is the Langevin dynamics, or stochastic quantization, as well as It\\^o's formula.\u201d\n\n- Following prior works on pure lattice Yang--Mills, they \u201cconsider the Langevin dynamics of the measure \\eqref{e:LYMH}\u201d given by the SDE\n  \\[\n  \\dif (Q,\\Phi) = \\nabla \\mathcal S_\\YMH (Q,\\Phi) \\, \\dif t + \\sqrt 2\\dif \\mathfrak B,\n  \\]\n  where \u201c$\\nabla$ is the gradient and $\\mathfrak B$ is the Brownian motion on the product Riemannian manifold $\\cQ_L=G^{E^+_\\Lambda}\\times M^\\Lambda$.\u201d\n\n- They use an \u201cimproved approach\u201d by instead studying the Langevin dynamics of the \u201cconditional measure,\u201d \u201cfixing all the variables except at one single edge $e$ or lattice site $x$,\u201d i.e. \u201ca dynamic given by an stochastic differential equation (SDE for short) on $G$ or $M$.\u201d\n\n- Organization indicating where the proof components occur: \u201cNext we precisely define the operations on strings. Later we prove the main theorem.\u201d", "question": "Let $s$ be a (arbitrary) collection of strings, and let $\\phi$ be evaluated on such collections. Fix an edge $e$, and for each operation $\\mathbb O$ in the first table let $q(\\mathbb O)$ be its weight and $\\mathbb O_e^{\\pm}(s)$ the corresponding set of resulting collections. Fix also $x\\in\\Lambda$, and for each operation $\\mathbb O$ in the second table let $q(\\mathbb O)$ be its weight and $\\mathbb O_x(s)$ the corresponding set of resulting collections. Which statement gives the full uniform conclusion asserting the existence of constants (depending only on the indicated data) so that the corresponding identities for $\\phi(s)$ hold for the fixed $e$ and for the fixed $x$?", "correct_choice": {"label": "A", "text": "For the given collection $s$: (i) for each fixed edge $e$ there exists a constant $C_{G,s,e}$ depending on $G,s,e$ such that\n\\[\nC_{G,s,e}\\,\\phi(s)\\;=\\;\\sum_{\\mathbb O}\\,\\mp\\,q(\\mathbb O)\\sum_{s'\\in \\mathbb O^{\\pm}_{e}(s)}\\phi(s'),\n\\]\nwhere the outer sum is over all operations in the first table; and (ii) for each fixed $x\\in\\Lambda$ there exists a constant $C_{M,s,x}$ depending on $M,s,x$ such that\n\\[\nC_{M,s,x}\\,\\phi(s)\\;=\\;\\sum_{\\mathbb O} q(\\mathbb O)\\sum_{s'\\in \\mathbb O_{x}(s)}\\phi(s'),\n\\]\nwhere the outer sum is over all operations in the second table."}, "choices": [{"label": "B", "text": "For the given collection $s$: (i) there exists a single constant $C_{G,s}$ depending only on $G,s$ (and \u001bnot\u001b on $e$) such that for every fixed edge $e$ one has\n\\[\nC_{G,s}\\,\\phi(s)\\;=\\;\\sum_{\\mathbb O}\\,\\mp\\,q(\\mathbb O)\\sum_{s'\\in \\mathbb O^{\\pm}_{e}(s)}\\phi(s'),\n\\]\nwhere the outer sum is over all operations in the first table; and (ii) there exists a single constant $C_{M,s}$ depending only on $M,s$ (and not on $x$) such that for every fixed $x\\in\\Lambda$ one has\n\\[\nC_{M,s}\\,\\phi(s)\\;=\\;\\sum_{\\mathbb O} q(\\mathbb O)\\sum_{s'\\in \\mathbb O_{x}(s)}\\phi(s'),\n\\]\nwhere the outer sum is over all operations in the second table."}, {"label": "C", "text": "For the given collection $s$: (i) for each fixed edge $e$ there exists a constant $C_{G,s,e}$ depending on $G,s,e$ such that\n\\[\nC_{G,s,e}\\,\\phi(s)\\;=\\;\\sum_{\\mathbb O}\\,\\mp\\,q(\\mathbb O)\\sum_{s'\\in \\mathbb O^{\\pm}_{e}(s)}\\phi(s'),\n\\]\nwhere the outer sum is over all operations in the first table; and (ii) for each fixed $x\\in\\Lambda$ there exists a constant $C_{M,s,x}$ depending on $M,s,x$ and some assignment of weights $\\widetilde q(\\mathbb O)$ (possibly differing from $q(\\mathbb O)$) such that\n\\[\nC_{M,s,x}\\,\\phi(s)\\;=\\;\\sum_{\\mathbb O} \\widetilde q(\\mathbb O)\\sum_{s'\\in \\mathbb O_{x}(s)}\\phi(s'),\n\\]\nwhere the outer sum is over all operations in the second table."}, {"label": "D", "text": "For the given collection $s$: (i) for each fixed edge $e$ there exists a constant $C_{G,e}$ depending only on $G,e$ (and not on $s$) such that\n\\[\nC_{G,e}\\,\\phi(s)\\;=\\;\\sum_{\\mathbb O}\\,\\mp\\,q(\\mathbb O)\\sum_{s'\\in \\mathbb O^{\\pm}_{e}(s)}\\phi(s'),\n\\]\nwhere the outer sum is over all operations in the first table; and (ii) for each fixed $x\\in\\Lambda$ there exists a constant $C_{M,x}$ depending only on $M,x$ (and not on $s$) such that\n\\[\nC_{M,x}\\,\\phi(s)\\;=\\;\\sum_{\\mathbb O} q(\\mathbb O)\\sum_{s'\\in \\mathbb O_{x}(s)}\\phi(s'),\n\\]\nwhere the outer sum is over all operations in the second table."}, {"label": "E", "text": "For the given collection $s$: (i) for each fixed edge $e$ there exists a constant $C_{G,s,e}$ depending on $G,s,e$ such that\n\\[\nC_{G,s,e}\\,\\phi(s)\\;=\\;\\sum_{\\mathbb O} q(\\mathbb O)\\sum_{s'\\in \\mathbb O^{\\pm}_{e}(s)}\\phi(s'),\n\\]\nwhere the outer sum is over all operations in the first table; and (ii) for each fixed $x\\in\\Lambda$ there exists a constant $C_{M,s,x}$ depending on $M,s,x$ such that\n\\[\nC_{M,s,x}\\,\\phi(s)\\;=\\;\\sum_{\\mathbb O}\\,\\mp\\,q(\\mathbb O)\\sum_{s'\\in \\mathbb O_{x}(s)}\\phi(s'),\n\\]\nwhere the outer sum is over all operations in the second table."}]}, {"id": "2511.23195v1", "month": "202511", "category": "General", "paper_link": "http://arxiv.org/abs/2511.23195v1", "theorem": "[\\cite{Pen2020}]There is a polynomial-time algorithm to colour ($4K_1, C_4, C_6$)-free graphs.,", "sketch": "Our approach in establishing the main theorem is by \u201cbounding the clique-width of $(4K_1, C_4, P_6)$-free graphs that contain a~$C_6$.\u201d The introduction also says that \u201cto prove the main theorem it is enough to bound the clique-width of $(4K_1, C_4, P_6)$-free graphs that contain a $C_6$.\u201d The outlined steps are: (1) explain why this clique-width bound suffices and give the \u201cnew upper bound on the clique-width\u201d (Section~\\ref{sec:intro}); (2) \u201cstate and prove several observations about how a $C_6$ sees the rest of the graph\u201d in such graphs (Section~\\ref{sec:neigh}); (3) \u201cprove that a $(4K_1, C_4, P_6)$-free graph that contains a $C_6$ has bounded clique-width\u201d (Section~\\ref{sec:main}), yielding a polynomial-time coloring algorithm.", "question": "Let $G$ be a graph that is $(4K_1, C_4, C_6)$-free (i.e., $G$ has no induced subgraph isomorphic to $4K_1$, $C_4$, or $C_6$). Under these assumptions, what is the strongest conclusion that can be justified about colouring $G$?", "correct_choice": {"label": "A", "text": "There exists a polynomial-time algorithm that colours $(4K_1, C_4, C_6)$-free graphs (i.e., the vertex-colouring problem is solvable in polynomial time on this class)."}, "choices": [{"label": "B", "text": "There exists a polynomial-time algorithm that colours $(4K_1,C_4,P_6)$-free graphs (i.e., the vertex-colouring problem is solvable in polynomial time on this class)."}, {"label": "C", "text": "There exists a polynomial-time algorithm that colours $(4K_1,C_4,C_6)$-free graphs that contain an induced $C_6$."}, {"label": "D", "text": "For every $(4K_1,C_4,C_6)$-free graph $G$, the clique-width of $G$ is bounded by an absolute constant, and hence $G$ can be coloured in polynomial time."}, {"label": "E", "text": "There exists a polynomial-time algorithm that finds an optimal colouring of $(4K_1,C_4,C_6)$-free graphs using at most $\tfrac{3}{2}\\\\omega(G)$ colours."}]}, {"id": "2511.23185v2", "month": "202511", "category": "Implication", "paper_link": "http://arxiv.org/abs/2511.23185v2", "theorem": "Let $f_s:(X,0)\\to(\\mathbb{C},0)$ be a separable family of analytic function-germs, with $s\\in\\mathbb{C}$.  \nIf $(f_s)$ has a uniform singular set $\\Sigma=\\{0\\}$ with respect to some $(w)$-regular stratification $\\mathcal{S}$ of $X$, then the family has constant embedded topological type.  \nThat is, for all $s$ sufficiently close to $0$ there exists a homeomorphism of germs\n\\[\n\\overline{h}_s:(X,0)\\to(X,0)\n\\]\nsending $(V_0,0)$ onto $(V_s,0)$.", "sketch": "The proof of the main theorem builds on the concepts of \\textit{$\\Delta$-regularity} and \\textit{uniform critical set} from F. Menegon, Menegon2023, which we briefly recall in the next section.", "question": "Let $f_s:(X,0)\\to(\\mathbb{C},0)$ be a separable family of analytic function-germs, with parameter $s\\in\\mathbb{C}$. Assume that $(f_s)$ has a uniform singular set $\\Sigma=\\{0\\}$ with respect to some $(w)$-regular stratification $\\mathcal{S}$ of $X$. What is the strongest statement that can be proved about the embedded topological type of the germs $(V_s,0)$ for $s$ near $0$?", "correct_choice": {"label": "A", "text": "The family $(f_s)$ has constant embedded topological type: for every $s$ sufficiently close to $0$ there exists a homeomorphism of germs $\\,\\overline{h}_s:(X,0)\\to(X,0)\\,$ that sends $(V_0,0)$ onto $(V_s,0)$."}, "choices": [{"label": "B", "text": "The family $(f_s)$ has constant embedded topological type: there exists a single homeomorphism of germs $\\,\\overline{h}:(X,0)\\to(X,0)\\,$ such that for all $s$ sufficiently close to $0$ one has $\\overline{h}(V_0,0)=(V_s,0)$."}, {"label": "C", "text": "The family $(f_s)$ has constant (abstract) topological type: for every $s$ sufficiently close to $0$ there exists a homeomorphism of germs $\\,(V_0,0)\\to(V_s,0)$."}, {"label": "D", "text": "The family $(f_s)$ has constant embedded topological type: for every $s\\in\\mathbb{C}$ there exists a homeomorphism of germs $\\,\\overline{h}_s:(X,0)\\to(X,0)\\,$ sending $(V_0,0)$ onto $(V_s,0)$."}, {"label": "E", "text": "The family $(f_s)$ has constant embedded topological type: for every $s$ sufficiently close to $0$ there exists a $\\mathcal{S}$-stratified homeomorphism of germs $\\,\\overline{h}_s:(X,0)\\to(X,0)\\,$ sending each stratum of the $(w)$-regular stratification $\\mathcal{S}$ to itself and mapping $(V_0,0)$ onto $(V_s,0)$."}]}, {"id": "2511.22603v2", "month": "202511", "category": "Inequality or Bound", "paper_link": "http://arxiv.org/abs/2511.22603v2", "theorem": "Let $M \\subset \\mathbb{R}^D$ be a smooth closed orientable $d$-dimensional submanifold. Fix $p \\in M$ and a unit vector $v \\in T_p M$. Assume that the normal curvature at $p$ in the direction $v$ is sufficiently large so that\n  \\begin{equation*}\n    \\mathrm{vol}_c(M) \\leq \\bigl(1 + c \\,\\|\\mathbf{II}(v,\\cdot)\\|_{\\operatorname{HS}}^2\\bigr)^{d/2} \\mathrm{vol}(M),\n    \\qquad\n    \\kappa(v) > \\frac{\\|(\\nabla_v^{M} \\mathbf{II}) (v,\\cdot) \\|_{\\operatorname{HS}}}{\\|\\mathbf{II} (v,\\cdot)\\|_{\\operatorname{HS}}},\n  \\end{equation*}\n  where $\\|\\cdot\\|_{\\operatorname{HS}}$ denotes the Hilbert--Schmidt norm. Then, for every $c>0$,\n  \\[\n    \\kappa_c(v)\\, \\mathrm{vol}_c(M)^{1/d}\n    \\;\\leq\\;\n    \\frac{\\sqrt{\\kappa(v)^2 + c\\|(\\nabla_v^{M} \\mathbf{II})(v, \\cdot)\\|_{\\operatorname{HS}}^2}}{1 + c\\|\\mathbf{II}(v,\\cdot)\\|_{\\operatorname{HS}}^2}\\,\n    \\mathrm{vol}_c(M)^{1/d}\n    \\;<\\;\n    \\kappa(v)\\, \\mathrm{vol}(M)^{1/d},\n  \\]\nand the middle term in the inequalities is strictly decreasing as $c$ grows.", "sketch": "In directions with large normal curvatures, \u201ceven a small displacement along the curve already produces a large change in the tangent space, so the Grassmannian component of $g_c$ contributes an increasingly large portion of the speed.\u201d Since \u201cthe normal curvature is defined as the size of the normal acceleration divided by the square of this speed,\u201d then \u201creparameterizing the curve to have unit speed with respect to $g_c$ makes the normal curvature decrease as $c$ grows.\u201d", "question": "Let \\(M\\subset\\mathbb{R}^D\\) be a smooth closed orientable \\(d\\)-dimensional submanifold. Fix \\(p\\in M\\) and a unit vector \\(v\\in T_pM\\). Assume the normal curvature at \\(p\\) in direction \\(v\\) is sufficiently large so that\n\\(\\mathrm{vol}_c(M)\\le (1+c\\|\\mathbf{II}(v,\\cdot)\\|_{\\operatorname{HS}}^2)^{d/2}\\,\\mathrm{vol}(M)\\) and \\(\\kappa(v)>\\frac{\\|(\\nabla_v^{M}\\mathbf{II})(v,\\cdot)\\|_{\\operatorname{HS}}}{\\|\\mathbf{II}(v,\\cdot)\\|_{\\operatorname{HS}}}\\), where \\(\\|\\cdot\\|_{\\operatorname{HS}}\\) is the Hilbert--Schmidt norm. Under these hypotheses, what is the strongest quantitative estimate (including the strictness and monotonicity in \\(c\\)) that holds for every \\(c>0\\) involving \\(\\kappa_c(v)\\,\\mathrm{vol}_c(M)^{1/d}\\)?", "correct_choice": {"label": "A", "text": "For every \\(c>0\\),\n\\[\\kappa_c(v)\\, \\mathrm{vol}_c(M)^{1/d}\n\\;\\le\\;\n\\frac{\\sqrt{\\kappa(v)^2 + c\\|(\\nabla_v^{M} \\mathbf{II})(v, \\cdot)\\|_{\\operatorname{HS}}^2}}{1 + c\\|\\mathbf{II}(v,\\cdot)\\|_{\\operatorname{HS}}^2}\\,\\mathrm{vol}_c(M)^{1/d}\n\\;<\\;\n\\kappa(v)\\, \\mathrm{vol}(M)^{1/d},\\]\nand the middle expression is strictly decreasing as \\(c\\) increases."}, "choices": [{"label": "B", "text": "For every \\(c>0\\),\n\\[\\kappa_c(v)\\, \\mathrm{vol}_c(M)^{1/d}\n\\;\\le\\;\n\\frac{\\sqrt{\\kappa(v)^2 + c\\|\\bigl(\\nabla_v^{M} \\mathbf{II}\\bigr)(v, \\cdot)\\|_{\\operatorname{HS}}^2}}{1 + c\\|\\mathbf{II}(v,\\cdot)\\|_{\\operatorname{HS}}^2}\\,\\mathrm{vol}_c(M)^{1/d}\n\\;\\le\\;\n\\kappa(v)\\, \\mathrm{vol}(M)^{1/d},\\]\nand the middle expression is nonincreasing (but not necessarily strictly decreasing) as \\(c\\) increases."}, {"label": "C", "text": "For every \\(c>0\\),\n\\[\\kappa_c(v)\\, \\mathrm{vol}_c(M)^{1/d}\n\\;\\le\\;\n\\kappa(v)\\, \\mathrm{vol}(M)^{1/d}.\n\\]"}, {"label": "D", "text": "For every \\(c>0\\),\n\\[\\kappa_c(v)\\, \\mathrm{vol}_c(M)^{1/d}\n\\;\\le\\;\n\\frac{\\sqrt{\\kappa(v)^2 + c\\|\\bigl(\\nabla_v^{M} \\mathbf{II}\\bigr)(v, \\cdot)\\|_{\\operatorname{HS}}^2}}{1 + c\\|\\mathbf{II}(v,\\cdot)\\|_{\\operatorname{HS}}^2}\\,\\mathrm{vol}_c(M)^{1/d}\n\\;<\\;\n\\kappa(v)\\, \\mathrm{vol}(M)^{1/d},\\]\nand the middle expression is strictly increasing as \\(c\\) increases."}, {"label": "E", "text": "For every \\(c>0\\),\n\\[\\kappa_c(v)\\, \\mathrm{vol}_c(M)^{1/d}\n\\;\\le\\;\n\\frac{\\sqrt{\\kappa(v)^2 + c\\|\\bigl(\\nabla_v^{M} \\mathbf{II}\\bigr)(v, \\cdot)\\|_{\\operatorname{HS}}^2}}{\\sqrt{1 + c\\|\\mathbf{II}(v,\\cdot)\\|_{\\operatorname{HS}}^2}}\\,\\mathrm{vol}_c(M)^{1/d}\n\\;<\\;\n\\kappa(v)\\, \\mathrm{vol}(M)^{1/d},\\]\nand the middle expression is strictly decreasing as \\(c\\) increases."}]}, {"id": "2511.17328v2", "month": "202511", "category": "Uniqueness", "paper_link": "http://arxiv.org/abs/2511.17328v2", "theorem": "[Existence and Uniqueness of Fast Pulses]When $0<\\epsilon \\ll 1,$ there exists a unique $C^2$ (modulo translation) fast traveling pulse solution $(U_\\epsilon,Q_\\epsilon)$ to the system\n\\begin{align}\\nu_t&=-u-q+ \\\\integ{y}{\\R}[]<K(x-y)H(u(y,t)-\\theta)>, \\\\\nq_t &=\\epsilon (u-\\gamma q). \\end{align}\nIn particular, with $z=x+ct$, there exists unique $C^1$ curves $c_\\epsilon=c(\\epsilon)$ and $a_\\epsilon=a(\\epsilon)$ such that $U_\\epsilon(z)<\\theta$ on $(-\\infty,0)\\cup(a_\\epsilon,\\infty)$ and $U_\\epsilon(z)>\\theta$ on $(0,a_\\epsilon)$. The parameters satisfy $c_\\epsilon\\to c_f$ and $a_\\epsilon\\to +\\infty$ as $\\epsilon \\to 0$, where $c_f>0$ is the unique speed of the front solution to \\eqref{eq: intro_scalar}. As a homoclinic orbit, $\\mathcal{S}_\\epsilon=\\Bigl\\{(U_\\epsilon(z),Q_\\epsilon(z)): z\\in \\R \\Bigr\\}$ satisfies $d_H(\\mathcal{S}_\\epsilon,\\mathcal{S}_0)\\to 0$ as $\\epsilon\\to 0$. Here, \n$$\nd_H(\\mathcal{S}_\\epsilon,\\mathcal{S}_0)=\\max\\left\\lbrace \\sup_{(U,Q)\\in \\mathcal{S}_0}d\\Bigl(\\mathcal{S}_\\epsilon,(U,Q)\\Bigr),\\sup_{(U_\\epsilon,Q_\\epsilon)\\in \\mathcal{S}_\\epsilon}d\\Bigl((U_\\epsilon,Q_\\epsilon),\\mathcal{S}_0\\Bigr) \\right\\rbrace\n$$ \nis the Hausdorff distance between sets in $(U,Q)$ space with respect to the standard Euclidean metric, and $\\mathcal{S}_0$ is the singular homoclinic orbit at $\\epsilon=0$.", "sketch": "To prove the main theorem, the introduction indicates that the paper (unlike prior heuristic/computational work) provides a complete proof by \\emph{deriving \u201ca number of new estimates of the solutions and their wave speeds and widths.\u201d} It emphasizes that, for $\\epsilon>0$, \\emph{\u201cthe fast and slow dynamics need to be analyzed when they overlap\u201d} (in contrast to the singular homoclinic orbit at $\\epsilon=0$), and that the approach \\emph{\u201cavoid[s] requiring\u201d} a PDE reduction available for exponential-type kernels.\n\nA key structural element of the argument is to characterize the pulse parameters via the \\emph{\u201cspeed index equations\u201d} for the pulse, namely $f(\\tau(\\epsilon),c(\\epsilon),\\epsilon)=U(0)=\\theta$ and $g(\\tau(\\epsilon),c(\\epsilon),\\epsilon)=U(a(\\epsilon))=\\theta$, after introducing the rescaled width $\\tau(\\epsilon):=\\epsilon a(\\epsilon)$ as a \\emph{\u201cnatural change of variable\u201d} (since $a(\\epsilon)$ is tied to fast/slow time scales). The corollary then summarizes the resulting first-order parameter information: $\\tau(\\epsilon)\\to\\tau_0$ and $c(\\epsilon)\\to c_f$, and $(\\tau'(0),c'(0))^T$ is obtained from an implicit-differentiation/Jacobian formula $-J^{-1}(\\tau_0,c_f,0)(f_\\epsilon(\\tau_0,c_f,0),g_\\epsilon(\\tau_0,c_f,0))^T$, yielding first-order approximations $\\tau(\\epsilon)\\approx \\tau_0+\\tau'(0)\\epsilon$ and $c(\\epsilon)\\approx c_f+c'(0)\\epsilon$ (with an explicit expression for $c'(0)$ in \\eqref{eq: cp_zero}).,", "question": "Let $0<\\epsilon\\ll1$ and consider the system\n\\[\n u_t=-u-q+\\int_{\\mathbb R}K(x-y)H\\bigl(u(y,t)-\\theta\\bigr)\\,dy,\\qquad\n q_t=\\epsilon\\,(u-\\gamma q).\n\\]\nUnder these assumptions, what is the strongest statement asserting existence together with uniqueness of a fast traveling pulse solution (including the associated traveling-wave parameters and the $\\epsilon\\to0$ limit behavior)?", "correct_choice": {"label": "A", "text": "For $0<\\epsilon\\ll1$, there exists a unique $C^2$ (modulo translation) fast traveling pulse solution $(U_\\epsilon,Q_\\epsilon)$ of the system. In particular, writing the traveling-wave variable as $z=x+ct$, there exist unique $C^1$ curves $c_\\epsilon=c(\\epsilon)$ and $a_\\epsilon=a(\\epsilon)$ such that $U_\\epsilon(z)<\\theta$ on $(-\\infty,0)\\cup(a_\\epsilon,\\infty)$ and $U_\\epsilon(z)>\\theta$ on $(0,a_\\epsilon)$. Moreover, as $\\epsilon\\to0$, one has $c_\\epsilon\\to c_f$ and $a_\\epsilon\\to+\\infty$, where $c_f>0$ is the unique speed of the front solution to the corresponding scalar equation. If $\\mathcal S_\\epsilon=\\{(U_\\epsilon(z),Q_\\epsilon(z)):\\, z\\in\\mathbb R\\}$ denotes the associated homoclinic orbit, then $d_H(\\mathcal S_\\epsilon,\\mathcal S_0)\\to0$ as $\\epsilon\\to0$, where $\\mathcal S_0$ is the singular homoclinic orbit at $\\epsilon=0$ and\n\\[\n d_H(\\mathcal S_\\epsilon,\\mathcal S_0)=\\max\\left\\{\\sup_{(U,Q)\\in\\mathcal S_0} d\\bigl(\\mathcal S_\\epsilon,(U,Q)\\bigr),\\ \\sup_{(U_\\epsilon,Q_\\epsilon)\\in\\mathcal S_\\epsilon} d\\bigl((U_\\epsilon,Q_\\epsilon),\\mathcal S_0\\bigr)\\right\\}\n\\]\nwith $d$ the standard Euclidean distance in $(U,Q)$-space."}, "choices": [{"label": "B", "text": "For $0<\\epsilon\\ll1$, there exists a unique $C^2$ (modulo translation) fast traveling pulse solution $(U_\\epsilon,Q_\\epsilon)$ of the system. In particular, writing $z=x+ct$, there exist unique $C^1$ curves $c_\\epsilon=c(\\epsilon)$ and $a_\\epsilon=a(\\epsilon)$ such that $U_\\epsilon(z)<\\theta$ on $(-\\infty,0)\\cup(a_\\epsilon,\\infty)$ and $U_\\epsilon(z)>\\theta$ on $(0,a_\\epsilon)$. Moreover, as $\\epsilon\\to0$, one has $c_\\epsilon\\to c_f$ and $a_\\epsilon\\to a_0<\\infty$, where $c_f>0$ is the unique speed of the front solution to the corresponding scalar equation. If $\\mathcal S_\\epsilon=\\{(U_\\epsilon(z),Q_\\epsilon(z)):\\, z\\in\\mathbb R\\}$ denotes the associated homoclinic orbit, then $d_H(\\mathcal S_\\epsilon,\\mathcal S_0)\\to0$ as $\\epsilon\\to0$."}, {"label": "C", "text": "For $0<\\epsilon\\ll1$, there exists a $C^2$ fast traveling pulse solution $(U_\\epsilon,Q_\\epsilon)$ of the system, unique up to translation. Writing $z=x+ct$, there exist (possibly nonunique) $C^1$ functions $c_\\epsilon=c(\\epsilon)$ and $a_\\epsilon=a(\\epsilon)$ such that $U_\\epsilon(z)<\\theta$ on $(-\\infty,0)\\cup(a_\\epsilon,\\infty)$ and $U_\\epsilon(z)>\\theta$ on $(0,a_\\epsilon)$, and as $\\epsilon\\to0$ one has $c_\\epsilon\\to c_f$."}, {"label": "D", "text": "For $0<\\epsilon\\ll1$, there exists a unique $C^2$ (modulo translation) fast traveling pulse solution $(U_\\epsilon,Q_\\epsilon)$ of the system. In particular, in traveling-wave coordinates $z=x+ct$, there exist unique $C^1$ curves $c_\\epsilon=c(\\epsilon)$ and $a_\\epsilon=a(\\epsilon)$ such that $U_\\epsilon(z)<\\theta$ on $(-\\infty,0)\\cup(a_\\epsilon,\\infty)$ and $U_\\epsilon(z)>\\theta$ on $(0,a_\\epsilon)$. Moreover, as $\\epsilon\\to0$, one has $c_\\epsilon=c_f+O(\\epsilon)$ and $a_\\epsilon\\to+\\infty$. If $\\mathcal S_\\epsilon=\\{(U_\\epsilon(z),Q_\\epsilon(z)):\\, z\\in\\mathbb R\\}$ denotes the associated homoclinic orbit, then there is a constant $C>0$, independent of $\\epsilon$, such that $d_H(\\mathcal S_\\epsilon,\\mathcal S_0)\\le C\\epsilon$ for all sufficiently small $\\epsilon$."}, {"label": "E", "text": "For $0<\\epsilon\\ll1$, there exists a unique $C^2$ (modulo translation) fast traveling pulse solution $(U_\\epsilon,Q_\\epsilon)$ of the system. In particular, writing the traveling-wave variable as $z=x+ct$, there exist unique $C^1$ curves $c_\\epsilon=c(\\epsilon)$ and $a_\\epsilon=a(\\epsilon)$ such that $U_\\epsilon(z)<\\theta$ on $(-\\infty,0)\\cup(a_\\epsilon,\\infty)$ and $U_\\epsilon(z)>\\theta$ on $(0,a_\\epsilon)$. Moreover, as $\\epsilon\\to0$, one has $c_\\epsilon\\to c_f$ and $a_\\epsilon\\to+\\infty$. If $\\mathcal S_\\epsilon=\\{(U_\\epsilon(z),Q_\\epsilon(z)):\\, z\\in\\mathbb R\\}$ denotes the associated homoclinic orbit, then $d_H(\\mathcal S_\\epsilon,\\mathcal S_0)=0$ for all sufficiently small $\\epsilon$, i.e. $\\mathcal S_\\epsilon=\\mathcal S_0$ as subsets of $(U,Q)$-space."}]}, {"id": "2512.16120v1", "month": "202512", "category": "Asymptotic or Limit", "paper_link": "http://arxiv.org/abs/2512.16120v1", "theorem": "Suppose that $X_1(M,MN)$ has genus zero, and suppose that $p$ is a prime divisor of $MN$. Then there exists an explicit constant $\\theta$ (see Table \\ref{tab:mean_variance_II}), depending only on $M$, $N$, $K$, and $p$, such that\n\\begin{equation}\\limsup_{B\\to\\infty} \\frac{1}{\\# \\cE_{(M,MN)}(B; K)} \\sum_{E\\in \\cE_{(M,MN)}(B;K)} \\# \\Sel_p(E) \\gg \\log(B)^{\\theta}.\n\\end{equation}\nIf additionally\n\\begin{equation}\n(M,N, p, \\sG_{MN}(K))\\not\\in \n\\begin{Bmatrix}\n(1,5, 5, ({\\mathbb Z}/5{\\mathbb Z})^\\times), (1,7, 7, \\{1,4,7\\} \\text{ or } ({\\mathbb Z}/7{\\mathbb Z})^\\times), \\\\\n (1, 10, 5, ({\\mathbb Z}/10{\\mathbb Z})^\\times), (2,2, 2, \\ast), (2, 6, 3, ({\\mathbb Z}/6{\\mathbb Z})^\\times), \\\\ (3,3, 3, \\ast), (3,6, 3, \\ast), (4,4,2,({\\mathbb Z}/4{\\mathbb Z})^\\times), (5,5,5,\\ast)\n\\end{Bmatrix},\n\\end{equation}\nthen $\\theta$ is positive, implying that the average size of the $p$-Selmer group is unbounded.,", "sketch": "As in KLO14, CHL19, and CV25, the strategy is to study the distribution of the ratios of sizes of certain Selmer groups, and prove that they satisfy an analog of the celebrated Erd\\H{o}s--Kac theorem (EK40). The key new ingredient is a systematic approach to counting elliptic curves over arbitrary number fields having a prescribed torsion subgroup and satisfying prescribed local conditions, achieved by extending previous work (Phi24+).\n\nMore concretely (per the paper outline): one (i) studies ratios of certain Selmer groups and relates them to ratios of certain Tamagawa numbers (next we carry out this step); (ii) extends results of (Phi24+) to count elliptic curves over number fields with prescribed torsion and prescribed local conditions, using the following proposition.\n\n\\begin{proposition}\\label{prop:elliptic_count_general}\nLet $G\\leq \\GL_2(\\Z/N\\Z)$, and suppose that the modular curve $\\cX_G$ is isomorphic to the weighted projective stack $\\cP(w_0,w_1)$ over the number field $K$. \nLet $\\delta(G)$ denote the weighted degree of the morphism $\\phi_{O}:\\cX_G\\to\\cX(1)$ that forgets the level structure, and suppose that $\\gcd(w_0w_1, \\delta(G))=1$. Define\n\\begin{equation}\n \\alpha(G)\\defeq\\frac{w_0+w_1}{12 \\delta(G)}\\qquad \\text{ and }\\qquad\n \\beta(G)\\defeq \\frac{\\deg_{\\Q}(K)-\\min\\{w_0,w_1\\}}{12\\delta(G)\\deg_{\\Q}(K)}.\n \\end{equation}\nLet $v\\in \\Val_0(K)$ be a finite place not above $2$ or $3$, and let $\\Omega_v\\subseteq\\cP(w_0,w_1)(K_v)$ be a subset for which $\\Omega_v^{\\aff}$ is measurable and whose boundary has measure $m_v(\\partial \\Omega_v^{\\aff})=0$. \nThen there exists an explicit constant $\\kappa_G$, depending only on $G$ and $K$, such that\n\\begin{equation}\n\\cN_G(K,\\Omega_v; B) \n = m_v\\left(\\Omega_v^{\\aff}\\cap \\cO_{K,v}^{2}\\right)\\kappa_G B^{\\alpha(G)}\n  + O\\left(B^{\\beta(G)}\\right).\n\\end{equation}\n\\end{proposition}\n\nNext (iii) one proves that the logarithms of ratios of sizes of certain Selmer groups are normally distributed (an Erd\\H{o}s--Kac type statement). We first prove the following theorem.\n\n\\begin{theorem}\\label{thm:selmer_erdos_kac_prime}\n\tConsider the family of elliptic curves $E$ over a number field $K$ with level structure $G=G(M,MN)$. Let $\\Phi$ be a subgroup of $\\Z/M\\Z$ of prime order, and let $m$ be as in Table \\ref{tab:mean_variance_II}. Let $\\sG = \\sG_m(K)$ denote the subgroup \n\\begin{equation}\n\t\\{a\\in (\\Z/m\\Z)^\\times : \\exists \\text{ infinitely many degree one primes $\\p$ with } N_{K/\\Q}(\\p)\\equiv a \\pmod{m}\\}.\n\\end{equation}\n\tLet $c_{\\E}(G,\\Phi,\\sG)$ and $\\c_{\\V}(G,\\Phi,sG)$ be the constants in Table \\ref{tab:mean_variance_II}. \n\tThen the logarithmic Selmer ratios $s(E)$ are normally distributed with mean\n\t\\begin{equation}\n\t\tc_{\\E}(G,\\Phi,\\sG)\\log\\log(B)+O(1)\n\t\\end{equation}\n\tand variance\n\t\\begin{equation}\n\t\tc_{\\V}(G,\\Phi,\\sG)\\log\\log(B)+O(1).\n\t\\end{equation}\n\\end{theorem}\n\nFinally, (iv) one uses this normal distribution statement to prove the main result, namely the following theorem.\n\n\\begin{theorem}\\label{thm:main2}\nSuppose that $X_1(M,MN)$ has genus zero, and suppose that $p$ is a prime divisor of $MN$. Let $\\theta(G, \\Phi, \\sG_m(K))$ denote the constant in Table \\ref{tab:mean_variance_II}. Then\n\\begin{equation}\\label{eq:main2}\n\t\\limsup_{B\\to\\infty} \\frac{1}{\\# \\cE_{G}(B; K)} \\sum_{E\\in \\cE_{G}(B;K)} \\# \\Sel_p(E) \\gg \\log(B)^{\\theta(G, \\Phi, \\sG_m(K))}.\n\\end{equation}\n\\end{theorem}\n", "question": "Suppose that $X_1(M,MN)$ has genus zero and that $p$ is a prime divisor of $MN$. Let $\\cE_{(M,MN)}(B;K)$ be the relevant family of elliptic curves over $K$ of height bounded by $B$. As $B\\to\\infty$, what is the strongest asymptotic lower bound one can assert for the limsup of the average of $\\#\\Sel_p(E)$ over $E\\in\\cE_{(M,MN)}(B;K)$, and what additional conclusion holds if $(M,N,p,\\sG_{MN}(K))$ avoids the listed exceptional tuples?", "correct_choice": {"label": "A", "text": "There exists an explicit constant $\\theta$ depending only on $M$, $N$, $K$, and $p$ such that\n\\[\n\\limsup_{B\\to\\infty} \\frac{1}{\\# \\cE_{(M,MN)}(B; K)} \\sum_{E\\in \\cE_{(M,MN)}(B;K)} \\# \\Sel_p(E) \\gg \\log(B)^{\\theta}.\n\\]\nIf moreover\n\\[\n(M,N, p, \\sG_{MN}(K))\\not\\in \n\\begin{Bmatrix}\n(1,5, 5, ({\\mathbb Z}/5{\\mathbb Z})^\\times), (1,7, 7, \\{1,4,7\\}\\ \\text{or}\\ ({\\mathbb Z}/7{\\mathbb Z})^\\times),\n(1, 10, 5, ({\\mathbb Z}/10{\\mathbb Z})^\\times), (2,2, 2, \\ast), (2, 6, 3, ({\\mathbb Z}/6{\\mathbb Z})^\\times),\n(3,3, 3, \\ast), (3,6, 3, \\ast), (4,4,2,({\\mathbb Z}/4{\\mathbb Z})^\\times), (5,5,5,\\ast)\n\\end{Bmatrix},\n\\]\nthen $\\theta>0$, and in particular the average size of the $p$-Selmer group is unbounded as $B\\to\\infty$."}, "choices": [{"label": "B", "text": "There exists an explicit constant $\\theta$ depending only on $M$, $N$, $K$, and $p$ such that\n\\[\n\\liminf_{B\\to\\infty} \\frac{1}{\\# \\cE_{(M,MN)}(B; K)} \\sum_{E\\in \\cE_{(M,MN)}(B;K)} \\# \\Sel_p(E) \\gg \\log(B)^{\\theta}.\n\\]\nIf moreover the tuple $(M,N,p,\\sG_{MN}(K))$ avoids the listed exceptional cases, then one can take $\\theta>0$ and the same lower bound holds with $\\liminf$ in place of $\\limsup$, so the average size of $\\Sel_p(E)$ diverges."}, {"label": "C", "text": "There exists a constant $\\theta$ depending only on $M$, $N$, $K$, and $p$ such that\n\\[\n\\limsup_{B\\to\\infty} \\frac{1}{\\# \\cE_{(M,MN)}(B; K)} \\sum_{E\\in \\cE_{(M,MN)}(B;K)} \\# \\Sel_p(E) \\gg \\log(B)^{\\theta}.\n\\]\nIf moreover $(M,N,p,\\sG_{MN}(K))$ avoids the listed exceptional tuples, then the average size of the $p$-Selmer group is unbounded as $B\\to\\infty$."}, {"label": "D", "text": "There exists an explicit constant $\\theta$ depending only on $M$, $N$, $K$, and $p$ such that\n\\[\n\\limsup_{B\\to\\infty} \\frac{1}{\\# \\cE_{(M,MN)}(B; K)} \\sum_{E\\in \\cE_{(M,MN)}(B;K)} \\# \\Sel_p(E) \\gg (\\log\\log B)^{\\theta}.\n\\]\nIf moreover $(M,N,p,\\sG_{MN}(K))$ avoids the listed exceptional tuples, then $\\theta>0$, implying that the average size of the $p$-Selmer group is unbounded."}, {"label": "E", "text": "There exists an explicit constant $\\theta$ depending only on $M$, $N$, $K$, and $p$ such that\n\\[\n\\limsup_{B\\to\\infty} \\frac{1}{\\# \\cE_{(M,MN)}(B; K)} \\sum_{E\\in \\cE_{(M,MN)}(B;K)} \\# \\Sel_p(E) \\gg \\log(B)^{\\theta}.\n\\]\nIf moreover $(M,N,p,\\sG_{MN}(K))$ avoids the listed exceptional tuples, then $\\theta$ is positive for every prime $p$ (not necessarily dividing $MN$), and hence the average size of $\\Sel_p(E)$ is unbounded as $B\\to\\infty$."}]}, {"id": "2512.23079v1", "month": "202512", "category": "Biconditional or Equivalence", "paper_link": "http://arxiv.org/abs/2512.23079v1", "theorem": "Let $\\Lambda_\\alpha$ be a Delone set associated with an $\\alpha$-Kakutani tiling of $\\R$. Then $\\Lambda_\\alpha$ is uniformly spread if and only if \n    \\begin{equation}r_\\alpha:=\\frac{\\log(\\min\\{\\alpha,1-\\alpha\\})}{\\log(1-\\min\\{\\alpha,1-\\alpha\\})}\\in\\left\\{1,\\frac{3}{2},2,3,4  \\right\\}.\n    \\end{equation}", "sketch": "A complete proof requires some further preparation, but the post-theorem text outlines the main steps. Assume $\\alpha\\in(0,1/2]$ so $\\alpha=\\min\\{\\alpha,1-\\alpha\\}$. \n\n(1) **Incommensurable case $r_\\alpha\\notin\\Q$.** Show that the discrepancy in $\\alpha$-Kakutani tilings (\"the fluctuation of the number of tiles that appear in large patches relative to their expected number\") is large; combined with **Laczkovich's criterion** for uniform spreadness, this implies any associated Delone set is \"not BD equivalent to a lattice,\" hence not uniformly spread. This is noted as a special case of \\cite[Theorem 8.2]{SmilanskySolomon-2021}.\n\n(2) **Commensurable case $r_\\alpha\\in\\Q$ (new part).** Introduce labelled prototiles and modify the substitution rule so as to construct a \"standard primitive substitution\" that \"covers\" the commensurable multiscale substitution construction, i.e. generates substitution tilings \"geometrically identical\" to the $\\alpha$-Kakutani tilings.\n\n(3) Apply **Solomon's criterion** for primitive substitution tilings: it reduces uniform spreadness to comparing the leading Perron\u2013Frobenius eigenvalue of the substitution matrix with the other eigenvalues. In this setting, that comparison becomes a \"classification of certain Pisot\u2013Vijayaraghavan (PV) polynomials\" \\cite{DubickasJankauskas-2014}, and from this classification the special values can be extracted as follows:\n\\begin{equation}\\label{eq:special values}\n            r_\\alpha:=\\frac{\\log(\\min\\{\\alpha,1-\\alpha\\})}{\\log(1-\\min\\{\\alpha,1-\\alpha\\})}\\in\\left\\{1,\\frac{3}{2},2,3,4  \\right\\}.\n    \\end{equation}\n", "question": "Let $\\Lambda_\\alpha$ be a Delone set associated with an $\\alpha$-Kakutani tiling of $\\mathbb{R}$. Which of the following statements is equivalent to the assertion that $\\Lambda_\\alpha$ is uniformly spread?", "correct_choice": {"label": "A", "text": "Defining\n\\[\n r_\\alpha:=\\frac{\\log(\\min\\{\\alpha,1-\\alpha\\})}{\\log(1-\\min\\{\\alpha,1-\\alpha\\})},\n\\]\none has\n\\[\n r_\\alpha\\in\\left\\{1,\\frac{3}{2},2,3,4\\right\\}.\n\\]"}, "choices": [{"label": "B", "text": "Defining\n\\[\n r_\\alpha:=\\frac{\\log(\\min\\{\\alpha,1-\\alpha\\})}{\\log(1-\\min\\{\\alpha,1-\\alpha\\})},\n\\]\none has\n\\[\n r_\\alpha\\in\\left\\{1,\\frac{3}{2},2,3,4,\\frac{5}{2}\\right\\}.\n\\]"}, {"label": "C", "text": "Defining\n\\[\n r_\\alpha:=\\frac{\\log(\\min\\{\\alpha,1-\\alpha\\})}{\\log(1-\\min\\{\\alpha,1-\\alpha\\})},\n\\]\none has\n\\[\n r_\\alpha\\in\\Q.\n\\]"}, {"label": "D", "text": "Defining\n\\[\n r_\\alpha:=\\frac{\\log(\\min\\{\\alpha,1-\\alpha\\})}{\\log(1-\\min\\{\\alpha,1-\\alpha\\})},\n\\]\none has\n\\[\n r_\\alpha\\notin\\Q.\n\\]"}, {"label": "E", "text": "Defining\n\\[\n r_\\alpha:=\\frac{\\log(\\min\\{\\alpha,1-\\alpha\\})}{\\log(1-\\min\\{\\alpha,1-\\alpha\\})},\n\\]\none has\n\\[\n r_\\alpha\\in\\left\\{1,\\frac{3}{2},2\\right\\}.\n\\]"}]}, {"id": "2512.22459v1", "month": "202512", "category": "Classification or Bijection", "paper_link": "http://arxiv.org/abs/2512.22459v1", "theorem": "Let $G$ be a primitive permutation group with socle $\\hbox{\\rm PSU}(3,q)$, where $q=p^m\\ge 7$ for an odd prime $p$. Suppose a point-stabilizer\n  $M$ of $G$ contains $\\hbox{\\rm PSO}(3,q)$. Then $b(G)=2$ and either (i) $G=\\hbox{\\rm PSU}(3,q)$ and $M=\\hbox{\\rm SO}(3,q)$; or (ii) $G=\\hbox{\\rm PSU}(3,q)\\ZZ_{m_1}$ and  $M=\\hbox{\\rm SO}(3,q)\\ZZ_{m_1}$ $(m_1\\mid 2m$ and  $m_1\\ne  1)$. Further, the BG-Conjecture is valid for  case (i);\n  and for   $\\sqrt{q}\\geq 17$ or $45$,  if $3\\nmid (q+1)$  and $3\\bigm| (q+1)$, respectively in case (ii).,", "sketch": "Outline of the proof: Let $G$ be almost simple with socle $T=\\hbox{\\rm PSU}(3,q)$, so that $T\\leq G\\leq \\hbox{\\rm Aut\\,}(T)$, where $q=p^m$. Let $\\alpha=M$ be a maximal subgroup of $G$ containing $M_0=\\hbox{\\rm PSO}(3,q)$ (up to conjugacy), and consider the primitive permutation representation on right cosets $[G:M]$. Then $q\\ge 7$ and either (i) $G=T$ and $M=M_0$, or (ii) $G=T\\ZZ_{m_1}$ and $M=M_0\\ZZ_{m_1}$ with $m_1\\mid 2m$ and $m_1\\ne 1$.\n\nIn case (i), they \u201cexhibit a common neighbor of $\\alpha$ and $\\alpha^g$ in the Saxl graph for any $g\\in G$ via a direct geometric construction in Section 2.\u201d This geometric construction \u201ccannot be extend[ed] \u2026 to the second case,\u201d so case (ii) \u201cnecessitates a new approach developed in Section 3.\u201d\n\nThe proof is then obtained by combining the following two results. \\begin{theorem} \\label{main1}  Let $G=\\PSU(3,q)$ and $M=\\PSO(3,q),$ a maximal subgroup of $G$, where $q=p^m\\ge 7$ for an odd prime $p$.\nConsider the primitive right multiplication action  of $G$ on the set of right cosets $\\Omega =[G:M]$.  Then $b(G)=2$ and the BG-Conjecture holds.\n  \\end{theorem}\n\n\\begin{theorem} \\label{main2}  Let $G=\\PSU(3,q)\\ZZ_{m_1}$ and\n    $\\a=M=\\PSO(3,q)\\ZZ_{m_1}\\le G$, with  $q=p^m\\ge 7$ for an odd prime $p$,  $m_1\\mid 2m$ and $m_1\\ne 1$.\nUnder the primitive right multiplication action of $G$ on $\\Omega=[G:M]$, we have $b(G)=2$ and the BG-Conjecture is true, provided $\\sqrt{q}\\geq 17$ or $45$ if $3\\nmid (q+1)$ and $3\\di (q+1)$, respectively.\n  \\end{theorem}\n\nFinally, proving the second theorem above \u201ccrucially depends on estimates of $|\\Gamma_r(\\alpha)|$ and $|\\Gamma_{nr}(\\alpha) \\cap \\Gamma_{nr}(\\alpha')|$, developed in Sections 4 and 5 respectively,\u201d where $\\Gamma_r(\\alpha)$ (resp. $\\Gamma_{nr}(\\alpha)$) is \u201cthe union of all regular (resp. non-regular) suborbits of $G$ relative to $\\alpha$.\u201d", "question": "Let $G$ be a primitive permutation group with socle $\\mathrm{PSU}(3,q)$, where $q=p^m\\ge 7$ for an odd prime $p$. Suppose a point-stabilizer $M$ of $G$ contains $\\mathrm{PSO}(3,q)$. Which description gives the complete list of possibilities for $(G,M)$, the base size $b(G)$, and the conditions under which the BG-Conjecture holds?", "correct_choice": {"label": "A", "text": "One of the remaining options is correct, but a stronger result can be proven."}, "choices": [{"label": "B", "text": "One has $b(G)=2$, and exactly one of the following occurs: (i) $G=\\mathrm{PSU}(3,q)$ and $M=\\mathrm{SO}(3,q)$; or (ii) $G=\\mathrm{PSU}(3,q)\\,\\mathbb{Z}_{m_1}$ and $M=\\mathrm{SO}(3,q)\\,\\mathbb{Z}_{m_1}$, where $m_1\\mid 2m$ (allowing $m_1=1$). Moreover, the BG-Conjecture holds in case (i), and in case (ii) it holds for $q\\ge 7$ without any further restriction on $\\sqrt q$ or on $3\\mid (q+1)$."}, {"label": "C", "text": "One has $b(G)=2$, and exactly one of the following occurs: (i) $G=\\mathrm{PSU}(3,q)$ and $M=\\mathrm{SO}(3,q)$; or (ii) $G=\\mathrm{PSU}(3,q)\\,\\mathbb{Z}_{m_1}$ and $M=\\mathrm{SO}(3,q)\\,\\mathbb{Z}_{m_1}$, where $m_1\\mid 2m$ and $m_1\\ne 1$."}, {"label": "D", "text": "One has $b(G)=2$, and exactly one of the following occurs: (i) $G=\\mathrm{PSU}(3,q)$ and $M=\\mathrm{SO}(3,q)$; or (ii) $G=\\mathrm{PSU}(3,q)\\,\\mathbb{Z}_{m_1}$ and $M=\\mathrm{SO}(3,q)\\,\\mathbb{Z}_{m_1}$, where $m_1\\mid m$ and $m_1\\ne 1$. Moreover, the BG-Conjecture holds in case (i), and in case (ii) it holds for $\\sqrt{q}\\ge 17$ when $3\\nmid (q+1)$, and for $\\sqrt{q}\\ge 45$ when $3\\mid (q+1)$."}, {"label": "E", "text": "One has $b(G)=2$, and exactly one of the following occurs: (i) $G=\\mathrm{PSU}(3,q)$ and $M=\\mathrm{SO}(3,q)$; or (ii) $G=\\mathrm{PSU}(3,q)\\,\\mathbb{Z}_{m_1}$ and $M=\\mathrm{SO}(3,q)\\,\\mathbb{Z}_{m_1}$, where $m_1\\mid 2m$ and $m_1\\ne 1$. Moreover, the BG-Conjecture holds in case (i), and in case (ii) it holds for $\\sqrt{q}\\ge 45$ when $3\\nmid (q+1)$, and for $\\sqrt{q}\\ge 17$ when $3\\mid (q+1)$."}]}, {"id": "2512.21187v1", "month": "202512", "category": "Existence", "paper_link": "http://arxiv.org/abs/2512.21187v1", "theorem": "[Local well-posedness]For initial data bounded in suitable weighted \\(L^\\infty\\) spaces in both space and\nmomentum, the inhomogeneous kinetic FPU equation admits a unique mild solution on a\ntime interval \\(0 \\le t \\le T\\), with lifespan\n\\[\nT \\sim \\|f_0\\|^{-2},\n\\]\nwhere \\(\\|\\cdot\\|\\) denotes the corresponding weighted \\(L^\\infty\\) norm.", "sketch": "To go beyond the classical local theory of Theorem~\\ref{thm:intro_LWP}, the introduction explains that one uses \u201cdispersive effects induced by the transport flow\u201d to work in \u201cfiner mixed space--momentum norms\u201d and \u201cpropagate smallness on longer time scales.\u201d The proof strategy is described as:\n\n- **Linear ingredient:** \u201cestablish dispersive bounds for the free transport flow in weighted spaces adapted to the degeneracy of the FPU dispersion relation.\u201d\n- **Nonlinear ingredient:** \u201cderive refined estimates for the gain and loss terms of the collision operator based on the geometry of the resonant manifold.\u201d\n- **Combination mechanism:** \u201cCombining these two ingredients yields a dispersive stabilization mechanism that upgrades the classical quadratic lifespan to a quartic time scale.\u201d\n\nIn the paper outline, this is implemented by: (i) rewriting the collision operator via \u201cgain--loss decomposition\u201d and a \u201cparametrization of the nontrivial resonant manifold\u201d; (ii) proving \u201cweighted dispersive estimates\u201d for the transport semigroup that \u201cyield a short-time well-posedness theory\u201d; (iii) proving \u201cweighted a priori bounds for all gain and loss components,\u201d with the \u201cmain step\u201d being control of the \u201cprincipal gain term via geometric properties of the resonant manifold\u201d; and (iv) \u201ccombine the dispersive decay of the transport flow with the collision bounds\u201d by introducing \u201ca dispersive control norm\u201d and \u201ca bootstrap argument that upgrades the classical quadratic lifespan to a quartic time scale.\u201d", "question": "Let \\(f_0\\) be initial data for the inhomogeneous kinetic FPU equation, and assume \\(f_0\\) is bounded in suitable weighted \\(L^\\infty\\) spaces in both the spatial and momentum variables (so the corresponding weighted \\(L^\\infty\\) norm \\(\\|f_0\\|\\) is finite). Which statement asserts the existence result guaranteed under these assumptions?", "correct_choice": {"label": "A", "text": "One of the remaining options is correct, but a stronger result can be proven."}, "choices": [{"label": "B", "text": "There exists a time $T>0$, with lifespan $T\\sim \\|f_0\\|^{-1}$ (where $\\|\\cdot\\|$ is the corresponding weighted $L^\\infty$ norm), such that the inhomogeneous kinetic FPU equation with initial datum $f_0$ admits a unique mild solution on the time interval $0\\le t\\le T$."}, {"label": "C", "text": "There exists a time $T>0$ such that the inhomogeneous kinetic FPU equation with initial datum $f_0$ admits at least one mild solution on the time interval $0\\le t\\le T$."}, {"label": "D", "text": "There exists a time $T>0$, with lifespan $T\\sim \\|f_0\\|^{-2}$ (where $\\|\\cdot\\|$ is the corresponding weighted $L^\\infty$ norm), such that the inhomogeneous kinetic FPU equation with initial datum $f_0$ admits a (not necessarily unique) global mild solution on the time interval $0\\le t<\\infty$."}, {"label": "E", "text": "There exists a time $T>0$, with lifespan $T\\sim \\|f_0\\|^{-4}$ (where $\\|\\cdot\\|$ is the corresponding weighted $L^\\infty$ norm), such that the inhomogeneous kinetic FPU equation with initial datum $f_0$ admits a unique mild solution on the time interval $0\\le t\\le T$."}]}, {"id": "2512.19500v1", "month": "202512", "category": "General", "paper_link": "http://arxiv.org/abs/2512.19500v1", "theorem": "Let $q\\ge4$ be a prime power and $G$ be almost simple with socle\n  $S=\\PSL_2(q)$, that is $S\\le G\\le\\aut(S)$. Suppose that $G$ acts\n  primitively on $\\Omega$. Then for every distinct\n  $\\alpha, \\beta\\in\\Omega$ there exists $s\\in S$ such that\n  $\\alpha^s=\\beta$ and $s$ fixes no point of $\\Omega$.", "sketch": "If $G$ acts primitively on $\\Omega$, then the possibilities for a point stabilizer $S_\\omega<S$ are known. Some cases are \u201crelatively easy to handle,\u201d while the more difficult ones arise when $S_\\omega$ is dihedral, or when $S_\\omega$ is one of the polyhedral groups $A_4$, $S_4$, or $A_5$. In the dihedral case, the argument \u201crequire[s] Hasse\u2019s bound on the number of points on elliptic curves over finite fields,\u201d and to rule out the polyhedral cases the authors \u201cderive trace identities for the binary polyhedral groups $2A_4$, $2S_4$, and $2A_5$.\u201d In some cases there are \u201clengthy calculations,\u201d and instead of doing them by hand they \u201cprovide SageMath code at \\cite{dera_psl2_verify} that confirms the claims.\u201d", "question": "Let $q\\ge 4$ be a prime power and let $G$ be an almost simple group with socle $S=\\PSL_2(q)$ (so $S\\le G\\le \\operatorname{Aut}(S)$). Suppose that $G$ acts primitively on a set $\\Omega$. Under these assumptions, which of the following is the strongest conclusion that holds for arbitrary distinct points $\\alpha,\\beta\\in\\Omega$?", "correct_choice": {"label": "A", "text": "For every distinct $\\alpha,\\beta\\in\\Omega$ there exists an element $s\\in S$ such that $\\alpha^s=\\beta$ and $s$ fixes no point of $\\Omega$."}, "choices": [{"label": "B", "text": "For every distinct $\\alpha,\\beta\\in\\Omega$ there exists an element $s\\in G$ such that $\\alpha^s=\\beta$ and $s$ fixes no point of $\\Omega$."}, {"label": "C", "text": "For every distinct $\\alpha,\\beta\\in\\Omega$ there exists an element $s\\in S$ such that $\\alpha^s=\\beta$."}, {"label": "D", "text": "For every distinct $\\alpha,\\beta\\in\\Omega$ there exists an element $s\\in S$ such that $\\alpha^s=\\beta$ and $s$ fixes at most one point of $\\Omega$."}, {"label": "E", "text": "For every distinct $\\alpha,\\beta\\in\\Omega$ there exists an element $s\\in S$ such that $\\alpha^s=\\beta$ and $s$ has prime order."}]}, {"id": "2512.21950v1", "month": "202512", "category": "Inequality or Bound", "paper_link": "http://arxiv.org/abs/2512.21950v1", "theorem": "Let $G$ be an $n$-vertex digraph with $\\alpha^*(G) \\le s$.\n\tThen, $f(G) \\ge n^{5/9-o(1)}s^{-14/9}$. In particular, if $\\alpha^*(G)=n^{o(1)}$, then\n\t$f(G) \\ge n^{5/9-o(1)}$.", "sketch": "To prove the main theorem, we first use a theorem of Gallai and Milgram on the path-covering number of digraphs with given independence number. This is then used, together with some additional ideas, to effectively reduce the proof to the same framework of the proof of Fox, Kwan, and Sudakov. We do, however, need to (sometimes extensively) modify their arguments in locations where their proof relies on the fact that every pair of vertices is adjacent, which is not the case in our setting. Next we prove several lemmas needed for our proof. We then revisit the proof of Fox, Kwan and Sudakov, state variants of their Lemmas 2.2 and 2.3 (given below), and prove the latter lemma.\n\nWe first record the following lemma.\n\\begin{lemma}\\label{l:l22}\n\tLet $k = n^{\\Omega(1)}$ and $k \\ge s^7$. If an $n$-vertex orientation $G$ with $\\alpha(G) < s$ and $\\alpha^*(G) < s$ has at least $(k/se)^k$ acyclic $k$-sets, then it has a set of $n' \\ge k^{2-o(1)}/s$ vertices inducing a $q$-almost-acyclic subgraph $G'$\n\twhere $q =  n's^6/k^{1-o(1)}$.\n\\end{lemma}\n\nWe also need the following lemma.\n\\begin{lemma}\\label{l:l23}\nSuppose $n^{1/3}s^{-2/3} \\le q \\le n^{1-\\Omega(1)}$. An $n$-vertex $q$-almost-acyclic orientation $G$ with\n$\\alpha(G) < s$ has a permutation $\\pi$ with $\\alpha(G_\\pi) \\le n^{1/4+o(1)}q^{1/4}s^{3/2}$, so $\\chi(G_\\pi) \\ge n^{3/4-o(1)}q^{-1/4}s^{-3/2}$.\n\\end{lemma}\n\nThe first lemma, which is the main technical lemma, is proved later.", "question": "Let $G$ be an $n$-vertex digraph satisfying $\\alpha^*(G)\\le s$. What is the strongest guaranteed lower bound on $f(G)$ in terms of $n$ and $s$, and what bound follows in the special case $\\alpha^*(G)=n^{o(1)}$?", "correct_choice": {"label": "A", "text": "One of the remaining options is correct, but a stronger result can be proven."}, "choices": [{"label": "B", "text": "One has $f(G)\\ge n^{5/9-o(1)}\\,s^{-14/9}$, and moreover the $o(1)$ term can be taken uniformly in $s$ (so in particular if $\\alpha^*(G)=n^{o(1)}$ then $f(G)\\ge n^{5/9-o(1)}$ with an absolute $o(1)$ depending only on $n$)."}, {"label": "C", "text": "One has $f(G)\\ge n^{5/9-o(1)}\\,s^{-14/9}$. In particular, if $\\alpha^*(G)=n^{o(1)}$, then $f(G)\\ge n^{5/9-o(1)}\\,n^{-o(1)}$."}, {"label": "D", "text": "One has $f(G)\\ge n^{5/9-o(1)}\\,s^{-7/9}$. In particular, if $\\alpha^*(G)=n^{o(1)}$, then $f(G)\\ge n^{5/9-o(1)}$."}, {"label": "E", "text": "One has $f(G)\\ge n^{2/3-o(1)}\\,s^{-14/9}$. In particular, if $\\alpha^*(G)=n^{o(1)}$, then $f(G)\\ge n^{2/3-o(1)}$."}]}, {"id": "2512.22494v1", "month": "202512", "category": "Universal", "paper_link": "http://arxiv.org/abs/2512.22494v1", "theorem": "$f\\left(a,b\\right)$ is an integer for all $a,b\\in\\mathbb{N}$.", "sketch": "By B\\'ezout's lemma, there exist $x,y\\in\\mathbb{Z}$ such that $x(a+b)+yab=\\gcd(a+b,ab)$. Write $a=k\\gcd(a,b)$ and $b=l\\gcd(a,b)$ for coprime $k,l$. Substituting gives\n\\[\nxk\\gcd(a,b)+xl\\gcd(a,b)+ykl(\\gcd(a,b))^2=\\gcd(ab,a+b).\n\\]\nThen\n\\[\nf(a,b)=xk+xl+ykl\\gcd(a,b)=xk+xl+byk,\n\\]\nwhich is an integer.", "question": "For all pairs of natural numbers $a,b\\in\\mathbb{N}$, which statement is universally true about the value of $f(a,b)$?", "correct_choice": {"label": "A", "text": "For every $a,b\\in\\mathbb{N}$, the value $f(a,b)$ is an integer (i.e., $f(a,b)\\in\\mathbb{Z}$)."}, "choices": [{"label": "B", "text": "For every $a,b\\\\in\\\\mathbb{N}$, the value $f(a,b)$ is an integer whenever $\\\\gcd(a,b)=1$ (i.e., $f(a,b)\\\\in\\\\mathbb{Z}$ for coprime $a,b$)."}, {"label": "C", "text": "For every $a,b\\\\in\\\\mathbb{N}$, the value $f(a,b)$ is a rational number (i.e., $f(a,b)\\\\in\\\\mathbb{Q}$)."}, {"label": "D", "text": "For every $a,b\\\\in\\\\mathbb{N}$, there exist $x,y\\\\in\\\\mathbb{Z}$ with $x(a+b)+yab=\\\\gcd(a+b,ab)$ such that the corresponding value $f(a,b)=xk+xl+ykl\\\\gcd(a,b)$ is an integer."}, {"label": "E", "text": "For every $a,b\\\\in\\\\mathbb{N}$, the value $f(a,b)$ is an integer only if $\\\\gcd(a+b,ab)=1$."}]}, {"id": "2601.22822v1", "month": "202601", "category": "Asymptotic or Limit", "paper_link": "http://arxiv.org/abs/2601.22822v1", "theorem": "Let $j \\ge k \\ge 2$ be fixed integers.\nThen, for every $\\varepsilon > 0$, there exists a constant $C = C(\\varepsilon) > 0$,\nindependent of $k$ and $j$, such that\n\\[\n  \\sum_{n=N+1}^{N+H} R_{\\phi,j}(n)\n  =\n  \\frac{\\gamma_{k} ^j}{\\gamma_{k,j}}\\cdot HN^{(j-k)/k}\n  +\n  \\Odi{H N^{(j - k) / k} A(N; -C)},\n\\]\nas $N\\to\\infty$, uniformly for $N^{1-13/15k+\\varepsilon} < H < N^{1-\\varepsilon}.", "sketch": "To prove the main theorem (following \\cite{bib1,bib12}), one introduces the exponential sum\n\\[\n  \\Stilde_{\\phi}(\\alpha)=\\sum_{n\\ge 1} \\Lambda(n)\\,\\mathrm{e}^{-\\phi(n)/N}\\,\\mathrm{e}(\\phi(n)\\alpha)=\\sum_{n\\ge 1}\\Lambda(n)\\,\\mathrm{e}^{-\\phi(n)z),\\qquad z=\\frac1N-2\\pi i\\alpha,\n\\]\nand the finite sum\n\\[\n  U(\\alpha,H)=\\sum_{m=1}^H \\mathrm{e}(m\\alpha)\\quad (H\\le N).\n\\]\nUsing orthogonality, one rewrites\n\\[\n  R_{\\phi,j}(n)=\\mathrm{e}^{n/N}\\int_{-1/2}^{1/2}\\Stilde_{\\phi}(\\alpha)^j\\,\\mathrm{e}(-n\\alpha)\\,\\mathrm{d}\\alpha,\n\\]\nso that summing over $n$ gives\n\\[\n  \\sum_{n=N+1}^{N+H} R_{\\phi,j}(n)\\,\\mathrm{e}^{-n/N}\n  =\\int_{-1/2}^{1/2}\\Stilde_{\\phi}(\\alpha)^j\\,U(H,-\\alpha)\\,\\mathrm{e}(-N\\alpha)\\,\\mathrm{d}\\alpha.\n\\]\nThe \u201cexpected main term comes from a comparatively short arc around 0\u201d, where $\\Stilde_{\\phi}(\\alpha)$ has size $\\gamma_k z^{-1/k}$ for \u201csmall\u201d $\\alpha$. Setting $\\tau=BH^{-1}$ (with $B=N^{2\\varepsilon}$) and writing $\\mathcal C=[-1/2,-\\tau]\\cup[\\tau,1/2]$, one decomposes\n\\[\n  \\sum_{n=N+1}^{N+H} R_{\\phi,j}(n)\\,\\mathrm{e}^{-n/N}\n  =\\gamma_k^j I_1+I_2+I_3,\n\\]\nwhere\n\\[\nI_1=\\int_{-\\tau}^{\\tau} z^{-j/k}U(-\\alpha,H)\\,\\mathrm{e}(-N\\alpha)\\,\\mathrm{d}\\alpha,\n\\]\n\\[\nI_2=\\int_{-\\tau}^{\\tau}(\\Stilde_{\\phi}(\\alpha)^j-\\gamma_k^j z^{-j/k})U(-\\alpha,H)\\,\\mathrm{e}(-N\\alpha)\\,\\mathrm{d}\\alpha,\n\\]\n\\[\nI_3=\\int_{\\mathcal C}\\Stilde_{\\phi}(\\alpha)^j U(-\\alpha,H)\\,\\mathrm{e}(-N\\alpha)\\,\\mathrm{d}\\alpha.\n\\]\nOn the major arc, \u201cfor small $\\alpha$ the exponential sum $\\Stilde_\\phi$ behaves pretty much like\u201d\n\\[\n\\Stilde_k(\\alpha)=\\sum_{n\\ge1}\\Lambda(n)\\,\\mathrm{e}^{-n^k/N}\\,\\mathrm{e}(n^k\\alpha).\n\\]\nThe evaluation of $I_1$ is deferred to \u201cLemma~4 of \\cite{lan16jnt}\u201d.\n\nThe bound for $I_2$ relies on the following auxiliary estimate.\n\\begin{lemma}\n\\label{lemma-L2}\nLet $\\eps$ be an arbitrarily small positive constant, let $k\\ge 1$ be\nan integer, consider $\\phi(n)\\in\\mathbb{Z}[n]$ such that\n$\\partial\\phi=k$ and $\\lead(\\phi)=1$; let $N$ be a sufficiently large\ninteger. Then there exists a positive constant\n$c_{1}=c_{1}(\\eps)$, which does not depend on $\\phi$, such that\n\\[\n  \\int_{-\\xi}^{\\xi} | \\Etilde_{\\phi}(\\alpha)|^2 \\, \\dx \\alpha\n  :=\n  \\int_{-\\xi}^{\\xi}\n    \\vert \\Stilde_{\\phi}(\\alpha)-\\gamma_{k}z^{-1/k} \\vert^2 \\, \\dx\\alpha\n  \\ll_{\\phi} N^{2/k\\,-1} A(N; - 2c_{1}),\n\\]\nuniformly for $0\\le \\xi < N^{-1+13/15k\\,-\\eps}$.\n\\end{lemma}\nThis generalizes a lemma of \\cite{bib12} to $\\Stilde_\\phi$.\n\nThe minor-arc term $I_3$ requires the following estimate.\n\\begin{lemma}\n\\label{lemma-tolev}\nFor  $k>1$ and $0 < \\tau \\le \\dfrac{1}{2}$, we have that\n\\[\n  \\int_{-\\tau}^{\\tau} |\\Stilde_{\\phi}(\\alpha)|^2 \\, \\dx \\alpha\n  \\ll_{\\phi}\n  (\\tau N^{1/k} + N^{2/k\\,-1}) L^4.\n\\]\n\\end{lemma}\nWith these three ingredients, \u201cwe can conclude, using the same method of \\S3 of \\cite{bib12}.\u201d\n\nRemarks included in the outline: the lower bound for $H$ in the main theorem is \u201conly due to the limitations in the lemma above;\u201d elsewhere \u201cwe just need \u2026 $H>N^{1-1/k+\\varepsilon}$.\u201d Also, they \u201cdo not need bounds for the $L^4$ norm of $\\Stilde_\\phi$, but show that $L^2$ estimates suffice,\u201d using an identity (\\eqref{sec3:8}) from \\cite{bib1}.", "question": "Let \\(j\\ge k\\ge 2\\) be fixed integers. Given \\(\\varepsilon>0\\), let \\(H=H(N)\\) satisfy \\(N^{1-\\frac{13}{15k}+\\varepsilon}<H<N^{1-\\varepsilon}\\). As \\(N\\to\\infty\\), which asymptotic formula for \\(\\sum_{n=N+1}^{N+H} R_{\\phi,j}(n)\\) is justified, with an error term uniform in this range of \\(H\\) and with some constant \\(C=C(\\varepsilon)>0\\) independent of \\(j\\) and \\(k\\)?", "correct_choice": {"label": "A", "text": "For every \\(\\varepsilon>0\\) there exists \\(C=C(\\varepsilon)>0\\), independent of \\(j\\) and \\(k\\), such that as \\(N\\to\\infty\\), uniformly for \\(N^{1-\\frac{13}{15k}+\\varepsilon}<H<N^{1-\\varepsilon}\\),\n\\[\n\\sum_{n=N+1}^{N+H} R_{\\phi,j}(n)\n=\n\\frac{\\gamma_{k} ^j}{\\gamma_{k,j}}\\,H N^{(j-k)/k}\n+\nO\\!\\left(H N^{(j-k)/k} A(N; -C)\\right).\n\\]"}, "choices": [{"label": "B", "text": "For every \\(\\varepsilon>0\\) there exists \\(C=C(\\varepsilon)>0\\), independent of \\(j\\) and \\(k\\), such that as \\(N\\to\\infty\\), uniformly for \\(N^{1-\\frac{13}{15k}+\\varepsilon}<H<N^{1-\\varepsilon}\\),\n\\[\n\\sum_{n=N+1}^{N+H} R_{\\phi,j}(n)\n=\n\\frac{\\gamma_k^j}{\\gamma_{k,j}}\\,H N^{(j-k)/k}\n+\nO\\!\\left(H N^{(j-k)/k}\\,A(H;-C)\\right).\n\\]\n"}, {"label": "C", "text": "For every \\(\\varepsilon>0\\) there exists a constant \\(C=C(\\varepsilon)>0\\) such that as \\(N\\to\\infty\\), uniformly for \\(N^{1-\\frac{13}{15k}+\\varepsilon}<H<N^{1-\\varepsilon}\\),\n\\[\n\\sum_{n=N+1}^{N+H} R_{\\phi,j}(n)\n=\n\\frac{\\gamma_k^j}{\\gamma_{k,j}}\\,H N^{(j-k)/k}\n+\nO\\!\\left(H N^{(j-k)/k}\\,A(N;-C)\\right).\n\\]\n"}, {"label": "D", "text": "For every \\(\\varepsilon>0\\) there exists \\(C=C(\\varepsilon)>0\\), independent of \\(j\\) and \\(k\\), such that as \\(N\\to\\infty\\), uniformly for \\(N^{1-\\frac{1}{k}+\\varepsilon}<H<N^{1-\\varepsilon}\\),\n\\[\n\\sum_{n=N+1}^{N+H} R_{\\phi,j}(n)\n=\n\\frac{\\gamma_k^j}{\\gamma_{k,j}}\\,H N^{(j-k)/k}\n+\nO\\!\\left(H N^{(j-k)/k}\\,A(N;-C)\\right).\n\\]\n"}, {"label": "E", "text": "For every \\(\\varepsilon>0\\) there exists \\(C=C(\\varepsilon)>0\\) such that as \\(N\\to\\infty\\), uniformly for \\(N^{1-\\frac{13}{15k}+\\varepsilon}<H<N^{1-\\varepsilon}\\),\n\\[\n\\sum_{n=N+1}^{N+H} R_{\\phi,j}(n)\n=\n\\frac{\\gamma_k^j}{\\gamma_{k,j}}\\,H N^{(j-k)/k}\n+\nO\\!\\left(H N^{(j-k)/k}\\,A\\bigl(N; -C/k\\bigr)\\right),\n\\]\nwith the same \\(C\\) allowed to depend on \\(j\\) and \\(k\\)."}]}, {"id": "2601.22819v1", "month": "202601", "category": "Biconditional or Equivalence", "paper_link": "http://arxiv.org/abs/2601.22819v1", "theorem": "Let $\\kappa\\in\\mathbb{R}\\setminus\\{0\\}$ and $\\tau>0$. Suppose that Assumptions $(A_1)$-$(A_3)$ hold. Then the following statements are equivalent:\n\\begin{enumerate}\n  \\item[$(i)$] The pair $[A,B]$ is rapidly stabilizable.\n  \\item [$(ii)$] The pair $[A,B]_{\\kappa,\\tau}$ is rapidly stabilizable.\n  \\item [$(iii)$] The pair $[A,B]_{\\kappa,\\tau}$ is  rapidly stabilizable with  instantaneous-valued feedback.\n\\end{enumerate}", "sketch": "A brief proof-related indication appears in Remark~\\ref{yu-remark-25-9-22}(iv): for each $\\kappa\\in\\mathbb{R}$ and $\\tau>0$, the fact that\n\\begin{lemma}\\label{yu-lemma-11-29-1}\n    $\\mathbb{C}=\\{z-\\kappa e^{-z\\tau}:z\\in\\mathbb{C}\\}$ for each $\\kappa\\in\\mathbb{R}$ and $\\tau>0$.\n\\end{lemma}\nplays an important role in establishing the main theorem. No further steps/outline of the argument are provided in the post-theorem introduction.", "question": "Let $\\kappa\\in\\mathbb{R}\\setminus\\{0\\}$ and $\\tau>0$, and suppose Assumptions $(A_1)$--$(A_3)$ hold. Which of the following statements is equivalent to the rapid stabilizability of the pair $[A,B]$ (equivalently, of the pair $[A,B]_{\\kappa,\\tau}$)?", "correct_choice": {"label": "A", "text": "The pair $[A,B]_{\\kappa,\\tau}$ is rapidly stabilizable with instantaneous-valued feedback."}, "choices": [{"label": "B", "text": "For every $\\kappa\\in\\mathbb{R}$ (including $\\kappa=0$) and every $\\tau>0$, the pair $[A,B]_{\\kappa,\\tau}$ is rapidly stabilizable with instantaneous-valued feedback."}, {"label": "C", "text": "The pair $[A,B]_{\\kappa,\\tau}$ is rapidly stabilizable."}, {"label": "D", "text": "There exists $\\tau_0>0$ such that for every $\\tau\\in(0,\\tau_0)$ the pair $[A,B]_{\\kappa,\\tau}$ is rapidly stabilizable with instantaneous-valued feedback."}, {"label": "E", "text": "The pair $[A,B]_{\\kappa,\\tau}$ is rapidly stabilizable, and moreover there exists an instantaneous-valued feedback achieving an arbitrarily prescribed exponential decay rate uniformly for all $\\tau>0$."}]}, {"id": "2601.21850v1", "month": "202601", "category": "Classification or Bijection", "paper_link": "http://arxiv.org/abs/2601.21850v1", "theorem": "[Theorem\n\\begin{theorem}\\hspace{0mm}\\\\\n\\textup{(1)} The homomorphism $\\iota$ is an isomorphism\n\\begin{align*}\n\\iota\\colon \\cent(V^{\\kk_c}(\\gl_{n|1}))\\xrightarrow{\\simeq} \\cent(\\W^{\\kk_c}(\\gl_{n|1})).\n\\end{align*}\n\\textup{(2)} There is an isomorphism of differential algebras \n\\begin{align*}\n \\gr\\cent(V^{\\kk_c}(\\gl_{n|1}))\\simeq \\Lambda^{n|1}_{\\aff}.\n\\end{align*}\n\\end{theorem}\n/\\begin{theorem}The center $\\cent(V^{\\kk_c}(\\gl_{n|1}))$ is isomorphic to the subalgebra in $\\pi^0_\\h$\nstrongly generated by the coefficients $W_p$ $(p\\geq1)$ of the the pseudo-differential operator $\\mathcal{L}$:\n\\begin{align}\\mathcal{L}=(\\partial- u_1)\\cdots (\\partial- u_n) (\\partial+u_{n+1})^{-1} \n =\\partial^{n-1}+ \\sum_{p=1}^\\infty W_p \\partial^{n-1-p}.\n\\end{align}\n\\end{theorem}\n/\\begin{theorem}For all $n\\geq1$, the following formula holds:\n\\begin{align*}\n    \\ch[\\cent(V^{\\kk_c}(\\gl_{n|1}))](q)=\\frac{\\sum_{m=0}^\\infty (-1)^mq^{\\frac{1}{2}m(m+1)}(q^{m+1};q)_{n-1}}{(q;q)_\\infty^2(q,\\cdots,q^{n-1};q)_\\infty}.\n\\end{align*}\n\\end{theorem}]\n\\hspace{0mm}\\\\\n\\begin{enumerate}[leftmargin=*, labelsep=1em]\n    \\item There is an embedding of vertex algebras \n$$\\mathfrak{z}(V^{\\kk_c}(\\gl_{n|1}))\\hookrightarrow \\pi_\\mathfrak{h}^0,$$\nwhose image is generated by the coefficients of the pseudo-differential operator\n$$(\\partial_z- u_1(z))\\cdots (\\partial_z- u_n(z)) (\\partial_z+u_{n+1}(z))^{-1}.$$\n \\item There is a filtration on $\\mathfrak{z}(V^{\\kk_c}(\\gl_{n|1}))$ whose associated graded differential algebra is isomorphic to the algebra of affine supersymmetric polynomials:\n \\begin{align*}\n \\operatorname{gr}\\mathfrak{z}(V^{\\kk_c}(\\gl_{n|1}))\\simeq \\Lambda^{n|1}_{\\mathrm{aff}}.\n\\end{align*}\n \\item The $q$-character of the center $\\mathfrak{z}(V^{\\kk_c}(\\gl_{n|1}))$ is given by\n    \\begin{align*}\n    \\operatorname{ch}[\\mathfrak{z}(V^{\\kk_c}(\\gl_{n|1}))](q)=\\frac{\\sum_{m=0}^\\infty (-1)^mq^{\\frac{1}{2}m(m+1)}(q^{m+1};q)_{n-1}}{(q;q)_\\infty^2(q,\\cdots,q^{n-1};q)_\\infty}.\n\\end{align*}\n\\end{enumerate}", "sketch": "The post-theorem introduction singles out the following proof idea to prove the main theorem:\n\n- **Key observation:** identify the two centers\n\\[\\mathfrak{z}(V^{\\kk_c}(\\gl_{n|1})) \\simeq \\mathfrak{z}(\\mathcal{W}^{\\kk_c}(\\gl_{n|1}))\\]\nWe first use the following theorem.\n\\begin{theorem}\\label{them: Detecting the FF center}\\hspace{0mm}\\\\\n\\textup{(1)} The homomorphism $\\iota$ is an isomorphism\n\\begin{align*}\n\\iota\\colon \\cent(V^{\\kk_c}(\\gl_{n|1}))\\xrightarrow{\\simeq} \\cent(\\W^{\\kk_c}(\\gl_{n|1})).\n\\end{align*}\n\\textup{(2)} There is an isomorphism of differential algebras \n\\begin{align*}\n \\gr\\cent(V^{\\kk_c}(\\gl_{n|1}))\\simeq \\Lambda^{n|1}_{\\aff}.\n\\end{align*}\n\\end{theorem}\n\n- **Strategy/context around this identification:** treat \\(\\mathfrak{z}(\\mathcal{W}^{\\kk_c}(\\gl_{n|1}))\\) as coming from the Heisenberg coset\n\\[C^\\kappa(\\gl_{n|1})=\\operatorname{Com}\\left(\\pi_J,\\mathcal{W}^\\kappa(\\gl_{n|1}) \\right)\\subset \\mathcal{W}^\\kappa(\\gl_{n|1})\\]\nwhich at generic levels has \u201cproperties similar to those of the regular \\(\\mathcal{W}\\)-algebras,\u201d and whose critical-level specialization yields the center.\n\n- **Execution (as indicated by the paper outline):** determine strong generators of \\(\\mathcal{W}^\\kappa(\\gl_{n|1})\\) (via Feigin--Semikhatov duality), \u201cdescribe the center of \\(\\mathcal{W}^\\kappa(\\gl_{n|1})\\) at the critical level \\(\\kappa=\\kk_c\\),\u201d then use the Wakimoto realization to \u201crelate the centers of \\(\\mathcal{W}^{\\kk_c}(\\gl_{n|1})\\) and \\(V^{\\kk_c}(\\gl_{n|1})\\),\u201d and based on these ingredients complete the proof of the main theorem later in Sections \\ref{sec: Center of affine at the critical level} and \\ref{sec: Character formula}.", "question": "Let \\(n\\ge 1\\) and let \\(\\mathfrak{z}(V^{\\kk_c}(\\gl_{n|1}))\\) be the center of the critical-level affine vertex (super)algebra \\(V^{\\kk_c}(\\gl_{n|1})\\). Which of the following descriptions gives a complete identification of \\(\\mathfrak{z}(V^{\\kk_c}(\\gl_{n|1}))\\), including a realization inside \\(\\pi^0_{\\mathfrak{h}}\\), its associated graded differential algebra, and its \\(q\\)-character?", "correct_choice": {"label": "A", "text": "There is an embedding of vertex algebras \\(\\mathfrak{z}(V^{\\kk_c}(\\gl_{n|1}))\\hookrightarrow \\pi^0_{\\mathfrak{h}}\\) whose image is generated by the coefficients \\(W_p\\) \\((p\\ge 1)\\) of the pseudo-differential operator \\(\\mathcal{L}=(\\partial_z- u_1(z))\\cdots (\\partial_z- u_n(z)) (\\partial_z+u_{n+1}(z))^{-1}=\\partial^{n-1}+ \\sum_{p=1}^\\infty W_p\\,\\partial^{n-1-p}\\). Moreover, \\(\\mathfrak{z}(V^{\\kk_c}(\\gl_{n|1}))\\) has a filtration with \\(\\operatorname{gr}\\mathfrak{z}(V^{\\kk_c}(\\gl_{n|1}))\\simeq \\Lambda^{n|1}_{\\mathrm{aff}}\\) as differential algebras, and its character is \\(\\operatorname{ch}[\\mathfrak{z}(V^{\\kk_c}(\\gl_{n|1}))](q)=\\frac{\\sum_{m=0}^\\infty (-1)^m q^{\\frac{1}{2}m(m+1)}(q^{m+1};q)_{n-1}}{(q;q)_\\infty^2(q,\\cdots,q^{n-1};q)_\\infty}\\)."}, "choices": [{"label": "B", "text": "There is an embedding of vertex algebras \\(\\mathfrak{z}(V^{\\kk_c}(\\gl_{n|1}))\\hookrightarrow \\pi^0_{\\mathfrak{h}}\\) whose image is strongly generated by the coefficients \\(W_p\\) \\((p\\ge 0)\\) of the pseudo-differential operator\n\\[\n\\mathcal{L}=(\\partial_z- u_1(z))\\cdots (\\partial_z- u_n(z)) (\\partial_z+u_{n+1}(z))^{-1}=\\partial^{n-1}+\\sum_{p=0}^\\infty W_p\\,\\partial^{n-1-p}.\n\\]\nMoreover, \\(\\mathfrak{z}(V^{\\kk_c}(\\gl_{n|1}))\\) has a filtration with \\(\\operatorname{gr}\\mathfrak{z}(V^{\\kk_c}(\\gl_{n|1}))\\simeq \\Lambda^{n|1}_{\\mathrm{aff}}\\) as differential algebras, and\n\\[\n\\operatorname{ch}[\\mathfrak{z}(V^{\\kk_c}(\\gl_{n|1}))](q)=\\frac{\\sum_{m=0}^\\infty (-1)^m q^{\\frac12 m(m+1)}(q^{m+1};q)_{n-1}}{(q;q)_\\infty^2(q,\\cdots,q^{n-1};q)_\\infty}.\n\\]"}, {"label": "C", "text": "There is a filtration on \\(\\mathfrak{z}(V^{\\kk_c}(\\gl_{n|1}))\\) whose associated graded differential algebra is isomorphic to the algebra of affine supersymmetric polynomials:\n\\[\n\\operatorname{gr}\\mathfrak{z}(V^{\\kk_c}(\\gl_{n|1}))\\simeq \\Lambda^{n|1}_{\\mathrm{aff}}.\n\\]"}, {"label": "D", "text": "There is an embedding of vertex algebras \\(\\mathfrak{z}(V^{\\kk_c}(\\gl_{n|1}))\\hookrightarrow \\pi^0_{\\mathfrak{h}}\\) whose image is generated by the coefficients \\(W_p\\) \\((p\\ge 1)\\) of the pseudo-differential operator\n\\[\n\\mathcal{L}=(\\partial_z- u_1(z))\\cdots (\\partial_z- u_n(z)) (\\partial_z+u_{n+1}(z))^{-1}=\\partial^{n-1}+\\sum_{p=1}^\\infty W_p\\,\\partial^{n-1-p}.\n\\]\nMoreover, \\(\\operatorname{gr}\\mathfrak{z}(V^{\\kk_c}(\\gl_{n|1}))\\simeq \\Lambda^{n|1}_{\\mathrm{aff}}\\) as differential algebras, and its character is\n\\[\n\\operatorname{ch}[\\mathfrak{z}(V^{\\kk_c}(\\gl_{n|1}))](q)=\\frac{\\sum_{m=0}^\\infty (-1)^m q^{\\frac12 m(m+1)}(q^{m};q)_{n-1}}{(q;q)_\\infty^2(q,\\cdots,q^{n-1};q)_\\infty}.\n\\]"}, {"label": "E", "text": "There is an embedding of vertex algebras \\(\\mathfrak{z}(V^{\\kk_c}(\\gl_{n|1}))\\hookrightarrow \\pi^0_{\\mathfrak{h}}\\) whose image is generated by the coefficients \\(W_p\\) \\((p\\ge 1)\\) of the pseudo-differential operator\n\\[\n\\mathcal{L}=(\\partial_z- u_1(z))\\cdots (\\partial_z- u_n(z)) (\\partial_z- u_{n+1}(z))^{-1}=\\partial^{n-1}+\\sum_{p=1}^\\infty W_p\\,\\partial^{n-1-p}.\n\\]\nMoreover, \\(\\mathfrak{z}(V^{\\kk_c}(\\gl_{n|1}))\\) has a filtration with \\(\\operatorname{gr}\\mathfrak{z}(V^{\\kk_c}(\\gl_{n|1}))\\simeq \\Lambda^{n|1}_{\\mathrm{aff}}\\) as differential algebras, and\n\\[\n\\operatorname{ch}[\\mathfrak{z}(V^{\\kk_c}(\\gl_{n|1}))](q)=\\frac{\\sum_{m=0}^\\infty (-1)^m q^{\\frac12 m(m+1)}(q^{m+1};q)_{n-1}}{(q;q)_\\infty^2(q,\\cdots,q^{n-1};q)_\\infty}.\n\\]"}]}, {"id": "2601.23091v1", "month": "202601", "category": "Existence", "paper_link": "http://arxiv.org/abs/2601.23091v1", "theorem": "Under the assumptions on $\\Phi_m$ and $K$, there exists a one-parameter family of solutions $(W_K,c_K)$ of\n\n\\begin{align}\nc^2 \\, W(x) &= - \\suminf \\Big( \\int_{-\\infty}^x \\Phi_m'\\big(\\nu m - A_m W(\\xi + \\frac{m}{2} ) \\big) - \\Phi_m'\\big(\\nu m - A_m W(\\xi - \\frac{m}{2} ) \\big) \\, {\\rm d} \\xi \\Big) + \\eta \\nonumber \\\\\n&= - \\suminf \\Big( \\int_{x-m}^x \\Phi_m'\\big(\\nu m - A_m W(\\xi + \\frac{m}{2} ) \\big) \\, {\\rm d} \\xi \\Big) + \\eta \\nonumber \\\\\n&= - \\suminf \\Big( \\int_{-\\frac{m}{2}}^{\\frac{m}{2}} \\Phi_m'\\big(\\nu m - A_m W(x + \\xi ) \\big) \\, {\\rm d} \\xi \\Big) + \\eta\\nonumber \\\\\n&= \\suminf \\big( A_m (- \\Phi_m'(\\nu m - A_m W(x) ) ) \\big)  + \\eta,\n\\end{align}\n\nwith $\\|W_K\\|^2_2= 2K$.", "sketch": "We \\label{subsec:2.1}\n\n Following the variational method that is described in Herrmann2020, we first define the potential and kinetic energy of $W$ by\n\\begin{align}\n\\Pcal(W) := \\intR \\suminf \\Psi_ \"on a suitable cone of unimodal functions.\" Then, \\begin{align}\n\\label{eq:eta}\n\\eta = \\suminf A_m \\Phi_m'(\\nu m)= \\suminf m \\Phi_m'(\\nu m).\n\\end{align}\nNote that the  series in \\eqref{eq:eta} converges by \\eqref{Phi'm}.\n\\end{proof}\n\n\\subsection{Existence of Maximizers} \\label{sub:2.2}\n\nIt is our goal to show that every maximizing sequence for $\\Pcal$ in $\\CK$ admits a strongly convergent subsequence. This will complete  the existence proof of a maximizer $W \\in \\CK$, which is then a solution  of \\eqref{eq:wave_eq}. For this purpose, we define -- based on the quantities in Herrmann2020 -- the modified quantities\n\\begin{align}\nP(K) := \\sup\\limits_{W \\in \\CK} \\Pcal(W), \\qquad Q(K) := \\sup\\limits_{W \\in \\CK} \\Qcal(W)\n\\end{align}\n\"using a concentration compactness argument.\" Finally, \\begin{align}\n    \\|W_{\\infty}\\|_2^2 \\geq \\|\\Wt_{\\infty}\\|_2^2.\n\\end{align}\n\\end{proof}\n\n\\subsection{Proof of Main Theorem}\n\\label{sub:2.3}\n\nWe are now in the position to complete the proof of our main result.\n\n\\begin{proof}[Proof of Theorem \\ref{THM}]\nProposition \\ref{le:strong convergence} implies that there exists a maximizer $W \\in \\Ccal_K$ of $\\Pcal$ that can be constructed as the limit point of a maximizing sequence. According to Lemma \\ref{le:T}, this maximizer is a solution to \\eqref{eq:wave_eq}.\n\\end{proof}\n\nWe end this section by stating some properties for the wave speed of such solutions.\n\n\\begin{lemma}\n\\label{eq:estimate c}\nLet $(W_K, c_K)$ be a solution provided by Theorem \\ref{THM}. Then\n\\begin{align}\n     c_K = \\mu(W_K)^{-\\frac12} \\quad \\text{and} \\quad\n  2  c_K^2 \\geq \\frac{\\Pcal(W_K)}{\\Kcal(W_K)} = \\frac{P(K)}{K}\n\\end{align}", "question": "Assume the collection \\((\\Phi_m)_{m\\ge 1}\\) and the parameter \\(K\\) satisfy the standing hypotheses imposed on them. Consider the nonlinear equation for an unknown profile \\(W:\\mathbb{R}\\to\\mathbb{R}\\) and wave speed \\(c\\in\\mathbb{R}\\), with given \\(\\nu,\\eta\\) and \\(A_m\\):\n\\[\n c^2\\,W(x)= -\\sum_{m=1}^{\\infty}\\left(\\int_{-\\frac m2}^{\\frac m2}\\Phi_m'\\big(\\nu m - A_m W(x+\\xi)\\big)\\,d\\xi\\right)+\\eta,\\qquad x\\in\\mathbb{R}.\n\\]\nWhich statement (under these assumptions) asserts the existence of an object satisfying this equation together with a prescribed \\(L^2\\)-norm condition?", "correct_choice": {"label": "A", "text": "There exists a one-parameter family of solution pairs \\((W_K,c_K)\\) to the above equation such that \\(\\|W_K\\|_2^2=2K\\)."}, "choices": [{"label": "B", "text": "For every $K>0$ satisfying the standing hypotheses, there exists a solution pair $(W_K,c_K)$ of\n\\[\n c^2W(x)= -\\sum_{m=1}^{\\infty}\\left(\\int_{-\\frac m2}^{\\frac m2}\\Phi_m'\\big(\\nu m-A_mW(x+\\xi)\\big)\\,d\\xi\\right)+\\eta,\\qquad x\\in\\mathbb R,\n\\]\nsuch that $\\|W_K\\|_2^2=2K$, and moreover the family can be chosen with a $K$-independent wave speed $c_K\\equiv c_*>0$."}, {"label": "C", "text": "There exists at least one solution pair $(W,c)$ of\n\\[\n c^2W(x)= -\\sum_{m=1}^{\\infty}\\left(\\int_{-\\frac m2}^{\\frac m2}\\Phi_m'\\big(\\nu m-A_mW(x+\\xi)\\big)\\,d\\xi\\right)+\\eta,\\qquad x\\in\\mathbb R,\n\\]\nwith $W\\in L^2(\\mathbb R)$."}, {"label": "D", "text": "Under the standing hypotheses on $(\\Phi_m)_{m\\ge1}$ and $K$, there exists a one-parameter family of solution pairs $(W_K,c_K)$ to\n\\[\n c^2W(x)= -\\sum_{m=1}^{\\infty}\\left(\\int_{-\\frac m2}^{\\frac m2}\\Phi_m'\\big(\\nu m-A_mW(x+\\xi)\\big)\\,d\\xi\\right)+\\eta\n\\]\nsuch that for all $K$ one has $\\|W_K\\|_2^2\\le 2K$."}, {"label": "E", "text": "Assuming the standing hypotheses, for each $K>0$ there exists a one-parameter family of solution pairs $(W_K,c_K)$ of the above equation with $\\|W_K\\|_2^2=2K$, where in addition the constant $\\eta$ can be chosen arbitrarily (independently of $(\\Phi_m)_m$) and the series $\\sum_{m=1}^\\infty\\int_{-\\frac m2}^{\\frac m2}\\Phi_m'(\\nu m-A_mW_K(x+\\xi))\\,d\\xi$ converges for all $x$ without using any extra condition on $(\\Phi_m)_m$."}]}, {"id": "2601.22626v1", "month": "202601", "category": "General", "paper_link": "http://arxiv.org/abs/2601.22626v1", "theorem": "Given any sequence of non-negative integers $A$ that dilates to infinity, there is a rank one system $(X,\\mathcal{B},\\mu,T)$ such that $h^A(T) = +\\infty$.", "sketch": "The only proof-related outline given for the main theorem appears in the paper-structure paragraph: the authors indicate that later they \"lay the groundwork\" and then proceed to the section where they \"prove the blow-up result of sequence entropy by randomizing the cut-and-stack procedure of a rank one system.\"", "question": "Let $A$ be any sequence of non-negative integers that dilates to infinity. Under this assumption, which conclusion holds?", "correct_choice": {"label": "A", "text": "There exists a rank one system $(X,\\mathcal{B},\\mu,T)$ such that $h^A(T)=+\\infty$."}, "choices": [{"label": "B", "text": "There exists a \n\n rank one system $(X,\\mathcal{B},\\mu,T)$ such that $h^A(T)>0$ (finite and strictly positive)."}, {"label": "C", "text": "There exists a measure-preserving system $(X,\\mathcal{B},\\mu,T)$ such that $h^A(T)=+\\infty$."}, {"label": "D", "text": "For every rank one system $(X,\\mathcal{B},\\mu,T)$, if $A$ dilates to infinity then $h^A(T)=+\\infty$."}, {"label": "E", "text": "There exists a rank one system $(X,\\mathcal{B},\\mu,T)$ such that for every sequence $B$ of non-negative integers that dilates to infinity one has $h^B(T)=+\\infty$."}]}, {"id": "2602.00358v1", "month": "202601", "category": "Implication", "paper_link": "http://arxiv.org/abs/2602.00358v1", "theorem": "[Heinz-type inequality in $E(\\tau)$, DDSZ20, Corollary~5.8(i)]Let $a,b\\ge 0$ in $S(\\tau)$ and $z\\in S(\\tau)$. If $az,zb\\in E(\\tau)$, then for every $t\\in[0,1]$,\n\t\t\\[\n\t\t\\norm{a^t z b^{1-t}+a^{1-t} z b^t}_{E(\\tau)}\\le \\left\\lVert az+zb\\right\\rVert_{E(\\tau)}.\n\t\t\\],", "sketch": "To prove Theorem~\\ref{thm:main}, the paper proceeds as follows: it uses \u201ca complex interpolation argument based on the three-lines theorem on a strip\u201d to show \u201cthe optimal constant $1$ holds on the full central range $t\\in[1/4,3/4]$\u201d and to get \u201can explicit bound valid for all $t\\in[0,1]$.\u201d Concretely, next it \u201cestablishes a complex interpolation estimate for an auxiliary expression $f_t$,\u201d then \u201cproves a bridge inequality via a $2\\times2$ block-positivity argument,\u201d and \u201cfinally combines these ingredients to prove Theorem~\\ref{thm:main}.\u201d The needed background tools (including \u201ca H\\\"older-type inequality\u201d and \u201cthe three-lines lemma on a strip,\u201d among others) are collected earlier.", "question": "Let $a,b\\ge 0$ be operators in $S(\\tau)$ and let $z\\in S(\\tau)$. Assume that $az\\in E(\\tau)$ and $zb\\in E(\\tau)$. For a fixed $t\\in[0,1]$, which of the following is the strongest statement that can be proved about the $E(\\tau)$-norm of the expression $a^t z b^{1-t}+a^{1-t} z b^t$?", "correct_choice": {"label": "A", "text": "For every $t\\in[0,1]$, one has\n\\[\n\\bigl\\|a^t z b^{1-t}+a^{1-t} z b^t\\bigr\\|_{E(\\tau)}\\le \\|az+zb\\|_{E(\\tau)}.\n\\]"}, "choices": [{"label": "B", "text": "For every $t\\in[\\tfrac14,\\tfrac34]$, one has\n\\[\n\\bigl\\|a^t z b^{1-t}+a^{1-t} z b^t\\bigr\\|_{E(\\tau)}\\le \\|az+zb\\|_{E(\\tau)}.\n\\]"}, {"label": "C", "text": "For every $t\\in[0,1]$, one has\n\\[\n\\bigl\\|a^t z b^{1-t}+a^{1-t} z b^t\\bigr\\|_{E(\\tau)}\\le \\|az\\|_{E(\\tau)}+\\|zb\\|_{E(\\tau)}.\n\\]"}, {"label": "D", "text": "For every $t\\in[0,1]$, one has\n\\[\n\\bigl\\|a^t z b^{1-t}+a^{1-t} z b^t\\bigr\\|_{E(\\tau)}\\le 2\\,\\|az+zb\\|_{E(\\tau)}.\n\\]"}, {"label": "E", "text": "For every $t\\in[0,1]$, one has\n\\[\n\\bigl\\|a^t z b^{1-t}+a^{1-t} z b^t\\bigr\\|_{E(\\tau)}\\le \\|a\\|_{E(\\tau)}\\,\\|z\\|_{S(\\tau)}\\,\\|b\\|_{E(\\tau)}.\n\\]"}]}, {"id": "2601.15618v1", "month": "202601", "category": "Uniqueness", "paper_link": "http://arxiv.org/abs/2601.15618v1", "theorem": "Assume $(K)$ and $(L)$.\n\tLet $u_0 \\in L^1(\\mathbb{R}^N)$.\n\t\\begin{itemize}\n\t\t\\item[\\rm (a)]\n\t\tThere exists a unique $L^1$-solution $u\\in C([0,\\infty);L^1(\\mathbb{R}^N))$ to the problem\n\t\t\\begin{equation}\n\\tag{P}\n\t\\begin{cases}\n\t\t\\partial_t\\left(k*[u-u_0]\\right) = \\Delta\\Phi(u), & x \\in \\R^N,\\ \\ t>0, \n\t\t\\vspace{5pt}\\\\\n\t\tu(x,0) = u_0(x), & x \\in \\R^N,\n\t\\end{cases}\n\\end{equation}\n\t\tsatisfying\n\t\t$$\n\t\t\t\\|u\\|_{L^\\infty(0,\\infty; L^1(\\mathbb{R}^N))} \\leq \\|u_0\\|_{L^1(\\mathbb{R}^N)}.\n\t\t$$\n\t\tFurthermore, it holds that\n\t\t$$\n\t\t\t\\ell*\\|\\Phi(u)\\|_{L_{\\rm loc}^1(\\mathbb{R}^N)} \\in C([0,\\infty)) \\cap L^\\infty(0,\\infty)\\,\\,\\,{\\rm with}\\,\\,\\,\n\t\t\t\\left(\\ell*\\|\\Phi(u)\\|_{L_{\\rm loc}^1(\\mathbb{R}^N)}\\right)(0)=0.\n\t\t$$\n\t\t\\item[\\rm (b)]\n\t\tLet $u,v \\in C([0,\\infty);L^1(\\mathbb{R}^N))$ be $L^1$-solutions to the problem\n\t\t\\begin{equation}\n\\tag{P}\n\t\\begin{cases}\n\t\t\\partial_t\\left(k*[u-u_0]\\right) = \\Delta\\Phi(u), & x \\in \\R^N,\\ \\ t>0, \n\t\t\\vspace{5pt}\\\\\n\t\tu(x,0) = u_0(x), & x \\in \\R^N,\n\t\\end{cases}\n\\end{equation}\n\t\twith initial data $u_0,v_0 \\in L^1(\\mathbb{R}^N)$, respectively.\n\t\tThen it holds that\n\t\t\\begin{equation}\n\t\t\\int_{\\mathbb{R}^N}[u(x,t)-v(x,t)]_+\\,\\dee x \\le \\int_{\\mathbb{R}^N}[u_0(x)-v_0(x)]_+\\,\\dee x,\\quad t\\ge0.\n\t\t\\end{equation}\n\t\tIn particular,\n\t\t\\begin{equation}\n\t\t\\|u(t)-v(t)\\|_{L^1(\\mathbb{R}^N)} \\le \\|u_0-v_0\\|_{L^1(\\mathbb{R}^N)},\\quad t \\ge 0.\n\t\t\\end{equation}\n\t\\end{itemize}", "sketch": "The proof of the main theorem is described as follows. It is based on the idea of \\cite{V2}*{Theorem~9.3}. The authors begin by constructing $L^1$-solutions in a ball $B_R:=\\{x\\in\\mathbb{R}^N:|x|<R\\}$, and then, by taking the limit as $R\\to\\infty$, we obtain desired solutions. To carry this out, they first improve energy estimates for weak solutions given in \\cite{WWZ}. Next, they establish the $L^1$-theory in a bounded domain by using above solutions as approximate ones; in particular, they show the existence and uniqueness of $L^1$-solutions satisfying a weighted $L^1$-contraction principle. Finally, taking suitable weight functions and the limit as $R\\to\\infty$, we prove the main theorem.", "question": "Assume $(K)$ and $(L)$. Let $u_0\\in L^1(\\mathbb{R}^N)$ and consider the Cauchy problem\n\\[\n\\begin{cases}\n\\partial_t\\bigl(k*[u-u_0]\\bigr)=\\Delta\\Phi(u), & x\\in\\mathbb{R}^N,\\ t>0,\\\\\n u(x,0)=u_0(x), & x\\in\\mathbb{R}^N.\n\\end{cases}\n\\]\n(Here $*$ denotes the convolution appearing in the equation, and $[\\cdot]_+$ is the positive part.) Under these hypotheses, which statement gives the exact existence-and-uniqueness conclusion for an $L^1$-solution (including the stated a priori bounds) and the comparison/contraction property between two such $L^1$-solutions?", "correct_choice": {"label": "A", "text": "There exists a unique $L^1$-solution $u\\in C([0,\\infty);L^1(\\mathbb{R}^N))$ of\n\\(\\partial_t(k*[u-u_0])=\\Delta\\Phi(u)\\) in $\\mathbb{R}^N\\times(0,\\infty)$ with $u(\\cdot,0)=u_0$, and it satisfies\n\\[\\|u\\|_{L^\\infty(0,\\infty;L^1(\\mathbb{R}^N))}\\le \\|u_0\\|_{L^1(\\mathbb{R}^N)}.\\]\nMoreover,\n\\[\\ell*\\|\\Phi(u)\\|_{L^1_{\\mathrm{loc}}(\\mathbb{R}^N)}\\in C([0,\\infty))\\cap L^\\infty(0,\\infty)\\quad\\text{and}\\quad (\\ell*\\|\\Phi(u)\\|_{L^1_{\\mathrm{loc}}(\\mathbb{R}^N)})(0)=0.\\]\nIn addition, if $u,v\\in C([0,\\infty);L^1(\\mathbb{R}^N))$ are $L^1$-solutions of the same problem with initial data $u_0,v_0\\in L^1(\\mathbb{R}^N)$, respectively, then for all $t\\ge 0$,\n\\[\\int_{\\mathbb{R}^N}[u(x,t)-v(x,t)]_+\\,dx\\le \\int_{\\mathbb{R}^N}[u_0(x)-v_0(x)]_+\\,dx,\\]\nand in particular\n\\[\\|u(t)-v(t)\\|_{L^1(\\mathbb{R}^N)}\\le \\|u_0-v_0\\|_{L^1(\\mathbb{R}^N)}\\quad\\text{for all }t\\ge 0.\\]"}, "choices": [{"label": "B", "text": "There exists a unique $L^1$-solution $u\\in C([0,\\infty);L^1(\\mathbb{R}^N))$ of $\\partial_t(k*[u-u_0])=\\Delta\\Phi(u)$ in $\\mathbb{R}^N\\times(0,\\infty)$ with $u(\\cdot,0)=u_0$, and it satisfies\n\\[\\|u\\|_{L^\\infty(0,\\infty;L^1(\\mathbb{R}^N))}\\le \\|u_0\\|_{L^1(\\mathbb{R}^N)}.\\]\nMoreover,\n\\[\\ell*\\|\\Phi(u)\\|_{L^1_{\\mathrm{loc}}(\\mathbb{R}^N)}\\in C([0,\\infty))\\cap L^\\infty(0,\\infty)\\quad\\text{and}\\quad (\\ell*\\|\\Phi(u)\\|_{L^1_{\\mathrm{loc}}(\\mathbb{R}^N)})(0)=0.\\]\nIn addition, if $u,v\\in C([0,\\infty);L^1(\\mathbb{R}^N))$ are $L^1$-solutions with initial data $u_0,v_0\\in L^1(\\mathbb{R}^N)$, respectively, then for all $t\\ge 0$,\n\\[\\int_{\\mathbb{R}^N}[u(x,t)-v(x,t)]_+\\,dx\\le \\int_{\\mathbb{R}^N}[u_0(x)-v_0(x)]_+\\,dx,\\]\nand in particular\n\\[\\|u(t)-v(t)\\|_{L^1(\\mathbb{R}^N)}\\le \\|u_0-v_0\\|_{L^1(\\mathbb{R}^N)}\\quad\\text{for all }t>0.\\]"}, {"label": "C", "text": "There exists an $L^1$-solution $u\\in C([0,\\infty);L^1(\\mathbb{R}^N))$ of $\\partial_t(k*[u-u_0])=\\Delta\\Phi(u)$ in $\\mathbb{R}^N\\times(0,\\infty)$ with $u(\\cdot,0)=u_0$, and it satisfies\n\\[\\|u\\|_{L^\\infty(0,\\infty;L^1(\\mathbb{R}^N))}\\le \\|u_0\\|_{L^1(\\mathbb{R}^N)}.\\]\nMoreover, for any two such $L^1$-solutions $u,v\\in C([0,\\infty);L^1(\\mathbb{R}^N))$ with initial data $u_0,v_0\\in L^1(\\mathbb{R}^N)$, respectively, one has for all $t\\ge 0$ the $L^1$-contraction\n\\[\\|u(t)-v(t)\\|_{L^1(\\mathbb{R}^N)}\\le \\|u_0-v_0\\|_{L^1(\\mathbb{R}^N)}.\\]"}, {"label": "D", "text": "There exists a unique $L^1$-solution $u\\in C([0,\\infty);L^1(\\mathbb{R}^N))$ of $\\partial_t(k*[u-u_0])=\\Delta\\Phi(u)$ in $\\mathbb{R}^N\\times(0,\\infty)$ with $u(\\cdot,0)=u_0$, and it satisfies\n\\[\\|u\\|_{L^\\infty(0,\\infty;L^1(\\mathbb{R}^N))}\\le \\|u_0\\|_{L^1(\\mathbb{R}^N)}.\\]\nMoreover,\n\\[\\ell*\\|\\Phi(u)\\|_{L^1_{\\mathrm{loc}}(\\mathbb{R}^N)}\\in C([0,\\infty))\\cap L^\\infty(0,\\infty)\\quad\\text{and}\\quad (\\ell*\\|\\Phi(u)\\|_{L^1_{\\mathrm{loc}}(\\mathbb{R}^N)})(0)=0.\\]\nIn addition, if $u,v\\in C([0,\\infty);L^1(\\mathbb{R}^N))$ are $L^1$-solutions with initial data $u_0,v_0\\in L^1(\\mathbb{R}^N)$, respectively, then for all $t\\ge 0$,\n\\[\\int_{\\mathbb{R}^N}[u(x,t)-v(x,t)]_+\\,dx\\ge \\int_{\\mathbb{R}^N}[u_0(x)-v_0(x)]_+\\,dx,\\]\nand in particular\n\\[\\|u(t)-v(t)\\|_{L^1(\\mathbb{R}^N)}\\ge \\|u_0-v_0\\|_{L^1(\\mathbb{R}^N)}\\quad\\text{for all }t\\ge 0.\\]"}, {"label": "E", "text": "There exists a unique $L^1$-solution $u\\in C([0,\\infty);L^1(\\mathbb{R}^N))$ of $\\partial_t(k*[u-u_0])=\\Delta\\Phi(u)$ in $\\mathbb{R}^N\\times(0,\\infty)$ with $u(\\cdot,0)=u_0$, and it satisfies\n\\[\\|u\\|_{L^\\infty(0,\\infty;L^1(\\mathbb{R}^N))}\\le \\|u_0\\|_{L^1(\\mathbb{R}^N)}.\\]\nMoreover,\n\\[\\ell*\\|\\Phi(u)\\|_{L^1_{\\mathrm{loc}}(\\mathbb{R}^N)}\\in C([0,\\infty))\\cap L^\\infty(0,\\infty)\\quad\\text{and}\\quad (\\ell*\\|\\Phi(u)\\|_{L^1_{\\mathrm{loc}}(\\mathbb{R}^N)})(0)=0.\\]\nIn addition, if $u,v\\in C([0,\\infty);L^1(\\mathbb{R}^N))$ are $L^1$-solutions with initial data $u_0,v_0\\in L^1(\\mathbb{R}^N)$, respectively, then there exists a constant $C=C(\\|u_0\\|_{L^1},\\|v_0\\|_{L^1})$ such that for all $t\\ge 0$,\n\\[\\int_{\\mathbb{R}^N}[u(x,t)-v(x,t)]_+\\,dx\\le C\\int_{\\mathbb{R}^N}[u_0(x)-v_0(x)]_+\\,dx,\\]\nand in particular\n\\[\\|u(t)-v(t)\\|_{L^1(\\mathbb{R}^N)}\\le C\\,\\|u_0-v_0\\|_{L^1(\\mathbb{R}^N)}.\\]"}]}, {"id": "2602.00346v1", "month": "202601", "category": "Universal", "paper_link": "http://arxiv.org/abs/2602.00346v1", "theorem": "Let $\\Sigma \\subset \\G$ be a $2$-dimensional $C^{1,\\alpha}$ regular submanifold with $d(\\Sigma)\\leqslant 4$. Then the following formula holds for every Borel set $B \\subset \\Sigma$  \n\t\\begin{equation}\\mu_\\Sigma(B) = \\int_B \\lvert \\tau_{\\Sigma, N}(p)\\rvert_g d\\sigma_g(p) = \\int_B \\beta_d(A_p \\Sigma) \\ d \\mathcal{S}^N (p),\n\t\\end{equation}\nwhenever $(d(\\Sigma)-2)/d(\\Sigma)<\\alpha\\leqslant 1$.,", "sketch": "The post-theorem introduction states that \u201cCombining the following results, the proof of To prove the main theorem, ... follows.\u201d\n\n\\begin{proposition}\\label{Gammas}\nLet $\\Sigma \\subset \\E$ be a $C^1$ smooth surface with $d(\\Sigma) = 3$. If $p \\in \\Sigma$ is a point of maximum degree, then \n     \\begin{equation}\\label{mainequality}\n\\theta^3(\\mu_\\Sigma, p) = \\beta_d \\big(A_p \\Sigma \\big).\n    \\end{equation}\n\\end{proposition}\n\n\\begin{proposition}\\label{Gammas2}\n    Let $\\Sigma \\subset \\E$ be a  $C^1$ smooth surface with degree $d(\\Sigma)=4$. Let $p \\in \\Sigma$ be a point of maximum degree, then \n     \\begin{equation}\\label{mainequality2}\n        \\theta^4(\\mu_\\Sigma, p) = \\beta_d \\big(A_p \\Sigma \\big).\n    \\end{equation}\n\\end{proposition}\n\n\\begin{theorem}[Upper blow-up]\\label{genres}\nLet $\\Sigma \\subset \\mathbb{G}$ be a smooth $k$-dimensional submanifold of class $C^1$ and \ndegree $\\NN$. Let $p \\in \\Sigma$ be a point of maximum degree $\\NN$. \n For the translated submanifold\n$\n\\Sigma_p = p^{-1}\\Sigma,\n$\nwe introduce the $C^1$ smooth homeomorphism $\\eta : \\R^k \\rightarrow \\R^k$ by\n\\begin{equation}\\label{funzioneeta}\n\\eta(t) = \\Big(\\frac{\\lvert t_1 \\rvert^{b_1}}{b_1}{\\rm sgn}(t_1), \\ldots, \\frac{\\lvert t_p \\rvert^{b_k}}{b_k}{\\rm sgn}(t_k)\\Big)\n\\end{equation}\nwhere $b_i$ is the induced degree, defined as follows\n\\begin{equation}\\label{inducedb}\n    b_i = j \\quad \\mbox{if and only if } \\mu_{j - 1} < i \\leq \\mu_j\n\\end{equation}\nfor every $i=1 \\ldots,k$,\nwhere $\\mu_j$ are defined in \\eqref{def:mu_j}.\nIf $\\phi$ denotes the mapping of Theorem~\\ref{t:specialcoord}\napplied to \n$\\Sigma_p$, we define the $C^1$ smooth mapping\n\\begin{equation}\\label{funzionegamma}\n  \\Gamma = \\phi \\circ \\eta  \n\\end{equation}\nand we set the subset of indexes $I \\subset \\{1,\\ldots, n\\}$ such that\n\\begin{equation*}\n        A_0 \\Sigma = { \\rm span} \\{ \n        e_1, \\ldots, e_{\\alpha_1}, e_{m_1 + 1}, \\ldots, e_{m_1 + \\alpha_2}, \\ldots, e_{m_{\\iota- 1} + 1}, \\ldots, e_{m_{\\iota -1} + \\alpha_\\iota}\n        \\}.\n\\end{equation*} \nUsing notation and definitions of Magnani, Area (2019), \n\tif we assume the validity of the local expansion   \n\t\\begin{equation}\\label{localexp}\n\t\t\\Gamma_s(t) = \n\t\t\\begin{cases}\n\t\t\t\\frac{\\lvert t_{s - m_{d_s - 1} + \\mu_{d_s - 1}}\\rvert^{d_s}}{d_s} {\\rm sgn}(t_{s - m_{d_s - 1} + \\mu_{d_s - 1}}) \\;\\; \\mbox{if } s \\in I \\\\\n\t\t\to(\\lvert t \\rvert^{d_s}) \\quad \\quad \\mbox{if } s \\not \\in I\n\t\t\\end{cases},\n\t\\end{equation}\n\tand $\\beta_d \\big(A_p \\Sigma \\big)$ denotes the \\emph{spherical factor} associated to the homogeneous tangent space $A_p \\Sigma$ in \\eqref{sfe}, then\n\t\\begin{equation}\\label{eq:betadens}\n\t\\theta^N(\\mu_\\Sigma, p) = \\beta_d \\big(A_p \\Sigma \\big).\n\t\\end{equation}\n\\end{theorem}\n\n\\begin{theorem}\\label{teo:areageneral}\nLet $\\mu$ be a regular measure and a Borel measure over a homogeneous group $\\G$, \nand let $a>0$. We fix a Borel set $A \\subset \\G$ and\nassume that the following conditions hold:\n\\begin{enumerate}\n    \\item $A$ has a countable covering whose elements are open and have $\\mu$-finite measure,\n    \\item the subset $\\{x \\in A : \\theta^a(\\mu,x) = 0\\}$ is $\\sigma$-finite with respect to $\\mathcal{S}^a$,\n    \\item $\\mu \\mres A$ is absolutely continuous with respect to $\\mathcal{S}^a \\mres A$.\n\\end{enumerate}\nThen $\\theta^a(\\mu, \\cdot) : A \\to [0,+\\infty]$ is Borel and for every Borel set $B \\subset A$ we have\n\\begin{equation*}\n        \\mu(B) = \\int_B \\theta^a(\\mu, p) d \\mathcal{S}^a(p).\n    \\end{equation*}\n\\end{theorem}\n\n\\begin{theorem}\\label{teotrascu}\n\tLet $\\Sigma\\subset\\E$ be a $2$-dimensional $C^{1,\\alpha}$ smooth submanifold with $2\\le d(\\Sigma)\\le 4$ and let $C(\\Sigma)\\subset \\Sigma$ be the subset of points of degree less than $d(\\Sigma)$. Then we have\n\t\\begin{equation}\\label{eq:SN0}\n\t\t\\mathcal{S}^{d(\\Sigma)}(C(\\Sigma)) = 0\n\t\\end{equation}\n\twhenever $(d(\\Sigma)-2)/d(\\Sigma)<\\alpha\\le 1$. \n\\end{theorem}\n\n\\begin{theorem}\\label{horizontalnon}\nThere does not exist any $C^1$ smooth surface of degree $2$ in the Engel group.\n\\end{theorem}\n\nIt is also noted that \u201cTheorem~\\ref{teo:areageneral} could be also replaced by the general tool in \\cite[Theorem~1.2]{CorMag25}.\u201d", "question": "Let $\\Sigma \\subset \\G$ be a $2$-dimensional $C^{1,\\alpha}$ regular submanifold with $d(\\Sigma)\\leqslant 4$, and assume that $\\frac{d(\\Sigma)-2}{d(\\Sigma)}<\\alpha\\leqslant 1$. For every Borel set $B\\subset \\Sigma$, which statement holds universally?", "correct_choice": {"label": "A", "text": "For every Borel set $B\\subset \\Sigma$, one has\n\\[\n\\mu_\\Sigma(B)=\\int_B \\lvert \\tau_{\\Sigma, N}(p)\\rvert_g\\, d\\sigma_g(p)=\\int_B \\beta_d(A_p \\Sigma)\\, d\\mathcal{S}^N(p).\n\\]"}, "choices": [{"label": "B", "text": "For every Borel set $B\\subset \\Sigma$, one has\n\\[\n\\mu_\\Sigma(B)=\\int_B \\lvert \\tau_{\\Sigma, N}(p)\\rvert_g\\, d\\sigma_g(p)=\\int_B \\beta_d(A_p \\Sigma)\\, d\\mathcal{S}^{d(\\Sigma)}(p).\n\\]\n"}, {"label": "C", "text": "For every Borel set $B\\subset \\Sigma$, one has\n\\[\n\\mu_\\Sigma(B)=\\int_B \\beta_d(A_p \\Sigma)\\, d\\mathcal{S}^N(p).\n\\]\n"}, {"label": "D", "text": "For every Borel set $B\\subset \\Sigma$, one has\n\\[\n\\mu_\\Sigma(B)=\\int_B \\lvert \\tau_{\\Sigma, N}(p)\\rvert_g\\, d\\sigma_g(p)=\\int_B \\beta_d(A_p \\Sigma)\\, d\\mathcal{S}^N(p),\n\\]\nwhenever $0<\\alpha\\leqslant 1$.\n"}, {"label": "E", "text": "For every Borel set $B\\subset \\Sigma$, one has\n\\[\n\\mu_\\Sigma(B)=\\int_B \\lvert \\tau_{\\Sigma, N}(p)\\rvert_g\\, d\\sigma_g(p)=\\int_B \\theta^N(\\mu_\\Sigma,p)\\, d\\mathcal{S}^N(p).\n\\]\n"}]}, {"id": "2602.23137v1", "month": "202602", "category": "Asymptotic or Limit", "paper_link": "http://arxiv.org/abs/2602.23137v1", "theorem": "If Assumption B holds, then $\\{u(t,x)\\}_{x\\in \\mathbb{R}}$ is ergodic, for any $t>0$. Consequently, by the mean ergodic theorem,\n\\[\n\\frac{1}{R}F_R(t) \\to 0 \\quad \\mbox{a.s and in $L^2(\\Omega)$}, \\quad \\mbox{as $R \\to \\infty$}.\n\\]", "sketch": "No expanded sketch found.", "question": "Assume that Assumption B holds, and fix any \\(t>0\\). Consider the spatial family \\(\\{u(t,x)\\}_{x\\in\\mathbb R}\\) and the quantity \\(F_R(t)\\). As \\(R\\to\\infty\\), what is the strongest conclusion that can be justified about ergodicity and the limit of \\(\\frac{1}{R}F_R(t)\\)?", "correct_choice": {"label": "A", "text": "For every \\(t>0\\), the family \\(\\{u(t,x)\\}_{x\\in\\mathbb R}\\) is ergodic, and consequently \\(\\frac{1}{R}F_R(t)\\to 0\\) almost surely and in \\(L^2(\\Omega)\\) as \\(R\\to\\infty\\)."}, "choices": [{"label": "B", "text": "For every fixed $t>0$, the family $\\{u(t,x)\\}_{x\\in\\mathbb R}$ is ergodic, and consequently $\\frac{1}{R}F_R(t)\\to 0$ in $L^2(\\Omega)$ (but not necessarily almost surely) as $R\\to\\infty$."}, {"label": "C", "text": "For every $t>0$, $\\frac{1}{R}F_R(t)\\to 0$ in $L^2(\\Omega)$ as $R\\to\\infty$."}, {"label": "D", "text": "For every fixed $t>0$, the family $\\{u(t,x)\\}_{x\\in\\mathbb R}$ is ergodic, and consequently $\\frac{1}{R}F_R(t)\\to 0$ almost surely and in $L^2(\\Omega)$ as $R\\to\\infty$, uniformly for $t$ in compact subsets of $(0,\\infty)$."}, {"label": "E", "text": "For every $t>0$, the family $\\{u(t,x)\\}_{x\\in\\mathbb R}$ is ergodic, and consequently $\\frac{1}{R}F_R(t)\\to 0$ almost surely and in $L^2(\\Omega)$ as $R\\to\\infty$ with rate $O(R^{-1/2})$."}]}, {"id": "2602.23267v1", "month": "202602", "category": "Biconditional or Equivalence", "paper_link": "http://arxiv.org/abs/2602.23267v1", "theorem": "Suppose $\\varphi\\colon \\A\\to\\A^*$ is a primitive substitution of length $k\\geqslant 2$. Then, the following are equivalent:\n    \\begin{enumerate}\n        \\item $\\ac(X_{\\varphi})\\in \\{0,1\\}$ (with $\\ac(X_{\\varphi})=0$ corresponding to $X_{\\varphi}$ being  finite),\n        \\item $X_{\\varphi}$ is null,\n        \\item $X_{\\varphi}$ is tame.\n    \\end{enumerate}", "sketch": "To prove the main theorem, we need to determine amorphic complexity for arbitrary minimal automatic systems. For this, to each primitive substitution $\\varphi$ of constant length we associate its \\emph{discrepancy substitution} $\\varphi_s$ and define the \\emph{discrepancy rate} $\\lambda_s$ of $\\varphi$ as the dominant eigenvalue of the incidence matrix of $\\varphi_s$ (see Section~\\ref{sec:discrepancysubstitution}). Although $\\varphi_s$ is straightforward to compute, it is in general not primitive, so its analysis is more delicate; for this reason, suitable dynamically defined pseudometrics are introduced to enable a refined analysis of the discrepancy structure. With these tools a closed formula for the amorphic complexity of any minimal automatic systems is derived. We first prove the following theorem.\n\n\\begin{introtheorem}\\label{introthm:ac_of_automatic_systems} Let $\\varphi$ be a primitive substitution of length $k\\geq 2$.  The amorphic complexity of $X_{\\varphi}$ is given by\n\\[\\ac(X_{\\varphi})=\\frac{\\log k}{\\log k - \\log \\lambda_s},\\]\nwhere $\\lambda_s$ is the discrepancy rate of $\\varphi$.\\footnote{Assuming the usual conventions when dividing by 0 or $\\infty$ and $-\\log 0 = \\infty$.}\n\\end{introtheorem}\n\nFinally, in Section~\\ref{sec:tamenessandnullness} the main theorem is established.", "question": "Let $\\varphi\\colon \\mathcal A\\to\\mathcal A^*$ be a primitive substitution of length $k\\ge 2$, and let $X_{\\varphi}$ be the associated subshift. Which of the following statements is equivalent to both of the following conditions?\n\n(i) $\\mathrm{ac}(X_{\\varphi})\\in\\{0,1\\}$ (with $\\mathrm{ac}(X_{\\varphi})=0$ corresponding to $X_{\\varphi}$ being finite),\n\n(ii) $X_{\\varphi}$ is null.", "correct_choice": {"label": "A", "text": "$X_{\\varphi}$ is tame."}, "choices": [{"label": "B", "text": "$X_{\\varphi}$ is tame after passing to a suitable power of the substitution, i.e. there exists $n\\ge 1$ such that $X_{\\varphi^n}$ is tame."}, {"label": "C", "text": "$\\mathrm{ac}(X_{\\varphi})\\le 1$."}, {"label": "D", "text": "The discrepancy rate $\\lambda_s$ of $\\varphi$ satisfies $\\lambda_s\\in\\{0,1\\}$."}, {"label": "E", "text": "$X_{\\varphi}$ is tame and minimal."}]}, {"id": "2602.23838v1", "month": "202602", "category": "Existence", "paper_link": "http://arxiv.org/abs/2602.23838v1", "theorem": "The explicit abc conjecture implies that (1) has only finitely many solutions $(a_1,...,a_t,n_1,n_2)\\in \\mathcal{N}(c)_i$. Hence the explicit abc conjecture implies that\n\t$$\n\t\\prod_{i=1}^ta_i!=n_1!n_2!\n\t$$\n\thas finitely many solutions $(a_1,...,a_t,n_1,n_2)\\in \\mathcal{N}(c)$.,", "sketch": "The post-theorem discussion does not give a step-by-step proof sketch for the stated main theorem about equation (1). It only notes that \u201cthe proof of Theorem 1.1 shows that the argument can be generalized to the case where $2<s<t$,\u201d and then sets up this generalization by assuming $n_j>a_{i_j}$ and rewriting the Diophantine equation as\n\\[\n\\prod_{i\\notin\\{1,i_2,\\ldots,i_s\\}} a_i! \\,=\\, \\prod_{j=1}^s \\Delta(m_j,k_j),\n\\]\nwith $m_j=a_{i_j}+1$ and $k_j=n_j-a_{i_j}$, introducing the parameter $k=\\max\\{k_2,\\ldots,k_s\\}$ and defining the sets $\\mathcal{N}(c)_{\\{i_2,\\ldots,i_s\\}}$ (via the constraint $k/k_1\\le c$) and $\\mathcal{N}(c)=\\bigcup \\mathcal{N}(c)_{\\{i_2,\\ldots,i_s\\}}$. Later it only says \u201cThe proof is in fact the same as for Theorem 1.2\u201d for a polynomial reformulation (Theorem 1.4), without outlining the argument. Thus, beyond indicating that the method of Theorem 1.1 generalizes after this simplification/reformulation, no explicit proof sketch is provided.", "question": "Assume the explicit \\(abc\\) conjecture holds. Fix an integer \\(t\\ge 1\\) and a parameter \\(c\\), and consider tuples \\((a_1,\\dots,a_t,n_1,n_2)\\in\\mathcal N(c)\\). Which statement correctly asserts what is guaranteed about solutions in \\(\\mathcal N(c)\\) to the equation\n\\[\n\\prod_{i=1}^t a_i! = n_1!\\,n_2!\\,?\n\\]\n", "correct_choice": {"label": "A", "text": "If the explicit \\(abc\\) conjecture holds, then the Diophantine equation \\(\\prod_{i=1}^t a_i! = n_1!\\,n_2!\\) has only finitely many solutions \\((a_1,\\dots,a_t,n_1,n_2)\\in\\mathcal N(c)\\)."}, "choices": [{"label": "B", "text": "If the explicit \\(abc\\) conjecture holds, then for every fixed integer \\(t\\ge 1\\) and parameter \\(c\\), the Diophantine equation \\(\\prod_{i=1}^t a_i! = n_1!\\,n_2!\\) has only finitely many solutions \\((a_1,\\dots,a_t,n_1,n_2)\\in\\mathcal N(c)\\), and moreover the total number of such solutions is bounded by a constant depending only on \\(t\\) (not on \\(c\\))."}, {"label": "C", "text": "If the explicit \\(abc\\) conjecture holds, then for every fixed integer \\(t\\ge 1\\) and parameter \\(c\\), the Diophantine equation \\(\\prod_{i=1}^t a_i! = n_1!\\,n_2!\\) has only finitely many solutions \\((a_1,\\dots,a_t,n_1,n_2)\\in\\mathcal N(c)_{\\{i_2,\\ldots,i_s\\}}\\) for each fixed choice of indices \\(\\{i_2,\\ldots,i_s\\}\\) in the definition of \\(\\mathcal N(c)\\)."}, {"label": "D", "text": "If the explicit \\(abc\\) conjecture holds, then for every fixed integer \\(t\\ge 1\\) and parameter \\(c\\), all but finitely many tuples \\((a_1,\\dots,a_t,n_1,n_2)\\in\\mathcal N(c)\\) satisfy \\(\\prod_{i=1}^t a_i! \\neq n_1!\\,n_2!\\); equivalently, there are infinitely many solutions in \\(\\mathcal N(c)\\) but they lie in a finite union of explicitly describable exceptional families."}, {"label": "E", "text": "If the explicit \\(abc\\) conjecture holds, then for every fixed integer \\(t\\ge 1\\) and parameter \\(c\\), the Diophantine equation \\(\\prod_{i=1}^t a_i! = n_1!\\,n_2!\\) has only finitely many solutions \\((a_1,\\dots,a_t,n_1,n_2)\\in\\mathbb N^{t+2}\\); in particular, finiteness holds even without restricting to \\(\\mathcal N(c)\\)."}]}, {"id": "2602.23902v1", "month": "202602", "category": "General", "paper_link": "http://arxiv.org/abs/2602.23902v1", "theorem": "With the above notation and conventions, the following claims are satisfied.\n\t\t\\begin{itemize}\n\t\t\t\\item[(a)] If $\\deg(A)-\\deg(C) \\leq 1$, then\n\t\t\t\\begin{equation}x' = A(t) x^3 + B(t) x^2 + C(t) x\n\t\\end{equation}\n\t\t\thas at most one invariant curve. \n\t\t\t\\item[(b)] If $\\deg(A)-\\deg(C) > 1$ and we are either in the polynomial case, or in the trigonometric one with $C(t)$ non-constant, then\n\t\t\t\\begin{itemize}\n\t\t\t\t\\item[(b.1)] If $\\deg(A)-\\deg(C)$ is odd or $\\deg(A)+\\deg(C) <  2 \\deg(B)$, then the equation above has at most two invariant curves.\n\t\t\t\t\\item[(b.2)] If $\\deg(A)-deg(C)$ is even and $\\deg(A)+\\deg(C) \\geq 2 \\deg(B)$, then,\n\t\t\t\t\\begin{itemize}\n\t\t\t\t\t\\item[(b.2.1)]  in the polynomial case, the number of invariant curves of the equation above is at most \\[\\binom{\\deg(A)}{(\\deg(A)+1)/2}+1.\\] Moreover, in this case, the equation above is Darboux integrable, if the number of invariant curves of the equation above is greater that $\\deg(A)+\\deg(C)+4$.\n\t\t\t\t\t\\item[(b.2.2)] in the trigonometric case, an upper bound for the number of rational limit cycles of the equation above is $2\\deg(A)+2\\deg(C)+4$.\n\t\t\t\t\\end{itemize}\n\t\t\t\\end{itemize}\n\t\t\t\\item[(c)] If $\\deg(A)-\\deg(C) > 1$, in the trigonometric case and with $C(t)\\equiv c$ a non zero constant, then an upper bound for the number of invariant curves is  $4\\deg(A)$.\n\t\t\\end{itemize}", "sketch": "The post-theorem introduction outlines the proof of the main theorem via the paper\u2019s organization: first, it \u201cremind[s] the factorization properties of the ring $\\mathbb{R}[\\cos t,\\sin t]$\u201d and then \u201cshow[s] the characterization of the invariant curves of\n\\begin{equation}\\label{ecu1}\n\t\tx' = A(t) x^3 + B(t) x^2 + C(t) x\n\t\\end{equation}.\u201d Next, \u201cwe suppose that\n\\begin{equation}\\label{ecu1}\n\t\tx' = A(t) x^3 + B(t) x^2 + C(t) x\n\t\\end{equation}\n has two or more different invariant curves, and we prove (a) and (b.1).\u201d Then it \u201cfocus[es] in the polynomial case to provide the general bound of (b.2.1).\u201d Finally it \u201capply Darboux's Theory of Integrability to prove the remaining parts of (b.2.1), together with (b.2.2) and (c).\u201d", "question": "Let \\(x(t)\\) satisfy the Abel differential equation\n\\[\n x' = A(t)x^3 + B(t)x^2 + C(t)x,\n\\]\nwhere \\(A(t),B(t),C(t)\\) are either polynomials in \\(t\\) (polynomial case) or trigonometric polynomials (trigonometric case), and \\(\\deg(\\cdot)\\) denotes the corresponding degree. Under the relevant hypotheses comparing \\(\\deg(A),\\deg(B),\\deg(C)\\) and distinguishing the polynomial/trigonometric cases (including the possibility that \\(C(t)\\equiv c\\neq 0\\) is constant), which statement gives the strongest valid conclusions about the maximum number of invariant curves (and, when applicable, rational limit cycles) and about Darboux integrability?", "correct_choice": {"label": "A", "text": "(a) If \\(\\deg(A)-\\deg(C)\\le 1\\), then \\(x' = A(t)x^3 + B(t)x^2 + C(t)x\\) has at most one invariant curve.\n\n(b) If \\(\\deg(A)-\\deg(C)>1\\) and either we are in the polynomial case, or we are in the trigonometric case with \\(C(t)\\) non-constant, then:\n\n(b.1) If \\(\\deg(A)-\\deg(C)\\) is odd or \\(\\deg(A)+\\deg(C) < 2\\deg(B)\\), then the equation has at most two invariant curves.\n\n(b.2) If \\(\\deg(A)-\\deg(C)\\) is even and \\(\\deg(A)+\\deg(C)\\ge 2\\deg(B)\\), then:\n\n(b.2.1) In the polynomial case, the number of invariant curves is at most\n\\[\\binom{\\deg(A)}{(\\deg(A)+1)/2}+1.\\]\nMoreover, in this polynomial case, if the number of invariant curves is greater than \\(\\deg(A)+\\deg(C)+4\\), then the equation is Darboux integrable.\n\n(b.2.2) In the trigonometric case, an upper bound for the number of rational limit cycles is \\(2\\deg(A)+2\\deg(C)+4\\).\n\n(c) If \\(\\deg(A)-\\deg(C)>1\\), in the trigonometric case, and \\(C(t)\\equiv c\\) is a nonzero constant, then an upper bound for the number of invariant curves is \\(4\\deg(A)\\)."}, "choices": [{"label": "B", "text": "(a) If \\(\\deg(A)-\\deg(C)\\le 1\\), then \\(x' = A(t)x^3 + B(t)x^2 + C(t)x\\) has at most one invariant curve.\n\n(b) If \\(\\deg(A)-\\deg(C)>1\\) and either we are in the polynomial case, or we are in the trigonometric case with \\(C(t)\\) non-constant, then:\n\n(b.1) If \\(\\deg(A)-\\deg(C)\\) is odd or \\(\\deg(A)+\\deg(C) < 2\\deg(B)\\), then the equation has at most two invariant curves.\n\n(b.2) If \\(\\deg(A)-\\deg(C)\\) is even and \\(\\deg(A)+\\deg(C)\\ge 2\\deg(B)\\), then:\n\n(b.2.1) In the polynomial case, the number of invariant curves is at most\n\\[\\binom{\\deg(A)}{(\\deg(A)+1)/2}.\\]\nMoreover, in this polynomial case, if the number of invariant curves is greater than \\(\\deg(A)+\\deg(C)+4\\), then the equation is Darboux integrable.\n\n(b.2.2) In the trigonometric case, an upper bound for the number of rational limit cycles is \\(2\\deg(A)+2\\deg(C)+4\\).\n\n(c) If \\(\\deg(A)-\\deg(C)>1\\), in the trigonometric case, and \\(C(t)\\equiv c\\) is a nonzero constant, then an upper bound for the number of invariant curves is \\(4\\deg(A)\\)."}, {"label": "C", "text": "If \\(\\deg(A)-\\deg(C)\\le 1\\), then \\(x' = A(t)x^3 + B(t)x^2 + C(t)x\\) has at most one invariant curve."}, {"label": "D", "text": "(a) If \\(\\deg(A)-\\deg(C)\\le 1\\), then \\(x' = A(t)x^3 + B(t)x^2 + C(t)x\\) has at most one invariant curve.\n\n(b) If \\(\\deg(A)-\\deg(C)>1\\) and either we are in the polynomial case, or we are in the trigonometric case with \\(C(t)\\) non-constant, then:\n\n(b.1) If \\(\\deg(A)-\\deg(C)\\) is odd or \\(\\deg(A)+\\deg(C) \\le 2\\deg(B)\\), then the equation has at most two invariant curves.\n\n(b.2) If \\(\\deg(A)-\\deg(C)\\) is even and \\(\\deg(A)+\\deg(C)> 2\\deg(B)\\), then:\n\n(b.2.1) In the polynomial case, the number of invariant curves is at most\n\\[\\binom{\\deg(A)}{(\\deg(A)+1)/2}+1.\\]\nMoreover, in this polynomial case, if the number of invariant curves is greater than \\(\\deg(A)+\\deg(C)+4\\), then the equation is Darboux integrable.\n\n(b.2.2) In the trigonometric case, an upper bound for the number of rational limit cycles is \\(2\\deg(A)+2\\deg(C)+4\\).\n\n(c) If \\(\\deg(A)-\\deg(C)>1\\), in the trigonometric case, and \\(C(t)\\equiv c\\) is a nonzero constant, then an upper bound for the number of invariant curves is \\(4\\deg(A)\\)."}, {"label": "E", "text": "(a) If \\(\\deg(A)-\\deg(C)\\le 1\\), then \\(x' = A(t)x^3 + B(t)x^2 + C(t)x\\) has at most one invariant curve.\n\n(b) If \\(\\deg(A)-\\deg(C)>1\\) and either we are in the polynomial case, or we are in the trigonometric case with \\(C(t)\\) non-constant, then:\n\n(b.1) If \\(\\deg(A)-\\deg(C)\\) is odd or \\(\\deg(A)+\\deg(C) < 2\\deg(B)\\), then the equation has at most two invariant curves.\n\n(b.2) If \\(\\deg(A)-\\deg(C)\\) is even and \\(\\deg(A)+\\deg(C)\\ge 2\\deg(B)\\), then:\n\n(b.2.1) In the polynomial case, the number of invariant curves is at most\n\\[\\binom{\\deg(A)}{(\\deg(A)+1)/2}+1.\\]\nMoreover, in this polynomial case, if the number of invariant curves is greater than \\(\\deg(A)+\\deg(C)+4\\), then the equation is Darboux integrable.\n\n(b.2.2) In the trigonometric case, an upper bound for the number of rational limit cycles is \\(2\\deg(A)+2\\deg(C)+4\\).\n\n(c) If \\(\\deg(A)-\\deg(C)>1\\), in the trigonometric case and with \\(C(t)\\equiv c\\) a nonzero constant, then an upper bound for the number of invariant curves is \\(4\\deg(A)\\), and in addition the equation is Darboux integrable whenever it has more than \\(\\deg(A)+\\deg(C)+4\\) invariant curves."}]}, {"id": "2602.24093v1", "month": "202602", "category": "Universal", "paper_link": "http://arxiv.org/abs/2602.24093v1", "theorem": "Let $\\Omega$ be an open bounded convex subset of $\\mathbb{R} ^n$, and let $u$ be its first Dirichlet Laplacian eigenfunction, normalized so that \n$\\max _{\\overline \\Omega } u = 1$. \nThen $u$ is $(1/2)$-logconcave. More precisely,  if $\\lambda _ 1 (\\Omega)$ and $D _\\Omega$ denote respectively the first Dirichlet Laplacian eigenvalue of $\\Omega$ and its \ndiameter, \nletting \n\\begin{equation}\\overline \\kappa (\\Omega):= \\exp \\Big [- \\frac 3 2 \\Big ( \\frac{ \\lambda _ 1 (\\Omega) D _\\Omega^2  }{\\pi ^ 2}  -1 \\Big )  \\Big ]  \\,.\n \\end{equation} \nfor every $\\kappa \\in (0,  \\overline \\kappa (\\Omega)]$ it holds that\n$$ L _{1/2}  (\\kappa u ( ( 1- t )  x + t  y) \\geq ( 1- t) L _{1/2} (\\kappa u (x)) + t L _{1/2} (\\kappa u  (y)) \\qquad \\forall x, y \\in \\Omega, \\ \\forall t  \\in [0, 1]\\,.$$,", "sketch": "To prove the main theorem, one uses \u201ca nonstandard application of the classical convex envelope method by Alvarez--Lasry--Lions\u201d. One considers\n\\(w_\\kappa := ( -\\log(\\kappa u))^{1/2}\\), which satisfies an equation of the form \\(\\Delta w_\\kappa = f(w_\\kappa,\\nabla w_\\kappa)\\); however, this \\(f\\) \u201cdoes not guarantee the validity of the comparison principle, and does not fit the structure conditions required to apply convex envelope method\u201d.\n\nThe \u201cnovelty\u201d is to invoke the Andrews--Clutterbuck improved log-concavity inequality for \\(v=-\\log u\\), i.e. the tangent-function modulus of concavity:\n\\begin{equation}\\label{f:AC}\n\\langle \\nabla v(z) - \\nabla v(y), \\tfrac{z-y}{|z-y|} \\rangle\n\\geq \\frac{2\\pi}{D_\\Omega} \n\\tan\\!\\Big( \\frac{\\pi |z-y|}{2D_\\Omega} \\Big)\n\\qquad \\forall z,y \\in \\Omega \\, , \\ z \\neq y\\,.\n\\end{equation}\n\u201cThe key idea\u201d is that this inequality yields \u201ca gradient estimate for the convex envelope \\(w_\\kappa^{**}\\) of \\(w_\\kappa\\)\u201d. We first prove the following proposition.\n\\begin{proposition}\\label{p:key}  Let $\\k \\in (0, 1)$ and assume that, at some point $x \\in \\Om$, one has $w _\\k   ^ { **}  (x) < w _\\k  (x) $. \nLet $x _i \\in \\Om$, $i = 1, \\dots, m$  (with $m \\geq 2$) be points where the infimum which defines   $w _\\k   ^ { **}  (x)$ according to\n\\eqref{f:w**} is attained, and let $p_\\k$ \ndenote  the common value of  $\\nabla w _\\k$ at any of the points   $x_i$, as given by Lemma  \\ref{l:ALLp1}  (i). \nThen \n $$|p_\\k | ^ 2 \\geq  \\frac{\\pi ^ 2}{2 D _\\Om ^ 2} \\,.$$   \n\\end{proposition}\nUsing this estimate, one shows that \\(w_\\kappa^{**}\\) is \u201ca supersolution to the equation satisfied by \\(w_\\kappa\\)\u201d, provided \\(\\kappa\\) is below the threshold \\(\\overline\\kappa(\\Omega)\\) given by\n\\begin{equation}\\label{f:kappa} \n \\overline \\k (\\Om):= \\exp \\Big [- \\frac 3 2 \\Big ( \\frac{ \\lambda _ 1 (\\Om) D _\\Om^2  }{\\pi ^ 2}  -1 \\Big )  \\Big ]  \\,,\n \\end{equation}\n\u201cOnce proved this fact, the conclusion is reached by circumventing the lack of comparison principle, thanks to a variational argument and to the simplicity of the first eigenfunction.\u201d", "question": "Let \\(\\Omega\\subset\\mathbb{R}^n\\) be an open, bounded, convex set, and let \\(u\\) be the first Dirichlet Laplacian eigenfunction on \\(\\Omega\\), normalized by \\(\\max_{\\overline\\Omega}u=1\\). Let \\(\\lambda_1(\\Omega)\\) be the first Dirichlet Laplacian eigenvalue of \\(\\Omega\\) and \\(D_\\Omega\\) its diameter, and define\n\\[\n\\overline\\kappa(\\Omega):=\\exp\\Big[-\\tfrac32\\Big(\\tfrac{\\lambda_1(\\Omega)D_\\Omega^2}{\\pi^2}-1\\Big)\\Big].\n\\]\nUnder these assumptions, which statement is true for every \\(\\kappa\\in(0,\\overline\\kappa(\\Omega)]\\) and all \\(x,y\\in\\Omega\\), \\(t\\in[0,1]\\)?", "correct_choice": {"label": "A", "text": "For every \\(\\kappa\\in(0,\\overline\\kappa(\\Omega)]\\),\n\\[\nL_{1/2}\\big(\\kappa\\,u((1-t)x+ty)\\big)\\ge (1-t)\\,L_{1/2}(\\kappa\\,u(x)) + t\\,L_{1/2}(\\kappa\\,u(y))\\qquad \\forall x,y\\in\\Omega,\\ \\forall t\\in[0,1].\n\\]"}, "choices": [{"label": "B", "text": "For every \\(\\kappa\\in(0,\\overline\\kappa(\\Omega)]\\),\n\\[\nL_{1/2}\\big(\\kappa\\,u((1-t)x+ty)\\big)\\le (1-t)\\,L_{1/2}(\\kappa\\,u(x)) + t\\,L_{1/2}(\\kappa\\,u(y))\\qquad \\forall x,y\\in\\Omega,\\ \\forall t\\in[0,1].\n\\]"}, {"label": "C", "text": "For every \\(\\kappa\\in(0,\\overline\\kappa(\\Omega)]\\) and all \\(x,y\\in\\Omega\\),\n\\[\nL_{1/2}\\big(\\kappa\\,u\\big(\\tfrac{x+y}{2}\\big)\\big)\\ge \\tfrac12\\,L_{1/2}(\\kappa\\,u(x)) + \\tfrac12\\,L_{1/2}(\\kappa\\,u(y)).\n\\]"}, {"label": "D", "text": "For every \\(\\kappa\\in(0,1)\\),\n\\[\nL_{1/2}\\big(\\kappa\\,u((1-t)x+ty)\\big)\\ge (1-t)\\,L_{1/2}(\\kappa\\,u(x)) + t\\,L_{1/2}(\\kappa\\,u(y))\\qquad \\forall x,y\\in\\Omega,\\ \\forall t\\in[0,1].\n\\]"}, {"label": "E", "text": "For every \\(\\kappa\\in(0,\\overline\\kappa(\\Omega)]\\),\n\\[\nL_{1/2}\\big(u((1-t)x+ty)\\big)\\ge (1-t)\\,L_{1/2}(u(x)) + t\\,L_{1/2}(u(y))\\qquad \\forall x,y\\in\\Omega,\\ \\forall t\\in[0,1].\n\\]"}]}];
+const ACCURACY = [{"file": "accuracy_test_202512_gpt52_high_full.json", "month": "202512", "model": "gpt-5.2_2025-12-11", "reasoning_effort": "high", "overall": {"correct": 10, "total": 155, "accuracy": 0.06451612903225806}, "summary": {"Asymptotic or Limit": {"correct": 1, "total": 3, "accuracy": 0.3333333333333333}, "Classification or Bijection": {"correct": 2, "total": 13, "accuracy": 0.15384615384615385}, "Biconditional or Equivalence": {"correct": 0, "total": 14, "accuracy": 0.0}, "Existence": {"correct": 0, "total": 11, "accuracy": 0.0}, "Existential\u2013Universal": {"correct": 2, "total": 8, "accuracy": 0.25}, "General": {"correct": 2, "total": 19, "accuracy": 0.10526315789473684}, "Implication": {"correct": 1, "total": 24, "accuracy": 0.041666666666666664}, "Inequality or Bound": {"correct": 2, "total": 25, "accuracy": 0.08}, "Uniqueness": {"correct": 0, "total": 3, "accuracy": 0.0}, "Universal": {"correct": 0, "total": 35, "accuracy": 0.0}}}, {"file": "accuracy_test_202512_gpt52_high_trapi_fallback_medium.json", "month": "202512", "model": "gpt-5.2_2025-12-11", "reasoning_effort": "high", "overall": {"correct": 63, "total": 155, "accuracy": 0.4064516129032258}, "summary": {"Asymptotic or Limit": {"correct": 1, "total": 3, "accuracy": 0.3333333333333333}, "Biconditional or Equivalence": {"correct": 5, "total": 14, "accuracy": 0.35714285714285715}, "Classification or Bijection": {"correct": 5, "total": 13, "accuracy": 0.38461538461538464}, "Existence": {"correct": 5, "total": 11, "accuracy": 0.45454545454545453}, "Existential\u2013Universal": {"correct": 6, "total": 8, "accuracy": 0.75}, "General": {"correct": 8, "total": 19, "accuracy": 0.42105263157894735}, "Implication": {"correct": 13, "total": 24, "accuracy": 0.5416666666666666}, "Inequality or Bound": {"correct": 11, "total": 25, "accuracy": 0.44}, "Uniqueness": {"correct": 2, "total": 3, "accuracy": 0.6666666666666666}, "Universal": {"correct": 7, "total": 35, "accuracy": 0.2}}}, {"file": "accuracy_test_202512_gpt52_medium_full.json", "month": "202512", "model": "gpt-5.2_2025-12-11", "reasoning_effort": "medium", "overall": {"correct": 72, "total": 155, "accuracy": 0.4645161290322581}, "summary": {"Asymptotic or Limit": {"correct": 2, "total": 3, "accuracy": 0.6666666666666666}, "Biconditional or Equivalence": {"correct": 4, "total": 14, "accuracy": 0.2857142857142857}, "Classification or Bijection": {"correct": 4, "total": 13, "accuracy": 0.3076923076923077}, "Existence": {"correct": 6, "total": 11, "accuracy": 0.5454545454545454}, "Existential\u2013Universal": {"correct": 7, "total": 8, "accuracy": 0.875}, "General": {"correct": 11, "total": 19, "accuracy": 0.5789473684210527}, "Implication": {"correct": 16, "total": 24, "accuracy": 0.6666666666666666}, "Inequality or Bound": {"correct": 12, "total": 25, "accuracy": 0.48}, "Uniqueness": {"correct": 2, "total": 3, "accuracy": 0.6666666666666666}, "Universal": {"correct": 8, "total": 35, "accuracy": 0.22857142857142856}}}];
+
+const CAT_COLORS = [
+  '#3b82f6','#8b5cf6','#06b6d4','#10b981','#f59e0b',
+  '#ef4444','#ec4899','#6366f1','#14b8a6','#f97316'
+];
+
+function ml(m) { return MONTH_LABELS[m] || m; }
+function pctClass(v) { return v >= 0.5 ? 'pct-high' : v >= 0.25 ? 'pct-mid' : 'pct-low'; }
+
+// ===== Tab Navigation =====
+document.querySelectorAll('.nav-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('sec-' + tab.dataset.tab).classList.add('active');
+  });
+});
+
+// ===== Overview Stats =====
+(function() {
+  const totalAll = MONTHS.reduce((s,m) => s + CATEGORIES.reduce((a,c) => a + (STATS[m][c]||0), 0), 0);
+  const nMonths = MONTHS.length;
+  const el = document.getElementById('overview-stats');
+  el.innerHTML = `
+    <div class="stat-box"><div class="stat-value">${totalAll}</div><div class="stat-label">Total Questions</div></div>
+    <div class="stat-box"><div class="stat-value">${nMonths}</div><div class="stat-label">Monthly Snapshots</div></div>
+    <div class="stat-box"><div class="stat-value">${CATEGORIES.length}</div><div class="stat-label">Theorem Categories</div></div>
+    <div class="stat-box"><div class="stat-value">${ACCURACY.length > 0 ? ACCURACY.length : '&mdash;'}</div><div class="stat-label">Model Evaluations</div></div>
+  `;
+})();
+
+// ===== Overview Charts =====
+(function() {
+  const monthTotals = MONTHS.map(m => CATEGORIES.reduce((a,c) => a + (STATS[m][c]||0), 0));
+
+  new Chart(document.getElementById('chart-monthly'), {
+    type: 'bar',
+    data: {
+      labels: MONTHS.map(ml),
+      datasets: [{ label: 'Questions', data: monthTotals, backgroundColor: '#3b82f6', borderRadius: 6 }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }
+    }
+  });
+
+  const catTotals = CATEGORIES.map(c => MONTHS.reduce((a,m) => a + (STATS[m][c]||0), 0));
+  new Chart(document.getElementById('chart-categories'), {
+    type: 'doughnut',
+    data: {
+      labels: CATEGORIES,
+      datasets: [{ data: catTotals, backgroundColor: CAT_COLORS }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'right', labels: { font: { size: 11 } } } }
+    }
+  });
+
+  new Chart(document.getElementById('chart-cat-monthly'), {
+    type: 'bar',
+    data: {
+      labels: MONTHS.map(ml),
+      datasets: CATEGORIES.map((c,i) => ({
+        label: c, data: MONTHS.map(m => STATS[m][c]||0),
+        backgroundColor: CAT_COLORS[i], borderRadius: 3
+      }))
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom', labels: { font: { size: 10 } } } },
+      scales: { x: { stacked: true }, y: { stacked: true, beginAtZero: true, ticks: { precision: 0 } } }
+    }
+  });
+})();
+
+// ===== Statistics Table =====
+(function() {
+  const thead = document.querySelector('#stats-table thead tr');
+  MONTHS.forEach(m => { const th = document.createElement('th'); th.textContent = ml(m); th.className = 'num'; thead.appendChild(th); });
+  const thTotal = document.createElement('th'); thTotal.textContent = 'Total'; thTotal.className = 'num'; thead.appendChild(thTotal);
+
+  const tbody = document.querySelector('#stats-table tbody');
+  CATEGORIES.forEach(cat => {
+    const tr = document.createElement('tr');
+    const tdCat = document.createElement('td'); tdCat.textContent = cat; tr.appendChild(tdCat);
+    let rowTotal = 0;
+    MONTHS.forEach(m => {
+      const v = STATS[m][cat]||0; rowTotal += v;
+      const td = document.createElement('td'); td.textContent = v; td.className = 'num'; tr.appendChild(td);
+    });
+    const tdT = document.createElement('td'); tdT.textContent = rowTotal; tdT.className = 'num'; tdT.style.fontWeight = '700'; tr.appendChild(tdT);
+    tbody.appendChild(tr);
+  });
+
+  // Total row
+  const trT = document.createElement('tr'); trT.style.fontWeight = '700'; trT.style.borderTop = '2px solid var(--border)';
+  const tdL = document.createElement('td'); tdL.textContent = 'Total'; trT.appendChild(tdL);
+  let grandTotal = 0;
+  MONTHS.forEach(m => {
+    const v = CATEGORIES.reduce((a,c) => a + (STATS[m][c]||0), 0); grandTotal += v;
+    const td = document.createElement('td'); td.textContent = v; td.className = 'num'; trT.appendChild(td);
+  });
+  const tdGT = document.createElement('td'); tdGT.textContent = grandTotal; tdGT.className = 'num'; trT.appendChild(tdGT);
+  tbody.appendChild(trT);
+})();
+
+// ===== Examples =====
+(function() {
+  const PER_PAGE = 5;
+  let filteredExamples = [...EXAMPLES];
+  let currentPage = 0;
+
+  const monthSel = document.getElementById('filter-month');
+  const catSel = document.getElementById('filter-cat');
+  MONTHS.forEach(m => { const o = document.createElement('option'); o.value = m; o.textContent = ml(m); monthSel.appendChild(o); });
+  CATEGORIES.forEach(c => { const o = document.createElement('option'); o.value = c; o.textContent = c; catSel.appendChild(o); });
+
+  function escapeHtml(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+  function renderExamples() {
+    const container = document.getElementById('examples-container');
+    const pagEl = document.getElementById('examples-pagination');
+    const start = currentPage * PER_PAGE;
+    const page = filteredExamples.slice(start, start + PER_PAGE);
+    const totalPages = Math.ceil(filteredExamples.length / PER_PAGE);
+
+    container.innerHTML = page.map((ex, idx) => `
+      <div class="example-card" data-ex-idx="${idx}">
+        <div class="example-header">
+          <span class="tag tag-month">${ml(ex.month)}</span>
+          <span class="tag tag-cat">${escapeHtml(ex.category)}</span>
+          <span style="color:var(--text-muted);font-size:0.85rem;">${escapeHtml(ex.id)}</span>
+          ${ex.paper_link ? `<a href="${escapeHtml(ex.paper_link)}" target="_blank" rel="noopener">arXiv &#x2197;</a>` : ''}
+        </div>
+        <div class="example-section">
+          <div class="label">Theorem</div>
+          <div class="content math-render" data-field="theorem"></div>
+        </div>
+        ${ex.sketch ? `<div class="example-section">
+          <div class="label">Proof Sketch</div>
+          <div class="content math-render" data-field="sketch"></div>
+        </div>` : ''}
+        <div class="example-section">
+          <div class="label">Question</div>
+          <div class="content math-render" data-field="question"></div>
+        </div>
+        <div class="example-section">
+          <div class="label">Choices</div>
+          <ul class="choices-list">
+            <li class="correct"><span class="choice-label">${escapeHtml(ex.correct_choice.label)}</span><span class="math-render" data-field="correct"></span> &#x2705;</li>
+            ${ex.choices.map((ch, ci) => `<li><span class="choice-label">${escapeHtml(ch.label)}</span><span class="math-render" data-field="choice-${ci}"></span></li>`).join('')}
+          </ul>
+        </div>
+      </div>
+    `).join('');
+
+    // Set math text via textContent to preserve LaTeX characters
+    page.forEach((ex, idx) => {
+      const card = container.querySelector(`[data-ex-idx="${idx}"]`);
+      const setField = (field, text) => { const el = card.querySelector(`[data-field="${field}"]`); if (el) el.textContent = text; };
+      setField('theorem', ex.theorem);
+      if (ex.sketch) setField('sketch', ex.sketch);
+      setField('question', ex.question);
+      setField('correct', ex.correct_choice.text);
+      ex.choices.forEach((ch, ci) => setField('choice-' + ci, ch.text));
+    });
+
+    // Pagination
+    let pagHtml = `<button ${currentPage === 0 ? 'disabled' : ''} onclick="window.__exPage(${currentPage-1})">&laquo; Prev</button>`;
+    for (let i = 0; i < totalPages; i++) {
+      if (totalPages > 7 && Math.abs(i - currentPage) > 2 && i !== 0 && i !== totalPages-1) {
+        if (i === 1 || i === totalPages - 2) pagHtml += '<button disabled>...</button>';
+        continue;
+      }
+      pagHtml += `<button class="${i===currentPage?'active':''}" onclick="window.__exPage(${i})">${i+1}</button>`;
+    }
+    pagHtml += `<button ${currentPage >= totalPages-1 ? 'disabled' : ''} onclick="window.__exPage(${currentPage+1})">Next &raquo;</button>`;
+    pagEl.innerHTML = pagHtml;
+
+    // Render LaTeX
+    container.querySelectorAll('.math-render').forEach(el => {
+      renderMathInElement(el, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '\\[', right: '\\]', display: true },
+          { left: '$', right: '$', display: false },
+          { left: '\\(', right: '\\)', display: false },
+        ],
+        throwOnError: false,
+        trust: true
+      });
+    });
+  }
+
+  window.__exPage = function(p) { currentPage = p; renderExamples(); window.scrollTo(0, document.getElementById('sec-examples').offsetTop + 100); };
+
+  function applyFilters() {
+    const fm = monthSel.value, fc = catSel.value;
+    filteredExamples = EXAMPLES.filter(e => (!fm || e.month === fm) && (!fc || e.category === fc));
+    currentPage = 0;
+    renderExamples();
+  }
+  monthSel.addEventListener('change', applyFilters);
+  catSel.addEventListener('change', applyFilters);
+  renderExamples();
+})();
+
+// ===== Leaderboard =====
+(function() {
+  if (ACCURACY.length === 0) {
+    document.getElementById('sec-leaderboard').querySelector('.section-desc').textContent += ' No model evaluations available yet.';
+    return;
+  }
+
+  // Overall table
+  const tbl = document.getElementById('lb-overall-table');
+  let html = '<thead><tr><th>#</th><th>Model</th><th>Config</th><th>Month</th><th>Correct</th><th>Total</th><th>Accuracy</th><th></th></tr></thead><tbody>';
+  const sorted = [...ACCURACY].sort((a,b) => (b.overall.accuracy||0) - (a.overall.accuracy||0));
+  sorted.forEach((r, i) => {
+    const pct = (r.overall.accuracy * 100).toFixed(1);
+    html += `<tr>
+      <td>${i+1}</td>
+      <td style="font-weight:600">${r.model}</td>
+      <td>${r.reasoning_effort}</td>
+      <td>${ml(r.month)}</td>
+      <td class="num">${r.overall.correct}</td>
+      <td class="num">${r.overall.total}</td>
+      <td class="num"><span class="accuracy-value ${pctClass(r.overall.accuracy)}">${pct}%</span></td>
+      <td><div class="accuracy-bar" style="width:${Math.max(pct * 1.5, 3)}px"></div></td>
+    </tr>`;
+  });
+  html += '</tbody>';
+  tbl.innerHTML = html;
+
+  // Per-category table
+  const catTbl = document.getElementById('lb-cat-table');
+  let catHtml = '<thead><tr><th>Model</th><th>Config</th>';
+  CATEGORIES.forEach(c => catHtml += `<th class="num" style="font-size:0.7rem">${c}</th>`);
+  catHtml += '</tr></thead><tbody>';
+  sorted.forEach(r => {
+    catHtml += `<tr><td style="font-weight:600;white-space:nowrap">${r.model}</td><td>${r.reasoning_effort}</td>`;
+    CATEGORIES.forEach(c => {
+      const s = r.summary[c];
+      if (s) {
+        const pct = (s.accuracy * 100).toFixed(0);
+        catHtml += `<td class="num"><span class="accuracy-value ${pctClass(s.accuracy)}">${pct}%</span><br><span style="font-size:0.7rem;color:var(--text-muted)">${s.correct}/${s.total}</span></td>`;
+      } else {
+        catHtml += '<td class="num">&mdash;</td>';
+      }
+    });
+    catHtml += '</tr>';
+  });
+  catHtml += '</tbody>';
+  catTbl.innerHTML = catHtml;
+
+  // Model accuracy chart
+  if (sorted.length > 0) {
+    const modelColors = ['#3b82f6','#ef4444','#10b981','#f59e0b','#8b5cf6','#ec4899'];
+    new Chart(document.getElementById('chart-model-cat'), {
+      type: 'radar',
+      data: {
+        labels: CATEGORIES.map(c => c.length > 18 ? c.slice(0,16) + '...' : c),
+        datasets: sorted.map((r, i) => ({
+          label: `${r.model} (${r.reasoning_effort})`,
+          data: CATEGORIES.map(c => r.summary[c] ? (r.summary[c].accuracy * 100) : 0),
+          borderColor: modelColors[i % modelColors.length],
+          backgroundColor: modelColors[i % modelColors.length] + '20',
+          pointRadius: 3
+        }))
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        scales: { r: { beginAtZero: true, max: 100, ticks: { stepSize: 20 } } },
+        plugins: { legend: { position: 'bottom' } }
+      }
+    });
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1204 @@
+[
+  {
+    "id": "2511.22603v2",
+    "paper_link": "http://arxiv.org/abs/2511.22603v2",
+    "theorems_cnt": 5,
+    "theorem": {
+      "env_name": "theorem",
+      "content": "\\label{principal_curvature}\n  Let $M \\subset \\mathbb{R}^D$ be a smooth closed orientable $d$-dimensional submanifold. Fix $p \\in M$ and a unit vector $v \\in T_p M$. Assume that the normal curvature at $p$ in the direction $v$ is sufficiently large so that\n  \\begin{equation*}\n    \\mathrm{vol}_c(M) \\leq \\bigl(1 + c \\,\\|\\mathbf{II}(v,\\cdot)\\|_{\\operatorname{HS}}^2\\bigr)^{d/2} \\mathrm{vol}(M),\n    \\qquad\n    \\kappa(v) > \\frac{\\|(\\nabla_v^{M} \\mathbf{II}) (v,\\cdot) \\|_{\\operatorname{HS}}}{\\|\\mathbf{II} (v,\\cdot)\\|_{\\operatorname{HS}}},\n  \\end{equation*}\n  where $\\|\\cdot\\|_{\\operatorname{HS}}$ denotes the Hilbert--Schmidt norm. Then, for every $c>0$,\n  \\[\n    \\kappa_c(v)\\, \\mathrm{vol}_c(M)^{1/d}\n    \\;\\leq\\;\n    \\frac{\\sqrt{\\kappa(v)^2 + c\\|(\\nabla_v^{M} \\mathbf{II})(v, \\cdot)\\|_{\\operatorname{HS}}^2}}{1 + c\\|\\mathbf{II}(v,\\cdot)\\|_{\\operatorname{HS}}^2}\\,\n    \\mathrm{vol}_c(M)^{1/d}\n    \\;<\\;\n    \\kappa(v)\\, \\mathrm{vol}(M)^{1/d},\n  \\]\nand the middle term in the inequalities is strictly decreasing as $c$ grows.",
+      "start_pos": 622790,
+      "end_pos": 623841,
+      "label": "principal_curvature"
+    },
+    "ref_dict": {
+      "grassmannian_distance": "\\begin{definition}\\label{grassmannian_distance}\nFor $c>0$, we define a distance $d_c$ on $M$ by\n\\[\n  d_{c}(q_1,q_2) = d_{\\mathbb{R}^D \\times \\mathbf{Gr}_c^+(D,d)}\\bigl((q_1, \\bar{\\mathbf{g}}_c^+(q_1)),(q_2, \\bar{\\mathbf{g}}_c^+(q_2))\\bigr)\n  = \\sqrt{\\|q_1-q_2\\|_{\\mathbb{R}^D}^2\n      + c\\, d_{\\mathbf{Gr}^+(D,d)}\\bigl(\\bar{\\mathbf{g}}^+(q_1),\\bar{\\mathbf{g}}^+(q_2)\\bigr)^2},\n\\]\nwhere $\\|\\cdot\\|_{\\mathbb{R}^D}$ denotes the Euclidean norm and\n$d_{\\mathbf{Gr}^+(D,d)}$ is the Riemannian distance on the oriented Grassmannian\n$\\mathbf{Gr}^+(D,d)$.\n\\end{definition}",
+      "Whitney": "\\begin{definition}[{\\cite[Chapter~2]{hirsch2012differential}}]\\label{Whitney}\nWe say that the family of submanifolds $\\{M_i\\}_{i\\in\\mathbb{N}}$ \\emph{converges to $M_\\infty$ in the (Whitney) $C^k$ topology} if there exists an embedding\n$$\nF_\\infty : M \\to N, \\qquad M_\\infty = F_\\infty(M),\n$$\nsuch that $F_i \\to F_\\infty$ in the Whitney $C^k$ topology on $C^k(M,N)$. That is, there exist locally finite atlases\n$\\{(U_\\alpha,\\varphi_\\alpha)\\}_{\\alpha}$ of $M$ and $\\{(V_\\alpha,\\psi_\\alpha)\\}_{\\alpha}$ of $N$ with $F_\\infty(U_\\alpha) \\subset V_\\alpha$ such that, for each $\\alpha$ and each $\\varepsilon_\\alpha > 0$, there exists $n_\\alpha \\in \\mathbb{N}$ with the property that for every $i \\geq n_\\alpha$,\n\\[\n\\max_{|\\beta|\\le k}\n\\sup_{x \\in \\varphi_\\alpha(U_\\alpha)}\n\\left\\|\nD^\\beta\\big(\\psi_\\alpha \\circ F_i \\circ \\varphi_\\alpha^{-1}\\big)(x)\n-\nD^\\beta\\big(\\psi_\\alpha \\circ F_\\infty \\circ \\varphi_\\alpha^{-1}\\big)(x)\n\\right\\|_2\n< \\varepsilon_\\alpha.\n\\]\n\\end{definition}"
+    },
+    "post_theorem_intro_text_len": 4412,
+    "post_theorem_intro_text": "In directions with large normal curvatures, even a small displacement along the curve already produces a large change in the tangent space, so the Grassmannian component of $g_c$ contributes an increasingly large portion of the speed. Since the normal curvature is defined as the size of the normal acceleration divided by the square of this speed, reparameterizing the curve to have unit speed with respect to $g_c$ makes the normal curvature decrease as $c$ grows.\n\nNext, to quantify how distances between bottleneck pairs change with respect to $d_c$, we set\n\\begin{align*}\n  L_c(M)\n  &= \\min\\Bigl\\{\\frac{1}{2}d_c(q_1,q_2) \\;\\Big|\\; (q_1,q_2) \\text{ is a bottleneck of } M \\subset \\mathbb{R}^D\\Bigr\\} \\\\\n  &= \\min\\Bigl\\{\\frac{1}{2}d_c(q_1,q_2) \\;\\Big|\\; \\overline{q_1q_2} \\perp T_{q_1}M,\\ \\overline{q_1q_2} \\perp T_{q_2}M\\Bigr\\}.\n\\end{align*}\nSimilarly, in the Euclidean case, we define\n\\[\n  L(M)\n  = \\min\\Bigl\\{\\frac{1}{2}\\|q_1-q_2\\|_{\\mathbb{R}^D} \\;\\Big|\\; (q_1,q_2) \\text{ is a bottleneck of } M \\subset \\mathbb{R}^D\\Bigr\\}.\n\\]\nUnder a mild curvature hypothesis, we show that for a smooth closed orientable hypersurface $M$, the bottlenecks are separated when distances are measured with $d_c$ from Definition~\\ref{grassmannian_distance}.    \n\\begin{theorem}\\label{normalized_bottleneck}\n  Let $M \\subset \\mathbb{R}^D$ be a smooth closed orientable hypersurface. Suppose that $L(M) \\leq \\frac{1}{\\|\\mathbf{II}\\|_2}$.\n  Then for every $c \\in \\bigl(0, \\tfrac{12L(M)^2}{\\pi^2}\\bigr]$,\n    \\[\n    \\frac{L_c(M)}{\\mathrm{vol}_c(M)^{1/(D-1)}}\n    \\;\\geq\\;\n    \\frac{\\sqrt{4L(M)^2 + c\\pi^2}}{2\\,\\mathrm{vol}_c(M)^{1/(D-1)}}\n    \\;>\\;\n    \\frac{L(M)}{\\mathrm{vol}(M)^{1/(D-1)}},\n  \\]\n  and the middle term in the inequalities is strictly increasing in $c$ on the interval $\\bigl(0, \\tfrac{12L(M)^2}{\\pi^2}\\bigr]$.\n\\end{theorem}\n\nWe obtain an explicit range of radii $r$ for which the ambient Čech complex $\\check{C}(M, \\mathbb{R}^D\\times\\mathbf{Gr}_c^+(D,d);r)$ is homotopy equivalent to $M$. In particular, this yields a lower bound on the lengths of the barcodes in the associated persistent homology, from which the homology of $M$ is recovered from the distance $d_c$.\n\\begin{theorem}\\label{length_barcodes}\nLet $M \\subset \\mathbb{R}^D$ be a smooth closed orientable $d$-dimensional submanifold. For $c>0$, the ambient Čech complex $\\check{C}(M, \\mathbb{R}^D\\times\\mathbf{Gr}_c^+(D,d);r)$ is homotopy equivalent to \\(M\\) for all\n\\[\n  r <\n  \\min\\!\\left(\n    \\sqrt{\\frac{c}{2}}\\arctan\\sqrt{\\frac{2}{c\\|\\mathbf{II}_c\\|_2}},\\,\n    \\frac{\\sqrt{c}\\,\\pi}{2},\\,\n    L'_c(M)\n  \\right),\n\\]\nwhere\n\\[\n  L'_c(M)\n  = \\min \\Bigl\\{\\frac{1}{2}d_c(q_1,q_2) \\;\\Bigm|\\;\n  \\overline{(q_1,\\bar{\\mathbf{g}}_c^+(q_1))(q_2,\\bar{\\mathbf{g}}_c^+(q_2))}\n  \\perp T_{(q_i,\\bar{\\mathbf{g}}_c^+(q_i))}(M,g_c),\\ i=1,2 \\Bigr\\}.\n\\]\n\\end{theorem}\n\nFix a field $\\mathbb{k}$. Since the metric $d_c$ depends both on the ambient positions and on the oriented tangent spaces of $M$, the persistence module $H_j(\\mathbb{\\check{C}}(M, \\mathbb{R}^D \\times \\mathbf{Gr}_c^+(D,d));\\mathbb{k})$ is not expected to be stable with respect to the Hausdorff distance on $\\mathbb{R}^D$. Instead, we work with a stronger notion of convergence that also takes into account the distance between tangent spaces.\n\\begin{theorem}\\label{stability}\n  Let $\\{M_i\\}_{i \\in \\mathbb{N}}$ be a sequence of smooth closed orientable $d$-dimensional submanifolds of $\\mathbb{R}^D$ converging to a smooth closed orientable submanifold $M_\\infty \\subset \\mathbb{R}^D$ in the Whitney $C^1$ topology (see Definition~\\ref{Whitney}). Fix $c>0$. Then for every field $\\mathbb{k}$ and every $j \\in \\mathbb{N} \\cup \\{0\\}$,\n  \\[\n    \\lim_{i \\to \\infty}\n    d_I\\Bigl(\n      H_j(\\mathbb{\\check{C}}(M_i, \\mathbb{R}^D\\times\\mathbf{Gr}_c^+(D,d));\\mathbb{k}),\n      H_j(\\mathbb{\\check{C}}(M_\\infty, \\mathbb{R}^D\\times\\mathbf{Gr}_c^+(D,d));\\mathbb{k})\n    \\Bigr) = 0,\n  \\]\n  where $d_I$ denotes the interleaving distance between persistence modules.\n\\end{theorem}\n\nBased on the above theorems, we describe a method for computing the distance matrix for a finite subset of $M$ with respect to the distance $d_c$ from Definition~\\ref{grassmannian_distance}. To illustrate the performance of this method, we display three computational examples: a time-delay embedded attractor, an approximate quasi-halo orbit in the Saturn--Enceladus system, and a classification of three-dimensional image shapes.",
+    "sketch": "In directions with large normal curvatures, “even a small displacement along the curve already produces a large change in the tangent space, so the Grassmannian component of $g_c$ contributes an increasingly large portion of the speed.” Since “the normal curvature is defined as the size of the normal acceleration divided by the square of this speed,” then “reparameterizing the curve to have unit speed with respect to $g_c$ makes the normal curvature decrease as $c$ grows.”",
+    "expanded_sketch": "In directions with large normal curvatures, “even a small displacement along the curve already produces a large change in the tangent space, so the Grassmannian component of $g_c$ contributes an increasingly large portion of the speed.” Since “the normal curvature is defined as the size of the normal acceleration divided by the square of this speed,” then “reparameterizing the curve to have unit speed with respect to $g_c$ makes the normal curvature decrease as $c$ grows.”",
+    "expanded_theorem": "\\label{principal_curvature}\n  Let $M \\subset \\mathbb{R}^D$ be a smooth closed orientable $d$-dimensional submanifold. Fix $p \\in M$ and a unit vector $v \\in T_p M$. Assume that the normal curvature at $p$ in the direction $v$ is sufficiently large so that\n  \\begin{equation*}\n    \\mathrm{vol}_c(M) \\leq \\bigl(1 + c \\,\\|\\mathbf{II}(v,\\cdot)\\|_{\\operatorname{HS}}^2\\bigr)^{d/2} \\mathrm{vol}(M),\n    \\qquad\n    \\kappa(v) > \\frac{\\|(\\nabla_v^{M} \\mathbf{II}) (v,\\cdot) \\|_{\\operatorname{HS}}}{\\|\\mathbf{II} (v,\\cdot)\\|_{\\operatorname{HS}}},\n  \\end{equation*}\n  where $\\|\\cdot\\|_{\\operatorname{HS}}$ denotes the Hilbert--Schmidt norm. Then, for every $c>0$,\n  \\[\n    \\kappa_c(v)\\, \\mathrm{vol}_c(M)^{1/d}\n    \\;\\leq\\;\n    \\frac{\\sqrt{\\kappa(v)^2 + c\\|(\\nabla_v^{M} \\mathbf{II})(v, \\cdot)\\|_{\\operatorname{HS}}^2}}{1 + c\\|\\mathbf{II}(v,\\cdot)\\|_{\\operatorname{HS}}^2}\\,\n    \\mathrm{vol}_c(M)^{1/d}\n    \\;<\\;\n    \\kappa(v)\\, \\mathrm{vol}(M)^{1/d},\n  \\]\nand the middle term in the inequalities is strictly decreasing as $c$ grows.",
+    "theorem_type": [
+      "Implication",
+      "Inequality or Bound"
+    ],
+    "mcq": {
+      "question": "Let \\(M\\subset\\mathbb{R}^D\\) be a smooth closed orientable \\(d\\)-dimensional submanifold. Fix \\(p\\in M\\) and a unit vector \\(v\\in T_pM\\). Assume the normal curvature at \\(p\\) in direction \\(v\\) is sufficiently large so that\n\\(\\mathrm{vol}_c(M)\\le (1+c\\|\\mathbf{II}(v,\\cdot)\\|_{\\operatorname{HS}}^2)^{d/2}\\,\\mathrm{vol}(M)\\) and \\(\\kappa(v)>\\frac{\\|(\\nabla_v^{M}\\mathbf{II})(v,\\cdot)\\|_{\\operatorname{HS}}}{\\|\\mathbf{II}(v,\\cdot)\\|_{\\operatorname{HS}}}\\), where \\(\\|\\cdot\\|_{\\operatorname{HS}}\\) is the Hilbert--Schmidt norm. Under these hypotheses, what is the strongest quantitative estimate (including the strictness and monotonicity in \\(c\\)) that holds for every \\(c>0\\) involving \\(\\kappa_c(v)\\,\\mathrm{vol}_c(M)^{1/d}\\)?",
+      "correct_choice": {
+        "label": "A",
+        "text": "For every \\(c>0\\),\n\\[\\kappa_c(v)\\, \\mathrm{vol}_c(M)^{1/d}\n\\;\\le\\;\n\\frac{\\sqrt{\\kappa(v)^2 + c\\|(\\nabla_v^{M} \\mathbf{II})(v, \\cdot)\\|_{\\operatorname{HS}}^2}}{1 + c\\|\\mathbf{II}(v,\\cdot)\\|_{\\operatorname{HS}}^2}\\,\\mathrm{vol}_c(M)^{1/d}\n\\;<\\;\n\\kappa(v)\\, \\mathrm{vol}(M)^{1/d},\\]\nand the middle expression is strictly decreasing as \\(c\\) increases."
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "For every \\(c>0\\),\n\\[\\kappa_c(v)\\, \\mathrm{vol}_c(M)^{1/d}\n\\;\\le\\;\n\\frac{\\sqrt{\\kappa(v)^2 + c\\|\\bigl(\\nabla_v^{M} \\mathbf{II}\\bigr)(v, \\cdot)\\|_{\\operatorname{HS}}^2}}{1 + c\\|\\mathbf{II}(v,\\cdot)\\|_{\\operatorname{HS}}^2}\\,\\mathrm{vol}_c(M)^{1/d}\n\\;\\le\\;\n\\kappa(v)\\, \\mathrm{vol}(M)^{1/d},\\]\nand the middle expression is nonincreasing (but not necessarily strictly decreasing) as \\(c\\) increases."
+        },
+        {
+          "label": "C",
+          "text": "For every \\(c>0\\),\n\\[\\kappa_c(v)\\, \\mathrm{vol}_c(M)^{1/d}\n\\;\\le\\;\n\\kappa(v)\\, \\mathrm{vol}(M)^{1/d}.\n\\]"
+        },
+        {
+          "label": "D",
+          "text": "For every \\(c>0\\),\n\\[\\kappa_c(v)\\, \\mathrm{vol}_c(M)^{1/d}\n\\;\\le\\;\n\\frac{\\sqrt{\\kappa(v)^2 + c\\|\\bigl(\\nabla_v^{M} \\mathbf{II}\\bigr)(v, \\cdot)\\|_{\\operatorname{HS}}^2}}{1 + c\\|\\mathbf{II}(v,\\cdot)\\|_{\\operatorname{HS}}^2}\\,\\mathrm{vol}_c(M)^{1/d}\n\\;<\\;\n\\kappa(v)\\, \\mathrm{vol}(M)^{1/d},\\]\nand the middle expression is strictly increasing as \\(c\\) increases."
+        },
+        {
+          "label": "E",
+          "text": "For every \\(c>0\\),\n\\[\\kappa_c(v)\\, \\mathrm{vol}_c(M)^{1/d}\n\\;\\le\\;\n\\frac{\\sqrt{\\kappa(v)^2 + c\\|\\bigl(\\nabla_v^{M} \\mathbf{II}\\bigr)(v, \\cdot)\\|_{\\operatorname{HS}}^2}}{\\sqrt{1 + c\\|\\mathbf{II}(v,\\cdot)\\|_{\\operatorname{HS}}^2}}\\,\\mathrm{vol}_c(M)^{1/d}\n\\;<\\;\n\\kappa(v)\\, \\mathrm{vol}(M)^{1/d},\\]\nand the middle expression is strictly decreasing as \\(c\\) increases."
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "E"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "regularity",
+          "tampered_component": "strictness of right inequality and strict monotonicity in c",
+          "template_used": "boundary_range"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "regularity",
+          "tampered_component": "dropped explicit middle fraction and monotonicity/strictness; kept only final upper bound",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "regularity",
+          "tampered_component": "monotonicity direction in c",
+          "template_used": "property_confusion"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "regularity",
+          "tampered_component": "denominator dependence on c (replaced 1+c||II||^2 by sqrt(1+c||II||^2))",
+          "template_used": "wildcard"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2511.19416v2",
+    "paper_link": "http://arxiv.org/abs/2511.19416v2",
+    "theorems_cnt": 2,
+    "theorem": {
+      "env_name": "lemma",
+      "content": "\\label{lem:minimaxless}\nLet $X\\subseteq \\mathbb{R}^d$, $Y\\subseteq \\mathbb{R}^k$, and $f:X\\times Y \\to \\mathbb{R}$.\nThen \n\\begin{equation}\\label{eq:minimaxless}\n\\sup_{\\mathbf{x}\\in X} \\inf_{\\mathbf{y}\\in Y} f(\\mathbf{x},\\mathbf{y}) \\leq \\inf_{\\mathbf{y}\\in Y} \\sup_{\\mathbf{x}\\in X} f(\\mathbf{x},\\mathbf{y}).\n\\end{equation}",
+      "start_pos": 10080,
+      "end_pos": 10336,
+      "label": "lem:minimaxless"
+    },
+    "ref_dict": {
+      "lem:minimaxless": "\\begin{lemma}\\label{lem:minimaxless}\nLet $X\\subset \\R^d$, $Y\\subset \\R^k$, and $f:X\\times Y \\to \\R$.\nThen \n\\begin{equation}\\label{eq:minimaxless}\n\\sup_{\\x\\in X} \\inf_{\\y\\in Y} f(\\x,\\y) \\leq \\inf_{\\y\\in Y} \\sup_{\\x\\in X} f(\\x,\\y).\n\\end{equation}\n\\end{lemma}",
+      "eq:minimaxless": "\\begin{equation}\\label{eq:minimaxless}\n\\sup_{\\x\\in X} \\inf_{\\y\\in Y} f(\\x,\\y) \\leq \\inf_{\\y\\in Y} \\sup_{\\x\\in X} f(\\x,\\y).\n\\end{equation}"
+    },
+    "post_theorem_intro_text_len": 1069,
+    "post_theorem_intro_text": "\\begin{proof}\nFor any $\\x_0\\in X$ we have\n\\[\\inf_{\\mathbf{y}\\in Y} f(\\x_0,\\mathbf{y}) \\leq \\inf_{\\mathbf{y}\\in Y} \\sup_{\\mathbf{x}\\in X} f(\\mathbf{x},\\mathbf{y}).\\]\nTaking the supremum over $\\x_0\\in X$ gives \\eqref{eq:minimaxless}.\n\\end{proof}\nBy Lemma \\ref{lem:minimaxless}, to prove a minimax theorem, it is sufficient to show the opposite inequality, namely that\n\\begin{equation}\\label{eq:opp_ineq}\n\\inf_{\\mathbf{y}\\in Y} \\sup_{\\mathbf{x}\\in X} f(\\mathbf{x},\\mathbf{y}) \\leq \\sup_{\\mathbf{x}\\in X} \\inf_{\\mathbf{y}\\in Y} f(\\mathbf{x},\\mathbf{y}).\n\\end{equation}\nHowever, this direction is much more difficult to prove, and does not always hold. \n\\begin{example}\\label{Ex:difference}\nLet $X = \\{-1,1\\}\\subseteq \\mathbb{R}$, $Y = [-1,1]\\subseteq \\mathbb{R}$, and $f(x,y) = xy$. Then \n\\[\\max_{x\\in X}\\min_{y\\in Y}f(x,y) = \\max_{x\\in X} (-1) = -1,\\]\nwhile \n\\[\\min_{y\\in Y}\\max_{x\\in X}f(x,y) = \\min_{y\\in Y} |y| = 0.\\]\n\\end{example}\nAs we shall see below, convexity of the sets $X$ and $Y$ play a key role in minimax theorems. Note that $X=\\{-1,1\\}$ is not a convex set.",
+    "sketch": "For any $\\x_0\\in X$ we have\n\\[\\inf_{\\mathbf{y}\\in Y} f(\\x_0,\\mathbf{y}) \\leq \\inf_{\\mathbf{y}\\in Y} \\sup_{\\mathbf{x}\\in X} f(\\mathbf{x},\\mathbf{y}).\\]\nTaking the supremum over $\\x_0\\in X$ gives \\eqref{eq:minimaxless}.",
+    "expanded_sketch": "For any $\\x_0\\in X$ we have\n\\[\\inf_{\\mathbf{y}\\in Y} f(\\x_0,\\mathbf{y}) \\leq \\inf_{\\mathbf{y}\\in Y} \\sup_{\\mathbf{x}\\in X} f(\\mathbf{x},\\mathbf{y}).\\]\nTaking the supremum over $\\x_0\\in X$ gives\n\\begin{equation}\\label{eq:minimaxless}\n\\sup_{\\x\\in X} \\inf_{\\y\\in Y} f(\\x,\\y) \\leq \\inf_{\\y\\in Y} \\sup_{\\x\\in X} f(\\x,\\y).\n\\end{equation}\n.",
+    "expanded_theorem": "\\label{lem:minimaxless}\nLet $X\\subseteq \\mathbb{R}^d$, $Y\\subseteq \\mathbb{R}^k$, and $f:X\\times Y \\to \\mathbb{R}$.\nThen \n\\begin{equation}\\label{eq:minimaxless}\n\\sup_{\\mathbf{x}\\in X} \\inf_{\\mathbf{y}\\in Y} f(\\mathbf{x},\\mathbf{y}) \\leq \\inf_{\\mathbf{y}\\in Y} \\sup_{\\mathbf{x}\\in X} f(\\mathbf{x},\\mathbf{y}).\n\\end{equation}",
+    "theorem_type": [
+      "Inequality or Bound",
+      "Universal"
+    ],
+    "mcq": {
+      "question": "Let $X\\subseteq \\mathbb{R}^d$, $Y\\subseteq \\mathbb{R}^k$, and let $f:X\\times Y\\to\\mathbb{R}$ be any function. Under these assumptions, which inequality between the max–min and min–max values is guaranteed to hold?",
+      "correct_choice": {
+        "label": "A",
+        "text": "$$\\sup_{\\mathbf{x}\\in X}\\;\\inf_{\\mathbf{y}\\in Y} f(\\mathbf{x},\\mathbf{y})\\;\\le\\;\\inf_{\\mathbf{y}\\in Y}\\;\\sup_{\\mathbf{x}\\in X} f(\\mathbf{x},\\mathbf{y}).$$"
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "$$\\sup_{\\mathbf{x}\\in X}\\;\\inf_{\\mathbf{y}\\in Y} f(\\mathbf{x},\\mathbf{y})\\;\\ge\\;\\inf_{\\mathbf{y}\\in Y}\\;\\sup_{\\mathbf{x}\\in X} f(\\mathbf{x},\\mathbf{y}).$$"
+        },
+        {
+          "label": "C",
+          "text": "$$\\sup_{\\mathbf{x}\\in X}\\;\\inf_{\\mathbf{y}\\in Y} f(\\mathbf{x},\\mathbf{y})\\;\\le\\;\\sup_{\\mathbf{x}\\in X}\\;\\sup_{\\mathbf{y}\\in Y} f(\\mathbf{x},\\mathbf{y}).$$"
+        },
+        {
+          "label": "D",
+          "text": "$$\\inf_{\\mathbf{x}\\in X}\\;\\sup_{\\mathbf{y}\\in Y} f(\\mathbf{x},\\mathbf{y})\\;\\le\\;\\sup_{\\mathbf{y}\\in Y}\\;\\inf_{\\mathbf{x}\\in X} f(\\mathbf{x},\\mathbf{y}).$$"
+        },
+        {
+          "label": "E",
+          "text": "$$\\sup_{\\mathbf{x}\\in X}\\;\\inf_{\\mathbf{y}\\in Y} f(\\mathbf{x},\\mathbf{y})\\;\\le\\;\\inf_{\\mathbf{y}\\in Y}\\;\\inf_{\\mathbf{x}\\in X} f(\\mathbf{x},\\mathbf{y}).$$"
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "E"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "other",
+          "tampered_component": "direction_of_inequality_after_sup_over_x0",
+          "template_used": "property_confusion"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "other",
+          "tampered_component": "replace_inf_y_sup_x_by_sup_x_sup_y (drop minimax interplay)",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "other",
+          "tampered_component": "swap_roles_of_X_and_Y_and_flip nesting (quantifier order)",
+          "template_used": "quantifier_dependence"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "other",
+          "tampered_component": "illegitimate_move_inf_y_sup_x -> inf_y_inf_x (dropping sup and tightening RHS)",
+          "template_used": "wildcard"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2511.19744v1",
+    "paper_link": "http://arxiv.org/abs/2511.19744v1",
+    "theorems_cnt": 5,
+    "theorem": {
+      "env_name": "thm",
+      "content": "\\label{thm:main}\n    Assume \\cref{conj:main}. If $n$ is a positive integer, then $t(n)\\geq 1$. If $5\\nmid n$, then $t(n)\\geq 2$. If $3\\mid n$, then $t(n)\\geq 3$.",
+      "start_pos": 271680,
+      "end_pos": 271862,
+      "label": "thm:main"
+    },
+    "ref_dict": {
+      "thm:main": "\\begin{thm}\\label{thm:main}\n    Assume \\cref{conj:main}. If $n$ is a positive integer, then $t(n)\\geq 1$. If $5\\nmid n$, then $t(n)\\geq 2$. If $3\\mid n$, then $t(n)\\geq 3$.\n\\end{thm}",
+      "lem:t(n)=3": "\\begin{lem}\\label{lem:t(n)=3}\n    Assume \\cref{conj:main}. Let $n$ be an odd, square-free multiple of 3. Then $t(n)\\geq 3$. Moreover, $t(n)=3$ if and only if $T(n)=\\{5,7,13\\}$.\n\\end{lem}",
+      "conj:main": "\\begin{conj}\\label{conj:main}\n    Let $n$ be an odd, square-free multiple of 3. Assume that there exists $p\\in\\{5,7,13\\}$ such that $p\\mid n$, and that $r\\nmid n$ for $r\\in\\{5,7,13\\}-\\{p\\}$. Finally, assume there exists $q\\in T(3p)-\\{5,7,13\\}$ such that $q\\nmid n$. Then $t(n)\\geq 4$.\n\\end{conj}"
+    },
+    "post_theorem_intro_text_len": 541,
+    "post_theorem_intro_text": "In \\cref{sec:lemmas}, we state and prove a few simple lemmas. We prove \\cref{thm:main} in \\cref{sec:proof} by inducting on the number of odd prime factors of $n$. Essentially all of the real work happens in \\cref{lem:t(n)=3}. We conclude with \\cref{sec:observations}, where we pose a couple questions that arose while working on this project.\n\n\\subsection*{Acknowledgements}\nWe thank Nick Andersen, Pace Nielsen, and Kyle Pratt for helpful conversations. The author was partially supported by the NSF (DMS-2502365) and the Simons Foundation.",
+    "sketch": "We prove \\cref{thm:main} in \\cref{sec:proof} by \"inducting on the number of odd prime factors of $n$\". \"Essentially all of the real work happens in \\cref{lem:t(n)=3}.\"",
+    "expanded_sketch": "We prove the main theorem later by \"inducting on the number of odd prime factors of $n$\". Essentially all of the real work happens in the following lemma. \\begin{lem}\\label{lem:t(n)=3}\n    Assume \\cref{conj:main}. Let $n$ be an odd, square-free multiple of 3. Then $t(n)\\geq 3$. Moreover, $t(n)=3$ if and only if $T(n)=\\{5,7,13\\}$.\n\\end{lem}",
+    "expanded_theorem": "\\label{thm:main}\nAssume \\begin{conj}\\label{conj:main}\n    Let $n$ be an odd, square-free multiple of 3. Assume that there exists $p\\in\\{5,7,13\\}$ such that $p\\mid n$, and that $r\\nmid n$ for $r\\in\\{5,7,13\\}-\\{p\\}$. Finally, assume there exists $q\\in T(3p)-\\{5,7,13\\}$ such that $q\\nmid n$. Then $t(n)\\geq 4$.\n\\end{conj}\nIf $n$ is a positive integer, then $t(n)\\geq 1$. If $5\\nmid n$, then $t(n)\\geq 2$. If $3\\mid n$, then $t(n)\\geq 3$.\n",
+    "theorem_type": [
+      "Implication",
+      "Inequality or Bound"
+    ],
+    "mcq": {
+      "question": "Let $t(n)$ be defined for positive integers $n$. Assume the following conjectural implication holds: if $n$ is an odd, square-free multiple of $3$, there exists $p\\in\\{5,7,13\\}$ such that $p\\mid n$ and for every $r\\in\\{5,7,13\\}\\setminus\\{p\\}$ one has $r\\nmid n$, and there exists $q\\in T(3p)\\setminus\\{5,7,13\\}$ such that $q\\nmid n$, then $t(n)\\ge 4$. Under these assumptions, which collection of lower bounds for $t(n)$ is guaranteed to hold?",
+      "correct_choice": {
+        "label": "A",
+        "text": "The following bounds hold: (i) for every positive integer $n$, $t(n)\\ge 1$; (ii) for every positive integer $n$ with $5\\nmid n$, $t(n)\\ge 2$; (iii) for every positive integer $n$ with $3\\mid n$, $t(n)\\ge 3$; and (iv) if $n$ is an odd, square-free multiple of $3$ such that there exists $p\\in\\{5,7,13\\}$ with $p\\mid n$ and $r\\nmid n$ for all $r\\in\\{5,7,13\\}\\setminus\\{p\\}$, and there exists $q\\in T(3p)\\setminus\\{5,7,13\\}$ with $q\\nmid n$, then $t(n)\\ge 4$."
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "The following bounds hold: (i) for every positive integer $n$, $t(n)\u0007ge 1$; (ii) for every positive integer $n$ with $5\\nmid n$, $t(n)\\ge 2$; (iii) for every positive integer $n$ with $3\\mid n$, $t(n)\\ge 3$; and (iv) if $n$ is an odd, square-free multiple of $3$ such that there exists $p\\in\\{5,7,13\\}$ with $p\\mid n$ and $r\\nmid n$ for all $r\\in\\{5,7,13\\}\\setminus\\{p\\}$, then $t(n)\\ge 4$."
+        },
+        {
+          "label": "C",
+          "text": "The following bounds hold: (i) for every positive integer $n$, $t(n)\\ge 1$; (ii) for every positive integer $n$ with $5\\nmid n$, $t(n)\\ge 2$; and (iii) for every positive integer $n$ with $3\\mid n$, $t(n)\\ge 3$."
+        },
+        {
+          "label": "D",
+          "text": "The following bounds hold: (i) for every positive integer $n$, $t(n)\\ge 1$; (ii) for every positive integer $n$ with $5\\nmid n$, $t(n)\\ge 2$; (iii) for every positive integer $n$ with $3\\mid n$, $t(n)\\ge 3$; and (iv) if $n$ is an odd, square-free multiple of $3$ such that there exists $p\\in\\{5,7,13\\}$ with $p\\mid n$ and $r\\nmid n$ for all $r\\in\\{5,7,13\\}\\setminus\\{p\\}$, and for every $q\\in T(3p)\\setminus\\{5,7,13\\}$ one has $q\\nmid n$, then $t(n)\\ge 4$."
+        },
+        {
+          "label": "E",
+          "text": "The following bounds hold: (i) for every positive integer $n$, $t(n)\\ge 1$; (ii) for every positive integer $n$ with $5\\nmid n$, $t(n)\\ge 2$; (iii) for every positive integer $n$ with $3\\mid n$, $t(n)\\ge 3$; and (iv) if $n$ is an odd, square-free multiple of $3$ such that there exists $p\\in\\{5,7,13\\}$ with $p\\mid n$ and $r\\nmid n$ for all $r\\in\\{5,7,13\\}\\setminus\\{p\\}$, and there exists $q\\in T(3p)\\setminus\\{5,7,13\\}$ such that $q\\mid n$, then $t(n)\\ge 4$."
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "E"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "quantifier_dependence",
+          "tampered_component": "dropped $\\exists q\\in T(3p)\\setminus\\{5,7,13\\}$ with $q\\nmid n$",
+          "template_used": "quantifier_dependence"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "other",
+          "tampered_component": "omitted the conjectural (iv) $t(n)\\ge 4$ conditional bound",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "quantifier_dependence",
+          "tampered_component": "strengthened $\\exists q$ to $\\forall q$ in $T(3p)\\setminus\\{5,7,13\\}$",
+          "template_used": "stronger_trap"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "other",
+          "tampered_component": "reversed the condition $q\\nmid n$ to $q\\mid n$ in the conjectural hypothesis",
+          "template_used": "wildcard"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2511.18809v1",
+    "paper_link": "http://arxiv.org/abs/2511.18809v1",
+    "theorems_cnt": 3,
+    "theorem": {
+      "env_name": "theorem",
+      "content": "Let $M$ be a solvable differential module of rank $n$ over $\\mathcal{A}_x$. Let\n\t\t\\[\\alpha_1\\geq\\cdots\\geq\\alpha_n\\quad\\mathrm{(resp.}\\quad\\beta_1\\geq\\cdots\\geq\\beta_n\\mathrm{)}\\]\n\t\tbe the $p$-adic slopes (resp. formal slopes) of $M$ listed in the decreasing order. Then for each $1\\leq i\\leq n$, the following inequality holds.\n\t\t\\begin{equation} \n\t\t\t\\sum_{j=1}^{i}\\alpha_j\\leq\\sum_{j=1}^{i}\\beta_j.\n\t\t\\end{equation}",
+      "start_pos": 8492,
+      "end_pos": 8942,
+      "label": null
+    },
+    "ref_dict": {},
+    "post_theorem_intro_text_len": 4172,
+    "post_theorem_intro_text": "\\begin{rem}\n\t\tThe inequality (1.1.1) might be strict in general. For example, given an element $a(x)\\in\\mathcal{A}_x$, let $\\mathrm{exp}\\Big(a(x)\\Big)$ denote the rank one differential module associated to the differential equation\n\t\t\\[\\frac{d}{dx}-a'(x)=0,\\]\n\t\twhere $a'(x)$ denotes the derivative of $a(x)$.\n\n\t\tSuppose that $k$ contains an element $\\pi$ such that $\\pi^{p-1}=-p$, then the exponential module \\[M=\\mathrm{exp}(\\frac{\\pi}{x^{p^n}}),\\quad n\\in\\mathbb{N}\\]\n\t\tis solvable. The formal slope (resp. $p$-adic slope) of $M$ is $p^n$ (resp. $1$).\n\t\\end{rem}\n\n\t\\begin{rem}\n\t\tGiven a solvable differential module $M$ over $\\mathcal{R}$, there exists some differential module $M'$ over $\\mathcal{A}_x$ such that $M\\simeq M'\\otimes_{\\mathcal{A}_x}\\mathcal{R}$ (\\cite{C-M01}, Theorem 4.2-7). We call $M'$ a model of $M$ over $\\mathcal{A}_x$. For different models $M'$, the formal slopes of $M'$ may vary, but the $p$-adic slopes are all equal to those of $M$.\n\n\t\tChristol and Mebkhout asked whether there exists a model $M'$ such that\n\t\t\\begin{equation}\n\t\t\t\\sum_{j=1}^{n}\\alpha_j=\\sum_{j=1}^{n}\\beta_j,\n\t\t\\end{equation}\n\t\twhere $\\alpha_1,\\cdots,\\alpha_n$ (resp. $\\beta_1,\\cdots,\\beta_n$) are the $p$-adic slopes (resp. formal slopes) of $M'$ and $n$ is the rank of $M$ (\\cite{C-M01}, Problem 5.0-14).\n\n\t\tThe rank one case is already proved by classifying solvable differential modules in \\cite{Pu04}.\n\n\t\tFor instance, let $M$ be the exponential module $\\mathrm{exp}(\\frac{\\pi}{x^p})$ over $\\mathcal{R}$. Then $M'=\\mathrm{exp}(\\frac{\\pi}{x})$ is the desired model over $\\mathcal{A}_x$, whose formal slopes and $p$-adic slopes are both equal to $1$. The overconvergent Dwork exponential series (see \\cite{Rob00}, Chapter 7.2.4) induces an isomorphism $M\\simeq M'\\otimes_{\\mathcal{A}_x}\\mathcal{R}$.\n\n\t\tHowever, even for a model satisfying (1.3.1), the inequality (1.1.1) might still be strict when $i<n$. In Section 6.4, we present an example of this phenomenon.\n\t\\end{rem}\n\n\tThe proof of Theorem 1.1 is inspired by the work of Baldassarri in \\cite{Ba82}. The information of formal slopes and $p$-adic slopes is encoded in certain functions $F_i(M,r)$, which are defined by generic radii in Section 4. These functions are piecewise affine, continuous and convex on the interval $(0,\\infty)$ (see Figure 1). On the one hand, the slope of $F_i(M,r)$ is $i+\\sum_{j=1}^{i}\\alpha_j$ as $r\\rightarrow0$. On the other hand, we show that the slope of $F_i(M,r)$ is $i+\\sum_{j=1}^{i}\\beta_j$ as $r\\rightarrow\\infty$ in Section 5 through a delicate analysis of Newton polygons. Finally, we conclude the theorem by the convexity of $F_i(M,r)$.\n\n\t\\begin{center}\n\t\t\\begin{figure}[htbp]\n\t\t\t\\begin{tikzpicture}\n\t\t\t\t\\draw[->] (0,0) -- (6,0) node[right] {$r$};\n\t\t\t\t\\draw[->] (0,0) -- (0,3) node[above] {$F_i(M,r)$};\n\t\t\t\t\\node[above left] at (0,0) {$0$};\nlldraw[black] (0,0) circle (1pt);\nlldraw[black] (2.5,0.5) circle (1pt);\nlldraw[black] (4,1.5) circle (1pt);\n\t\t\t\t\\draw[black] (0,0)--(2.5,0.5)--(4,1.5)--(5,2.8);\n\t\t\t\\end{tikzpicture}\n\t\t\t\\caption{}\n\t\t\\end{figure}\n\t\\end{center}\n\n\tIn Section 2, we review some general facts about differential modules. In Section 3, we revise an algorithm for computing formal slopes (\\cite{Ka87}, (2.2.10)). We then rewrite the algorithm using the language of formal Newton polygons. In Section 4, we review the notions of generic radii, Newton polygons, Robba rings, solvable modules and the $p$-adic slopes. This section is mostly based on Chapter 9\\textasciitilde12 of Kedlaya's work \\cite{Ked22}. In Section 5, we give a detailed proof of Theorem 1.1 as sketched above. In Section 6, we present some examples from Bessel equations and study the associated monodromy representations. In particular, the phenomenon at the end of Remark 1.3 is explained using an example.\n\n\t\\subsection*{Acknowledgements}\n\tThis article is a part of my thesis prepared at Academy of Mathematics and Systems Science. I would like to express my great gratitude to my thesis advisor Daxin Xu for leading\n\tme to this question and for his helpful comments on earlier versions of this work.\n\n\tI am supported by National Natural Science Foundation of China Grant (no. 12222118).",
+    "sketch": "The proof of Theorem 1.1 is described as follows. “The information of formal slopes and $p$-adic slopes is encoded in certain functions $F_i(M,r)$, which are defined by generic radii in Section 4.” These functions $F_i(M,r)$ are “piecewise affine, continuous and convex on the interval $(0,\\infty)$.”\n\n- As $r\\to 0$, “the slope of $F_i(M,r)$ is $i+\\sum_{j=1}^{i}\\alpha_j$.”\n- As $r\\to \\infty$, one “show[s] that the slope of $F_i(M,r)$ is $i+\\sum_{j=1}^{i}\\beta_j$ … through a delicate analysis of Newton polygons.”\n- “Finally, we conclude the theorem by the convexity of $F_i(M,r)$.”",
+    "expanded_sketch": "The proof of Theorem 1.1 is described as follows. “The information of formal slopes and $p$-adic slopes is encoded in certain functions $F_i(M,r)$, which are defined by generic radii in Section 4.” These functions $F_i(M,r)$ are “piecewise affine, continuous and convex on the interval $(0,\\infty)$.”\n\n- As $r\\to 0$, “the slope of $F_i(M,r)$ is $i+\\sum_{j=1}^{i}\\alpha_j$.”\n- As $r\\to \\infty$, one “show[s] that the slope of $F_i(M,r)$ is $i+\\sum_{j=1}^{i}\\beta_j$ … through a delicate analysis of Newton polygons.”\n- “Finally, we conclude the theorem by the convexity of $F_i(M,r)$.”",
+    "expanded_theorem": "Let $M$ be a solvable differential module of rank $n$ over $\\mathcal{A}_x$. Let\n\t\t\\[\\alpha_1\\geq\\cdots\\geq\\alpha_n\\quad\\mathrm{(resp.}\\quad\\beta_1\\geq\\cdots\\geq\\beta_n\\mathrm{)}\\]\n\t\tbe the $p$-adic slopes (resp. formal slopes) of $M$ listed in the decreasing order. Then for each $1\\leq i\\leq n$, the following inequality holds.\n\t\t\\begin{equation} \n\t\t\t\\sum_{j=1}^{i}\\alpha_j\\leq\\sum_{j=1}^{i}\\beta_j.\n\t\t\\end{equation}",
+    "theorem_type": [
+      "Inequality or Bound",
+      "Universal"
+    ],
+    "mcq": {
+      "question": "Let $M$ be a solvable differential module of rank $n$ over $\\mathcal{A}_x$. Let $\\alpha_1\\ge\\cdots\\ge\\alpha_n$ (resp. $\\beta_1\\ge\\cdots\\ge\\beta_n$) denote the $p$-adic slopes (resp. formal slopes) of $M$, each listed in decreasing order. Under these assumptions, what is the strongest universal inequality relating the partial sums of these slopes for every index $1\\le i\\le n$?",
+      "correct_choice": {
+        "label": "A",
+        "text": "For every integer $i$ with $1\\le i\\le n$, one has $\\displaystyle \\sum_{j=1}^{i}\\alpha_j\\le\\sum_{j=1}^{i}\\beta_j$."
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "For every integer $i$ with $1\\le i\\le n$, one has $\\displaystyle \\sum_{j=1}^{i}\\alpha_j\\le\\sum_{j=1}^{i}\\beta_j + i$."
+        },
+        {
+          "label": "C",
+          "text": "For $i=n$, one has $\\displaystyle \\sum_{j=1}^{n}\\alpha_j\\le\\sum_{j=1}^{n}\\beta_j$."
+        },
+        {
+          "label": "D",
+          "text": "For every integer $i$ with $1\\le i\\le n$, one has $\\displaystyle \\sum_{j=1}^{i}\\alpha_j\\ge\\sum_{j=1}^{i}\\beta_j$."
+        },
+        {
+          "label": "E",
+          "text": "For every integer $i$ with $1\\le i\\le n$, one has $\\displaystyle \\sum_{j=1}^{i}\\alpha_j\\le\\sum_{j=1}^{i-1}\\beta_j+\\beta_i$."
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "E"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "convexity",
+          "tampered_component": "offset_in_slope_matching (adding spurious +i term to the inequality despite slopes already being i+partialsum)",
+          "template_used": "uniformity_effectivity"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "convexity",
+          "tampered_component": "all_indices_requirement (dropping the requirement for every $i$ and keeping only $i=n$)",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "convexity",
+          "tampered_component": "direction_of_inequality (reversing convexity-implied comparison of endpoint slopes)",
+          "template_used": "property_confusion"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "other",
+          "tampered_component": "partial_sum_alignment (mixing indices so the right side is not the $i$th partial sum of formal slopes as required by endpoint slope computation)",
+          "template_used": "wildcard"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2511.16817v1",
+    "paper_link": "http://arxiv.org/abs/2511.16817v1",
+    "theorems_cnt": 4,
+    "theorem": {
+      "env_name": "theorem",
+      "content": "\\label{th-mbound}\n For each $\\epsilon>0$ there is a bound $m(\\epsilon)$ such that  for each $m\\ge m(\\epsilon)$\n there is some $n>\\exp(m^{1/3-\\epsilon})$ with $m/n$ not the sum of $3$ unit fractions.",
+      "start_pos": 5700,
+      "end_pos": 5930,
+      "label": "th-mbound"
+    },
+    "ref_dict": {
+      "th-mbound": "\\begin{theorem}\n \\label{th-mbound}\n For each $\\epsilon>0$ there is a bound $m(\\epsilon)$ such that  for each $m\\ge m(\\epsilon)$\n there is some $n>\\exp(m^{1/3-\\epsilon})$ with $m/n$ not the sum of $3$ unit fractions.\n \\end{theorem}",
+      "th-v": "\\begin{theorem}\n\\label{th-v}\nThere is an absolute positive constant $C$ such that for each pair $m,N$ with \n$4\\le m \\le (\\log N)^2$ the number of $n\\le N$ with $m/n$ not the sum of $3$\nunit fractions is at most $N/\\exp(C(\\log^2(N)/\\varphi(m))^{1/3})$.\n\\end{theorem}"
+    },
+    "post_theorem_intro_text_len": 2716,
+    "post_theorem_intro_text": "For the proof we leverage some of the tools in Elsholtz--Tao \\cite{ET}, which paper was\n principally concerned with the number of representations of $4/n$ as a sum of 3 unit\n fractions.  We also prove a version of Theorem \\ref{th-mbound} that's weaker, but\n numerically explicit, and in particular we obtain the following result.\n \\begin{theorem}\n\\label{th-explicit}\nFor each integer $m\\ge 6.52\\times10^9$ there is a prime $p\\in(m^2,2m^2)$ for which\n$m/p$ is not the sum of $3$ unit fractions.\n\\end{theorem}\n\nComplementing our lower bounds we prove the following upper bound for the \ndistribution of exceptions to the Erd\\H os--Straus--Schinzel conjecture.\n\\begin{theorem}\n\\label{th-v}\nThere is an absolute positive constant $C$ such that for each pair $m,N$ with \n$4\\le m \\le (\\log N)^2$ the number of $n\\le N$ with $m/n$ not the sum of $3$\nunit fractions is at most $N/\\exp(C(\\log^2(N)/\\varphi(m))^{1/3})$.\n\\end{theorem}\nExploiting the large sieve, the proof is largely derivative of Vaughan's theorem in \\cite{V}.\n\nIn our proof of Theorem \\ref{th-mbound} we actually show that not only is there one\nexceptional $n> \\exp(m^{1/3-\\epsilon})$, but that most prime values of $n$ near this\nbound are exceptions.  This might be contrasted with Theorem \\ref{th-v} which implies\nthat when $n\\approx\\exp(m^{1/2})$, most values of $n$ and in fact most primes\nare not exceptions.  So between $\\exp(m^{1/3})$ and $\\exp(m^{1/2})$ there is\na transition from ``usually false\" to ``usually true\".  \n\nThe proof of Theorem \\ref{th-mbound} suggests that the average number of solutions\nfor a prime $n=p \\ge m$ is $\\frac{\\log^3 p}{m} (\\log\\log p)^{O(1)}$. \nIf we ignore the $\\log\\log p $ factor and, as in \\cite[Remark 1.1]{ET} with the case $m=4$, \nmodel the number of solutions at each prime $p$ as a Poisson process with intensity \n$\\frac{\\log^3 p}{m}$, we would expect any given prime $p$ to have ``probability\"\n$\\exp(-(\\log p)^3/m)$ of having no solution. \nThis would suggest that most primes $p>\\exp(m^{1/3+\\epsilon})$ have solutions.\nIt also indicates that there are many exceptional primes \n$p>\\exp(m^{1/2-\\epsilon}) $, \nwhile there are no exceptional primes $p>\\exp(m^{1/2+\\epsilon})$, when $m$ is sufficiently large.\n\n We also consider the more general question of whether $m/n$ can be represented\n as the sum of $j$ unit fractions, showing that there are somewhat large\n exceptional values here as well.\n \\begin{theorem}\n \\label{th-mjbound}\n For each pair of positive integers $j,k$,  there is a number $m(j,k)$ such that for\n each $m\\ge m(j,k)$, we have $m/(km+1)$ not the sum of $j$ unit fractions.\n \\end{theorem}\n\n In addition, we examine the Erd\\H os--Straus--Schinzel conjecture numerically for\n various values of $m$.",
+    "sketch": "In the proof of Theorem~\\ref{th-mbound} they “leverage some of the tools in Elsholtz--Tao \\cite{ET}.” They “actually show that not only is there one exceptional $n> \\exp(m^{1/3-\\epsilon})$, but that most prime values of $n$ near this bound are exceptions.”",
+    "expanded_sketch": "In the proof establishing the main theorem, they “leverage some of the tools in Elsholtz--Tao \\cite{ET}.” They “actually show that not only is there one exceptional $n> \\exp(m^{1/3-\\epsilon})$, but that most prime values of $n$ near this bound are exceptions.”,",
+    "expanded_theorem": "\\label{th-mbound}\n For each $\\epsilon>0$ there is a bound $m(\\epsilon)$ such that  for each $m\\ge m(\\epsilon)$\n there is some $n>\\exp(m^{1/3-\\epsilon})$ with $m/n$ not the sum of $3$ unit fractions.,",
+    "theorem_type": [
+      "Universal–Existential",
+      "Inequality or Bound"
+    ],
+    "mcq": {
+      "question": "Let $\\epsilon>0$ be arbitrary. Under the assumption that there exists a threshold $m(\\epsilon)$ such that the statement below holds for all integers $m\\ge m(\\epsilon)$, what is the strongest guaranteed quantitative conclusion about the existence of an integer $n$ for which the rational number $m/n$ cannot be written as a sum of three unit fractions (i.e., cannot be expressed as $\\frac{1}{a}+\\frac{1}{b}+\\frac{1}{c}$ with $a,b,c\\in\\mathbb{Z}_{>0}$)?",
+      "correct_choice": {
+        "label": "A",
+        "text": "For every $\\epsilon>0$ there exists $m(\\epsilon)$ such that for every integer $m\\ge m(\\epsilon)$, there exists an integer $n>\\exp\\bigl(m^{1/3-\\epsilon}\\bigr)$ for which $\\frac{m}{n}$ is not representable as $\\frac{1}{a}+\\frac{1}{b}+\\frac{1}{c}$ with $a,b,c\\in\\mathbb{Z}_{>0}$."
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "For every $\\epsilon>0$ there exists $m(\\epsilon)$ such that for every integer $m\\ge m(\\epsilon)$, for every integer $n>\\exp\\bigl(m^{1/3-\\epsilon}\\bigr)$ one has that $\\frac{m}{n}$ is not representable as $\\frac{1}{a}+\\frac{1}{b}+\\frac{1}{c}$ with $a,b,c\\in\\mathbb{Z}_{>0}$."
+        },
+        {
+          "label": "C",
+          "text": "For every $\\epsilon>0$ there exists $m(\\epsilon)$ such that for every integer $m\\ge m(\\epsilon)$, there exists an integer $n>m^{1/3-\\epsilon}$ for which $\\frac{m}{n}$ is not representable as $\\frac{1}{a}+\\frac{1}{b}+\\frac{1}{c}$ with $a,b,c\\in\\mathbb{Z}_{>0}$."
+        },
+        {
+          "label": "D",
+          "text": "There exists $\\epsilon_0>0$ and a bound $m_0$ such that for every integer $m\\ge m_0$, there exists an integer $n>\\exp\\bigl(m^{1/3-\\epsilon_0}\\bigr)$ for which $\\frac{m}{n}$ is not representable as $\\frac{1}{a}+\\frac{1}{b}+\\frac{1}{c}$ with $a,b,c\\in\\mathbb{Z}_{>0}$."
+        },
+        {
+          "label": "E",
+          "text": "For every $\\epsilon>0$ there exists $m(\\epsilon)$ such that for every integer $m\\ge m(\\epsilon)$, there exists a prime $n>\\exp\\bigl(m^{1/3-\\epsilon}\\bigr)$ for which $\\frac{m}{n}$ is not representable as $\\frac{1}{a}+\\frac{1}{b}+\\frac{1}{c}$ with $a,b,c\\in\\mathbb{Z}_{>0}$."
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "E"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "other",
+          "tampered_component": "existential n changed to universal n above threshold",
+          "template_used": "quantifier_dependence"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "boundary_range",
+          "tampered_component": "weakened lower bound from $\\exp(m^{1/3-\\epsilon})$ to $m^{1/3-\\epsilon}$",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "other",
+          "tampered_component": "dropped dependence on arbitrary $\\epsilon$ by fixing a single $\\epsilon_0$",
+          "template_used": "uniformity_effectivity"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "counting_estimate",
+          "tampered_component": "upgraded existence of some exceptional $n$ to guaranteed existence of an exceptional prime $n$",
+          "template_used": "wildcard"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2511.17778v1",
+    "paper_link": "http://arxiv.org/abs/2511.17778v1",
+    "theorems_cnt": 3,
+    "theorem": {
+      "env_name": "theorem",
+      "content": "\\label{main thm 1}\nLet $r\\ge 2$ be an integer and $\\chi$ be a primitive Dirichlet character modulo~$q$. Let $C(r)$ be defined as in Table \\ref{Table 1}. Let $a(r) = 2\\log{2}\\left(3.0758r+1.38402\\log(4r)-1.5379\\right)$. Then, for $q \\ge \\max\\{10^{1145},e^{e^{a(r)}}\\}$, if $r=2$ or $q$ is cubefree, we have\n    $$|S_{\\chi}(M,N)| \\le C(r)N^{1-\\frac{1}{r}} q^{\\frac{r+1}{4r^2}}(\\log{q})^{\\frac{1}{2r}}\\left((4r)^{\\omega(q)}m_r(q)\\right)^{\\frac{1}{2r}-\\frac{1}{2r^2}}\\left(\\frac{q}{\\phi(q)}\\right)^{\\frac{1}{r}}.$$\n\n    Furthermore, as $q\\rightarrow\\infty$, we have a constant $D(r)$ from Table \\ref{Table 1} such that\n    $$|S_{\\chi}(M,N)| \\le (D(r)+o(1))N^{1-\\frac{1}{r}} q^{\\frac{r+1}{4r^2}}(\\log{q})^{\\frac{1}{2r}}\\left((4r)^{\\omega(q)}m_r(q)\\right)^{\\frac{1}{2r}-\\frac{1}{2r^2}}\\left(\\frac{q}{\\phi(q)}\\right)^{\\frac{1}{r}}.$$",
+      "start_pos": 67504,
+      "end_pos": 68359,
+      "label": "main thm 1"
+    },
+    "ref_dict": {
+      "main theorem 2": "\\begin{theorem}\\label{main theorem 2}\n    Let $\\chi$ be a primitive Dirichlet character modulo $q$ . Let $C(r)$ be defined as in Table \\ref{Table 1}. Then, for $q \\ge \\max\\{10^{1145}, 2^{4r-2}\\}$, if $r=2$ or $q$ is cubefree, we have\n    $$|S_{\\chi}(M,N)| \\le C(r)N^{1-\\frac{1}{r}} q^{\\frac{r+1}{4r^2}}(\\log{q})^{\\frac{1}{2r}}\\left((4r)^{\\omega(q)}m_r(q)\\right)^{\\frac{1}{2r}}\\left(\\frac{q}{\\phi(q)}\\right)^{\\frac{1}{r}}.$$\n\\end{theorem}",
+      "Table 1": "\\label{Table 1}\n\\end{center}\n\\end{table}\n\nThe theorem above requires $q$ to be very large, so we have the following theorem which is weaker asymptotically but works for smaller values of $q$.\n\n\\begin{",
+      "main thm 1": "\\begin{theorem}\\label{main thm 1}\nLet $r\\ge 2$ be an integer and $\\chi$ be a primitive Dirichlet character modulo~$q$. Let $C(r)$ be defined as in Table \\ref{Table 1}. Let $a(r) = 2\\log{2}\\left(3.0758r+1.38402\\log(4r)-1.5379\\right)$. Then, for $q \\ge \\max\\{10^{1145},e^{e^{a(r)}}\\}$, if $r=2$ or $q$ is cubefree, we have\n    $$|S_{\\chi}(M,N)| \\le C(r)N^{1-\\frac{1}{r}} q^{\\frac{r+1}{4r^2}}(\\log{q})^{\\frac{1}{2r}}\\left((4r)^{\\omega(q)}m_r(q)\\right)^{\\frac{1}{2r}-\\frac{1}{2r^2}}\\left(\\frac{q}{\\phi(q)}\\right)^{\\frac{1}{r}}.$$\n\n    Furthermore, as $q\\rightarrow\\infty$, we have a constant $D(r)$ from Table \\ref{Table 1} such that\n    $$|S_{\\chi}(M,N)| \\le (D(r)+o(1))N^{1-\\frac{1}{r}} q^{\\frac{r+1}{4r^2}}(\\log{q})^{\\frac{1}{2r}}\\left((4r)^{\\omega(q)}m_r(q)\\right)^{\\frac{1}{2r}-\\frac{1}{2r^2}}\\left(\\frac{q}{\\phi(q)}\\right)^{\\frac{1}{r}}.$$\n\\end{theorem}",
+      "weil": "\\begin{theorem}[Weil-type inequality]\\label{weil}\nLet $r\\ge 2$ and $q$ be positive integers such that $r=2$ or $q$ is cubefree. Let $\\chi$ be a primitive Dirichlet modulo $q$. Let $B \\ge 2$ be a real number.  \nThen\n\\begin{equation*}\n\\sum_{x=1}^q\\left|\\sum_{1\\le b\\le B}\\chi(x+b)\\right|^{2r} \\le 2r(4r)^{\\omega(q)} B^{2r}m_r(q)\\sqrt{q} + \\frac{r^{2r}}{r!} B^r q.\n\\end{equation*}\n\\end{theorem}",
+      "General setup": "\\begin{align}\\label{eq bad tuples}\n    \\sum_{(b_1,b_2,\\ldots,b_{2r})\\in \\cB_2}\\sum_{x\\bmod{q}}\\chi(f_1(x)f_2^{(\\phi(q)-1)}(x)) \\le r^{2r} \\binom{\\lfloor B\\rfloor}{r} q \\le \\frac{r^{2r} \\lfloor B\\rfloor^r}{r!}q.\n\\end{align}\nCombining the bounds in \\eqref{eq good tuples} and \\eqref{eq bad tuples}, we get the desired upper bound in the Weil-type inequality.\n\\end{proof}\n\n\\section{General setup}\\label{General setup}\n\nLet $r\\ge 2, N$ be positive integers, and let $q$ be a positive integer that is cubefree when $r\\ge 3$ for the remainder of the paper.\nGiven a primitive Dirichlet character $\\chi\\pmod q$ and integers~$M$ and ~$N\\ge1$, we consider the character sum\n\\begin{equation*}\n    S_\\chi\\left(M, N\\right)=\\sum_{M<n \\le M+N}\\chi(n).\n\\end{equation*}\nGiven an integer $r\\ge2$, we use induction to prove a bound of the form\n\\begin{equation} \\label{eq desired bound}\n| S_\\chi(M,N) | \\le E_{q,r}(N), \\quad\\text{where }\nE_{q,r}(N) = C N^{1-1/r} q^{\\frac{r+1}{4r^2}} (\\log q)^{\\frac{1}{2r}} T(q),\n\\end{equation}\nwhere $C\\ge 1$ is a constant to be determined later, $m_r(q)$ is defined in \\eqref{meet Mr. Q}, and\n\\begin{equation}\\label{meet T(q)}\nT(q) = \\begin{cases}\\bigl((4r)^{\\omega(q)} m_r(q)\\bigr)^{\\left({\\frac{1}{2r}-\\frac{1}{2r^2}}\\right)} \\bigl( \\frac q{\\phi(q)} \\bigr)^{1/r}& \\text{ under the conditions of Theorem } \\ref{main thm 1},\\\\\n\\bigl((4r)^{\\omega(q)} m_r(q)\\bigr)^{\\left({\\frac{1}{2r}}\\right)} \\bigl( \\frac q{\\phi(q)} \\bigr)^{1/r}& \\text{ under the conditions of Theorem } \\ref{main theorem 2} \n.\\end{cases}\n\\end{equation}\n\nWe take $1\\le N\\le q^{\\frac{1}{4}+\\frac{1}{4r}}$ as the base case. In this case, the inequality~\\eqref{eq desired bound} follows from the trivial bound $|S_\\chi(M,N)| \\le N$, since\n\\begin{align*}\n&N \\le C N^{1-1/r} q^{\\frac{r+1}{4r^2}} (\\log q)^{\\frac{1}{2r}} T(q) \\\\\n\\implies &N^{1/r} \\le C q^{\\frac{r+1}{4r^2}} (\\log q)^{\\frac{1}{2r}} T(q) \\\\\n\\implies &N \\le q^{\\frac{r+1}{4r}} \\bigl( C (\\log q)^{\\frac{1}{2r}} T(q) \\bigr)^r,\n\\end{align*}\nwhen $N \\le q^{\\frac{1}{4}+\\frac{1}{4r}}$ (because $C(\\log q)^{\\frac{1}{2r}} T(q) \\ge 1$).\n\\\\\nTherefore, in the induction step, we assume\n\\begin{align}\\label{inductive hypothesis}\n\\text{for $N > q^{\\frac{1}{4}+\\frac{1}{4r}}$, the bound in \\eqref{eq desired bound} holds for all smaller positive integers.}\n\\end{align}"
+    },
+    "post_theorem_intro_text_len": 2699,
+    "post_theorem_intro_text": "\\begin{table}[h!]\n\\begin{center}\n  \\begin{tabular}{ | c | c | c|}\n    \\hline\n    $r$ & $C(r)$ & $D(r)$ \\\\ \\hline\n    2 & 15.219 & 8.362 \\\\ \\hline\n    3 & 5.359 & 4.581\\\\ \\hline\n    4 & 3.671 & 3.396\\\\ \\hline\n    5 & 2.953 & 2.811\\\\ \\hline\n    6 & 2.549 & 2.462\\\\ \\hline\n    7 & 2.290 & 2.229\\\\ \\hline\n    8 & 2.108 & 2.063\\\\ \\hline\n    9 & 1.973 & 1.938\\\\ \\hline\n    $\\ge$10 & 1.869 & 1.841 \\\\ \\hline\n  \\end{tabular}\n  \\caption{Constants in the Burgess inequality for values of $r$.}\\label{Table 1}\n\\end{center}\n\\end{table}\n\nThe theorem above requires $q$ to be very large, so we have the following theorem which is weaker asymptotically but works for smaller values of $q$.\n\n\\begin{theorem}\\label{main theorem 2}\n    Let $\\chi$ be a primitive Dirichlet character modulo $q$ . Let $C(r)$ be defined as in Table \\ref{Table 1}. Then, for $q \\ge \\max\\{10^{1145}, 2^{4r-2}\\}$, if $r=2$ or $q$ is cubefree, we have\n    $$|S_{\\chi}(M,N)| \\le C(r)N^{1-\\frac{1}{r}} q^{\\frac{r+1}{4r^2}}(\\log{q})^{\\frac{1}{2r}}\\left((4r)^{\\omega(q)}m_r(q)\\right)^{\\frac{1}{2r}}\\left(\\frac{q}{\\phi(q)}\\right)^{\\frac{1}{r}}.$$\n\\end{theorem}\n\nTo prove Theorems \\ref{main thm 1} and \\ref{main theorem 2} we need the following explicit Weil-type inequality, which we consider of independent interest. \n\n\\begin{theorem}[Weil-type inequality]\\label{weil}\nLet $r\\ge 2$ and $q$ be positive integers such that $r=2$ or $q$ is cubefree. Let $\\chi$ be a primitive Dirichlet modulo $q$. Let $B \\ge 2$ be a real number.  \nThen\n\\begin{equation*}\n\\sum_{x=1}^q\\left|\\sum_{1\\le b\\le B}\\chi(x+b)\\right|^{2r} \\le 2r(4r)^{\\omega(q)} B^{2r}m_r(q)\\sqrt{q} + \\frac{r^{2r}}{r!} B^r q.\n\\end{equation*}\n\\end{theorem}\n\nThe paper is organized as follows. We prove Theorem \\ref{weil} in Section~\\ref{sec: weil}. In Section~\\ref{General setup} we describe the overall plan for the proofs of our main theorems following the approach for the explicit Burgess inequality detailed in \\cite[Theorem 12.6]{IK2004}. We prove other technical lemmas in Section~\\ref{sec: technical}, some important bounds in Section~\\ref{section asymptotics}, and we prove our main theorems in Section~\\ref{sec: main theorems}.\n\n\\subsection*{Notation}\nMost of the notation in the paper is standard, for example, $\\phi(n)$ is Euler's totient function, for a finite set $S$, $\\#S$ is the number of elements of $S$, $\\lfloor x\\rfloor$ is the floor of $x$, for a pair of integers $a,b$, $(a,b) = \\gcd(a,b)$. We also use Landau's $O$ notation, i.e., $f(x) = O(g(x))$ if there exists a positive constant $C$ such that $|f(x)| \\le C|g(x)|$ for large enough $x$. A notation we use that is less well-known is $O^*$. We say that $f(x) = O^*(g(x))$ if for all $x\\ge x_0$, $|f(x)| \\le |g(x)|$.",
+    "sketch": "To prove Theorems \\ref{main thm 1} and \\ref{main theorem 2} we need the following explicit Weil-type inequality (Theorem~\\ref{weil}). The paper then follows the approach for the explicit Burgess inequality detailed in \\cite[Theorem 12.6]{IK2004}: it proves Theorem~\\ref{weil} in Section~\\ref{sec: weil}, describes the overall plan for the proofs of the main theorems in Section~\\ref{General setup}, proves other technical lemmas in Section~\\ref{sec: technical} and some important bounds in Section~\\ref{section asymptotics}, and finally proves the main theorems in Section~\\ref{sec: main theorems}.",
+    "expanded_sketch": "To prove the main theorem and Theorem \\ref{main theorem 2} we need the following explicit Weil-type inequality.\n\n\\begin{theorem}[Weil-type inequality]\\label{weil}\nLet $r\\ge 2$ and $q$ be positive integers such that $r=2$ or $q$ is cubefree. Let $\\chi$ be a primitive Dirichlet modulo $q$. Let $B \\ge 2$ be a real number.  \nThen\n\\begin{equation*}\n\\sum_{x=1}^q\\left|\\sum_{1\\le b\\le B}\\chi(x+b)\\right|^{2r} \\le 2r(4r)^{\\omega(q)} B^{2r}m_r(q)\\sqrt{q} + \\frac{r^{2r}}{r!} B^r q.\n\\end{equation*}\n\\end{theorem}\n\nThe paper then follows the approach for the explicit Burgess inequality detailed in Iwaniec--Kowalski, \\cite[Theorem 12.6]{IK2004}: it proves Theorem~\\ref{weil} next, describes the overall plan for the proofs of the main theorem and Theorem~\\ref{main theorem 2} as follows.\n\n\\begin{align}\\label{eq bad tuples}\n    \\sum_{(b_1,b_2,\\ldots,b_{2r})\\in \\cB_2}\\sum_{x\\bmod{q}}\\chi(f_1(x)f_2^{(\\phi(q)-1)}(x)) \\le r^{2r} \\binom{\\lfloor B\\rfloor}{r} q \\le \\frac{r^{2r} \\lfloor B\\rfloor^r}{r!}q.\n\\end{align}\nCombining the bounds in \\eqref{eq good tuples} and \\eqref{eq bad tuples}, we get the desired upper bound in the Weil-type inequality.\n\\end{proof}\n\n\\section{General setup}\\label{General setup}\n\nLet $r\\ge 2, N$ be positive integers, and let $q$ be a positive integer that is cubefree when $r\\ge 3$ for the remainder of the paper.\nGiven a primitive Dirichlet character $\\chi\\pmod q$ and integers~$M$ and ~$N\\ge1$, we consider the character sum\n\\begin{equation*}\n    S_\\chi\\left(M, N\\right)=\\sum_{M<n \\le M+N}\\chi(n).\n\\end{equation*}\nGiven an integer $r\\ge2$, we use induction to prove a bound of the form\n\\begin{equation} \\label{eq desired bound}\n| S_\\chi(M,N) | \\le E_{q,r}(N), \\quad\\text{where }\nE_{q,r}(N) = C N^{1-1/r} q^{\\frac{r+1}{4r^2}} (\\log q)^{\\frac{1}{2r}} T(q),\n\\end{equation}\nwhere $C\\ge 1$ is a constant to be determined later, $m_r(q)$ is defined in \\eqref{meet Mr. Q}, and\n\\begin{equation}\\label{meet T(q)}\nT(q) = \\begin{cases}\\bigl((4r)^{\\omega(q)} m_r(q)\\bigr)^{\\left({\\frac{1}{2r}-\\frac{1}{2r^2}}\\right)} \\bigl( \\frac q{\\phi(q)} \\bigr)^{1/r}& \\text{ under the conditions of Theorem } \\ref{main thm 1},\\\\\n\\bigl((4r)^{\\omega(q)} m_r(q)\\bigr)^{\\left({\\frac{1}{2r}}\\right)} \\bigl( \\frac q{\\phi(q)} \\bigr)^{1/r}& \\text{ under the conditions of Theorem } \\ref{main theorem 2} \n.\\end{cases}\n\\end{equation}\n\nWe take $1\\le N\\le q^{\\frac{1}{4}+\\frac{1}{4r}}$ as the base case. In this case, the inequality~\\eqref{eq desired bound} follows from the trivial bound $|S_\\chi(M,N)| \\le N$, since\n\\begin{align*}\n&N \\le C N^{1-1/r} q^{\\frac{r+1}{4r^2}} (\\log q)^{\\frac{1}{2r}} T(q) \\\\\n\\implies &N^{1/r} \\le C q^{\\frac{r+1}{4r^2}} (\\log q)^{\\frac{1}{2r}} T(q) \\\\\n\\implies &N \\le q^{\\frac{r+1}{4r}} \\bigl( C (\\log q)^{\\frac{1}{2r}} T(q) \\bigr)^r,\n\\end{align*}\nwhen $N \\le q^{\\frac{1}{4}+\\frac{1}{4r}}$ (because $C(\\log q)^{\\frac{1}{2r}} T(q) \\ge 1$).\n\\\\\nTherefore, in the induction step, we assume\n\\begin{align}\\label{inductive hypothesis}\n\\text{for $N > q^{\\frac{1}{4}+\\frac{1}{4r}}$, the bound in \\eqref{eq desired bound} holds for all smaller positive integers.}\n\\end{align}\n\nIt then proves other technical lemmas later and some important bounds later, and finally proves the main theorem and Theorem~\\ref{main theorem 2} later.",
+    "expanded_theorem": "\\label{main thm 1}\nLet $r\\ge 2$ be an integer and $\\chi$ be a primitive Dirichlet character modulo~$q$. Let $C(r)$ be defined as in Table \\label{Table 1}\n\\end{center}\n\\end{table}\n\nThe theorem above requires $q$ to be very large, so we have the following theorem which is weaker asymptotically but works for smaller values of $q$.\n\n\\begin{. Let $a(r) = 2\\log{2}\\left(3.0758r+1.38402\\log(4r)-1.5379\\right)$. Then, for $q \\ge \\max\\{10^{1145},e^{e^{a(r)}}\\}$, if $r=2$ or $q$ is cubefree, we have\n    $$|S_{\\chi}(M,N)| \\le C(r)N^{1-\\frac{1}{r}} q^{\\frac{r+1}{4r^2}}(\\log{q})^{\\frac{1}{2r}}\\left((4r)^{\\omega(q)}m_r(q)\\right)^{\\frac{1}{2r}-\\frac{1}{2r^2}}\\left(\\frac{q}{\\phi(q)}\\right)^{\\frac{1}{r}}.$$\n\n    Furthermore, as $q\\rightarrow\\infty$, we have a constant $D(r)$ from the same table such that\n    $$|S_{\\chi}(M,N)| \\le (D(r)+o(1))N^{1-\\frac{1}{r}} q^{\\frac{r+1}{4r^2}}(\\log{q})^{\\frac{1}{2r}}\\left((4r)^{\\omega(q)}m_r(q)\\right)^{\\frac{1}{2r}-\\frac{1}{2r^2}}\\left(\\frac{q}{\\phi(q)}\\right)^{\\frac{1}{r}}.$$",
+    "theorem_type": [
+      "Inequality or Bound",
+      "Asymptotic or Limit"
+    ],
+    "mcq": {
+      "question": "Let $r\\ge 2$ be an integer, $\\chi$ a primitive Dirichlet character modulo $q$, and define $a(r)=2\\log 2\\,\\bigl(3.0758r+1.38402\\log(4r)-1.5379\\bigr)$. Assume $q\\ge \\max\\{10^{1145},e^{e^{a(r)}}\\}$ and that either $r=2$ or $q$ is cubefree. What quantitative upper bound for $|S_{\\chi}(M,N)|$ (and its refinement as $q\\to\\infty$) is guaranteed in terms of $N,q,\\omega(q),m_r(q)$ and $\\phi(q)$?",
+      "correct_choice": {
+        "label": "A",
+        "text": "Under these hypotheses,\n\\[|S_{\\chi}(M,N)| \\le C(r)\\,N^{1-\\frac{1}{r}} q^{\\frac{r+1}{4r^2}}(\\log q)^{\\frac{1}{2r}}\\left((4r)^{\\omega(q)}m_r(q)\\right)^{\\frac{1}{2r}-\\frac{1}{2r^2}}\\left(\\frac{q}{\\phi(q)}\\right)^{\\frac{1}{r}}.\\]\nFurthermore, as $q\\to\\infty$ there is a constant $D(r)$ (from the same table as $C(r)$) such that\n\\[|S_{\\chi}(M,N)| \\le (D(r)+o(1))\\,N^{1-\\frac{1}{r}} q^{\\frac{r+1}{4r^2}}(\\log q)^{\\frac{1}{2r}}\\left((4r)^{\\omega(q)}m_r(q)\\right)^{\\frac{1}{2r}-\\frac{1}{2r^2}}\\left(\\frac{q}{\\phi(q)}\\right)^{\\frac{1}{r}}.\\]"
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "Under these hypotheses,\n\\[|S_{\\chi}(M,N)| \\le C(r)\\,N^{1-\\frac{1}{r}} q^{\\frac{r+1}{4r^2}}(\\log q)^{\\frac{1}{2r}}\\left((4r)^{\\omega(q)}m_r(q)\\right)^{\\frac{1}{2r}}\\left(\\frac{q}{\\phi(q)}\\right)^{\\frac{1}{r}}.\\]\nFurthermore, as $q\\to\\infty$ there is a constant $D(r)$ such that\n\\[|S_{\\chi}(M,N)| \\le (D(r)+o(1))\\,N^{1-\\frac{1}{r}} q^{\\frac{r+1}{4r^2}}(\\log q)^{\\frac{1}{2r}}\\left((4r)^{\\omega(q)}m_r(q)\\right)^{\\frac{1}{2r}}\\left(\\frac{q}{\\phi(q)}\\right)^{\\frac{1}{r}}.\\]"
+        },
+        {
+          "label": "C",
+          "text": "Under these hypotheses,\n\\[|S_{\\chi}(M,N)| \\le C(r)\\,N^{1-\\frac{1}{r}} q^{\\frac{r+1}{4r^2}}(\\log q)^{\\frac{1}{2r}}\\left((4r)^{\\omega(q)}m_r(q)\\right)^{\\frac{1}{2r}}\\left(\\frac{q}{\\phi(q)}\\right)^{\\frac{1}{r}}.\\]\nFurthermore, as $q\\to\\infty$ there is a constant $D(r)$ such that\n\\[|S_{\\chi}(M,N)| \\le (D(r)+o(1))\\,N^{1-\\frac{1}{r}} q^{\\frac{r+1}{4r^2}}(\\log q)^{\\frac{1}{2r}}\\left((4r)^{\\omega(q)}m_r(q)\\right)^{\\frac{1}{2r}}\\left(\\frac{q}{\\phi(q)}\\right)^{\\frac{1}{r}}.\\]"
+        },
+        {
+          "label": "D",
+          "text": "Under these hypotheses,\n\\[|S_{\\chi}(M,N)| \\le C(r)\\,N^{1-\\frac{1}{r}} q^{\\frac{r+1}{4r^2}}(\\log q)^{\\frac{1}{2r}}\\left((4r)^{\\omega(q)}m_r(q)\\right)^{\\frac{1}{2r}-\\frac{1}{2r^2}}\\left(\\frac{q}{\\phi(q)}\\right)^{\\frac{1}{2r}}.\\]\nFurthermore, as $q\\to\\infty$ there is a constant $D(r)$ such that\n\\[|S_{\\chi}(M,N)| \\le (D(r)+o(1))\\,N^{1-\\frac{1}{r}} q^{\\frac{r+1}{4r^2}}(\\log q)^{\\frac{1}{2r}}\\left((4r)^{\\omega(q)}m_r(q)\\right)^{\\frac{1}{2r}-\\frac{1}{2r^2}}\\left(\\frac{q}{\\phi(q)}\\right)^{\\frac{1}{2r}}.\\]"
+        },
+        {
+          "label": "E",
+          "text": "Under these hypotheses,\n\\[|S_{\\chi}(M,N)| \\le C(r)\\,N^{1-\\frac{1}{r}} q^{\\frac{r+1}{4r^2}}(\\log q)^{\\frac{1}{2r}}\\left((4r)^{\\omega(q)}m_r(q)\\right)^{\\frac{1}{2r}-\\frac{1}{2r^2}}\\left(\\frac{\\phi(q)}{q}\\right)^{\\frac{1}{r}}.\\]\nFurthermore, as $q\\to\\infty$ there is a constant $D(r)$ such that\n\\[|S_{\\chi}(M,N)| \\le (D(r)+o(1))\\,N^{1-\\frac{1}{r}} q^{\\frac{r+1}{4r^2}}(\\log q)^{\\frac{1}{2r}}\\left((4r)^{\\omega(q)}m_r(q)\\right)^{\\frac{1}{2r}-\\frac{1}{2r^2}}\\left(\\frac{\\phi(q)}{q}\\right)^{\\frac{1}{r}}.\\]"
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "D"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "trace_identity",
+          "tampered_component": "exponent_on_((4r)^{\\omega(q)}m_r(q))",
+          "template_used": "boundary_range"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "trace_identity",
+          "tampered_component": "drop_small_saving_-1/(2r^2)_in_exponent_on_m_r(q)_factor",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "other",
+          "tampered_component": "exponent_on_(q/\\phi(q))",
+          "template_used": "wildcard"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "property_confusion",
+          "tampered_component": "invert_(q/\\phi(q))_factor",
+          "template_used": "property_confusion"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2511.12781v1",
+    "paper_link": "http://arxiv.org/abs/2511.12781v1",
+    "theorems_cnt": 1,
+    "theorem": {
+      "env_name": "theorem",
+      "content": "\\label{thm:2degenerate}\n  For every $2$-degenerate $n$-vertex graph $G$, we have $\\mathrm{ssp}(G) \\leq n$.",
+      "start_pos": 9732,
+      "end_pos": 9859,
+      "label": "thm:2degenerate"
+    },
+    "ref_dict": {
+      "thm:2degenerate": "\\begin{theorem}\\label{thm:2degenerate}\n  For every $2$-degenerate $n$-vertex graph $G$, we have $\\ssp(G) \\leq n$.\n\\end{theorem}"
+    },
+    "post_theorem_intro_text_len": 1065,
+    "post_theorem_intro_text": "Our proof is inductive and yields a separating path system $\\mathcal{P}$ with some very convenient properties. Namely, if every connected component of $G$ contains at least three vertices, then $\\mathcal{P}$ is such that every edge of $G$ is contained in exactly two of its paths, and every vertex of $G$ is the endpoint of exactly two of its paths. In Section~\\ref{sec3}, we apply Theorem~\\ref{thm:2degenerate} to obtain upper bounds for $\\mathrm{ssp}(G)$ when $G$ is subcubic, planar, or planar bipartite.\n\nWe also study separating path systems for unbalanced complete bipartite graphs $K_{a,b}$, $a \\leq b$. If $a<b/2$, we show that $\\mathrm{ssp}(K_{a,b})=b$. For $a\\geq b/2$, we establish a lower bound of $(\\sqrt{6(b/a)+4}-2)a$ on $\\mathrm{ssp}(K_{a,b})$. This bound is tight at the extremes, that is, when~$a = b/2$ and when $a=b$.\n\nIn what follows, we refer to a path just by its sequence of vertices. That is, for a path with vertex set $\\{v_1,\\ldots,v_\\ell\\}$ where $v_iv_{i+1}$ is an edge for every $1 \\leq i \\leq \\ell-1$, we write $P=(v_1,\\dots,v_\\ell)$.",
+    "sketch": "Our proof is inductive and yields a separating path system $\\mathcal{P}$ with some very convenient properties. Namely, if every connected component of $G$ contains at least three vertices, then $\\mathcal{P}$ is such that every edge of $G$ is contained in exactly two of its paths, and every vertex of $G$ is the endpoint of exactly two of its paths.",
+    "expanded_sketch": "No expanded sketch found.",
+    "expanded_theorem": "\\label{thm:2degenerate}\n  For every $2$-degenerate $n$-vertex graph $G$, we have $\\mathrm{ssp}(G) \\leq n$.",
+    "theorem_type": [
+      "Universal",
+      "Inequality or Bound"
+    ],
+    "mcq": {
+      "question": "Let $G$ be a $2$-degenerate graph on $n$ vertices. What is the strongest universal upper bound on $\\mathrm{ssp}(G)$ in terms of $n$ that is guaranteed to hold for every such graph $G$?",
+      "correct_choice": {
+        "label": "A",
+        "text": "For every $2$-degenerate $n$-vertex graph $G$, one has $\\mathrm{ssp}(G)\\le n$."
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "For every $2$-degenerate $n$-vertex graph $G$, one has $\\mathrm{ssp}(G)\\le n-1$."
+        },
+        {
+          "label": "C",
+          "text": "For every $2$-degenerate $n$-vertex graph $G$, one has $\\mathrm{ssp}(G)=O(n)$."
+        },
+        {
+          "label": "D",
+          "text": "For every $2$-degenerate $n$-vertex graph $G$, one has $\\mathrm{ssp}(G)\\le \\left\\lceil \\tfrac{n}{2}\\right\\rceil$."
+        },
+        {
+          "label": "E",
+          "text": "For every $2$-degenerate $n$-vertex graph $G$, one has $\\mathrm{ssp}(G)\\le 2n$."
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "B"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "other",
+          "tampered_component": "tightness at $n$ (off-by-one strengthening)",
+          "template_used": "wildcard"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "other",
+          "tampered_component": "replaced explicit bound $\\le n$ by asymptotic linear bound",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "other",
+          "tampered_component": "range trap: replaced $n$ by substantially smaller fraction of $n$",
+          "template_used": "boundary_range"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "other",
+          "tampered_component": "strongest-universal misread: relaxed to a looser linear bound $2n$",
+          "template_used": "property_confusion"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2511.08774v1",
+    "paper_link": "http://arxiv.org/abs/2511.08774v1",
+    "theorems_cnt": 1,
+    "theorem": {
+      "env_name": "theorem",
+      "content": "Let $d\\in\\mathbb{N}$ such that $d\\geq 2$. \n    Assume the data ${\\bf a}$, $a_0,S,g$ are smooth enough and the characteristic curves fullfill the domain $\\mathbb{R}^d_+$. Then, for all compact sets $X \\subset \\mathbb{R}^d_+$, there exist constants $C_X^{(0)}, \\dots, C_X^{(3)} >0$ which do not depend on $h$, $\\varepsilon$, $\\Delta s$, such that, if $C_X^{(0)}\\,\\Delta s  \\leq h,$\n    the approximation $\\tilde u^{\\varepsilon,\\Delta s}_h$ given by the scheme \\eqref{eq_approx_u_h_epsilon_ds} verifies the error estimate:\n    \\begin{align}\n        \\underset{x \\in X}{\\sup} |u(x) - \\tilde u^{\\varepsilon,\\Delta s}_h(x)| \n        \\leq & C_X^{(1)} h^2 + C_X^{(2)} \\frac{\\varepsilon^{d}}{h^{d}} + C_X^{(3)} \\frac{\\Delta s}{h},\n        \\label{eq_error_scheme_intro}\n    \\end{align}\n    where $h$ is the size of support of the kernel function $\\zeta^h$, and where $\\varepsilon$ and $\\Delta s$ are  respectively, the spatial mesh sizes for the transverse variable $\\xi\\in \\mathbb{R}^{d-1}$ and $s\\in\\RR_+$.\n    \\label{th_cv_scheme_intro}",
+      "start_pos": 870021,
+      "end_pos": 871062,
+      "label": "eq_error_scheme_intro"
+    },
+    "ref_dict": {
+      "eq_system": "\\begin{equation}\n    \\dive({\\bf a} u)(x) + a_0(x) u(x) = S(x),\\quad \\forall x\\in \\RR^d_+ := (0,+\\infty) \\times \\RR^{d-1},\n    \\label{eq_system}\n\\end{equation}",
+      "eq_approx_u_h_epsilon_ds": "\\begin{equation}\n    \\tilde u^{\\varepsilon,\\Delta s}_h(x) :=\\sum_{j=n_\\ell}^{+\\infty}\\sum_{k\\in\\mathbb{Z}^{d-1}}\n    \\omega_k^j u_k^j \\zeta^h \\left(x-x_k^j \\right) \n    = \\sum_{j=n_\\ell}^{+\\infty}\\sum_{k\\in\\mathbb{Z}^{d-1}}\n    \\rho_k^j \\zeta^h \\left(x-x_k^j \\right).\n    \\label{eq_approx_u_h_epsilon_ds}\n\\end{equation}",
+      "eq_error_scheme_intro": "\\begin{align}\n        \\underset{x \\in X}{\\sup} |u(x) - \\tilde u^{\\varepsilon,\\Delta s}_h(x)| \n        \\leq & C_X^{(1)} h^2 + C_X^{(2)} \\frac{\\varepsilon^{d}}{h^{d}} + C_X^{(3)} \\frac{\\Delta s}{h},\n        \\label{eq_error_scheme_intro}\n    \\end{align}",
+      "boundary": "\\begin{align}\n    u(0,\\xi) = g(\\xi), \\quad \\forall \\xi \\in \\RR^{d-1},\n    \\label{boundary}\n\\end{align}",
+      "eq_landscape_model": "\\begin{array}{lll}\n         & \\displaystyle\n        \\dt h+\\dive(h {\\bf v}) = r, \\vspace{1mm} \\\\\n        &\\displaystyle\n        \\dt (hc)+\\dive (ch {\\bf v}) = \\rho_s \\, e \\left( \\frac{h}{H} \\right)^m \\left( \\frac{|{\\bf v}|}{V} \\right)^n - \\rho_s \\, s \\, \\frac{c}{c_{sat}}, \\vspace{1mm} \\\\\n        &\\displaystyle\n        \\dt z = K \\Delta z - e \\left( \\frac{h}{H} \\right)^m \\left( \\frac{|{\\bf v}|}{V} \\right)^n + s \\, \\frac{c}{c_{sat}}. \n     \\end{array} \\right.\n     \\label{eq_landscape_model}\n\\end{equation}\nHere, $\\rho_s$ represents the sediment volumetric mass, $e$ is an erosion rate, $s$ a sediment redeposition rate whereas $r$ is a source term representing precipitation, evaporation or infiltration. The constant $K$ is a diffusion constant that represents the soil creep effect. The creep effect is a large-scale effect of soil diffusion that was introduced in~\\cite{davis_convex_1892} and used in~\\cite{gilbert_convexity_1909} to explain the convexity of hilltop profiles. The erosion is modeled by a stream incision law, see~\\cite{howard_channel_1983}. This system is written in a closed form with the fluid velocity written as ${\\bf v}=- V \\, \\nabla (h+z)$, with $V \\geq 0$ a characteristic speed of the fluid, and where $h+z$ is the surface elevation. \\\\\n\nUsually, the fluid speed $|{\\bf v}|$ is much larger than the erosion rate $|\\partial_t z|$, see e.g. the experiment in~\\cite{guerin_streamwise_2020}. In order to focus on the erosion phenomenon, one has to consider large time scales. In this asymptotic regime, the time variations of the fluid height and sediment concentration become negligible: one is left with the equations:\n\\begin{equation}\\label{div-h}\n    \\left\\{ \\begin{array}{lll}\n         \\displaystyle\n         \\dive(h{\\bf v}) = r,\\hspace{2mm}\\\\ \n         \\displaystyle\n         \\dive(ch {\\bf v}) = \\rho_s \\, e \\left( \\frac{h}{H} \\right)^m \\left( \\frac{|{\\bf v}|}{V} \\right)^n - \\rho_s \\, s \\, \\frac{c}{c_{sat}},\n     \\end{array}"
+    },
+    "post_theorem_intro_text_len": 1396,
+    "post_theorem_intro_text": "\\noindent The first term in the right hand side of \\eqref{eq_error_scheme_intro} is an interpolation error, stemming from the approximation of $u$ by $u\\ast \\zeta^h$ with $\\zeta^h$ a kernel function approximating the Dirac mass. The function $u\\ast\\zeta^h$ is written in a integral form involving the characteristic curves and the values of the solution along these curves. The second term is a quadrature error, caused by the discretization of the former integral along characteristics. The last term is the discretization error ``in time'', associated to the time discretization by an Euler scheme of the ordinary differential equations for the characteristic curves and the values of the solution $u$ along these curves.\n\n\\medskip\nThis paper is organized as follow. First, in section~\\ref{sec_formula_u}, we introduce a representation formula for the solution $u$ of equation~\\eqref{eq_system}-\\eqref{boundary} along the characteristic curves. Then, in section~\\ref{sec_discretization}, we introduce our numerical method and prove a convergence result on the scheme under suitable assumptions. This result is completed in section ~\\ref{sec_test_num} by numerical convergence tests for various test cases. Finally, we apply our numerical scheme to carry out numerical simulations of a landscape evolution model \\eqref{eq_landscape_model}. Here the landscape is a tilted plane eroded by a fluid.",
+    "sketch": "The post-theorem text explains the error bound in \\eqref{eq_error_scheme_intro} by splitting it into three contributions: (1) $C_X^{(1)}h^2$ is “an interpolation error, stemming from the approximation of $u$ by $u\\ast\\zeta^h$ with $\\zeta^h$ a kernel function approximating the Dirac mass.” This uses that “$u\\ast\\zeta^h$ is written in a integral form involving the characteristic curves and the values of the solution along these curves.” (2) $C_X^{(2)}\\,\\varepsilon^d/h^d$ is “a quadrature error, caused by the discretization of the former integral along characteristics.” (3) $C_X^{(3)}\\,\\Delta s/h$ is “the discretization error ‘in time’, associated to the time discretization by an Euler scheme of the ordinary differential equations for the characteristic curves and the values of the solution $u$ along these curves.”",
+    "expanded_sketch": "The post-theorem text explains the error bound in the main theorem by splitting it into three contributions: (1) $C_X^{(1)}h^2$ is “an interpolation error, stemming from the approximation of $u$ by $u\\ast\\zeta^h$ with $\\zeta^h$ a kernel function approximating the Dirac mass.” This uses that “$u\\ast\\zeta^h$ is written in a integral form involving the characteristic curves and the values of the solution along these curves.” (2) $C_X^{(2)}\\,\\varepsilon^d/h^d$ is “a quadrature error, caused by the discretization of the former integral along characteristics.” (3) $C_X^{(3)}\\,\\Delta s/h$ is “the discretization error ‘in time’, associated to the time discretization by an Euler scheme of the ordinary differential equations for the characteristic curves and the values of the solution $u$ along these curves.”",
+    "expanded_theorem": "Let $d\\in\\mathbb{N}$ such that $d\\geq 2$. \nAssume the data ${\\bf a}$, $a_0,S,g$ are smooth enough and the characteristic curves fullfill the domain $\\mathbb{R}^d_+$. Then, for all compact sets $X \\subset \\mathbb{R}^d_+$, there exist constants $C_X^{(0)}, \\dots, C_X^{(3)} >0$ which do not depend on $h$, $\\varepsilon$, $\\Delta s$, such that, if $C_X^{(0)}\\,\\Delta s  \\leq h,$\nthe approximation $\\tilde u^{\\varepsilon,\\Delta s}_h$ given by the scheme\n\\begin{equation}\n    \\tilde u^{\\varepsilon,\\Delta s}_h(x) :=\\sum_{j=n_\\ell}^{+\\infty}\\sum_{k\\in\\mathbb{Z}^{d-1}}\n    \\omega_k^j u_k^j \\zeta^h \\left(x-x_k^j \\right) \n    = \\sum_{j=n_\\ell}^{+\\infty}\\sum_{k\\in\\mathbb{Z}^{d-1}}\n    \\rho_k^j \\zeta^h \\left(x-x_k^j \\right).\n    \\label{eq_approx_u_h_epsilon_ds}\n\\end{equation}\nverifies the error estimate:\n\\begin{align}\n    \\underset{x \\in X}{\\sup} |u(x) - \\tilde u^{\\varepsilon,\\Delta s}_h(x)| \n    \\leq & C_X^{(1)} h^2 + C_X^{(2)} \\frac{\\varepsilon^{d}}{h^{d}} + C_X^{(3)} \\frac{\\Delta s}{h},\n    \\label{eq_error_scheme_intro}\n\\end{align}\nwhere $h$ is the size of support of the kernel function $\\zeta^h$, and where $\\varepsilon$ and $\\Delta s$ are  respectively, the spatial mesh sizes for the transverse variable $\\xi\\in \\mathbb{R}^{d-1}$ and $s\\in\\RR_+$. \n\\label{th_cv_scheme_intro}",
+    "theorem_type": [
+      "Inequality or Bound",
+      "Existential–Universal"
+    ],
+    "mcq": {
+      "question": "Let $d\\in\\mathbb{N}$ with $d\\ge 2$. Assume the data ${\\bf a}$, $a_0$, $S$, $g$ are smooth enough and the characteristic curves stay in the domain $\\mathbb{R}^d_+$. For a fixed compact set $X\\subset\\mathbb{R}^d_+$, consider the approximation\n\\[\n\\tilde u^{\\varepsilon,\\Delta s}_h(x):=\\sum_{j=n_\\ell}^{+\\infty}\\sum_{k\\in\\mathbb{Z}^{d-1}}\\omega_k^j u_k^j\\,\\zeta^h(x-x_k^j)\n=\\sum_{j=n_\\ell}^{+\\infty}\\sum_{k\\in\\mathbb{Z}^{d-1}}\\rho_k^j\\,\\zeta^h(x-x_k^j),\n\\]\nwhere $h$ is the size of support of the kernel $\\zeta^h$, and $\\varepsilon$ and $\\Delta s$ are the spatial mesh sizes for the transverse variable $\\xi\\in\\mathbb{R}^{d-1}$ and for $s\\in\\mathbb{R}_+$, respectively. Under these assumptions, what is the strongest uniform error bound on $X$ that is guaranteed to hold (with constants independent of $h$, $\\varepsilon$, and $\\Delta s$), provided $\\Delta s$ is small enough relative to $h$?",
+      "correct_choice": {
+        "label": "A",
+        "text": "For every compact $X\\subset\\mathbb{R}^d_+$ there exist constants $C_X^{(0)},\\dots,C_X^{(3)}>0$, independent of $h$, $\\varepsilon$, and $\\Delta s$, such that if $C_X^{(0)}\\,\\Delta s\\le h$, then\n\\[\n\\sup_{x\\in X}\\bigl|u(x)-\\tilde u^{\\varepsilon,\\Delta s}_h(x)\\bigr|\\le C_X^{(1)}h^2\\;+\nC_X^{(2)}\\frac{\\varepsilon^{d}}{h^{d}}\\;+\nC_X^{(3)}\\frac{\\Delta s}{h}.\n\\]\n"
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "For every compact $X\\subset\\mathbb{R}^d_+$ there exist constants $C_X^{(0)},\\dots,C_X^{(3)}>0$, independent of $h$, $\\varepsilon$, and $\\Delta s$, such that if $C_X^{(0)}\\,\\Delta s\\le h$, then\n\\[\n\\sup_{x\\in X}\\bigl|u(x)-\\tilde u^{\\varepsilon,\\Delta s}_h(x)\\bigr|\\le C_X^{(1)}h^2\\;+\nC_X^{(2)}\\frac{\\varepsilon^{d-1}}{h^{d}}\\;+\nC_X^{(3)}\\frac{\\Delta s}{h}.\n\\]\n"
+        },
+        {
+          "label": "C",
+          "text": "For every compact $X\\subset\\mathbb{R}^d_+$ there exist constants $C_X^{(0)},C_X^{(1)},C_X^{(2)},C_X^{(3)}>0$, independent of $h$, $\\varepsilon$, and $\\Delta s$, such that if $C_X^{(0)}\\,\\Delta s\\le h$, then\n\\[\n\\sup_{x\\in X}\\bigl|u(x)-\\tilde u^{\\varepsilon,\\Delta s}_h(x)\\bigr|\\le C_X^{(1)}h\\;+\nC_X^{(2)}\\frac{\\varepsilon^{d}}{h^{d}}\\;+\nC_X^{(3)}\\frac{\\Delta s}{h}.\n\\]\n"
+        },
+        {
+          "label": "D",
+          "text": "For every compact $X\\subset\\mathbb{R}^d_+$ there exist constants $C_X^{(0)},\\dots,C_X^{(3)}>0$, independent of $h$, $\\varepsilon$, and $\\Delta s$, such that if $C_X^{(0)}\\,\\Delta s\\le h$, then\n\\[\n\\sup_{x\\in X}\\bigl|u(x)-\\tilde u^{\\varepsilon,\\Delta s}_h(x)\\bigr|\\le C_X^{(1)}h^2\\;+\nC_X^{(2)}\\frac{\\varepsilon^{d}}{h^{d}}\\;+\nC_X^{(3)}\\Delta s.\n\\]\n"
+        },
+        {
+          "label": "E",
+          "text": "For every compact $X\\subset\\mathbb{R}^d_+$ there exist constants $C_X^{(0)},\\dots,C_X^{(3)}>0$, independent of $h$, $\\varepsilon$, and $\\Delta s$, such that if $C_X^{(0)}\\,\\Delta s\\le h$, then\n\\[\n\\sup_{x\\in X}\\bigl|u(x)-\\tilde u^{\\varepsilon,\\Delta s}_h(x)\\bigr|\\le C_X^{(1)}h^2\\;+\nC_X^{(2)}\\frac{\\varepsilon^{d}}{h^{d-1}}\\;+\nC_X^{(3)}\\frac{\\Delta s}{h}.\n\\]\n"
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "E"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "counting_estimate",
+          "tampered_component": "dimension-dependent quadrature scaling (power of \\varepsilon)",
+          "template_used": "boundary_range"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "regularity",
+          "tampered_component": "interpolation error order reduced from O(h^2) to O(h)",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "computational_check",
+          "tampered_component": "time/Euler discretization term missing 1/h factor",
+          "template_used": "property_confusion"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "counting_estimate",
+          "tampered_component": "quadrature term denominator power of h changed (\\varepsilon^d/h^{d-1})",
+          "template_used": "wildcard"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2511.07712v2",
+    "paper_link": "http://arxiv.org/abs/2511.07712v2",
+    "theorems_cnt": 1,
+    "theorem": {
+      "env_name": "thm",
+      "content": "[\\cite{FYW12}]\\label{thm:FYW}\nLet $G$ be a graph of order $n$ with chromatic number $3\\leq \\chi \\leq \\frac{n}{2}$ and least adjacency eigenvalue $\\lambda_n$.\nThen\n$$\n\\chi \\le \\left(\\frac{n}{2}+1+\\lambda_n\\right) +\n\\sqrt{\\left(\\frac{n}{2}+1+\\lambda_n\\right)^2 - 4(\\lambda_n+1)\\left(\\lambda_n + \\frac{n}{2}\\right)},\n$$\nwith equality if and only if $G \\cong \\left(K_{\\frac{\\chi}{2}}\\cup\\tfrac{n-\\chi}{2}K_1\\right) \\vee \\left(K_{\\frac{\\chi}{2}}\\cup\\tfrac{n-\\chi}{2}K_1\\right)$, where both $n$ and $\\chi$ are even.",
+      "start_pos": 7287,
+      "end_pos": 7817,
+      "label": "thm:FYW"
+    },
+    "ref_dict": {},
+    "post_theorem_intro_text_len": 278,
+    "post_theorem_intro_text": "Fan, Yu and Wang~\\cite{FYW12} conjectured that the above bound continues to hold for \n$\\frac{n}{2}<\\chi\\le n-1$. In this paper we resolve this conjecture. This is achieved by replacing the calculus-based approach used in \\cite[Section~3]{FYW12}\nwith a purely algebraic approach.",
+    "sketch": "The post-theorem introduction gives only a high-level proof approach: to resolve the conjecture extending the bound to $\\frac{n}{2}<\\chi\\le n-1$, the paper \"replac[es] the calculus-based approach used in \\cite[Section~3]{FYW12} with a purely algebraic approach.\"",
+    "expanded_sketch": "The post-theorem introduction gives only a high-level proof approach: to resolve the conjecture extending the bound to $\\frac{n}{2}<\\chi\\le n-1$, the paper \"replac[es] the calculus-based approach used in \\cite[Section~3]{FYW12} with a purely algebraic approach.\"",
+    "expanded_theorem": "[\\cite{FYW12}]\\label{thm:FYW}\nLet $G$ be a graph of order $n$ with chromatic number $3\\leq \\chi \\leq \\frac{n}{2}$ and least adjacency eigenvalue $\\lambda_n$.\nThen\n$$\n\\chi \\le \\left(\\frac{n}{2}+1+\\lambda_n\\right) +\n\\sqrt{\\left(\\frac{n}{2}+1+\\lambda_n\\right)^2 - 4(\\lambda_n+1)\\left(\\lambda_n + \\frac{n}{2}\\right)},\n$$\nwith equality if and only if $G \\cong \\left(K_{\\frac{\\chi}{2}}\\cup\\tfrac{n-\\chi}{2}K_1\\right) \\vee \\left(K_{\\frac{\\chi}{2}}\\cup\\tfrac{n-\\chi}{2}K_1\\right)$, where both $n$ and $\\chi$ are even.,",
+    "theorem_type": [
+      "Inequality or Bound",
+      "Biconditional or Equivalence"
+    ],
+    "mcq": {
+      "question": "Let $G$ be a graph of order $n$ with chromatic number $\\chi$ satisfying $3\\le \\chi\\le \\tfrac{n}{2}$, and let $\\lambda_n$ denote the least adjacency eigenvalue of $G$. What is the strongest universal upper bound on $\\chi$ in terms of $n$ and $\\lambda_n$ (including the characterization of when equality holds)?",
+      "correct_choice": {
+        "label": "A",
+        "text": "$$\\chi \\le \\left(\\frac{n}{2}+1+\\lambda_n\\right) +\n\\sqrt{\\left(\\frac{n}{2}+1+\\lambda_n\\right)^2 - 4(\\lambda_n+1)\\left(\\lambda_n + \\frac{n}{2}\\right)}.$$ Moreover, equality holds if and only if $n$ and $\\chi$ are both even and\n$$G \\cong \\left(K_{\\frac{\\chi}{2}}\\cup\\tfrac{n-\\chi}{2}K_1\\right) \\vee \\left(K_{\\frac{\\chi}{2}}\\cup\\tfrac{n-\\chi}{2}K_1\\right).$$"
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "$$\\chi \\le \\left(\\frac{n}{2}+1+\\lambda_n\\right) +\n\\sqrt{\\left(\\frac{n}{2}+1+\\lambda_n\\right)^2 - 4(\\lambda_n+1)\\left(\\lambda_n + \\frac{n}{2}\\right)},$$\nwith equality if and only if\n$$G \\cong \\left(K_{\\chi/2}\\cup\\tfrac{n-\\chi}{2}K_1\\right) \\vee \\left(K_{\\chi/2}\\cup\\tfrac{n-\\chi}{2}K_1\\right)$$\n(and in particular $\\chi$ must be even), with no additional parity restriction on $n$."
+        },
+        {
+          "label": "C",
+          "text": "$$\\chi \\le \\left(\\frac{n}{2}+1+\\lambda_n\\right) +\n\\sqrt{\\left(\\frac{n}{2}+1+\\lambda_n\\right)^2 - 4(\\lambda_n+1)\\left(\\lambda_n + \\frac{n}{2}\\right)}.$$"
+        },
+        {
+          "label": "D",
+          "text": "$$\\chi \\le \\left(\\frac{n}{2}+1+\\lambda_n\\right) +\n\\sqrt{\\left(\\frac{n}{2}+1+\\lambda_n\\right)^2 - 4(\\lambda_n+1)\\left(\\lambda_n + \\frac{n}{2}\\right)},$$\nfor all graphs of order $n$ with $3\\le \\chi\\le n-1$; moreover, equality holds if and only if $n$ and $\\chi$ are even and\n$$G \\cong \\left(K_{\\frac{\\chi}{2}}\\cup\\tfrac{n-\\chi}{2}K_1\\right) \\vee \\left(K_{\\frac{\\chi}{2}}\\cup\\tfrac{n-\\chi}{2}K_1\\right).$$"
+        },
+        {
+          "label": "E",
+          "text": "$$\\chi \\le \\left(\\frac{n}{2}+1+\\lambda_n\\right) +\n\\sqrt{\\left(\\frac{n}{2}+1+\\lambda_n\\right)^2 - 4(\\lambda_n+1)\\left(\\lambda_n + n\\right)},$$\nwith equality if and only if $n$ and $\\chi$ are both even and\n$$G \\cong \\left(K_{\\frac{\\chi}{2}}\\cup\\tfrac{n-\\chi}{2}K_1\\right) \\vee \\left(K_{\\frac{\\chi}{2}}\\cup\\tfrac{n-\\chi}{2}K_1\\right).$$"
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "E"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "case_split",
+          "tampered_component": "parity requirement in equality case (drop $n$ even)",
+          "template_used": "property_confusion"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "other",
+          "tampered_component": "dropped equality characterization (extremal structure and parity conditions)",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "case_split",
+          "tampered_component": "range restriction $\\chi\\le n/2$ (extend to $\\chi\\le n-1$)",
+          "template_used": "boundary_range"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "other",
+          "tampered_component": "algebraic expression under the square root (replace $\\lambda_n+\\tfrac n2$ by $\\lambda_n+n$)",
+          "template_used": "wildcard"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2511.06868v1",
+    "paper_link": "http://arxiv.org/abs/2511.06868v1",
+    "theorems_cnt": 2,
+    "theorem": {
+      "env_name": "theorem",
+      "content": "\\label{thm:diameter}\n    Let $f:\\mathbb{R}^n\\to \\mathbb{R}$ be locally Lipschitz and definable in a polynomially bounded o-minimal structure. For any bounded $X\\subset \\mathbb{R}^n$, there exist $\\bar{\\alpha},\\beta,\\epsilon,\\varsigma_1,\\varsigma_2>0$ and $\\theta\\in (0,1)$ such that for any subgradient sequence $(x_k)_{k\\in \\mathbb{N}}$ with step sizes $0<\\alpha_{K-1} \\le \\cdots \\le \\alpha_0 \\le \\bar{\\alpha}$ and $x_{\\llbracket 0,K \\rrbracket} \\subset X\\cap [ |f| \\le \\epsilon]$ for some $K\\in \\mathbb{N}$, we have\n        \\begin{align*}\n        \\mathrm{diam}(x_{\\llbracket 0,K \\rrbracket}) \\le~&\\varsigma_1\\left(\\mathrm{sgn}(f(x_0))|f(x_0)|^{1-\\theta}-\\mathrm{sgn}(f(x_K))|f(x_K)|^{1-\\theta}\\right) +\\cdots\\\\\n        &+\\varsigma_2\\left(\\alpha_0^\\beta+ \\sum_{k=0}^{K-1}\\alpha_k^{1+\\beta} +\\left(\\sum_{k=0}^{K-1}\\alpha_k^{1+\\beta}\\right)^{1-\\theta}+  \\sum_{k=0}^{K-1} \\alpha_k \\left(\\sum_{j=k}^{K-1} \\alpha_j^{1+\\beta}\\right)^\\theta\\right).\n    \\end{align*}",
+      "start_pos": 10572,
+      "end_pos": 11560,
+      "label": "thm:diameter"
+    },
+    "ref_dict": {
+      "thm:diameter": "\\begin{theorem}\\label{thm:diameter}\n    Let $f:\\mathbb{R}^n\\to \\mathbb{R}$ be locally Lipschitz and definable in a polynomially bounded o-minimal structure. For any bounded $X\\subset \\mathbb{R}^n$, there exist $\\bar{\\alpha},\\beta,\\epsilon,\\varsigma_1,\\varsigma_2>0$ and $\\theta\\in (0,1)$ such that for any subgradient sequence $(x_k)_{k\\in \\mathbb{N}}$ with step sizes $0<\\alpha_{K-1} \\le \\cdots \\le \\alpha_0 \\le \\bar{\\alpha}$ and $x_{\\llbracket 0,K \\rrbracket} \\subset X\\cap [ |f| \\le \\epsilon]$ for some $K\\in \\mathbb{N}$, we have\n        \\begin{align*}\n        \\mathrm{diam}(x_{\\llbracket 0,K \\rrbracket}) \\le~&\\varsigma_1\\left(\\mathrm{sgn}(f(x_0))|f(x_0)|^{1-\\theta}-\\mathrm{sgn}(f(x_K))|f(x_K)|^{1-\\theta}\\right) +\\cdots\\\\\n        &+\\varsigma_2\\left(\\alpha_0^\\beta+ \\sum_{k=0}^{K-1}\\alpha_k^{1+\\beta} +\\left(\\sum_{k=0}^{K-1}\\alpha_k^{1+\\beta}\\right)^{1-\\theta}+  \\sum_{k=0}^{K-1} \\alpha_k \\left(\\sum_{j=k}^{K-1} \\alpha_j^{1+\\beta}\\right)^\\theta\\right).\n    \\end{align*}\n\\end{theorem}",
+      "cor:1/k": "\\begin{corollary}\n    \\label{cor:1/k}\n    Let $f:\\mathbb{R}^n\\to \\mathbb{R}$ be locally Lipschitz and definable in a polynomially bounded o-minimal structure. Any bounded subgradient sequence $(x_k)_{k\\in \\mathbb{N}}$ with decreasing step sizes $(\\alpha_k)_{k\\in \\mathbb{N}} \\sim (1/(k+1))_{k\\in \\mathbb{N}}$ converges to a critical point of $f$.\n\\end{corollary}"
+    },
+    "post_theorem_intro_text_len": 3445,
+    "post_theorem_intro_text": "Theorem \\ref{thm:diameter} requires the objective function to be definable in a polynomially bounded o-minimal structure, which we recall at the beginning of Section \\ref{sec:o-minimal}. We also need the step sizes $(\\alpha_k)_{k\\in \\mathbb{N}}$ associated with the sequence to be small and decreasing, which coincides with the classical choices of step sizes in nonsmooth optimization \\cite{polyak1967general,polyak1978subgradient,alber1998projected}. The constants that appear in the theorem depend only on the local geometry of $f$. In particular, $\\theta$ is an exponent that appears at the \\L{}ojasiewicz gradient inequality of $f$ when restricted on certain smooth manifolds. \n\nCombining with the existing guarantees for path-differentiable functions, Theorem \\ref{thm:diameter} implies that bounded subgradient sequences converge to critical points of $f$, given that certain summations of step sizes are finite. This is the case when the step sizes $(\\alpha_k)_{k\\in \\mathbb{N}}$ decrease and are of order $1/k$, which is widely used in the subgradient method for convex functions \\cite{shor1985book,beck2017first}. Given two sequences of positive scalars $(a_k)_{k\\in \\mathbb{N}}$ and $(b_k)_{k\\in \\mathbb{N}}$, we write $(a_k)_{k\\in \\mathbb{N}} \\sim (b_k)_{k\\in \\mathbb{N}}$ if there exist $c,C>0$ such that $c \\le a_k/b_k \\le C$ for all $k\\in \\mathbb{N}$.\n\\begin{corollary}\n    \\label{cor:1/k}\n    Let $f:\\mathbb{R}^n\\to \\mathbb{R}$ be locally Lipschitz and definable in a polynomially bounded o-minimal structure. Any bounded subgradient sequence $(x_k)_{k\\in \\mathbb{N}}$ with decreasing step sizes $(\\alpha_k)_{k\\in \\mathbb{N}} \\sim (1/(k+1))_{k\\in \\mathbb{N}}$ converges to a critical point of $f$.\n\\end{corollary}\nWith Theorem \\ref{thm:diameter}, the proof of Corollary \\ref{cor:1/k} is quite straightforward: Given a bounded subgradient sequence $(x_k)_{k\\in \\mathbb{N}}$, by \\cite[Theorem 3.2]{davis2020stochastic}, its limit points are critical and $(f(x_k))_{k\\in \\mathbb{N}}$ converges to $f^*\\in \\mathbb{R}^n$ as $(\\alpha_k)_{k\\in \\mathbb{N}}$ is not summable. We apply Theorem \\ref{thm:diameter} to the sequence with $f$ replaced by $f - f^*$, which yields an upper bound on $\\mathrm{diam}(x_{\\llbracket k_1,k_2 \\rrbracket})$ for arbitrary $k_1,k_2\\in \\mathbb{N}$ that are sufficiently large. A direct calculation shows that this upper bound diminishes as $k_1\\to \\infty$, which implies that the sequence $(x_k)_{k\\in \\mathbb{N}}$ is Cauchy and thus convergent. This completes the proof of Corollary \\ref{cor:1/k}.\n\nFrom the previous discussions, it is evident that the proof of Theorem \\ref{thm:diameter} must leverage the unique geometric properties of o-minimal structures. Our approach diverges from the literature \\cite{davis2020stochastic,bolte2022long,bolte2025inexact}, which relies on the continuous-time limit of subgradient sequences. Instead, the proof hinges on the stratifications of definable sets with strong metric properties, which is discussed in Section \\ref{sec:o-minimal}. Building on these stratifications, we decompose functions into smooth pieces with locally Lipschitz Riemannian gradients, which relate to their subdifferentials. This is the object of Section \\ref{sec:decomposition}. Finally, we prove Theorem \\ref{thm:diameter} in Section \\ref{sec:main_proof}, which requires analyzing subgradient sequences as they alternate between the components proposed in Section \\ref{sec:decomposition}.",
+    "sketch": "From the previous discussions, it is evident that the proof of Theorem \\ref{thm:diameter} must leverage the unique geometric properties of o-minimal structures. The approach “diverges from the literature \\cite{davis2020stochastic,bolte2022long,bolte2025inexact}, which relies on the continuous-time limit of subgradient sequences.” Instead, the proof “hinges on the stratifications of definable sets with strong metric properties” (Section \\ref{sec:o-minimal}). Building on these stratifications, the argument “decompose[s] functions into smooth pieces with locally Lipschitz Riemannian gradients, which relate to their subdifferentials” (Section \\ref{sec:decomposition}). Finally, Theorem \\ref{thm:diameter} is proved in Section \\ref{sec:main_proof} by “analyzing subgradient sequences as they alternate between the components proposed in Section \\ref{sec:decomposition}.”",
+    "expanded_sketch": "From the previous discussions, it is evident that in establishing the main theorem, we must leverage the unique geometric properties of o-minimal structures. The approach “diverges from the literature Davis et al., *Stochastic Subgradient Method Converges at the Rate*; Bolte et al., *Long*; Bolte et al., *Inexact*, which relies on the continuous-time limit of subgradient sequences.” Instead, the proof “hinges on the stratifications of definable sets with strong metric properties” (next we develop these preliminaries). Building on these stratifications, the argument “decompose[s] functions into smooth pieces with locally Lipschitz Riemannian gradients, which relate to their subdifferentials” (we then establish this decomposition). Finally, the main theorem is proved later by “analyzing subgradient sequences as they alternate between the components proposed in the decomposition step.”",
+    "expanded_theorem": "\\label{thm:diameter}\n    Let $f:\\mathbb{R}^n\\to \\mathbb{R}$ be locally Lipschitz and definable in a polynomially bounded o-minimal structure. For any bounded $X\\subset \\mathbb{R}^n$, there exist $\\bar{\\alpha},\\beta,\\epsilon,\\varsigma_1,\\varsigma_2>0$ and $\\theta\\in (0,1)$ such that for any subgradient sequence $(x_k)_{k\\in \\mathbb{N}}$ with step sizes $0<\\alpha_{K-1} \\le \\cdots \\le \\alpha_0 \\le \\bar{\\alpha}$ and $x_{\\llbracket 0,K \\rrbracket} \\subset X\\cap [ |f| \\le \\epsilon]$ for some $K\\in \\mathbb{N}$, we have\n        \\begin{align*}\n        \\mathrm{diam}(x_{\\llbracket 0,K \\rrbracket}) \\le~&\\varsigma_1\\left(\\mathrm{sgn}(f(x_0))|f(x_0)|^{1-\\theta}-\\mathrm{sgn}(f(x_K))|f(x_K)|^{1-\\theta}\\right) +\\cdots\\\\\n        &+\\varsigma_2\\left(\\alpha_0^\\beta+ \\sum_{k=0}^{K-1}\\alpha_k^{1+\\beta} +\\left(\\sum_{k=0}^{K-1}\\alpha_k^{1+\\beta}\\right)^{1-\\theta}+  \\sum_{k=0}^{K-1} \\alpha_k \\left(\\sum_{j=k}^{K-1} \\alpha_j^{1+\\beta}\\right)^\\theta\\right).\n    \\end{align*},",
+    "theorem_type": [
+      "Existential–Universal",
+      "Inequality or Bound"
+    ],
+    "mcq": {
+      "question": "Let \\(f:\\mathbb{R}^n\\to\\mathbb{R}\\) be locally Lipschitz and definable in a polynomially bounded o-minimal structure, and let \\(X\\subset\\mathbb{R}^n\\) be bounded. What is the strongest bound that is guaranteed (for suitable constants) on the diameter \\(\\mathrm{diam}(x_{\\llbracket 0,K\\rrbracket})\\) of any finite segment \\((x_k)_{k=0}^K\\) of a subgradient sequence with nonincreasing step sizes \\(0<\\alpha_{K-1}\\le\\cdots\\le\\alpha_0\\le \\bar\\alpha\\) and satisfying \\(x_{\\llbracket 0,K\\rrbracket}\\subset X\\cap\\{|f|\\le\\epsilon\\}\\) for some \\(K\\in\\mathbb{N}\\)?",
+      "correct_choice": {
+        "label": "A",
+        "text": "For any bounded \\(X\\subset\\mathbb{R}^n\\), there exist \\(\\bar{\\alpha},\\beta,\\epsilon,\\varsigma_1,\\varsigma_2>0\\) and \\(\\theta\\in(0,1)\\) such that for any subgradient sequence \\((x_k)_{k\\in\\mathbb{N}}\\) with step sizes \\(0<\\alpha_{K-1} \\le \\cdots \\le \\alpha_0 \\le \\bar{\\alpha}\\) and \\(x_{\\llbracket 0,K \\rrbracket} \\subset X\\cap [\\,|f| \\le \\epsilon\\,]\\) for some \\(K\\in\\mathbb{N}\\), one has\n\\[\n\\mathrm{diam}(x_{\\llbracket 0,K \\rrbracket}) \\le \\varsigma_1\\Big(\\mathrm{sgn}(f(x_0))|f(x_0)|^{1-\\theta}-\\mathrm{sgn}(f(x_K))|f(x_K)|^{1-\\theta}\\Big)+\\cdots\n+\\varsigma_2\\Big(\\alpha_0^\\beta+ \\sum_{k=0}^{K-1}\\alpha_k^{1+\\beta} +\\Big(\\sum_{k=0}^{K-1}\\alpha_k^{1+\\beta}\\Big)^{1-\\theta}+  \\sum_{k=0}^{K-1} \\alpha_k \\Big(\\sum_{j=k}^{K-1} \\alpha_j^{1+\\beta}\\Big)^\\theta\\Big).\n\\]\n"
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "For any bounded \\(X\\subset\\mathbb{R}^n\\), there exist \\(\\bar\\alpha,\\beta,\\epsilon,\\varsigma_1,\\varsigma_2>0\\) and \\(\\theta\\in(0,1)\\) such that for any subgradient sequence \\((x_k)_{k\\in\\mathbb{N}}\\) with step sizes \\(0<\\alpha_{K-1}\\le\\cdots\\le\\alpha_0\\le\\bar\\alpha\\) and \\(x_{\\llbracket 0,K\\rrbracket}\\subset X\\cap[\\,|f|\\le\\epsilon\\,]\\) for some \\(K\\in\\mathbb{N}\\), one has\n\\[\n\\mathrm{diam}(x_{\\llbracket 0,K\\rrbracket})\\le \\varsigma_1\\Big(\\mathrm{sgn}(f(x_0))|f(x_0)|^{1-\\theta}-\\mathrm{sgn}(f(x_K))|f(x_K)|^{1-\\theta}\\Big)\n+\\varsigma_2\\Big(\\alpha_0^\\beta+\\sum_{k=0}^{K-1}\\alpha_k^{1+\\beta}+\\Big(\\sum_{k=0}^{K-1}\\alpha_k^{1+\\beta}\\Big)^{1-\\theta}+\\sum_{k=0}^{K-1}\\alpha_k\\Big(\\sum_{j=k}^{K-1}\\alpha_j\\Big)^\\theta\\Big).\n\\]\n"
+        },
+        {
+          "label": "C",
+          "text": "For any bounded \\(X\\subset\\mathbb{R}^n\\), there exist \\(\\bar\\alpha,\\beta,\\epsilon,\\varsigma_1,\\varsigma_2>0\\) and \\(\\theta\\in(0,1)\\) such that for any subgradient sequence \\((x_k)_{k\\in\\mathbb{N}}\\) with step sizes \\(0<\\alpha_{K-1}\\le\\cdots\\le\\alpha_0\\le\\bar\\alpha\\) and \\(x_{\\llbracket 0,K\\rrbracket}\\subset X\\cap[\\,|f|\\le\\epsilon\\,]\\) for some \\(K\\in\\mathbb{N}\\), one has\n\\[\n\\mathrm{diam}(x_{\\llbracket 0,K\\rrbracket})\\le \\varsigma_1\\Big(\\mathrm{sgn}(f(x_0))|f(x_0)|^{1-\\theta}-\\mathrm{sgn}(f(x_K))|f(x_K)|^{1-\\theta}\\Big)+\\varsigma_2\\Big(\\alpha_0^\\beta+\\sum_{k=0}^{K-1}\\alpha_k^{1+\\beta}\\Big).\n\\]\n"
+        },
+        {
+          "label": "D",
+          "text": "For any bounded \\(X\\subset\\mathbb{R}^n\\), there exist \\(\\bar\\alpha,\\beta,\\epsilon,\\varsigma_1,\\varsigma_2>0\\) and \\(\\theta\\in(0,1)\\) such that for any subgradient sequence \\((x_k)_{k\\in\\mathbb{N}}\\) with step sizes \\(0<\\alpha_{K-1}\\le\\cdots\\le\\alpha_0\\le\\bar\\alpha\\) and \\(x_{\\llbracket 0,K\\rrbracket}\\subset X\\cap[\\,|f|\\le\\epsilon\\,]\\) for some \\(K\\in\\mathbb{N}\\), one has\n\\[\n\\mathrm{diam}(x_{\\llbracket 0,K\\rrbracket})\\le \\varsigma_1\\Big(\\mathrm{sgn}(f(x_0))|f(x_0)|^{1-\\theta}-\\mathrm{sgn}(f(x_K))|f(x_K)|^{1-\\theta}\\Big)+\\varsigma_2\\Big(\\alpha_0^\\beta+ \\sum_{k=0}^{K-1}\\alpha_k^{1+\\beta} +\\Big(\\sum_{k=0}^{K-1}\\alpha_k^{1+\\beta}\\Big)^{1-\\theta}+  \\sum_{k=0}^{K-1} \\alpha_k \\Big(\\sum_{j=k}^{K-1} \\alpha_j^{1+\\beta}\\Big)^\\theta\\Big),\n\\]\nwith the same constants working simultaneously for all bounded sets \\(X\\subset\\mathbb{R}^n\\) (i.e., \\(\\bar\\alpha,\\beta,\\epsilon,\\varsigma_1,\\varsigma_2,\\theta\\) may be chosen independently of \\(X\\))."
+        },
+        {
+          "label": "E",
+          "text": "For any bounded \\(X\\subset\\mathbb{R}^n\\), there exist \\(\\bar\\alpha,\\beta,\\epsilon,\\varsigma_1,\\varsigma_2>0\\) and \\(\\theta\\in(0,1)\\) such that for any subgradient sequence \\((x_k)_{k\\in\\mathbb{N}}\\) with step sizes \\(0<\\alpha_{K-1}\\le\\cdots\\le\\alpha_0\\le\\bar\\alpha\\) and \\(x_{\\llbracket 0,K\\rrbracket}\\subset X\\cap[\\,|f|\\le\\epsilon\\,]\\) for some \\(K\\in\\mathbb{N}\\), one has\n\\[\n\\mathrm{diam}(x_{\\llbracket 0,K\\rrbracket})\\le \\varsigma_1\\Big(|f(x_0)|^{1-\\theta}-|f(x_K)|^{1-\\theta}\\Big)+\\varsigma_2\\Big(\\alpha_0^\\beta+ \\sum_{k=0}^{K-1}\\alpha_k^{1+\\beta} +\\Big(\\sum_{k=0}^{K-1}\\alpha_k^{1+\\beta}\\Big)^{1-\\theta}+  \\sum_{k=0}^{K-1} \\alpha_k \\Big(\\sum_{j=k}^{K-1} \\alpha_j^{1+\\beta}\\Big)^\\theta\\Big).\n\\]\n"
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "E"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "counting_estimate",
+          "tampered_component": "tail_sum_exponent_(1+beta)_replaced_by_1_in_last_term",
+          "template_used": "property_confusion"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "counting_estimate",
+          "tampered_component": "dropped_high_order_step_size_terms_(theta-coupled_terms)",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "regularity",
+          "tampered_component": "constants_made_uniform_in_X",
+          "template_used": "uniformity_effectivity"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "case_split",
+          "tampered_component": "removed_sgn_case_handling_near_zero_level_set",
+          "template_used": "wildcard"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2511.05631v1",
+    "paper_link": "http://arxiv.org/abs/2511.05631v1",
+    "theorems_cnt": 2,
+    "theorem": {
+      "env_name": "theorem",
+      "content": "$E(X)=O(X^{0.709})$, where the implicit constant is ineffective.",
+      "start_pos": 4974,
+      "end_pos": 5070,
+      "label": null
+    },
+    "ref_dict": {
+      "eq: final": "\\begin{theorem}Let $q,T,H,M\\geq 2$, $c_0>0$, and   $\\{\\mathcal{K}_i\\}_{i\\geq 1} $ be pairwise disjoint sets of characters $\\chi (\\mod q)$. For each $i$, define the  the multi-set\n\\beq\n \\mathcal{L}_i=\\{\\lambda=(1-\\beta)\\log q: L(\\beta+i\\gamma ,\\chi)=0, \\lambda\\leq H,|\\gamma|\\leq T,\\chi\\in \\mathcal{K}_i  \\},\n \\eeq\nand assume that     \n \\beq \n \\max_{(\\chi,\\chi')\\in \\mathcal{K}_i^2}\\operatorname{cond}(\\bar \\chi \\chi')\\leq M,\\quad \\min_{\\lambda \\in \\mathcal{L}_i} \\lambda\\geq c_0.\n \\eeq \n   Then for $q\\geq q(T,H,M,c_0)$ we have  \\beq \\label{eq: final}\n \\sum_{i\\geq 1} \\bb{\\sum_{\\lambda\\in \\mathcal{L}_i} e^{-\\delta^{-1} \\lambda}}^2 \\leq 1-c_1,\n \\eeq \n where $\\delta=0.291$ and $c_1>0$ depends only on $c_0$.\n \\end{theorem}"
+    },
+    "post_theorem_intro_text_len": 1711,
+    "post_theorem_intro_text": "The main advantage of Pintz's method is that we only need to consider the influence of zeroes of Dirichlet $L$-functions for a single moduli and  in a highly restricted area.   This feature has been shared with Linnik's problem on the least prime in an arithmetic progression. The best numerical result in this topic  is due to Xylouris \\cite{Xylouris}, based on a refinement of  the method of Heath-Brown \\cite{Heath-Brown}. In Pintz's argument, the proof of Theorem 1.1  can be  reduced to showing   the following result, which can be regarded as a two-dimensional version of Linnik's problem. \n\n \\begin{theorem}Let $q,T,H,M\\geq 2$, $c_0>0$, and   $\\{\\mathcal{K}_i\\}_{i\\geq 1} $ be pairwise disjoint sets of characters $\\chi (\\mod q)$. For each $i$, define the  the multi-set\n\\begin{equation}\n \\mathcal{L}_i=\\{\\lambda=(1-\\beta)\\log q: L(\\beta+i\\gamma ,\\chi)=0, \\lambda\\leq H,|\\gamma|\\leq T,\\chi\\in \\mathcal{K}_i  \\},\n \\end{equation}\nand assume that     \n \\begin{equation} \n \\max_{(\\chi,\\chi')\\in \\mathcal{K}_i^2}\\operatorname{cond}(\\bar \\chi \\chi')\\leq M,\\quad \\min_{\\lambda \\in \\mathcal{L}_i} \\lambda\\geq c_0.\n \\end{equation} \n   Then for $q\\geq q(T,H,M,c_0)$ we have  \\begin{equation} \\label{eq: final}\n \\sum_{i\\geq 1} \\bb{\\sum_{\\lambda\\in \\mathcal{L}_i} e^{-\\delta^{-1} \\lambda}}^2 \\leq 1-c_1,\n \\end{equation} \n where $\\delta=0.291$ and $c_1>0$ depends only on $c_0$.\n \\end{theorem}\n We will briefly introduce this reduction in the next section and then give a proof to the inequality \\eqref{eq: final} in the rest sections. We achieve this improvement by introducing a dichotomy argument which can reduce nearly half of the number of zeroes under consideration. This will be shown in the end of Section 3.",
+    "sketch": "In Pintz's argument, the proof of Theorem 1.1 can be reduced to showing the stated auxiliary result (a \"two-dimensional version of Linnik's problem\"). The paper then \"briefly introduce[s] this reduction in the next section\" and proves the key inequality \\eqref{eq: final} in the remaining sections. The improvement is obtained \"by introducing a dichotomy argument which can reduce nearly half of the number of zeroes under consideration,\" to be shown \"in the end of Section 3.\"",
+    "expanded_sketch": "No expanded sketch found.",
+    "expanded_theorem": "$E(X)=O(X^{0.709})$, where the implicit constant is ineffective.",
+    "theorem_type": [
+      "Asymptotic or Limit",
+      "Inequality or Bound"
+    ],
+    "mcq": {
+      "question": "As $X\\to\\infty$, what is the strongest growth bound guaranteed for the quantity $E(X)$, including the status of the implied constant?",
+      "correct_choice": {
+        "label": "A",
+        "text": "One has $E(X)=O\\!\\left(X^{0.709}\\right)$ as $X\\to\\infty$, i.e. there exist constants $C>0$ and $X_0$ (with $C$ ineffective) such that $|E(X)|\\le C\\,X^{0.709}$ for all $X\\ge X_0$."
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "One has $E(X)=O\\!\\left(X^{0.709}\\right)$ as $X\\to\\infty$, i.e. there exist constants $C>0$ and $X_0$ (with $C$ effective) such that $|E(X)|\\le C\\,X^{0.709}$ for all $X\\ge X_0$."
+        },
+        {
+          "label": "C",
+          "text": "One has $E(X)=o(X)$ as $X\\to\\infty$, i.e. for every $\\varepsilon>0$ there exists $X_0$ such that $|E(X)|\\le \\varepsilon X$ for all $X\\ge X_0$."
+        },
+        {
+          "label": "D",
+          "text": "One has $E(X)=O\\!\\left(X^{0.709+\\varepsilon}\\right)$ as $X\\to\\infty$ for every $\\varepsilon>0$, i.e. for each $\\varepsilon>0$ there exist constants $C_\\varepsilon>0$ and $X_0(\\varepsilon)$ (with $C_\\varepsilon$ ineffective) such that $|E(X)|\\le C_\\varepsilon\\,X^{0.709+\\varepsilon}$ for all $X\\ge X_0(\\varepsilon)$."
+        },
+        {
+          "label": "E",
+          "text": "One has $E(X)=O\\!\\left(X^{0.709}\\right)$ as $X\\to\\infty$, i.e. there exists a constant $C>0$ (ineffective) such that $|E(X)|\\le C\\,X^{0.709}$ for all $X\\ge 1$."
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "E"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "effectivity",
+          "tampered_component": "ineffective_implied_constant",
+          "template_used": "uniformity_effectivity"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "other",
+          "tampered_component": "drop_exponent_specificity_keep_sublinear_conclusion",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "other",
+          "tampered_component": "replace_fixed_exponent_by_0.709+epsilon_statement",
+          "template_used": "boundary_range"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "other",
+          "tampered_component": "remove_large_X_threshold_X0_and_claim_all_X_ge_1",
+          "template_used": "wildcard"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2511.04651v1",
+    "paper_link": "http://arxiv.org/abs/2511.04651v1",
+    "theorems_cnt": 5,
+    "theorem": {
+      "env_name": "theorem",
+      "content": "\\label{main}\nOn the generic region of $X_t$,  the\nCalabi-Yau metric $\\omega_{{\\rm CY},t}$ converges in $C^0$-sense to the ansatz metric $\\omega_t$ as $t\\to 0$, namely\n\\[\n\\lim_{t\\to 0} \\|  \\omega_{{\\rm CY},t}- \\omega_t    \\|_{C^0(U_t, \\omega_t)} =0.\n\\]",
+      "start_pos": 8180,
+      "end_pos": 8460,
+      "label": "main"
+    },
+    "ref_dict": {
+      "DG3": "\\begin{corollary}\\label{DG3}\nThe following holds when $T$ is sufficiently large and\n$\n\\sup_{\\tb_1 } |\\psi| \\leq \\ve\\ll 1\n$\nis sufficiently small. In the coordinates $T^{1/2} \\zeta_1,\\ldots T^{1/2} \\zeta_m, z_{m+1},\\ldots z_n$, the Calabi-Yau metric $\\omega_T+ \\ddbar \\psi_T$ satisfies\n\\[\nT \\|  \\ddbar \\psi_T \\|_{ C^k(\\tb_{T^{-1/2}}(y), T\\omega_T^{\\rm ref}) }\\leq C(k) (\\ve+ T^{-\\alpha/2}) \\ll 1.\n\\]\n\\end{corollary}"
+    },
+    "post_theorem_intro_text_len": 4170,
+    "post_theorem_intro_text": "\\begin{rmk}\nIn fact, we prove $C^\\infty$ estimates for $\\omega_{{\\rm CY},t}$ with respect to a local Euclidean metric after stretching the base coordinates and the $T^m$-fibers by $|\\log|t||^{\\frac{1}{2}},$ see Corollary \\ref{DG3} for a precise statement.\n\\end{rmk}\n\n\\begin{rmk}\nFor a specific intermediate complex structure limit family with $m=1$, this result was known thanks to the work of Sun-Zhang \\cite{SZ} who in that case constructed the Calabi-Yau metrics $\\omega_{{\\rm CY},t}$ by a delicate gluing process.\n\\end{rmk}\n\nThe idea to prove this result is to adapt the proof of Savin's small perturbation theorem to our collapsing setup. One fundamental difference between the case $m=n$ of large complex structure limits in \\cite{Li} and our case $0<m<n$ of intermediate complex structure limits, is that in the first case the generic region of $X_t$ is modeled on a $T^n$-fibration over a ball in $\\mathbb{R}^n$, while in our case the model is a $Z$-fibration over a ball in $\\mathbb{R}^m$, where $Z$ is a compact manifold which is itself a  $T^m$-bundle over a compact Calabi-Yau $(n-m)$-fold $Y$.  In the case $m=n$ one can then ``unwrap'' the $T^n$-fibers, and directly apply Savin's small perturbation theorem to bootstrap uniform convergence to smooth convergence. In our case $0<m<n$ this idea fails, as one can still unwrap the $T^m$-fibers but not in general the Calabi-Yau manifold $Y$, which is still collapsing (albeit at a slower rate: the torus fibers have size $|\\log|t||^{-1}$ while $Y$ has size $|\\log|t||^{-\\frac{1}{2}}$). Our idea is then to adapt the proof of Savin's theorem in our setting, and prove the analogous main steps (a Harnack inequality and a De Giorgi type iteration), but only in a  truncated sense: these estimates will hold only up to the scale $|\\log|t||^{-1}$.\n\nTo prove these, we observe that the fiberwise maximum and minimum of the potential are respectively a subsolution and supersolution of the limiting real Monge-Amp\\`ere type equation. We apply ``half'' of Savin's results downstairs to these two functions, and working upstairs after unravelling the $T^m$-fibers, we are able to modify Savin's methods to close the proof of Harnack. In the De Giorgi iteration part, the approximating quadratic polynomials are now pulled back from the base, and arguing by contradiction, an important point is that the fiberwise maximum and minimum coincide in the limit. In the end we obtain a truncated H\\\"older bound, which is only valid up to the scale of the torus fibers. However, this bound is precisely what is needed to apply Savin's original theorem after rescaling the fibers, and thus conclude the proof.\n\n\\begin{rmk}\nIn \\cite{Li, Li3, Li4}, the first-named author used the higher order estimates on the generic region for the Ricci-flat metrics under a large complex structure limit, together with an implicit function theorem argument, to construct special Lagrangian torus fibrations on these generic regions. It seems likely that using our main theorem and some implicit function theorem argument, one could then construct coisotropic fibrations on the generic region of our intermediate complex structure limits $X_t$. We leave this question to the interested reader.\n\\end{rmk}\n\n\\begin{rmk}\nThe techniques of this paper can also be applied in the setting of \\cite{HT}, where one has a family of Ricci-flat K\\\"ahler metrics on a fixed Calabi-Yau manifold, which admits a holomorphic fibration over a lower-dimensional base, and the metrics are shrinking in the fiber directions (which can be an arbitrary Calabi-Yau manifold). However, the resulting higher order estimates one would obtain in this way will not recover the results in \\cite{HT} (which give in particular $C^\\infty$ estimates for the collapsing Ricci-flat metrics), but only the weaker estimates proved in \\cite[Theorem 1.1]{TZ} (which give $C^\\infty$ estimates for the Ricci-flat metrics after stretching out the base directions and rescaling).\n\\end{rmk}\n\n\\noindent\n{\\bf Acknowledgments.} The first-named author was supported by a Royal Society University Research Fellowship. The second-named author was partially supported by NSF grant DMS-2404599.",
+    "sketch": "To prove Theorem~\\ref{main}, the idea is to \"adapt the proof of Savin's small perturbation theorem to our collapsing setup.\" Compared with the case $m=n$ (large complex structure limits), where one can \"unwrap'' the $T^n$-fibers and \"directly apply Savin's small perturbation theorem to bootstrap uniform convergence to smooth convergence,\" the case $0<m<n$ is different since one can unwrap the $T^m$-fibers \"but not in general the Calabi-Yau manifold $Y$, which is still collapsing.\" The strategy is to adapt Savin's theorem by proving the analogous main steps \"(a Harnack inequality and a De Giorgi type iteration), but only in a truncated sense: these estimates will hold only up to the scale $|\\log|t||^{-1}$.\"\n\nTo establish these truncated steps, one \"observe[s] that the fiberwise maximum and minimum of the potential are respectively a subsolution and supersolution of the limiting real Monge-Amp\\`ere type equation.\" Then one applies \"\\\"half\\\" of Savin's results downstairs\" to these two functions, and \"working upstairs after unravelling the $T^m$-fibers\" one \"modify Savin's methods to close the proof of Harnack.\" For the De Giorgi iteration, \"the approximating quadratic polynomials are now pulled back from the base,\" and in a contradiction argument an important point is that \"the fiberwise maximum and minimum coincide in the limit.\" This yields \"a truncated H\\\"older bound\" valid up to the torus-fiber scale; this is \"precisely what is needed to apply Savin's original theorem after rescaling the fibers, and thus conclude the proof.\"",
+    "expanded_sketch": "No expanded sketch found.",
+    "expanded_theorem": "\\label{main}\nOn the generic region of $X_t$, the Calabi-Yau metric $\\omega_{{\\rm CY},t}$ converges in $C^0$-sense to the ansatz metric $\\omega_t$ as $t\\to 0$, namely\n\\[\n\\lim_{t\\to 0} \\|  \\omega_{{\\rm CY},t}- \\omega_t    \\|_{C^0(U_t, \\omega_t)} =0.\n\\]",
+    "theorem_type": [
+      "Asymptotic or Limit",
+      "Inequality or Bound"
+    ],
+    "mcq": {
+      "question": "Let $X_t$ be a family with a specified generic region $U_t\\subset X_t$, and let $\\omega_{{\\rm CY},t}$ be a Calabi--Yau metric on $X_t$ while $\\omega_t$ is an ansatz metric. As $t\\to 0$, which $C^0$-estimate on $U_t$ (with the $C^0$-norm computed using $\\omega_t$) is guaranteed to hold?",
+      "correct_choice": {
+        "label": "A",
+        "text": "On the generic region $U_t$ of $X_t$, the metrics satisfy\n\\[\n\\lim_{t\\to 0}\\,\\|\\omega_{{\\rm CY},t}-\\omega_t\\|_{C^0(U_t,\\omega_t)}=0.\n\\]"
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "On the generic region $U_t$ of $X_t$, the metrics satisfy the uniform bound\n\\[\n\\sup_{t\\in(0,t_0)}\\,\\|\\omega_{{\\rm CY},t}-\\omega_t\\|_{C^0(U_t,\\omega_t)}<\\infty.\n\\]\n"
+        },
+        {
+          "label": "C",
+          "text": "On the generic region $U_t$ of $X_t$, one has\n\\[\n\\limsup_{t\\to 0}\\,\\|\\omega_{{\\rm CY},t}-\\omega_t\\|_{C^0(U_t,\\omega_t)}=0.\n\\]\n"
+        },
+        {
+          "label": "D",
+          "text": "On the generic region $U_t$ of $X_t$, the metrics satisfy\n\\[\n\\lim_{t\\to 0}\\,\\|\\omega_{{\\rm CY},t}-\\omega_t\\|_{C^0(U_t,\\omega_{{\\rm CY},t})}=0.\n\\]\n"
+        },
+        {
+          "label": "E",
+          "text": "On the generic region $U_t$ of $X_t$, there exists $t_0>0$ such that for all $t\\in(0,t_0)$ one has the pointwise equality on $U_t$\n\\[\n\\omega_{{\\rm CY},t}=\\omega_t.\n\\]\n"
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "E"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "regularity",
+          "tampered_component": "convergence_vs_boundedness",
+          "template_used": "property_confusion"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "regularity",
+          "tampered_component": "limit_replaced_by_limsup",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "regularity",
+          "tampered_component": "background_metric_in_norm",
+          "template_used": "quantifier_dependence"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "regularity",
+          "tampered_component": "approximate_convergence_upgraded_to_equality",
+          "template_used": "wildcard"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2511.05098v1",
+    "paper_link": "http://arxiv.org/abs/2511.05098v1",
+    "theorems_cnt": 2,
+    "theorem": {
+      "env_name": "theorem",
+      "content": "\\label{t1.2}\nAssume that quantities in Notation \\ref{n1.1} are finite. Assume that there exists $c_{0}>0$, such that either \\eqref{1.26} or \\eqref{1.28} holds.\\\\\nThen \\eqref{1.27} and \\eqref{1.29} imply\n\\begin{equation}\\label{1.30}\n    X(t) \\leq \\phi_{1}\\left(\\frac{1}{c_{0}},data\\right)+\\phi_2\\left(c_0,data\\right),\n\\end{equation}\n where data depend on quantities of Notation 1.1.",
+      "start_pos": 16726,
+      "end_pos": 17128,
+      "label": "t1.2"
+    },
+    "ref_dict": {
+      "1.29": "\\begin{equation}\\label{1.29}\n    X(t) \\leq \\phi_{2}\\left(c_{0},data\\right).\n\\end{equation}",
+      "1.1": "\\begin{split}\n&\\partial_tv-\\nu\\Delta v+v\\cdot\\nabla v+\\nabla p=f,\\cr\n&\\divv v=0\\quad {\\rm in}\\ \\ \\Omega^T,\\cr\n\\end{split}\n\\label{1.1}\n\\end{equation}\nunder the axisymmetry constraint, where $\\Omega^T:=\\Omega\\times(0,T)$, $T>0$, \\\\$v=v(x,t)\\in\\R^3$ denotes the velocity field, $p=p(x,t)\\in\\R$ denotes the pressure function, $f=f(x,t)\\in\\R^3$ denotes the external force field, $\\nu>0$ denotes the viscosity, and $x=(x_1,x_2,x_3)$ denotes the Cartesian coordinates. As for $\\Omega$ we focus on the case of a finite cylinder,\n$$\n\\Omega=\\{x\\in\\R^3\\colon x_1^2+x_2^2<R^2,|x_3|<a\\},\n$$\nwhere $a$, $R>0$ are constants. We note that\n$$\nS:=\\partial\\Omega=S_1\\cup S_2,\n$$\nwhere\n\\[\n\\begin{split}\n&S_1=\\{x\\in\\R^3\\colon\\sqrt{x_1^2+x_2^2}=R,\\ x_3\\in[-a,a]\\},\\\\\n&S_2=\\{x\\in\\R^3\\colon\\sqrt{x_1^2+x_2^2}<R,\\ x_3\\in\\{-a,a\\}\\}\n\\end{split}",
+      "1.27": "\\begin{equation}\\label{1.27}\n   X(t) \\leq \\phi_{1}\\left(\\fr 1 c_0,data \\right),\n\\end{equation}",
+      "1.3": "\\begin{equation}\nv|_{t=0}=v_0,\n\\label{1.3}\n\\end{equation}",
+      "n1.1": "\\begin{notation}\\label{n1.1}\n\\[\n\\begin{aligned}\n    &D_1=|f|_{2,1,\\Omega^t}+|v(0)|_{2,\\Omega}\\quad &({\\rm see}\\ (\\ref{2.5}),\\cr\n&D_2=|f_0|_{\\infty,1,\\Omega^t}+|u(0)|_{\\infty,\\Omega},\\;f_0=rf_\\vp,\\;u(0)=r\\vp (0) &({\\rm see}\\ (\\ref{2.6})),\\cr\n&D_*=\\min\\{1,D_2\\}\\quad &({\\rm see}\\ (\\ref{3.15})),\\cr\n&D_3=\\frac{1}{\\sqrt{2\\nu}}\\left(|\\bar F_r|_{6/5,2,\\Omega^t}+|\\bar F_\\varphi|_{6/5,2,\\Omega^t}\\right)+|\\Phi(0)|_{2,\\Omega}+|\\Gamma(0)|_{2,\\Omega}\\quad &({\\rm see}\\ (\\ref{3.16})),\\cr\n\\end{aligned}\n\\]\nwhere $\\bar F_r=F_r/r$, $\\bar F_\\varphi=F_\\varphi/r$,\n\\[\n\\begin{aligned}\n  &D_4={1\\over\\sqrt{\\nu}}(D_1+D_2+|u_{,z}(0)|_{2,\\Omega}+|f_0|_{2,\\Omega}) &({\\rm see}\\ (\\ref{2.13})),\\cr\n&D_5^2=D_1^2(1+D_2)+D_1^2D_2^2+|u_{,r}(0)|_{2,\\Omega}^2+|f_0|_{2,\\Omega^t}^2\\quad &({\\rm see}\\ (\\ref{2.14})),\\cr\n&D_6^2=(D_4+D_5)\\|f_\\varphi\\|_{L_2(0,t;L_5(S_1))}\\cr\n&\\quad+{1\\over\\nu}(|F_r|_{6/5,2,\\Omega^t}^2+|F_z|_{6/5,2,\\Omega^t}^2)+ |\\omega_r(0)|_{2,\\Omega}^2+|\\omega_z(0)|_{2,\\Omega}^2 &({\\rm see}\\ (\\ref{2.15})),\\cr\n&D_7=D_2^{1/2}|f_\\varphi/r|_{\\infty,1,\\Omega^t}^{1/2}+|v_\\varphi(0)|_{\\infty,\\Omega}\\quad &({\\rm see}\\ (\\ref{2.16})),\\\\\n&D_8=\\frac{D_2^{4-2\\dl}}{4\\nu}\\frac{R^{2\\dl}}{\\dl^2}D_1 &({\\rm see}\\ Lemma \\; \\ref{l3.1}),\\\\\n&D_9=\\lp{f_\\vp}{10/(1+6\\dl),\\Ot}{}D_1^{3-2\\dl}&({\\rm see}\\ Lemma  \\;\\ref{l3.1}).\\\\\n\\end{aligned}\n\\]\n\nWe emphasize that the global well-posedness of axially symmetric solutions to the Navier-Stokes equations (either in the above setting of on $R^3$) remains an important open problem. We only note a few references on this topic [\\cite{CFZ}, \\cite{KP}, \\cite{NZ}, \\cite{NZ1}, \\cite{NP1}, \\cite{NP2}, \\cite{OP}].\n\\end{notation}",
+      "1.21": "\\begin{aligned}\n    &v_r(r,z,t)=a_1(z,t)r+a_2(z,t)r^3+\\dots,\\cr\n&v_\\varphi(r,z,t)=b_1(z,t)r+b_2(z,t)r^3+\\dots,\\cr\n&\\psi(r,z,t)=d_1(z,t)r+d_2(z,t)r^3+\\dots,\\cr\n&\\psi_1(r,z,t)=d_1(z,t)+d_2(z,t)r^2+\\dots,\\cr\n&\\psi_{1,r}(r,z,t)=2d_2(z,t)r+\\dots,.\\cr\n\\end{aligned}\n\\label{1.21}\n\\end{equation}\nIn order to formulate the main results we introduce constants which depend on the initial data and forcing\n\\begin{notation}\\label{n1.1}\n\\[\n\\begin{aligned}\n    &D_1=|f|_{2,1,\\Omega^t}+|v(0)|_{2,\\Omega}\\quad &({\\rm see}\\ (\\ref{2.5}),\\cr\n&D_2=|f_0|_{\\infty,1,\\Omega^t}+|u(0)|_{\\infty,\\Omega},\\;f_0=rf_\\vp,\\;u(0)=r\\vp (0) &({\\rm see}\\ (\\ref{2.6})),\\cr\n&D_*=\\min\\{1,D_2\\}\\quad &({\\rm see}\\ (\\ref{3.15})),\\cr\n&D_3=\\frac{1}{\\sqrt{2\\nu}}\\left(|\\bar F_r|_{6/5,2,\\Omega^t}+|\\bar F_\\varphi|_{6/5,2,\\Omega^t}\\right)+|\\Phi(0)|_{2,\\Omega}+|\\Gamma(0)|_{2,\\Omega}\\quad &({\\rm see}\\ (\\ref{3.16})),\\cr\n\\end{aligned}",
+      "1.26": "\\begin{equation}\\label{1.26}\n    \\lambda\\left(\\sg^{\\prime}\\right) \\geqslant c_{0},\\; \\sg^{\\prime}>6,\n\\end{equation}",
+      "1.30": "\\begin{equation}\\label{1.30}\n    X(t) \\leq \\phi_{1}\\left(\\frac{1}{c_{0}},data\\right)+\\phi_2\\left(c_0,data\\right),\n\\end{equation}",
+      "1.28": "\\begin{equation}\\label{1.28}\n    \\quad \\lambda\\left(\\sigma^{\\prime}\\right) \\leq c_{0}\n\\end{equation}"
+    },
+    "post_theorem_intro_text_len": 699,
+    "post_theorem_intro_text": "To prove the global a priori estimate \\eqref{1.30} for solutions to problem \\eqref{1.1}-\\eqref{1.3} we need expansions \\eqref{1.21} so sufficiently regular solutions must be considered.\n\nAccording to O.A.Ladyzhenshaya \\cite{L1}  and partial regularity theory of Caffarelli, Kohn, Nirenberg \\cite{CKN} any singularity of axisymmetric solutions to  \\eqref{1.1}-\\eqref{1.3} must occur on the axis of symmetry only. The methods presented in this paper make use of regular solutions for which there is no singularities at the axis of symmetry, and so the expansions \\eqref{1.21} are valid. Whether it is possible to control $X(t)$ without exploiting these expansions, remains an interesting open problem.",
+    "sketch": "To prove the global a priori estimate \\eqref{1.30} (Theorem~\\ref{t1.2}) for solutions to problem \\eqref{1.1}-\\eqref{1.3}, the argument requires using the expansions \\eqref{1.21}, hence “sufficiently regular solutions must be considered.” By Ladyzhenshaya \\cite{L1} and the partial regularity theory of Caffarelli–Kohn–Nirenberg \\cite{CKN}, any singularity of axisymmetric solutions to \\eqref{1.1}-\\eqref{1.3} “must occur on the axis of symmetry only.” The paper’s methods therefore “make use of regular solutions for which there is no singularities at the axis of symmetry,” so that the expansions \\eqref{1.21} are valid. It is left as an “open problem” whether one can control $X(t)$ without exploiting these expansions.",
+    "expanded_sketch": "To prove the global a priori estimate\n\\begin{equation}\\label{1.30}\n    X(t) \\leq \\phi_{1}\\left(\\frac{1}{c_{0}},data\\right)+\\phi_2\\left(c_0,data\\right),\n\\end{equation}\nin establishing the main theorem, for solutions to the problem\n\\begin{split}\n&\\partial_tv-\\nu\\Delta v+v\\cdot\\nabla v+\\nabla p=f,\\cr\n&\\divv v=0\\quad {\\rm in}\\ \\ \\Omega^T,\\cr\n\\end{split}\n\\label{1.1}\n\\end{equation}\nunder the axisymmetry constraint, where $\\Omega^T:=\\Omega\\times(0,T)$, $T>0$, \\\\$v=v(x,t)\\in\\R^3$ denotes the velocity field, $p=p(x,t)\\in\\R$ denotes the pressure function, $f=f(x,t)\\in\\R^3$ denotes the external force field, $\\nu>0$ denotes the viscosity, and $x=(x_1,x_2,x_3)$ denotes the Cartesian coordinates. As for $\\Omega$ we focus on the case of a finite cylinder,\n$$\n\\Omega=\\{x\\in\\R^3\\colon x_1^2+x_2^2<R^2,|x_3|<a\\},\n$$\nwhere $a$, $R>0$ are constants. We note that\n$$\nS:=\\partial\\Omega=S_1\\cup S_2,\n$$\nwhere\n\\[\n\\begin{split}\n&S_1=\\{x\\in\\R^3\\colon\\sqrt{x_1^2+x_2^2}=R,\\ x_3\\in[-a,a]\\},\\\\\n&S_2=\\{x\\in\\R^3\\colon\\sqrt{x_1^2+x_2^2}<R,\\ x_3\\in\\{-a,a\\}\\}\n\\end{split}\n\\begin{equation}\nv|_{t=0}=v_0,\n\\label{1.3}\n\\end{equation}\nthe argument requires using the expansions\n\\begin{aligned}\n    &v_r(r,z,t)=a_1(z,t)r+a_2(z,t)r^3+\\dots,\\cr\n&v_\\varphi(r,z,t)=b_1(z,t)r+b_2(z,t)r^3+\\dots,\\cr\n&\\psi(r,z,t)=d_1(z,t)r+d_2(z,t)r^3+\\dots,\\cr\n&\\psi_1(r,z,t)=d_1(z,t)+d_2(z,t)r^2+\\dots,\\cr\n&\\psi_{1,r}(r,z,t)=2d_2(z,t)r+\\dots,.\\cr\n\\end{aligned}\n\\label{1.21}\n\\end{equation}\nhence “sufficiently regular solutions must be considered.” By Ladyzhenshaya \\cite{L1} and the partial regularity theory of Caffarelli–Kohn–Nirenberg \\cite{CKN}, any singularity of axisymmetric solutions to the system above “must occur on the axis of symmetry only.” The paper’s methods therefore “make use of regular solutions for which there is no singularities at the axis of symmetry,” so that the preceding expansions are valid. It is left as an “open problem” whether one can control $X(t)$ without exploiting these expansions.",
+    "expanded_theorem": "\\label{t1.2}\nAssume that quantities in\n\\begin{notation}\\label{n1.1}\n\\[\n\\begin{aligned}\n    &D_1=|f|_{2,1,\\Omega^t}+|v(0)|_{2,\\Omega}\\quad &({\\rm see}\\ (\\ref{2.5}),\\cr\n&D_2=|f_0|_{\\infty,1,\\Omega^t}+|u(0)|_{\\infty,\\Omega},\\;f_0=rf_\\vp,\\;u(0)=r\\vp (0) &({\\rm see}\\ (\\ref{2.6})),\\cr\n&D_*=\\min\\{1,D_2\\}\\quad &({\\rm see}\\ (\\ref{3.15})),\\cr\n&D_3=\\frac{1}{\\sqrt{2\\nu}}\\left(|\\bar F_r|_{6/5,2,\\Omega^t}+|\\bar F_\\varphi|_{6/5,2,\\Omega^t}\\right)+|\\Phi(0)|_{2,\\Omega}+|\\Gamma(0)|_{2,\\Omega}\\quad &({\\rm see}\\ (\\ref{3.16})),\\cr\n\\end{aligned}\n\\]\nwhere $\\bar F_r=F_r/r$, $\\bar F_\\varphi=F_\\varphi/r$,\n\\[\n\\begin{aligned}\n  &D_4={1\\over\\sqrt{\\nu}}(D_1+D_2+|u_{,z}(0)|_{2,\\Omega}+|f_0|_{2,\\Omega}) &({\\rm see}\\ (\\ref{2.13})),\\cr\n&D_5^2=D_1^2(1+D_2)+D_1^2D_2^2+|u_{,r}(0)|_{2,\\Omega}^2+|f_0|_{2,\\Omega^t}^2\\quad &({\\rm see}\\ (\\ref{2.14})),\\cr\n&D_6^2=(D_4+D_5)\\|f_\\varphi\\|_{L_2(0,t;L_5(S_1))}\\cr\n&\\quad+{1\\over\\nu}(|F_r|_{6/5,2,\\Omega^t}^2+|F_z|_{6/5,2,\\Omega^t}^2)+ |\\omega_r(0)|_{2,\\Omega}^2+|\\omega_z(0)|_{2,\\Omega}^2 &({\\rm see}\\ (\\ref{2.15})),\\cr\n&D_7=D_2^{1/2}|f_\\varphi/r|_{\\infty,1,\\Omega^t}^{1/2}+|v_\\varphi(0)|_{\\infty,\\Omega}\\quad &({\\rm see}\\ (\\ref{2.16})),\\\\\n&D_8=\\frac{D_2^{4-2\\dl}}{4\\nu}\\frac{R^{2\\dl}}{\\dl^2}D_1 &({\\rm see}\\ Lemma \\; \\ref{l3.1}),\\\\\n&D_9=\\lp{f_\\vp}{10/(1+6\\dl),\\Ot}{}D_1^{3-2\\dl}&({\\rm see}\\ Lemma  \\;\\ref{l3.1}).\\\\\n\\end{aligned}\n\\]\n\nWe emphasize that the global well-posedness of axially symmetric solutions to the Navier-Stokes equations (either in the above setting of on $R^3$) remains an important open problem. We only note a few references on this topic [\\cite{CFZ}, \\cite{KP}, \\cite{NZ}, \\cite{NZ1}, \\cite{NP1}, \\cite{NP2}, \\cite{OP}].\n\\end{notation}\nare finite. Assume that there exists $c_{0}>0$, such that either\n\\begin{equation}\\label{1.26}\n    \\lambda\\left(\\sg^{\\prime}\\right) \\geqslant c_{0},\\; \\sg^{\\prime}>6,\n\\end{equation}\nor\n\\begin{equation}\\label{1.28}\n    \\quad \\lambda\\left(\\sigma^{\\prime}\\right) \\leq c_{0}\n\\end{equation}\nholds. Then\n\\begin{equation}\\label{1.27}\n   X(t) \\leq \\phi_{1}\\left(\\fr 1 c_0,data \\right),\n\\end{equation}\nand\n\\begin{equation}\\label{1.29}\n    X(t) \\leq \\phi_{2}\\left(c_{0},data\\right).\n\\end{equation}\nimply\n\\begin{equation}\\label{1.30}\n    X(t) \\leq \\phi_{1}\\left(\\frac{1}{c_{0}},data\\right)+\\phi_2\\left(c_0,data\\right),\n\\end{equation}\nwhere data depend on quantities of the notation above.\n",
+    "theorem_type": [
+      "Implication",
+      "Inequality or Bound"
+    ],
+    "mcq": {
+      "question": "Assume that all quantities \\(D_1,\\dots,D_9\\) defined in Notation \\((\\ref{n1.1})\\) are finite (so that the parameter collection \\(\\mathrm{data}\\) depending on them is finite). Assume there exists \\(c_0>0\\) such that either \\(\\lambda(\\sigma')\\ge c_0\\) with \\(\\sigma'>6\\), or \\(\\lambda(\\sigma')\\le c_0\\). If, for this \\(c_0\\), one has both estimates\n\\[\nX(t)\\le \\phi_1\\!\\left(\\frac1{c_0},\\mathrm{data}\\right)\\quad\\text{and}\\quad X(t)\\le \\phi_2\\!\\left(c_0,\\mathrm{data}\\right),\n\\]\nwhat quantitative bound for \\(X(t)\\) is guaranteed to follow?",
+      "correct_choice": {
+        "label": "A",
+        "text": "\\[X(t)\\le \\phi_1\\!\\left(\\frac1{c_0},\\mathrm{data}\\right)+\\phi_2\\!\\left(c_0,\\mathrm{data}\\right).\\]"
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "\\[X(t)\\le \\max\\Big\\{\\phi_1\\!\\left(\\frac1{c_0},\\mathrm{data}\\right),\\,\\phi_2\\!\\left(c_0,\\mathrm{data}\\right)\\Big\\}.\\]"
+        },
+        {
+          "label": "C",
+          "text": "\\[X(t)\\le \\phi_1\\!\\left(\\frac1{c_0},\\mathrm{data}\\right)+\\phi_2\\!\\left(c_0,\\mathrm{data}\\right).\\]"
+        },
+        {
+          "label": "D",
+          "text": "\\[X(t)\\le \\phi_1\\!\\left(\\frac1{c_0},\\mathrm{data}\\right)+\\phi_2\\!\\left(\\frac1{c_0},\\mathrm{data}\\right).\\]"
+        },
+        {
+          "label": "E",
+          "text": "\\[X(t)\\le \\phi_1\\!\\left(c_0,\\mathrm{data}\\right)+\\phi_2\\!\\left(c_0,\\mathrm{data}\\right).\\]"
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "D"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "other",
+          "tampered_component": "combination_rule (sum vs max) when merging two a priori bounds",
+          "template_used": "property_confusion"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "other",
+          "tampered_component": "dropped the need for the either/or condition on \\(\\lambda(\\sigma')\\) and any regularity/axis-expansion reliance; kept only the algebraic consequence of having both bounds",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "other",
+          "tampered_component": "parameter dependence in \\(\\phi_2\\) (uses \\(c_0\\), not \\(1/c_0\\))",
+          "template_used": "wildcard"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "other",
+          "tampered_component": "parameter dependence in \\(\\phi_1\\) (uses \\(1/c_0\\), not \\(c_0\\))",
+          "template_used": "quantifier_dependence"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2511.03847v1",
+    "paper_link": "http://arxiv.org/abs/2511.03847v1",
+    "theorems_cnt": 4,
+    "theorem": {
+      "env_name": "thm",
+      "content": "\\label{thm:gawron-generalization}\n\tIf $z\\in \\mathcal S$, then $|z| > \\tfrac 14$.",
+      "start_pos": 108483,
+      "end_pos": 108579,
+      "label": "thm:gawron-generalization"
+    },
+    "ref_dict": {
+      "thm:roots-disk": "\\begin{thm}\\label{thm:roots-disk}\n\tAll roots of $\\stern n\\lm$ lie outside the disk $\\{\\abs{z-2}\\leq 1\\}\\subseteq\\C$.\n\\end{thm}",
+      "thm:parabola": "\\begin{thm}[Parabola Theorem, {\\cite[Theorem 3.43]{Lorentzen2008}}]\\label{thm:parabola}\n\tFor fixed $|\\alpha| < \\tfrac\\pi 2$, let\n\t\\[\n\tV_\\alpha\\coloneqq -\\tfrac12 + e^{i\\alpha}\\overline{\\mathbb H} = \\{w\\in\\C: \\Re(we^{- i\\alpha})\\geq -\\tfrac12\\cos\\alpha\\}\n\t\\]\n\tand\n\t\\[\n\tE_\\alpha \\coloneqq \\{a\\in\\C: |a| - \\Re(ae^{-2i\\alpha})\\leq \\tfrac12\\cos^2\\alpha\\}.\n\t\\]\n\tThen $E_\\alpha$ is the element set for continued fractions $\\boldsymbol{K}(a_n | 1)$ corresponding to the  value set $V_\\alpha$.\n\\end{thm}",
+      "fig:stern-roots": "\\begin{figure}[ht]\n\t\\centering\n\t\\captionsetup{width=0.75\\linewidth}\n\t\\includegraphics[scale=0.75]{sternpoly-roots-deg-21-BW}\n\t\\caption{\\small The zeros of $\\stern n\\lm$ in the range $\\{a+bi:-4\\leq a\\leq 1, |b|\\leq 3\\}$, where $1\\leq n<2^{21}$ is odd.}\n\t\\label{fig:stern-roots}\n\\end{figure}",
+      "eqn:stronger-statement": "\\begin{equation}\\label{eqn:stronger-statement}\n\t\tb_{2n+1} > \\tfrac12\\max\\{b_n,b_{n+1}\\} > 0\n\t\\end{equation}",
+      "conj:location-roots": "\\begin{conj}\\label{conj:location-roots}\n\tAll elements of $\\calS$ lie in the half-plane $\\{\\Re w < 1\\}$. \n\\end{conj}",
+      "thm:MO-ineq": "\\begin{thm}\\label{thm:MO-ineq}\n\tFor all real numbers $t$ and all positive integers $n$,\n\t\\begin{equation}\\label{eqn:tao-ineq}\n\t\t\\abs{\\left(1+\\frac{it}n\\right)^n - 1} \\geq \\big|e^{it} - 1\\big| = 2\\sin\\frac t2.\n\t\\end{equation}\n\\end{thm}",
+      "thm:gawron-generalization": "\\begin{thm}\\label{thm:gawron-generalization}\n\tIf $z\\in \\calS$, then $|z| > \\tfrac 14$.\n\\end{thm}",
+      "thm:prime-poly-irred": "\\begin{corr}\\label{thm:prime-poly-irred}\n\tFor each prime number $p$, the Stern polynomial $\\stern p \\lm$ is irreducible in $\\Q$.\n\\end{corr}",
+      "thm:stern-cont-frac": "\\begin{corr}[{\\cite[Theorem 1]{Schinzel2014}}]\\label{thm:stern-cont-frac}\n\tLet $a_1,\\ldots, a_t$ be positive integers, where $t\\geq 2$.  Then \n\t\\begin{equation}\\label{eqn:stern-cont-frac}\n\t\t\\frac{\\stern{[[a_1,\\ldots, a_t]]}{\\lm}}{\\stern{[[a_2,\\ldots, a_t]]}{\\lm}}\n\t\t=\n\t\t(\\lm)_{a_1} + \\cfrac{\\lm^{a_1}}{(\\lm)_{a_2} + \\cfrac{\\lm^{a_2}}{\\cdots + \\cfrac{\\cdots}{(\\lm)_{a_{t-1}} + \\cfrac{\\lm^{a_{t-1}}}{(\\lm)_{a_t}}}}}\\,.\n\t\\end{equation}\n\\end{corr}"
+    },
+    "post_theorem_intro_text_len": 4598,
+    "post_theorem_intro_text": "\\begin{proof}\n\tLet $z$ be any complex number with $|z| \\leq \\tfrac 14$.  Let $b_n\\coloneqq |\\stern n z|$ for each positive integer $n$.  We show more strongly that\n\t\\begin{equation}\\label{eqn:stronger-statement}\n\t\tb_{2n+1} > \\tfrac12\\max\\{b_n,b_{n+1}\\} > 0\n\t\\end{equation}\n\tfor all $n\\geq 1$.\n\n\t\\par The proof of \\eqref{eqn:stronger-statement} proceeds by induction on $n$.  The base case, $n = 1$, follows because\n\t\\[\n\tb_3 = |z + 1| \\geq \\tfrac 34 > \\tfrac 12 \n\t= \\tfrac 12\\max\\{1, |z|\\} = \\tfrac 12\\max\\{b_1,b_2\\}.\n\t\\]\n\n\t\\par There are two cases to consider.  First assume $n=2k$ is even.  Then\n\t\\begin{align*}\n\t\tb_{4k+1} &= |\\stern{4k+1}z| = |\\stern{2k+1} z + \\stern{2k} z|\\\\\n\t\t&= |z \\stern kz + \\stern{2k+1} z| \\geq b_{2k+1} - \\tfrac14 b_k\\\\\n\t\t&\\geq b_{2k+1} - \\tfrac12 b_{2k+1} = \\tfrac12 b_{2k+1}.\n\t\\end{align*}\n\tMoreover, $b_{2k+1} \\geq \\frac12 b_k$, and thus $\\max\\{b_{2k},b_{2k+1}\\} = b_{2k+1} > 0$.  In this case, our inequality is proved.\n\n\t\\par Now assume $n = 2k + 1$ is odd.  Then\n\t\\begin{align*}\n\t\tb_{4k+3} &= |\\stern{4k+3}z| = |\\stern{2k+1} z + \\stern{2k+2} z|\\\\\n\t\t&= |\\stern{2k+1} z + z\\stern{k+1} z| \\geq b_{2k+1} - \\frac 14 b_{k+1}\\\\\n\t\t&\\geq b_{2k+1} - \\tfrac12 b_{2k+1} = \\tfrac12 b_{2k+1}.\n\t\\end{align*}\n\tMoreover, $b_{2k+1} \\geq \\frac12 b_{k+1}$, and so in this case we also have $\\max\\{b_{2k},b_{2k+1}\\} = b_{2k+1} > 0$.  We have exhausted both cases, completing the proof of Theorem \\ref{thm:gawron-generalization}.\n\\end{proof}\n\nIn \\cite{Dilcher2017}, Dilcher et. al. focus more specifically on the complex roots of $\\stern n\\lambda$.  Their paper makes the following conjecture.\n\n\\begin{conj}\\label{conj:location-roots}\n\tAll elements of $\\mathcal S$ lie in the half-plane $\\{\\operatorname{Re} w < 1\\}$. \n\\end{conj}\n\nBy generalizing the Enestrom-Kakeya theorem, they prove Conjecture \\ref{conj:location-roots} for several classes of positive integers $n$ taking the form $2^n\\pm k$, where $k$ is fixed and $2^n \\geq k$.  These are the only two papers the author could find which discuss the complex zeros of $\\stern n\\lambda$.\n\n\\par Figure \\ref{fig:stern-roots} shows a snapshot of $\\mathcal S$.  One striking feature of this figure is the contrasting behavior of these roots within the half-planes $\\{\\operatorname{Re} w\\geq 0\\}$ and $\\{\\operatorname{Re} w < 0\\}$.  These differences present difficulties in fully characterizing the geometry of $\\mathcal S$.\n\n\\begin{figure}[ht]\n\t\\centering\n\t\\captionsetup{width=0.75\\linewidth}\n\t\\includegraphics[scale=0.75]{sternpoly-roots-deg-21-BW}\n\t\\caption{\\small The zeros of $\\stern n\\lambda$ in the range $\\{a+bi:-4\\leq a\\leq 1, |b|\\leq 3\\}$, where $1\\leq n<2^{21}$ is odd.}\n\t\\label{fig:stern-roots}\n\\end{figure}\n\nIn this paper, we partially resolve Conjecture \\ref{conj:location-roots} by establishing the following result.\n\n\\begin{thm}\\label{thm:roots-disk}\n\tAll roots of $\\stern n\\lambda$ lie outside the disk $\\{\\left|z-2\\right|\\leq 1\\}\\subseteq\\mathbb C$.\n\\end{thm}\n\nTo prove Theorem \\ref{thm:roots-disk}, we use a continued fraction representation for a ratio of Stern polynomials (Theorem \\ref{thm:stern-cont-frac}) independently discovered by Reznick \\cite{Reznick2008} and Schinzel \\cite{Schinzel2014}.  This allows us to use the Parabola Theorem (Theorem \\ref{thm:parabola}) to show that, for certain values of $z\\in\\mathbb C$, the denominators of these continued fractions can never be zero.  Along the way, we establish inequalities in $\\mathbb C$ relating to the sums $1 + z + \\cdots + z^{n-1}$ which may be of independent interest.  The most notable of these inequalities is Theorems \\ref{thm:MO-ineq}, which proves a lower bound for this geometric series whenever $\\operatorname{Re} z \\geq 1$.\n\nAs a corollary, we obtain the following surprising fact, resolving a conjecture of Ulas and Ulas (\\cite{Ulas2011}).\n\n\\begin{corr}\\label{thm:prime-poly-irred}\n\tFor each prime number $p$, the Stern polynomial $\\stern p \\lambda$ is irreducible in $\\mathbb Q$.\n\\end{corr}\nUlas and Ulas had verified this conjecture computationally for the first million primes $p$.  Additionally, Schinzel in \\cite{Schinzel2011} proved Corollary \\ref{thm:prime-poly-irred} for all primes $p < 2017$ by using finite differences to bound the leading coefficient of any proper divisor of $\\stern n\\lambda$.  However, these previous attempts to prove the conjecture were algebraic in nature, whereas our proof depends on the analytic properties of $\\mathcal S$.\n\n\\paragraph{Acknowledgments.} This paper is adapted from the author's PhD dissertation \\cite{Altizio2025}.  The author thanks his advisor, Dr. Bruce Reznick, for helpful correspondence.",
+    "sketch": "Let $z$ be any complex number with $|z|\\leq \\tfrac14$ and set $b_n\\coloneqq |\\stern n z|$. The proof shows the stronger statement\n\\begin{equation}\\label{eqn:stronger-statement}\n b_{2n+1} > \\tfrac12\\max\\{b_n,b_{n+1}\\} > 0\n\\end{equation}\nfor all $n\\ge1$, proceeding by induction on $n$.\n\nBase case $n=1$: \n\\[\n b_3=|z+1|\\ge \\tfrac34>\\tfrac12=\\tfrac12\\max\\{1,|z|\\}=\\tfrac12\\max\\{b_1,b_2\\}.\n\\]\n\nInductive step splits into two cases.\n\n1) If $n=2k$ is even, then\n\\begin{align*}\n b_{4k+1}&=|\\stern{4k+1}z|=|\\stern{2k+1}z+\\stern{2k}z|\\\\\n &=|z\\,\\stern k z+\\stern{2k+1}z|\\ge b_{2k+1}-\\tfrac14 b_k\\\\\n &\\ge b_{2k+1}-\\tfrac12 b_{2k+1}=\\tfrac12 b_{2k+1}.\n\\end{align*}\nMoreover, $b_{2k+1}\\ge \\tfrac12 b_k$, hence $\\max\\{b_{2k},b_{2k+1}\\}=b_{2k+1}>0$.\n\n2) If $n=2k+1$ is odd, then\n\\begin{align*}\n b_{4k+3}&=|\\stern{4k+3}z|=|\\stern{2k+1}z+\\stern{2k+2}z|\\\\\n &=|\\stern{2k+1}z+z\\,\\stern{k+1}z|\\ge b_{2k+1}-\\tfrac14 b_{k+1}\\\\\n &\\ge b_{2k+1}-\\tfrac12 b_{2k+1}=\\tfrac12 b_{2k+1}.\n\\end{align*}\nMoreover, $b_{2k+1}\\ge \\tfrac12 b_{k+1}$, so again $\\max\\{b_{2k},b_{2k+1}\\}=b_{2k+1}>0$.\n\nWith both cases exhausted, this completes the induction and thus proves Theorem~\\ref{thm:gawron-generalization}.",
+    "expanded_sketch": "Let $z$ be any complex number with $|z|\\leq \\tfrac14$ and set $b_n\\coloneqq |\\stern n z|$. The proof shows the stronger statement\n\\begin{equation}\\label{eqn:stronger-statement}\n b_{2n+1} > \\tfrac12\\max\\{b_n,b_{n+1}\\} > 0\n\\end{equation}\nfor all $n\\ge1$, proceeding by induction on $n$.\n\nBase case $n=1$: \n\\[\n b_3=|z+1|\\ge \\tfrac34>\\tfrac12=\\tfrac12\\max\\{1,|z|\\}=\\tfrac12\\max\\{b_1,b_2\\}.\n\\]\n\nInductive step splits into two cases.\n\n1) If $n=2k$ is even, then\n\\begin{align*}\n b_{4k+1}&=|\\stern{4k+1}z|=|\\stern{2k+1}z+\\stern{2k}z|\\\\\n &=|z\\,\\stern k z+\\stern{2k+1}z|\\ge b_{2k+1}-\\tfrac14 b_k\\\\\n &\\ge b_{2k+1}-\\tfrac12 b_{2k+1}=\\tfrac12 b_{2k+1}.\n\\end{align*}\nMoreover, $b_{2k+1}\\ge \\tfrac12 b_k$, hence $\\max\\{b_{2k},b_{2k+1}\\}=b_{2k+1}>0$.\n\n2) If $n=2k+1$ is odd, then\n\\begin{align*}\n b_{4k+3}&=|\\stern{4k+3}z|=|\\stern{2k+1}z+\\stern{2k+2}z|\\\\\n &=|\\stern{2k+1}z+z\\,\\stern{k+1}z|\\ge b_{2k+1}-\\tfrac14 b_{k+1}\\\\\n &\\ge b_{2k+1}-\\tfrac12 b_{2k+1}=\\tfrac12 b_{2k+1}.\n\\end{align*}\nMoreover, $b_{2k+1}\\ge \\tfrac12 b_{k+1}$, so again $\\max\\{b_{2k},b_{2k+1}\\}=b_{2k+1}>0$.\n\nWith both cases exhausted, this completes the induction. In establishing the main theorem, this finishes the proof that if $z\\in \\calS$, then $|z| > \\tfrac 14$.",
+    "expanded_theorem": "\\label{thm:gawron-generalization}\n\tIf $z\\in \\mathcal S$, then $|z| > \\tfrac 14$.",
+    "theorem_type": [
+      "Implication",
+      "Inequality or Bound"
+    ],
+    "mcq": {
+      "question": "Let \\(z\\in\\mathcal S\\). What is the strongest bound on \\(|z|\\) that is guaranteed to hold for every such \\(z\\)?",
+      "correct_choice": {
+        "label": "A",
+        "text": "\\(|z|>\\tfrac14\\)."
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "\\(|z|\\ge \\tfrac14\\)."
+        },
+        {
+          "label": "C",
+          "text": "\\(|z|>0\\)."
+        },
+        {
+          "label": "D",
+          "text": "\\(|z|>\\tfrac12\\)."
+        },
+        {
+          "label": "E",
+          "text": "There exists \\(c>0\\) such that for all \\(z\\in\\mathcal S\\) one has \\(|z|>c\\), but no explicit universal value of \\(c\\) (such as \\(\\tfrac14\\)) is guaranteed."
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "E"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "boundary_range",
+          "tampered_component": "strictness at the threshold \\(\\tfrac14\\) (\\(>\\) vs \\(\\ge\\))",
+          "template_used": "boundary_range"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "counting_estimate",
+          "tampered_component": "dropped explicit constant \\(\\tfrac14\\), retaining only positivity implied by \\(|z|>\\tfrac14\\)",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "counting_estimate",
+          "tampered_component": "constant \\(\\tfrac14\\) arising from \\(|z|\\le\\tfrac14\\) and the \\(\\tfrac12\\)-factor in \\eqref{eqn:stronger-statement} replaced by \\(\\tfrac12\\)",
+          "template_used": "stronger_trap"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "uniformity_effectivity",
+          "tampered_component": "effectivity/uniform explicitness of the bound (denying the explicit universal constant \\(\\tfrac14\\))",
+          "template_used": "wildcard"
+        }
+      ]
+    }
+  }
+]

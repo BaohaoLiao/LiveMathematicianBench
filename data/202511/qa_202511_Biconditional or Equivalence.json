@@ -1,0 +1,846 @@
+[
+  {
+    "id": "2511.20064v1",
+    "paper_link": "http://arxiv.org/abs/2511.20064v1",
+    "theorems_cnt": 1,
+    "theorem": {
+      "env_name": "theorem",
+      "content": "\\label{theorem_W1p_equiintegrable_strong}\nIf \\(\\mathcal{M}\\) and \\(\\mathcal{N}\\) are compact Riemannian manifolds and if \\(p \\in \\intvr{1}{\\infty}\\), then\n\\begin{equation}\n\\label{eq_jee6ud9boog1DaMaut7nui3w}\n  \\soboleh^{1, p}_{\\mathrm{St}} \\brk{\\mathcal{M}, \\mathcal{N}}\n =\n \\soboleh^{1, p}_{\\mathrm{Ei}} \\brk{\\mathcal{M}, \\mathcal{N}}\\,\\text{.}\n\\end{equation}",
+      "start_pos": 20217,
+      "end_pos": 20614,
+      "label": "theorem_W1p_equiintegrable_strong"
+    },
+    "ref_dict": {
+      "theorem_W1p_equiintegrable_strong": "\\begin{theorem}\n\\label{theorem_W1p_equiintegrable_strong}\nIf \\(\\manifold{M}\\) and \\(\\manifold{N}\\) are compact Riemannian manifolds and if \\(p \\in \\intvr{1}{\\infty}\\), then\n\\begin{equation}\n\\label{eq_jee6ud9boog1DaMaut7nui3w}\n  \\soboleh^{1, p}_{\\mathrm{St}} \\brk{\\manifold{M}, \\manifold{N}}\n =\n \\soboleh^{1, p}_{\\mathrm{Ei}} \\brk{\\manifold{M}, \\manifold{N}}\\eqpunct{.}\n\\end{equation}\n\\end{theorem}",
+      "eq_jee6ud9boog1DaMaut7nui3w": "\\begin{equation}\n\\label{eq_jee6ud9boog1DaMaut7nui3w}\n  \\soboleh^{1, p}_{\\mathrm{St}} \\brk{\\manifold{M}, \\manifold{N}}\n =\n \\soboleh^{1, p}_{\\mathrm{Ei}} \\brk{\\manifold{M}, \\manifold{N}}\\eqpunct{.}\n\\end{equation}",
+      "eq_eipiekaiHohk3xeed9eijaso": "\\begin{equation}\n\\label{eq_eipiekaiHohk3xeed9eijaso}\n \\soboleh^{1, 1}_{\\mathrm{Wk}}\\brk{\\manifold{M}, \\manifold{N}}\n = \\sobolev^{1, 1} \\brk{\\manifold{M}, \\manifold{N}}\\eqpunct{;}\n\\end{equation}",
+      "eq_saeNohshai4pheikiechai7Z": "\\begin{equation}\n\\label{eq_saeNohshai4pheikiechai7Z}\n \\soboleh^{1, p}_{\\mathrm{St}}\\brk{\\manifold{M}, \\manifold{N}}\n = \\soboleh^{1, p}_{\\mathrm{Bd}} \\brk{\\manifold{M}, \\manifold{N}}\n \\eqpunct{.}\n\\end{equation}",
+      "eq_aepopa9oTahquaas6vah2aer": "\\begin{equation}\n\\label{eq_aepopa9oTahquaas6vah2aer}\n \\soboleh^{1, p}_{\\mathrm{St}} \\brk{\\manifold{M}, \\manifold{N}}\n \\subseteq\n \\soboleh^{1, p}_{\\mathrm{Ei}} \\brk{\\manifold{M}, \\manifold{N}}\n  \\subseteq\n \\soboleh^{1, p}_{\\mathrm{Wk}} \\brk{\\manifold{M}, \\manifold{N}}\n =\n \\soboleh^{1, p}_{\\mathrm{Bd}} \\brk{\\manifold{M}, \\manifold{N}}\n \\subseteq \\soboleh^{1, p} \\brk{\\manifold{M}, \\manifold{N}}\n\\end{equation}",
+      "proposition_Wsp_strong_equi_integrable": "\\begin{proposition}\n\\label{proposition_Wsp_strong_equi_integrable}\nFor every \\(m \\in \\Nset \\setminus \\set{0}\\), \\(s \\in \\intvo{0}{1}\\) and \\(p \\in \\intvr{1}{\\infty}\\).\nThere exists a constant \\(C \\in \\intvo{0}{\\infty}\\) such that if \\(u_0\\) and \\(u_1 \\colon \\Omega \\to \\Rset^\\nu\\),  are measurable, one has \n\\begin{multline}\n\\label{eq_uojeiJees7aiju5ahng2gaoh}\n \\smashoperator[r]{\\iint_{\\Omega \\times \\Omega}}\n\\frac{\\abs{\\brk{u_0 - u_1} \\brk{x} - \\brk{u_0 - u_1}\\brk{y}}^p}{\\abs{x - y}^{m + sp}} \\dif x \\dif y\\\\\n\\le C \\brk[\\bigg]{\n\\smashoperator[r]{\\iint_{\\substack{\\brk{x, y}\\in \\Omega \\times \\Omega\\\\ \n\\abs{x - y}\\le \\rho}}}\n\\frac{\\abs{u_0 \\brk{x} - u_0 \\brk{y}}^p + \\abs{u_1 \\brk{x} - u_1 \\brk{y}}^p}{\\abs{x - y}^{m + sp}} \\dif x \\dif y\n+ \n\\int_{\\Omega} \\frac{\\abs{u_0 - u_1}^p}{\\rho^{sp}}\n}\\eqpunct.\n\\end{multline}\n\\end{proposition}"
+    },
+    "post_theorem_intro_text_len": 2565,
+    "post_theorem_intro_text": "When either \\(p \\ge \\dim \\mathcal{M}\\) or \\(p \\not \\in \\mathbb{N}\\), then \\eqref{eq_saeNohshai4pheikiechai7Z} holds so that \\eqref{eq_jee6ud9boog1DaMaut7nui3w} follows immediately from \\eqref{eq_aepopa9oTahquaas6vah2aer};\n\\cref{theorem_W1p_equiintegrable_strong} is thus relevant only for \\(p \\in \\set{1, \\dotsc, \\dim \\mathcal{M} - 1}\\).\n\nFor \\(p = 1\\), \\cref{theorem_W1p_equiintegrable_strong} is due to Hang \\cite{Hang_2002}; \\cref{theorem_W1p_equiintegrable_strong} shows that the formulation of Hang’s nonlinear result \\eqref{eq_eipiekaiHohk3xeed9eijaso} in terms of sequential equi-integrable closure rather than the linear framework of sequential closure for the weak topology becomes a particular case of a general phenomenon rather than an exception.\n\nGiaquinta, Modica and Souček have proved a counterpart of \\cref{theorem_W1p_equiintegrable_strong} for the convergence of minors \\cite{Giaquinta_Modica_Soucek_1998}*{\\S 3.4.1}.\n\nHang’s proof for \\(p=1\\) relies on Egorov’s theorem and the continuity of weakly differentiable mappings on a one-dimensional domain;\nour argument in \\S \\ref{section_equiint} relies on techniques for homotopy of maps with vanishing mean oscillation due to Schoen and Uhlenbeck \\cite{Schoen_Uhlenbeck_1983} and to Brezis and Nirenberg \\cite{Brezis_Nirenberg_1995} combined with suitable Fubini and truncation arguments.\n\n\\Cref{theorem_W1p_equiintegrable_strong} is not an isolated result.\nIn \\S \\ref{section_higher_order}, we prove that it holds for higher-order Sobolev spaces \\(\\sobolev^{k, p}\\brk{\\mathcal{M}, \\mathcal{N}}\\) with \\(k \\in \\mathbb{N}\\setminus \\set{0}\\)  and \\(p \\in \\intvr{1}{\\infty}\\).\nFor fractional Sobolev spaces \\(\\sobolev^{s, p} \\brk{\\mathcal{M}, \\mathcal{N}}\\) with \\(s \\in \\intvo{0}{\\infty}\\setminus \\mathbb{N}\\) and \\(p \\in \\intvr{1}{\\infty}\\) the equivalence also holds, but for quite trivial reasons, as pointwise convergent equi-integrable sequences converge strongly (see \\cref{proposition_Wsp_strong_equi_integrable} below).\n\nFor some target manifolds, Bethuel, Coron, Demengel and Hélein have described the local obstructions to the strong approximation through a distributional Jacobian  \\citelist{\\cite{Bethuel_1990}\\cite{Demengel_1990}} or more general cohomological criterion \\cite{Bethuel_Coron_Demengel_Helein_1991}.\nWe show in \\S \\ref{section_jacobian} that \\cref{theorem_W1p_equiintegrable_strong} can then be deduced from these criteria and the equi-integrable sequential continuity of Jacobian, generalizing Hang’s argument for the circle \\cite{Hang_2002}*{First proof of Example 2.1}.",
+    "sketch": "When either \\(p \\ge \\dim \\mathcal{M}\\) or \\(p \\not \\in \\mathbb{N}\\), then \\eqref{eq_saeNohshai4pheikiechai7Z} holds so that \\eqref{eq_jee6ud9boog1DaMaut7nui3w} follows immediately from \\eqref{eq_aepopa9oTahquaas6vah2aer}.\n\nFor the remaining (relevant) integer range \\(p \\in \\{1,\\dotsc,\\dim \\mathcal{M}-1\\}\\), the paper’s argument (in \\S \\ref{section_equiint}) “relies on techniques for homotopy of maps with vanishing mean oscillation due to Schoen and Uhlenbeck \\cite{Schoen_Uhlenbeck_1983} and to Brezis and Nirenberg \\cite{Brezis_Nirenberg_1995} combined with suitable Fubini and truncation arguments.”\n\nAs context/comparison: Hang’s proof for \\(p=1\\) “relies on Egorov’s theorem and the continuity of weakly differentiable mappings on a one-dimensional domain.”\n\nAdditionally, for some target manifolds, the theorem “can then be deduced” (in \\S \\ref{section_jacobian}) from “local obstructions to the strong approximation through a distributional Jacobian … or more general cohomological criterion,” together with “the equi-integrable sequential continuity of Jacobian.”",
+    "expanded_sketch": "When either \\(p \\ge \\dim \\mathcal{M}\\) or \\(p \\not \\in \\mathbb{N}\\), then\n\\begin{equation}\n\\label{eq_saeNohshai4pheikiechai7Z}\n \\soboleh^{1, p}_{\\mathrm{St}}\\brk{\\manifold{M}, \\manifold{N}}\n = \\soboleh^{1, p}_{\\mathrm{Bd}} \\brk{\\manifold{M}, \\manifold{N}}\n \\eqpunct{.}\n\\end{equation}\nholds so that\n\\begin{equation}\n\\label{eq_jee6ud9boog1DaMaut7nui3w}\n  \\soboleh^{1, p}_{\\mathrm{St}} \\brk{\\manifold{M}, \\manifold{N}}\n =\n \\soboleh^{1, p}_{\\mathrm{Ei}} \\brk{\\manifold{M}, \\manifold{N}}\\eqpunct{.}\n\\end{equation}\nfollows immediately from\n\\begin{equation}\n\\label{eq_aepopa9oTahquaas6vah2aer}\n \\soboleh^{1, p}_{\\mathrm{St}} \\brk{\\manifold{M}, \\manifold{N}}\n \\subseteq\n \\soboleh^{1, p}_{\\mathrm{Ei}} \\brk{\\manifold{M}, \\manifold{N}}\n  \\subseteq\n \\soboleh^{1, p}_{\\mathrm{Wk}} \\brk{\\manifold{M}, \\manifold{N}}\n =\n \\soboleh^{1, p}_{\\mathrm{Bd}} \\brk{\\manifold{M}, \\manifold{N}}\n \\subseteq \\soboleh^{1, p} \\brk{\\manifold{M}, \\manifold{N}}\n\\end{equation}\n\nFor the remaining (relevant) integer range \\(p \\in \\{1,\\dotsc,\\dim \\mathcal{M}-1\\}\\), the paper’s argument (in \\S \\ref{section_equiint}) “relies on techniques for homotopy of maps with vanishing mean oscillation due to Schoen and Uhlenbeck \\cite{Schoen_Uhlenbeck_1983} and to Brezis and Nirenberg \\cite{Brezis_Nirenberg_1995} combined with suitable Fubini and truncation arguments.”\n\nAs context/comparison: Hang’s proof for \\(p=1\\) “relies on Egorov’s theorem and the continuity of weakly differentiable mappings on a one-dimensional domain.”\n\nAdditionally, for some target manifolds, the theorem “can then be deduced” (in \\S \\ref{section_jacobian}) from “local obstructions to the strong approximation through a distributional Jacobian … or more general cohomological criterion,” together with “the equi-integrable sequential continuity of Jacobian.”",
+    "expanded_theorem": "\\label{theorem_W1p_equiintegrable_strong}\nIf \\(\\mathcal{M}\\) and \\(\\mathcal{N}\\) are compact Riemannian manifolds and if \\(p \\in \\intvr{1}{\\infty}\\), then\n\\begin{equation}\n\\label{eq_jee6ud9boog1DaMaut7nui3w}\n  \\soboleh^{1, p}_{\\mathrm{St}} \\brk{\\mathcal{M}, \\mathcal{N}}\n =\n \\soboleh^{1, p}_{\\mathrm{Ei}} \\brk{\\mathcal{M}, \\mathcal{N}}\\,\\text{.}\n\\end{equation}",
+    "theorem_type": [
+      "Biconditional or Equivalence",
+      "Universal"
+    ],
+    "mcq": {
+      "question": "Let \\(\\mathcal{M}\\) and \\(\\mathcal{N}\\) be compact Riemannian manifolds and let \\(p \\in \\intvr{1}{\\infty}\\). Which of the following Sobolev classes of maps \\(\\mathcal{M}\\to\\mathcal{N}\\) coincides with \\(\\soboleh^{1, p}_{\\mathrm{St}} \\brk{\\mathcal{M}, \\mathcal{N}}\\)?",
+      "correct_choice": {
+        "label": "A",
+        "text": "\\(\\soboleh^{1, p}_{\\mathrm{St}} \\brk{\\mathcal{M}, \\mathcal{N}} = \\soboleh^{1, p}_{\\mathrm{Ei}} \\brk{\\mathcal{M}, \\mathcal{N}}\\)."
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "\\(\\soboleh^{1, p}_{\\mathrm{St}} \\brk{\\mathcal{M}, \\mathcal{N}} = \\soboleh^{1, p}_{\\mathrm{Bd}} \\brk{\\mathcal{M}, \\mathcal{N}}\\) for every \\(p \\in \\intvr{1}{\\infty}\\)."
+        },
+        {
+          "label": "C",
+          "text": "\\(\\soboleh^{1, p}_{\\mathrm{St}} \\brk{\\mathcal{M}, \\mathcal{N}} \\subseteq \\soboleh^{1, p}_{\\mathrm{Ei}} \\brk{\\mathcal{M}, \\mathcal{N}}\\)."
+        },
+        {
+          "label": "D",
+          "text": "\\(\\soboleh^{1, p}_{\\mathrm{St}} \\brk{\\mathcal{M}, \\mathcal{N}} = \\soboleh^{1, p}_{\\mathrm{Ei}} \\brk{\\mathcal{M}, \\mathcal{N}}\\) holds provided that either \\(p \\ge \\dim \\mathcal{M}\\) or \\(p \\not\\in \\mathbb{N}\\)."
+        },
+        {
+          "label": "E",
+          "text": "\\(\\soboleh^{1, p}_{\\mathrm{St}} \\brk{\\mathcal{M}, \\mathcal{N}} = \\soboleh^{1, p}_{\\mathrm{Wk}} \\brk{\\mathcal{M}, \\mathcal{N}}\\) for every \\(p \\in \\intvr{1}{\\infty}\\)."
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "E"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "characteristic",
+          "tampered_component": "extend \\(\\soboleh^{1,p}_{\\mathrm{St}}=\\soboleh^{1,p}_{\\mathrm{Bd}}\\) beyond the regime \\(p\\ge\\dim\\mathcal M\\) or \\(p\\notin\\mathbb N\\)",
+          "template_used": "boundary_range"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "finiteness",
+          "tampered_component": "drop reverse inclusion/equality and keep only the always-used inclusion \\(\\mathrm{St}\\subseteq\\mathrm{Ei}\\)",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "case_split",
+          "tampered_component": "restrict the theorem to the easy case \\(p\\ge\\dim\\mathcal M\\) or \\(p\\notin\\mathbb N\\), omitting the hard integer range",
+          "template_used": "quantifier_dependence"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "other",
+          "tampered_component": "confuse the chain \\(\\mathrm{Ei}\\subseteq\\mathrm{Wk}=\\mathrm{Bd}\\) (in the easy regime) with a global equality \\(\\mathrm{St}=\\mathrm{Wk}\\)",
+          "template_used": "wildcard"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2511.18040v1",
+    "paper_link": "http://arxiv.org/abs/2511.18040v1",
+    "theorems_cnt": 1,
+    "theorem": {
+      "env_name": "theorem",
+      "content": "\\label{thm:main}\nLet $G$ be a countably inﬁnite amenable group, $\\pi:(X,G)\\to(Y,G)$ a factor map between two $G$-systems, and $\\widetilde{\\pi}:({\\mathcal M}(X),G)\\to({\\mathcal M}(Y),G)$ the induced factor map. Then we have:\n\\begin{itemize}\n\\item[(i)]\n$\\pi$ has zero relative topological entropy if and only if so does $\\widetilde{\\pi}$.\n\\item[(ii)]\n$\\pi$ has positive relative topological entropy if and only if $\\widetilde{\\pi}$ has infinite relative mean dimension.\n\\end{itemize}",
+      "start_pos": 16594,
+      "end_pos": 17086,
+      "label": "thm:main"
+    },
+    "ref_dict": {
+      "thm:main": "\\begin{theorem}\\label{thm:main}\nLet $G$ be a countably inﬁnite amenable group, $\\pi:(X,G)\\to(Y,G)$ a factor map between two $G$-systems, and $\\widetilde{\\pi}:(\\cM(X),G)\\to(\\cM(Y),G)$ the induced factor map. Then we have:\n\\begin{itemize}\n\\item[(i)]\n$\\pi$ has zero relative topological entropy if and only if so does $\\widetilde{\\pi}$.\n\\item[(ii)]\n$\\pi$ has positive relative topological entropy if and only if $\\widetilde{\\pi}$ has infinite relative mean dimension.\n\\end{itemize}\n\\end{theorem}"
+    },
+    "post_theorem_intro_text_len": 915,
+    "post_theorem_intro_text": "The key ingredient of this paper is the local entropy theory, typically with the tool of independence sets \\cite{HY06,KL07} being generally employed in our main proof. But a novelty here is that we develop a new approach (specifically provided in Section 3) to the goal with the help of combinatorial independence, and in particular, our method strengthens the results of Glasner--Weiss \\cite{GW95}, Burguet--Shi \\cite{BS25} and Shi--Zhang \\cite{SZ25}.\n\nThis paper is organized as follows. In Section 2, we recall necessary notions and notations, and prepare some elementary properties for relative mean dimension. In Section 3 and Section 4, we prove Theorem \\ref{thm:main}.\n\n\\subsection*{Acknowledgements}\nThe first-named author was supported by NNSF of China (Grant No. 12301224) and China Postdoctoral Science Foundation (Grant No. 2022M710527). The authors were supported by NNSF of China (Grant No. 12371190).",
+    "sketch": "The post-theorem introduction does not give a proof sketch of Theorem~\\ref{thm:main}. It only indicates that the \"key ingredient\" is \"the local entropy theory\" and that \"the tool of independence sets\" is used in the main proof, with a \"new approach ... with the help of combinatorial independence\" (to be provided in Section~3), and states that Sections~3 and~4 contain the proof.",
+    "expanded_sketch": "The post-theorem introduction does not give a proof sketch of the main theorem. It only indicates that the \"key ingredient\" is \"the local entropy theory\" and that \"the tool of independence sets\" is used in the main proof, with a \"new approach ... with the help of combinatorial independence\" (to be provided later), and states that the subsequent sections contain the proof.",
+    "expanded_theorem": "\\label{thm:main}\nLet $G$ be a countably inﬁnite amenable group, $\\pi:(X,G)\\to(Y,G)$ a factor map between two $G$-systems, and $\\widetilde{\\pi}:({\\mathcal M}(X),G)\\to({\\mathcal M}(Y),G)$ the induced factor map. Then we have:\n\\begin{itemize}\n\\item[(i)]\n$\\pi$ has zero relative topological entropy if and only if so does $\\widetilde{\\pi}$.\n\\item[(ii)]\n$\\pi$ has positive relative topological entropy if and only if $\\widetilde{\\pi}$ has infinite relative mean dimension.\n\\end{itemize}",
+    "theorem_type": [
+      "Biconditional or Equivalence"
+    ],
+    "mcq": {
+      "question": "Let $G$ be a countably infinite amenable group, $\\pi:(X,G)\\to(Y,G)$ a factor map between two $G$-systems, and $\\widetilde{\\pi}:({\\mathcal M}(X),G)\\to({\\mathcal M}(Y),G)$ the induced factor map. Which of the following statements about relative topological entropy and relative mean dimension is valid?",
+      "correct_choice": {
+        "label": "A",
+        "text": "$\\pi$ has zero relative topological entropy if and only if $\\widetilde{\\pi}$ has zero relative topological entropy, and $\\pi$ has positive relative topological entropy if and only if $\\widetilde{\\pi}$ has infinite relative mean dimension."
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "$\\pi$ has zero relative topological entropy if and only if $\\widetilde{\\pi}$ has zero relative topological entropy, and $\\pi$ has positive relative topological entropy if and only if $\\widetilde{\\pi}$ has \\emph{positive and finite} relative mean dimension."
+        },
+        {
+          "label": "C",
+          "text": "If $\\pi$ has positive relative topological entropy, then $\\widetilde{\\pi}$ has infinite relative mean dimension."
+        },
+        {
+          "label": "D",
+          "text": "$\\pi$ has zero relative topological entropy if and only if $\\widetilde{\\pi}$ has zero relative topological entropy, and if $\\widetilde{\\pi}$ has infinite relative mean dimension then $\\pi$ has positive relative topological entropy."
+        },
+        {
+          "label": "E",
+          "text": "$\\pi$ has zero relative topological entropy if and only if $\\widetilde{\\pi}$ has zero relative topological entropy, and $\\pi$ has \\emph{positive finite} relative topological entropy if and only if $\\widetilde{\\pi}$ has infinite relative mean dimension."
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "E"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "other",
+          "tampered_component": "infinite-vs-finite relative mean dimension conclusion in (ii)",
+          "template_used": "boundary_range"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "other",
+          "tampered_component": "dropped the converse direction in (ii) (kept only $\\pi$ positive entropy $\\Rightarrow$ $\\widetilde{\\pi}$ infinite relative mean dimension)",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "other",
+          "tampered_component": "replaced the equivalence in (ii) by a one-way implication with reversed hypothesis/conclusion",
+          "template_used": "quantifier_dependence"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "other",
+          "tampered_component": "added an unwarranted finiteness restriction on entropy in (ii)",
+          "template_used": "wildcard"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2511.15894v1",
+    "paper_link": "http://arxiv.org/abs/2511.15894v1",
+    "theorems_cnt": 1,
+    "theorem": {
+      "env_name": "theorem",
+      "content": "\\label{MainTheorem}\n    Let $g \\in L^2(\\mathbb{R})$ with Fourier transform satisfies the super-exponential decay condition:\n    \\begin{equation*}\n        |\\hat{g}(\\xi)| \\leq C e^{-a|\\xi|^m}\n    \\end{equation*}\n    for some constants $m>1$, $C>0$, $a \\in (1,\\infty)$. Let $\\tau_1, \\tau_2 \\in \\mathbb{R}^+$ satisfy\n    \\begin{equation*}\n        \\tau_1 < \\big(\\frac{2}{(2\\pi)^{m/(m-1)}(ma)^{-1/(m-1)}e}\\big)^{\\frac{m-1}{m}}, \\quad \\quad \\quad \\tau_2< (\\frac{2}{ame})^{\\frac{1}{m}}.\n    \\end{equation*}\n    Define the set $\\Lambda$ such that: \n    \\begin{equation*}\n        \\Lambda =  \\{(\\pm\\tau_1n^{\\frac{m-1}{m}},\\pm\\tau_2n^{\\frac{1}{m}}),n \\in \\mathbb{N}\\}\n    \\end{equation*} \n    Then the following statements are equivalent for every $f, h \\in L^2(\\mathbb{R}):$\n    \\begin{enumerate}\n        \\item $|V_g(f)(\\lambda)| = |V_gh(\\lambda)|$ for every $\\lambda \\in \\Lambda$.\n        \\item $f = e^{i \\alpha}h$ for some $\\alpha \\in [0,2\\pi).$\n    \\end{enumerate}",
+      "start_pos": 105912,
+      "end_pos": 106865,
+      "label": "MainTheorem"
+    },
+    "ref_dict": {
+      "MainTheorem": "\\begin{theorem}\\label{MainTheorem}\n    Let $g \\in L^2(\\R)$ with Fourier transform satisfies the super-exponential decay condition:\n    \\begin{equation*}\n        |\\hat{g}(\\xi)| \\leq C e^{-a|\\xi|^m}\n    \\end{equation*}\n    for some constants $m>1$, $C>0$, $a \\in (1,\\infty)$. Let $\\tau_1, \\tau_2 \\in \\R^+$ satisfy\n    \\begin{equation*}\n        \\tau_1 < \\big(\\frac{2}{(2\\pi)^{m/(m-1)}(ma)^{-1/(m-1)}e}\\big)^{\\frac{m-1}{m}}, \\quad \\quad \\quad \\tau_2< (\\frac{2}{ame})^{\\frac{1}{m}}.\n    \\end{equation*}\n    Define the set $\\Lambda$ such that: \n    \\begin{equation*}\n        \\Lambda =  \\{(\\pm\\tau_1n^{\\frac{m-1}{m}},\\pm\\tau_2n^{\\frac{1}{m}}),n \\in \\N\\}\n    \\end{equation*} \n    Then the following statements are equivalent for every $f, h \\in L^2(\\R):$\n    \\begin{enumerate}\n        \\item $|V_g(f)(\\lambda)| = |V_gh(\\lambda)|$ for every $\\lambda \\in \\Lambda$.\n        \\item $f = e^{i \\alpha}h$ for some $\\alpha \\in [0,2\\pi).$\n    \\end{enumerate}\n\\end{theorem}"
+    },
+    "post_theorem_intro_text_len": 837,
+    "post_theorem_intro_text": "\\begin{figure}[h!]\n    \\centering\n    \\includegraphics[width=0.7\\textwidth]{rhosampling.png}\n    \\caption{An illustration of sampling points $\\Lambda$ in time-frequency plane for $g$ with Fourier decay parameter $m=\\frac{3}{2}$ and $a=1$}\n\\end{figure}\n{The rest of the paper is organized as follows: In Section 2 we introduce some necessary preliminaries. Subsequently we prove Theorem~\\ref{MainTheorem} in Section 3. To this end, we first establish a sufficient condition for a discrete set to be a uniqueness set for the relevant class of entire functions (Proposition 1) and use Proposition 2 to show that our result is in a sense \"sharp\". We then use these technical results to prove Theorem~\\ref{MainTheorem}, which provides a concrete discrete sampling set $\\Lambda$ that guarantees the unique recovery of $f$ up to a global phase.",
+    "sketch": "To prove Theorem~\\ref{MainTheorem}, the paper (i) \\emph{first establish[es] a sufficient condition for a discrete set to be a uniqueness set for the relevant class of entire functions (Proposition 1)}, (ii) \\emph{use[s] Proposition 2 to show that our result is in a sense ``sharp''}, and then (iii) \\emph{use[s] these technical results to prove Theorem~\\ref{MainTheorem}}, yielding \\emph{a concrete discrete sampling set $\\Lambda$ that guarantees the unique recovery of $f$ up to a global phase}.",
+    "expanded_sketch": "To prove the main theorem, the paper (i) \\emph{first establish[es] a sufficient condition for a discrete set to be a uniqueness set for the relevant class of entire functions (Proposition 1)}, (ii) \\emph{use[s] Proposition 2 to show that our result is in a sense ``sharp''}, and then (iii) \\emph{use[s] these technical results to prove the main theorem}, yielding \\emph{a concrete discrete sampling set $\\Lambda$ that guarantees the unique recovery of $f$ up to a global phase}.",
+    "expanded_theorem": "\\label{MainTheorem}\n    Let $g \\in L^2(\\mathbb{R})$ with Fourier transform satisfies the super-exponential decay condition:\n    \\begin{equation*}\n        |\\hat{g}(\\xi)| \\leq C e^{-a|\\xi|^m}\n    \\end{equation*}\n    for some constants $m>1$, $C>0$, $a \\in (1,\\infty)$. Let $\\tau_1, \\tau_2 \\in \\mathbb{R}^+$ satisfy\n    \\begin{equation*}\n        \\tau_1 < \\big(\\frac{2}{(2\\pi)^{m/(m-1)}(ma)^{-1/(m-1)}e}\\big)^{\\frac{m-1}{m}}, \\quad \\quad \\quad \\tau_2< (\\frac{2}{ame})^{\\frac{1}{m}}.\n    \\end{equation*}\n    Define the set $\\Lambda$ such that: \n    \\begin{equation*}\n        \\Lambda =  \\{(\\pm\\tau_1n^{\\frac{m-1}{m}},\\pm\\tau_2n^{\\frac{1}{m}}),n \\in \\mathbb{N}\\}\n    \\end{equation*} \n    Then the following statements are equivalent for every $f, h \\in L^2(\\mathbb{R}):$\n    \\begin{enumerate}\n        \\item $|V_g(f)(\\lambda)| = |V_gh(\\lambda)|$ for every $\\lambda \\in \\Lambda$.\n        \\item $f = e^{i \\alpha}h$ for some $\\alpha \\in [0,2\\pi).$\n    \\end{enumerate}",
+    "theorem_type": [
+      "Biconditional or Equivalence",
+      "Universal"
+    ],
+    "mcq": {
+      "question": "Let $g\\in L^2(\\mathbb R)$ satisfy the super-exponential Fourier decay condition $|\\hat g(\\xi)|\\le Ce^{-a|\\xi|^m}$ for some constants $m>1$, $C>0$, and $a\\in(1,\\infty)$. Let $\\tau_1,\\tau_2\\in\\mathbb R^+$ satisfy\n\\[\n\\tau_1 < \\bigg(\\frac{2}{(2\\pi)^{m/(m-1)}(ma)^{-1/(m-1)}e}\\bigg)^{\\frac{m-1}{m}},\\qquad \\tau_2< \\bigg(\\frac{2}{ame}\\bigg)^{\\frac{1}{m}},\n\\]\nand define\n\\[\n\\Lambda=\\{(\\pm\\tau_1n^{\\frac{m-1}{m}},\\pm\\tau_2n^{\\frac{1}{m}}): n\\in\\mathbb N\\}.\n\\]\nFor $f,h\\in L^2(\\mathbb R)$, suppose that $|V_g(f)(\\lambda)|=|V_g(h)(\\lambda)|$ for every $\\lambda\\in\\Lambda$. Which of the following statements is equivalent to this condition?",
+      "correct_choice": {
+        "label": "A",
+        "text": "$f=e^{i\\alpha}h$ for some $\\alpha\\in[0,2\\pi)$."
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "$f=e^{i\\alpha(x)}h$ for some measurable phase function $\\alpha:\\mathbb R\\to[0,2\\pi)$ (possibly depending on $x$)."
+        },
+        {
+          "label": "C",
+          "text": "$|V_g(f)(\\lambda)|=|V_g(h)(\\lambda)|$ for every $\\lambda\\in\\Lambda$ implies $|f|=|h|$ a.e. on $\\mathbb R$."
+        },
+        {
+          "label": "D",
+          "text": "There exists $\\alpha\\in[0,2\\pi)$ such that $f=e^{i\\alpha}h$, provided only that $\\tau_1,\\tau_2\\in\\mathbb R^+$ (with no upper bounds) and $\\Lambda=\\{(\\pm\\tau_1n^{\\frac{m-1}{m}},\\pm\\tau_2n^{\\frac{1}{m}}):n\\in\\mathbb N\\}$."
+        },
+        {
+          "label": "E",
+          "text": "$f=e^{i\\alpha}h$ for some $\\alpha\\in[0,2\\pi)$ whenever $|V_g(f)(\\lambda)|=|V_g(h)(\\lambda)|$ holds for every $\\lambda\\in\\Lambda$, where $\\Lambda$ is replaced by the single-quadrant set $\\{(\\tau_1n^{\\frac{m-1}{m}},\\tau_2n^{\\frac{1}{m}}):n\\in\\mathbb N\\}$."
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "E"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "other",
+          "tampered_component": "global-phase conclusion (constant $\\alpha$) weakened to variable phase $\\alpha(x)$",
+          "template_used": "property_confusion"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "finiteness",
+          "tampered_component": "drop full phase retrieval; keep only consequence on pointwise magnitudes $|f|$ and $|h|$",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "finiteness",
+          "tampered_component": "remove sharp sampling-threshold constraints on $\\tau_1,\\tau_2$ needed for uniqueness set",
+          "template_used": "boundary_range"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "finiteness",
+          "tampered_component": "alter sampling geometry by deleting the $\\pm$ symmetries in $\\Lambda$ (uniqueness set no longer guaranteed)",
+          "template_used": "wildcard"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2511.12226v1",
+    "paper_link": "http://arxiv.org/abs/2511.12226v1",
+    "theorems_cnt": 2,
+    "theorem": {
+      "env_name": "theorem",
+      "content": "[Bangert]\n\\noindent {\\it  When $M={ \\mathbb T}^2$, $\\beta_g$ is differentiable at a $1$-irrational \n\thomology class if and only if the Mather set $\\widetilde{\\mathcal{M}}_{g}^h$ consists of an invariant  torus foliated by periodic orbits}.",
+      "start_pos": 22269,
+      "end_pos": 22527,
+      "label": null
+    },
+    "ref_dict": {
+      "question_deux": "\\begin{enumerate}[label=\\textbf{(Q\\arabic*)},ref=(Q\\arabic*)]\n    \\item\\label{question_un}  \n    How do the local or global regularity properties of $\\|\\cdot\\|_{g,\\,  \\text{stable}}$ or $\\beta_g$ reflect the fine structure of the geodesic flow? \n\n    \t\\smallskip\n    \\item\\label{question_deux} \n      Can a metric  or a class of metrics be identified from knowledge of their stable norms or Mather's $\\beta$-functions?\n\\end{enumerate}",
+      "question_quattre": "\\begin{enumerate}[label=\\textbf{(Q\\arabic*)},ref=(Q\\arabic*)]\\setcounter{enumi}{2}\n    \\item\\label{question_quattre} For a closed Riemannian manifold $(M,g)$, does the stable norm or Mather's $\\beta$-function {\\it locally}  determine the metric $g$ on the Mather sets? For example, \ncan specific features of the stable norm or Mather's $\\beta$-function reveal whether two metrics are related on their Mather sets? \n    \\end{enumerate}",
+      "manelagrangian": "\\label{manelagrangian}\nIn the above discussion, we focused on Riemannian geodesic flows, but the same ideas can be implemented for general Tonelli Lagrangians.\nLet $M$ be a closed manifold. A Lagrangi",
+      "thmmane": "\\begin{theorem}\\label{thmmane}\nLet $M$ be a closed manifold. Let $L\\colon TM\\longrightarrow \\R$ be a Tonelli Lagrangian and let $V\\in C^2(M)$ be such that  $\\max_M V = 0$. Then:\n\\begin{enumerate}[label=\\textbf{(\\roman*)},ref=(\\roman*)]\n\\item\\label{Mane point 1} We have $\\beta_{L_V}(h) \\leq  \\beta_{L}(h)$ for every $h\\in H_1(M;\\R)$.\n\\item\\label{Mane point 2} Let $h\\in H_1(M;\\R)\\setminus\\{0\\}$. Then:\n{\\begin{equation*}\n\\beta_{L_V}(h) =  \\beta_{L}(h) \\quad \\Longleftrightarrow\\quad\n{ \\mathfrak M}_{L}^h \\subseteq  { \\mathfrak M}_{L_V}^h \n\\;\\; \\text{and} \\;\\;\nV \\equiv 0 \\;\\; \\text{on}  \\;\\; \\widetilde { \\mathcal M}_{L}^h \\subseteq \\widetilde { \\mathcal M}_{L_V}^h.\n\\end{equation*}\n}\n\\item\\label{Mane point 3} Let $M=\\T^n$ and $L(x,v)=\\ell(v)$, i.e., it is a completely integrable system. Let $h\\in H_1(M;\\R)\\setminus\\{0\\}$. Then, considering $\\ell_V:=\\ell+V$:\n{ \\begin{equation*}\n\\beta_{\\ell_V}(h) =  \\beta_{\\ell}(h) \\quad \\Longleftrightarrow\\quad\nV \\equiv 0 \\;\\; \\text{on}  \\;\\; M.\n\\end{equation*}\n}\n\\end{enumerate}\n\n\\end{theorem}",
+      "maincordim2": "\\begin{corollary} \\label{maincordim2}\nLet $g$ be a Riemannian metric on $\\T^2$ and let $g_0$ its normalized conformally equivalent flat metric. Then, $\\beta_g(h) \\leq \\beta_{g_0}(h)$ for every $h\\in H_1(\\T^2;\\R)$. Moreover, equality holds at some  $h\\in H_1(\\T^2;\\R)\\setminus \\{0\\}$ if and only if $g = g_0$, i.e., $g$ is flat.\n\\end{corollary}",
+      "thm_bangert": "\\begin{theorem}[Bangert]\\label{thm_bangert}\n\tSuppose a Riemannian metric $g$ on the $2$-torus $\\T^2$ has the same stable norm or Mather's $\\beta$-function as a flat metric $g_0$ on $\\T^2$. Then, $(\\T^2, g)$ and $(\\T^2, g_0)$ are isometric by an isometry homotopic to the identity.\n\\end{theorem}"
+    },
+    "post_theorem_intro_text_len": 4504,
+    "post_theorem_intro_text": "\\medskip\n\nOn the other hand, question~\\ref{question_deux} is more delicate, since these objects are built from~\\textit{minimizing} geodesics and measures, hence they typically only capture information on the subset of the phase space traversed by such curves. \n\nA positive result in this direction can be found in \\cite[Theorem 6.1]{Bangert}: \n\n\\medskip\n\\begin{theorem}[Bangert]\\label{thm_bangert}\n\tSuppose a Riemannian metric $g$ on the $2$-torus ${ \\mathbb T}^2$ has the same stable norm or Mather's $\\beta$-function as a flat metric $g_0$ on ${ \\mathbb T}^2$. Then, $({ \\mathbb T}^2, g)$ and $({ \\mathbb T}^2, g_0)$ are isometric by an isometry homotopic to the identity.\n\\end{theorem}\n\n\\medskip\nThe proof relies on Hopf's theorem, which states that a $2$-torus without conjugate points is flat. In particular, the absence of conjugate points  follows from the global differentiability\nof Mather's $\\beta$-functions and the above mentioned consequence of the differentiability at $1$-irrational homology classes.\n\nA similar rigidity result was proved by \\cite{Osuna} on the $n$-dimensional torus, $n\\geq 3$, but requires that not only the stable norm of the metric coincides with that of a flat one, but also its  $(n-1)$-dimensional counterpart (i.e., the one obtained by a similar construction on $H_{n-1}(M;{ \\mathbb R}))$.\n\n\\medskip\n\n\\begin{remark}\nWe stress that without the assumption on the absence of conjugate points, the stable norm and Mather's $\\beta$-function are very weak invariants. For example,\non a Riemannian $2$-torus ``with a big bump'' (see \\cite[ p.~46]{Bangert1}), there exists an open set on which one can arbitrarily increase the metric without changing the stable norm.\\\\\nThis construction can be generalized starting from any $(M,g)$ satisfying\n\\begin{equation}\\label{subset}\n\\Sigma_g:=\\cup_{h\\in H_1(M;{ \\mathbb R})} {\\mathcal M}^h_g \\subsetneq M.\n\\end{equation}\nOne considers any smooth function $\\lambda\\ge 0$  on  $M$, not identically zero, that has  support in the complement of the closure of ${\\Sigma_g}$. Then, one checks that the metrics $g_1:= e^\\lambda g$ and $g$ have the same  Mather's $\\beta$-functions.\n\\end{remark}\n\n\\bigskip\n\nTherefore, a more reasonable question is the following:\n\\begin{enumerate}[label=\\textbf{(Q\\arabic*)},ref=(Q\\arabic*)]\\setcounter{enumi}{2}\n    \\item\\label{question_quattre} For a closed Riemannian manifold $(M,g)$, does the stable norm or Mather's $\\beta$-function {\\it locally}  determine the metric $g$ on the Mather sets? For example, \ncan specific features of the stable norm or Mather's $\\beta$-function reveal whether two metrics are related on their Mather sets? \n    \\end{enumerate}\n     \\medskip   \n\n \\medskip   \n In the present paper, we  explore  question~\\ref{question_quattre}. More specifically, we conduct a pointwise comparison at individual homology classes, inspired by analogous results for billiard  systems in  \\cite{BarBiaSor}, and deduce, among other things, a pointwise version of the above-mentioned Bangert's Theorem \\ref{thm_bangert} (see Corollary \\ref{maincordim2}). Moreover, in Section \\ref{manelagrangian}, an extension of these results to Ma\\~n\\'e's perturbations of general Tonelli Lagrangians is discussed (see Theorem \\ref{thmmane}).\n\n\\medskip\n\n\\begin{remark} \nOn the $2$-torus, the $\\beta$-function is closely related to the so-called \\emph{marked length spectrum}. \n In~\\cite{ColLefPat}, for Riemannian surfaces with Anosov geodesic flow, the authors show that the marked length spectrum determines the conformal class of the underlying complex structure in Teichmüller space (see \\cite[Proposition 3.7]{ColLefPat}). By a result of Katok~\\cite{Katok}, this in turn implies that the marked length spectrum actually determines the metric up to isometry.\\\\\nBy the uniformization theorem, every Riemannian metric on  ${ \\mathbb T}^2$ is conformally equivalent to a flat metric. We may then ask whether the stable norm or Mather's $\\beta$-function determines the class\n\tof the underlying complex structure in the Teichmüller space of ${ \\mathbb T}^2$. That is:\n\t\\begin{enumerate}[label=\\textbf{(Q\\arabic*)},ref=(Q\\arabic*)]\\setcounter{enumi}{3}\n    \\item\\label{question_teich}\t Given two metrics $g_1$ and $g_2$ on ${ \\mathbb T}^2$ with the same Mather's $\\beta$-function, does there exist a diffeomorphism $\\psi\\colon { \\mathbb T}^2 \\to { \\mathbb T}^2$  isotopic to the identity such that $\\psi^* g_2=e^{f} g_1$ for some $f \\in C^\\infty({ \\mathbb T}^2)$? \n\\end{enumerate}\n\\end{remark}\n\n\t\\smallskip",
+    "sketch": "The proof of Theorem~\\ref{thm_bangert} \\emph{relies on Hopf's theorem}, which says that a $2$-torus \\emph{without conjugate points is flat}. The text explains that \\emph{the absence of conjugate points follows from the global differentiability of Mather's $\\beta$-functions} together with the previously mentioned fact that \\emph{differentiability at $1$-irrational homology classes} forces the corresponding Mather set to be \\emph{an invariant torus foliated by periodic orbits}. With no conjugate points, Hopf's theorem yields flatness, leading to the claimed rigidity/isometry conclusion.",
+    "expanded_sketch": "No expanded sketch found.",
+    "expanded_theorem": "[Bangert]\n\\noindent {\\it  When $M={ \\mathbb T}^2$, $\\beta_g$ is differentiable at a $1$-irrational \n\thomology class if and only if the Mather set $\\widetilde{\\mathcal{M}}_{g}^h$ consists of an invariant  torus foliated by periodic orbits}.",
+    "theorem_type": [
+      "Biconditional or Equivalence"
+    ],
+    "mcq": {
+      "question": "Let $M=\\mathbb{T}^2$ and let $h$ be a $1$-irrational homology class. Which of the following statements is equivalent to the statement that $\\beta_g$ is differentiable at $h$?",
+      "correct_choice": {
+        "label": "A",
+        "text": "The Mather set $\\widetilde{\\mathcal{M}}_{g}^h$ consists of an invariant torus foliated by periodic orbits."
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "The Aubry set $\\widetilde{\\mathcal{A}}_{g}^h$ consists of an invariant torus foliated by periodic orbits."
+        },
+        {
+          "label": "C",
+          "text": "The Mather set $\\widetilde{\\mathcal{M}}_{g}^h$ is contained in an invariant Lipschitz graph over $\\mathbb{T}^2$."
+        },
+        {
+          "label": "D",
+          "text": "For every $1$-irrational homology class $h\\in H_1(\\mathbb{T}^2;\\mathbb{R})$, the function $\\beta_g$ is differentiable at $h$."
+        },
+        {
+          "label": "E",
+          "text": "The Mather set $\\widetilde{\\mathcal{M}}_{g}^h$ consists of an invariant torus foliated by quasi-periodic orbits."
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "B"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "other",
+          "tampered_component": "replace Mather set with Aubry set",
+          "template_used": "wildcard"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "other",
+          "tampered_component": "drop 'equals invariant torus foliated by periodic orbits' to only 'contained in a Lipschitz invariant graph'",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "other",
+          "tampered_component": "make differentiability uniform over all 1-irrational classes (quantifier strengthening)",
+          "template_used": "stronger_trap"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "other",
+          "tampered_component": "replace 'periodic' by 'quasi-periodic' on the invariant torus",
+          "template_used": "property_confusion"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2511.12871v1",
+    "paper_link": "http://arxiv.org/abs/2511.12871v1",
+    "theorems_cnt": 8,
+    "theorem": {
+      "env_name": "thm",
+      "content": "\\label{main thm 1-free}\nFor a subgroup $H$ of $F_n\\times\\mathbb{Z}^m (n, m\\geq 2)$, the following items are equivalent:\n\n\\begin{enumerate}\n    \\item $H$ is aut-fixed up to isomorphism;\n    \\item $H$ is end-fixed up to isomorphism;\n    \\item $H$ is not isomorphic to $F_{\\aleph_0}, ~F_t\\times \\mathbb{Z}^m(t> n)$;\n    \\item $H$ is isomorphic to one of the following groups: $$F_t \\times \\mathbb Z^m(0 \\leq t \\leq n), ~F_t \\times \\mathbb Z^s(t \\geq 0, 0 \\leq s \\leq m-1), ~F_{\\aleph_0} \\times \\mathbb Z^s(1\\leq s\\leq m).$$\n\\end{enumerate}",
+      "start_pos": 6978,
+      "end_pos": 7514,
+      "label": "main thm 1-free"
+    },
+    "ref_dict": {
+      "main thm 4-Z surf": "\\begin{thm}\\label{main thm 4-Z surf}\n Let $H$ be a subgroup  of $\\pi_1(\\Sigma_g)\\times\\Z(g \\geq 2)$. Then\n\n (1) $H$ is aut-fixed up to isomorphism if and only if $H$ is not isomorphic to\n $$F_{\\aleph_0},  ~F_t\\times\\Z(t \\geq 2g), ~\\pi_1(\\Sigma_k)\\times\\Z(k > g);$$\n $$F_{2n} (n\\geq g ), ~F_t(t \\geq 4g-1), ~~\\pi_1(\\Sigma_k)(2g-1\\neq k>g).$$\n\n (2) $H$ is end-fixed up to isomorphism if and only if $H$ is not isomorphic to\n$$ F_{\\aleph_0},  ~F_t\\times\\Z(t \\geq 2g), ~\\pi_1(\\Sigma_k)\\times\\Z(k > g). $$\n\\end{thm}",
+      "main thm 2-surf": "\\begin{thm}\\label{main thm 2-surf}\nFor a subgroup $H$ of $\\pi_1(\\Sigma_g)\\times\\mathbb{Z}^m  (g, m\\geq 2)$, the following items are equivalent:\n\\begin{enumerate}\n    \\item $H$ is aut-fixed up to isomorphism;\n    \\item $H$ is end-fixed up to isomorphism;\n    \\item $H$ is not isomorphic to $F_{\\aleph_0},  ~F_t\\times \\mathbb{Z}^m (t \\geq 2g), ~\\pi_1(\\Sigma_k)\\times\\mathbb{Z}^m (k > g)$;\n    \\item $H$ is isomorphic to one of the following groups: $$F_t \\times \\Z^s(t \\geq 0, 0 \\leq s \\leq m-1), ~F_t \\times \\Z^m(0\\leq t <2g), ~F_{\\aleph_0} \\times \\Z^s(1\\leq s\\leq m),$$\n    $$~\\pi_1(\\Sigma_{k(g-1)+1})\\times \\Z^s(k \\geq 1, 0\\leq s \\leq m-1), ~\\pi_1(\\Sigma_g)\\times \\Z^m.$$\n\\end{enumerate}\n\\end{thm}"
+    },
+    "post_theorem_intro_text_len": 5313,
+    "post_theorem_intro_text": "\\begin{thm}\\label{main thm 2-surf}\nFor a subgroup $H$ of $\\pi_1(\\Sigma_g)\\times\\mathbb{Z}^m  (g, m\\geq 2)$, the following items are equivalent:\n\\begin{enumerate}\n    \\item $H$ is aut-fixed up to isomorphism;\n    \\item $H$ is end-fixed up to isomorphism;\n    \\item $H$ is not isomorphic to $F_{\\aleph_0},  ~F_t\\times \\mathbb{Z}^m (t \\geq 2g), ~\\pi_1(\\Sigma_k)\\times\\mathbb{Z}^m (k > g)$;\n    \\item $H$ is isomorphic to one of the following groups: $$F_t \\times \\mathbb Z^s(t \\geq 0, 0 \\leq s \\leq m-1), ~F_t \\times \\mathbb Z^m(0\\leq t <2g), ~F_{\\aleph_0} \\times \\mathbb Z^s(1\\leq s\\leq m),$$\n    $$~\\pi_1(\\Sigma_{k(g-1)+1})\\times \\mathbb Z^s(k \\geq 1, 0\\leq s \\leq m-1), ~\\pi_1(\\Sigma_g)\\times \\mathbb Z^m.$$\n\\end{enumerate}\n\\end{thm}\n\nNote that the above Item (1), Item (3) and Item (4) have been proven to be equivalent in \\cite{LWZ25}, and Item (1) implies Item (2) clearly, we only need to prove that Item (2) implies Item (3).\nWhen $m=1$, both of $\\pi_1(\\Sigma_g)\\times\\mathbb Z$ and $F_n\\times\\mathbb Z$ contain, up to isomorphism, only finitely many fixed subgroups of automorphisms, see \\cite[Theorem 4.3, Theorem 5.3]{LWZ25}. In contrast, they contain infinitely many fixed subgroups of endomorphisms. More precisely, we have the following.\n\n\\begin{thm}\\label{main thm 3-Z free}\nLet $H$ be a subgroup  of $F_n\\times\\mathbb Z(n \\geq 2)$. Then\n\n (1) $H$ is aut-fixed up to isomorphism if and only if $H$ is not isomorphic to\n $$F_{\\aleph_0}, ~F_t\\times\\mathbb Z(t>n); \\quad F_{2k} (2k> n ), ~F_t(t>2n).$$\n\n (2) $H$ is end-fixed up to isomorphism if and only if $H$ is not isomorphic to\n $$ F_{\\aleph_0}, ~F_t\\times\\mathbb Z(t>n).$$\n\\end{thm}\n\n\\begin{thm}\\label{main thm 4-Z surf}\n Let $H$ be a subgroup  of $\\pi_1(\\Sigma_g)\\times\\mathbb Z(g \\geq 2)$. Then\n\n (1) $H$ is aut-fixed up to isomorphism if and only if $H$ is not isomorphic to\n $$F_{\\aleph_0},  ~F_t\\times\\mathbb Z(t \\geq 2g), ~\\pi_1(\\Sigma_k)\\times\\mathbb Z(k > g);$$\n $$F_{2n} (n\\geq g ), ~F_t(t \\geq 4g-1), ~~\\pi_1(\\Sigma_k)(2g-1\\neq k>g).$$\n\n (2) $H$ is end-fixed up to isomorphism if and only if $H$ is not isomorphic to\n$$ F_{\\aleph_0},  ~F_t\\times\\mathbb Z(t \\geq 2g), ~\\pi_1(\\Sigma_k)\\times\\mathbb Z(k > g). $$\n\\end{thm}\n\nRecall that free-abelian groups $\\mathbb Z^n$ and free groups $F_n(n\\geq 1)$ are Hopfian (i.e. every epimorphism is an automorphism) but not co-Hopfian (i.e. every monomorphism is an automorphism) since they contain proper subgroups isomorphic to themselves; every closed surface group  $\\pi_1(\\Sigma_g)(g\\geq 2)$ is both Hopfian and co-Hopfian \\cite{Ba62,DVa97,Fr63,He72,Ho31}. Now, we show that free-abelian times surface groups are Hopfian through the residually finiteness of surface groups, and show they are not co-Hopfian by constructing isomorphic proper subgroups.\n\n\\begin{cor}\\label{Hopf cor}\nLet $G=H\\times\\mathbb{Z}^m (m\\geq 1)$ for $H=F_g$ or $H=\\pi_1(\\Sigma_g)$ $(g\\geq 1)$. Then $G$ is Hopfian but not co-Hopfian.\t\n\\end{cor}\n\nMoreover, this result can be generalized to all (Gromov) hyperbolic groups. However, since the question of whether hyperbolic groups are always residually finite remains open, we cannot directly deduce this conclusion from the residually finiteness. In fact, it can be derived from the Hopfian property of hyperbolic groups \\cite{FS23} and a corollary in \\cite{Hi69}.\n\n\\begin{cor}\\label{Hopf cor for hyperbolic case}\n    Let $G=H\\times\\mathbb{Z}^m (m\\geq 1)$ for $H$ a hyperbolic group. Then, $G$ is Hopfian but not co-Hopfian.\n\\end{cor}\n\nFor every non-elementary torsion-free hyperbolic group $H$, Lei, Wang and Zhang \\cite[Theorem 1.6]{LWZ25} provided an equivalent condition for $H\\times \\mathbb Z^k (k \\geq2)$ to contain, up to isomorphism, infinitely many aut-fixed subgroups. We adapt their result concerning the aut-fixed subgroups of $H\\times \\mathbb Z^k (k\\geq 2)$ into the following theorem about the end-fixed subgroups of $H\\times\\mathbb Z^k (k\\geq 1)$ through a similar argument.\n\n\\begin{thm}\\label{thm hyper. times Z^m finite end-fixed subgps}\n    Let $H$ be a non-elementary torsion-free hyperbolic group, and let $\\beta_1(H)$ be its first betti number. Then $H\\times\\mathbb Z^k\\ (k\\geq 1)$ contains, up to isomorphism, finitely many fixed subgroups of endomorphisms if and only if $\\beta_1(H)=0$ and $H$ contains, up to isomorphism, finitely many fixed subgroups of endomorphisms.\n\\end{thm}\n\n\\begin{rem}\n    Shor \\cite{Sh99} showed every hyperbolic group contains, up to isomorphism, only finitely many aut-fixed subgroups. Lei and Zhang \\cite{LZ23} extended this result and showed every hyperbolic group contains, up to isomorphism, only finitely many fixed subgroups of monomorphisms. However, the question of whether the same result holds for endomorphisms remains open.\n\\end{rem}\n\nThe paper is organized as follows. In Section \\ref{sect 2}, we introduce some important facts on subgroups of $F_n\\times \\mathbb Z^m$ and $\\pi_1(\\Sigma_g)\\times \\mathbb Z^m$. In Section \\ref{sect 3}, we prove the main results for end-fixed subgroups in $F_n\\times \\mathbb Z^m$. In Section \\ref{sect 4}, we first study endomorphisms of $\\pi_1(\\Sigma_g)\\times \\mathbb Z^m$, and then prove Theorem \\ref{main thm 2-surf} and Theorem \\ref{main thm 4-Z surf}. Finally, in Section \\ref{sect 5}, we obtain some results about the endomorphisms of free-abelian times hyperbolic groups.",
+    "sketch": "The introduction does not give a proof sketch for Theorem~\\ref{main thm 1-free}. It only outlines the proof strategy for Theorem~\\ref{main thm 2-surf}: since Items (1), (3), (4) are already known equivalent in \\cite{LWZ25} and (1)$\\Rightarrow$(2) is clear, it remains to prove (2)$\\Rightarrow$(3).",
+    "expanded_sketch": "No expanded sketch found.",
+    "expanded_theorem": "\\label{main thm 1-free}\nFor a subgroup $H$ of $F_n\\times\\mathbb{Z}^m (n, m\\geq 2)$, the following items are equivalent:\n\n\\begin{enumerate}\n    \\item $H$ is aut-fixed up to isomorphism;\n    \\item $H$ is end-fixed up to isomorphism;\n    \\item $H$ is not isomorphic to $F_{\\aleph_0}, ~F_t\\times \\mathbb{Z}^m(t> n)$;\n    \\item $H$ is isomorphic to one of the following groups: $$F_t \\times \\mathbb Z^m(0 \\leq t \\leq n), ~F_t \\times \\mathbb Z^s(t \\geq 0, 0 \\leq s \\leq m-1), ~F_{\\aleph_0} \\times \\mathbb Z^s(1\\leq s\\leq m).$$\n\\end{enumerate}",
+    "theorem_type": [
+      "Biconditional or Equivalence",
+      "Classification or Bijection"
+    ],
+    "mcq": {
+      "question": "Let $n,m\\ge 2$ and let $H\\le F_n\\times\\mathbb{Z}^m$. Which of the following statements about $H$ is equivalent to both: (i) $H$ is aut-fixed up to isomorphism and (ii) $H$ is end-fixed up to isomorphism?",
+      "correct_choice": {
+        "label": "A",
+        "text": "$H$ is isomorphic to one of the following groups: $F_t\\times\\mathbb{Z}^m$ with $0\\le t\\le n$, or $F_t\\times\\mathbb{Z}^s$ with $t\\ge 0$ and $0\\le s\\le m-1$, or $F_{\\aleph_0}\\times\\mathbb{Z}^s$ with $1\\le s\\le m$."
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "$H$ is isomorphic to one of the following groups: $F_t\\times\\mathbb{Z}^m$ with $0\\le t\\le n$, or $F_t\\times\\mathbb{Z}^s$ with $t\\ge 0$ and $0\\le s\\le m$, or $F_{\\aleph_0}\\times\\mathbb{Z}^s$ with $1\\le s\\le m$."
+        },
+        {
+          "label": "C",
+          "text": "$H$ is not isomorphic to $F_{\\aleph_0}$ nor to $F_t\\times\\mathbb{Z}^m$ with $t>n$."
+        },
+        {
+          "label": "D",
+          "text": "$H$ is not isomorphic to $F_{\\aleph_0}$, and $H$ is not isomorphic to $F_t\\times\\mathbb{Z}^s$ for any $t>n$ and any $0\\le s\\le m$."
+        },
+        {
+          "label": "E",
+          "text": "$H$ is isomorphic to one of the following groups: $F_t\\times\\mathbb{Z}^m$ with $0\\le t\\le n$, or $F_t\\times\\mathbb{Z}^s$ with $t\\ge 1$ and $0\\le s\\le m-1$, or $F_{\\aleph_0}\\times\\mathbb{Z}^s$ with $1\\le s\\le m$."
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "E"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "finiteness",
+          "tampered_component": "range_on_s_allows_s=m_in_middle_family",
+          "template_used": "boundary_range"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "finiteness",
+          "tampered_component": "drop_positive_classification_keep_only_exclusions",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "finiteness",
+          "tampered_component": "overexclude_by_forbidding_all_F_t_times_Z^s_with_t>n",
+          "template_used": "stronger_trap"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "finiteness",
+          "tampered_component": "exclude_t=0_from_second_family",
+          "template_used": "wildcard"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2511.13536v2",
+    "paper_link": "http://arxiv.org/abs/2511.13536v2",
+    "theorems_cnt": 2,
+    "theorem": {
+      "env_name": "theorem",
+      "content": "[\\Cref{Local_Cof_Crit}]\\label[thm]{Local_Cof_Crit_Intro}\n    Let $\\cC$ be an $\\infty$-category. A functor $f \\colon J \\to I$ of $\\infty$-categories is $\\cC$-cofinal if $|J_{a/}|$ is $\\cC$-acyclic for all $a \\in I$. The converse holds provided $\\cC$ admits enough colimits.\\footnote{We refer to \\Cref{Local_Cof_Crit} for the precise condition.}",
+      "start_pos": 86533,
+      "end_pos": 86905,
+      "label": null
+    },
+    "ref_dict": {},
+    "post_theorem_intro_text_len": 6658,
+    "post_theorem_intro_text": "We observe that $|J_{a/}|$ is $\\cC$-acyclic precisely when $J_{a/}\\to \\pt$ is $\\cC$-cofinal. Thus, \\Cref{Local_Cof_Crit_Intro} can be informally summarized as saying that $\\cC$-cofinality is a ``lax fiberwise condition''. \n\nFor many naturally occurring families of $\\infty$-categories, one can identify a substantial collection of acyclic spaces leading to enlightening specializations of \\Cref{Local_Cof_Crit_Intro}.\n\\begin{enumerate}\n    \\item If $\\cC$ is an $(n,1)$-category, namely, all mapping spaces are $(n-1)$-truncated, then every $n$-connected space is $\\cC$-acyclic. This provides a natural interpolation between \\Cref{Classical_Cof_Crit} and \\cref{Homotopy_Cof_Crit}.\n    After an initial version of this work was completed, we became aware that this result was proved in \\cite{other_quillen_paper}.\n\n    \\item If $\\cC$ is stable and $E$-local for a certain spectrum $E$, then every $E$-acyclic space (i.e.,\\ having the $E$-homology of a point) is $\\cC$-acyclic. In the special case of a stable rational $\\infty$-category, this includes all connected $\\pi$-finite spaces.\n\n    \\item If $\\cC$ is higher semiadditive of height less than or equal to $n$, then every $\\pi$-finite and $n$-connected space is $\\cC$-acyclic \\cite[Theorem 3.2.7]{AmbiHeight}. In particular, this includes stable $T(n)$- (and hence $K(n)$-)local $\\infty$-categories, which are the higher chromatic analogues of the stable rational $\\infty$-categories. \n\\end{enumerate}\n\nWe further illustrate the utility of \\Cref{Local_Cof_Crit_Intro} by describing an application due to Betts and Dan-Cohen to a concrete formula for the free $\\EE_\\infty$-algebra on a pointed object in a stable rational symmetric monoidal $\\infty$-category.\n\n\\begin{corollary}[\\cite{Ishai_Paper}, see \\Cref{Ishai}]\\label[cor]{Ishai_Intro}\n    Let $\\cC$ be a stable rational symmetric monoidal $\\infty$-category and let $\\one \\to X$ be a pointed object in $\\cC$ viewed as an $\\EE_0$-algebra. The underlying object of the free $\\EE_\\infty$-algebra on the $\\EE_0$-algebra $X$ is given by the sequential colimit\n    \\[\n        \\colim \\big(\n        \\one \\to X \\to X^{\\otimes 2}_{h\\Sigma_2} \\to X^{\\otimes 3}_{h\\Sigma_3} \\to \\dots \\big) \\qin \\cC.\n    \\]\n\\end{corollary}\n\nWe deduce \\cref{Local_Cof_Crit_Intro} from a more general quantitative result, which we believe to be of independent interest, regarding \\textit{weighted} colimits. These constitute a two-variable extension of the colimit operation which in addition to a diagram $X\\colon I \\to \\cC$, takes as input also a \\textit{weight} functor $W\\colon I^\\op \\to \\Spc$. More in detail, we have the \\textit{twisted arrow} $\\infty$-category of $I$ with its target-source right fibration\\footnote{This is the usual source-target right fibration composed with $I\\times I^\\op \\iso I^\\op\\times I$. The \\textit{left} fibration $\\Tw(I)^\\op \\to I^\\op\\times I$ classified by $\\Map$ is used to define weighted \\textit{limits}.} \n\\[\n    \\Tw(I) \\oto{\\ (t,s)\\ } I^\\op \\times I,\n\\]\nclassifying the mapping space functor $\\Map \\colon I^\\op \\times I \\to \\Spc$. \n\n\\begin{defn}[{\\cite[Definition 2.8]{gepner2017lax}}]\n    Given functors $X\\colon I \\to \\cC$ and $W\\colon I^\\op \\to \\Spc$, the \\textit{colimit of $X$ weighted by $W$}, denoted $\\colim_I^W X$, is the colimit of the composite functor\n    \\[\n        \\Tw(I) \\oto{\\ (t,s)\\ } I^\\op \\times I \\oto{W \\otimes X} \\cC.\n    \\]\n\\end{defn}\n\nOur second main result is a certain duality for weighted colimits between restricting the diagram $X\\colon I \\to \\cC$ along $f\\colon J \\to I$, and left Kan extending the weight $W \\colon J^\\op \\to \\Spc$ along $f^\\op\\colon J^\\op \\to I^\\op$ (denoted $f^\\op_!W$).  \n\n\\begin{theorem}[\\cref{Colim_Duality}]\\label[thm]{Colim_Duality_Intro}\n    Let $\\cC$ be an $\\infty$-category and $f\\colon J \\to I$ a functor. For every diagram $X\\colon I\\to \\cC$ and weight $W\\colon J^\\op \\to \\Spc$, we have an isomorphism\n    \\[\n        \\colim_J^W (X\\circ f) \\simeq \n        \\colim_I^{f^\\op_! W} X \\qin \\cC.\n    \\]\n\\end{theorem}\n\n\\begin{rem}\n    The weighted colimit $\\colim_I^W X$ of a diagram $X\\colon I \\to \\cC$ with respect to a weight $W\\colon I^\\op \\to \\Spc$ over a category $I$ can be likened to the integral $\\int_M\\varphi \\,\\mathrm{d}\\mu$ of a function $\\varphi \\colon M \\to \\RR$ with respect to a measure $\\mu$ on the space $M$. Given a map of spaces $f\\colon N \\to M$ and a measure $\\nu$ on $N$, we have \n    \\[\n        \\int_N (\\varphi \\circ f)\\,\\mathrm{d}\\nu = \\int_M \\varphi \\,\\mathrm{d}(f_*\\nu).\n    \\]\n    \\Cref{Colim_Duality_Intro} can be seen as the analogue of this identity where the left Kan extension $f_!W$ plays the role of the pushforward measure $f_*\\nu$.\n\\end{rem}\n\nThe usual colimit along $J$ can be recovered by taking the weight $W$ to be the constant functor on $\\pt \\in \\Spc$. We show that in this special case we get $(f^\\op_!W)(a) \\simeq |J_{a/}|$, obtaining the following:\n\n\\begin{corollary}[\\cref{Cof_Quant}]\\label[cor]{Cof_Quant_Intro}\n    Let $\\cC$ be an $\\infty$-category. For every functor $f\\colon J\\to I$ and a diagram $X\\colon I \\to \\cC$, we have an isomorphism\n    \\[\n        \\colim_J (X\\circ f) \\simeq \\colim_I^{|J_{(-)/}|} X \\qin \\cC.\n    \\]\n\\end{corollary}\n\nIn particular, if all the spaces $|J_{a/}|$ are $\\cC$-acyclic, then the right-hand side of the above isomorphism coincides with the ordinary colimit of $X$ over $I$, thus proving \\Cref{Local_Cof_Crit_Intro}.\n\n\\begin{rem}\n    Using the pointwise formula for left Kan extension along $f\\colon J \\to I$, one gets another formula for $\\colim_J (X\\circ f)$ as a certain colimit over $I$,\n    \\[\n        \\colim_J (X\\circ f) \\simeq \n        \\colim_I \\big(\\colim_{(b,f(b)\\to a)\\in J_{/a}} X(f(b))\\big). \n    \\]\n    This involves the \\textit{oplax fibers} $J_{/a}$ (rather than $J_{a/}$) and, while having its own uses, doesn't seem to lead to a proof of \\Cref{Local_Cof_Crit_Intro}. Thus, the introduction of the additional weight variable to the colimit operation is essential for our argument.\n\\end{rem}\n\n\\paragraph{Acknowledgments.} We are grateful to Ishai Dan-Cohen for proposing  \\cref{Ishai_Intro} as an application of a conjectural refinement of Quillen's theorem A and for many useful suggestions on a previous draft. We thank the other participants of the Seminarak where this refinement was essentially proved, inspiring the main ideas of this note. Special thanks to Shay Ben-Moshe for useful discussions about the subject matter and to Dorin Boger for useful comments on an earlier draft. \nWe also thank Niko Naumann for renewing our interest in \\cref{Local_Cof_Crit_Intro}, encouraging us to write this note. \nThe first author was supported by the DFG through SFB 1085 ``Higher Invariants''.",
+    "sketch": "We observe that $|J_{a/}|$ is $\\cC$-acyclic precisely when $J_{a/}\\to \\pt$ is $\\cC$-cofinal; thus \\Cref{Local_Cof_Crit_Intro} says informally that $\\cC$-cofinality is a ``lax fiberwise condition''.\n\nThey \"deduce \\cref{Local_Cof_Crit_Intro} from\" a more general result about *weighted* colimits, via the duality \\Cref{Colim_Duality_Intro}:\n\\[\n\\colim_J^W (X\\circ f) \\simeq \\colim_I^{f^\\op_! W} X.\n\\]\nSpecializing to the usual colimit by taking $W$ to be the constant functor on $\\pt$, they show $(f^\\op_!W)(a)\\simeq |J_{a/}|$, yielding\n\\[\n\\colim_J (X\\circ f) \\simeq \\colim_I^{|J_{(-)/}|} X.\n\\]\nIn particular, if all $|J_{a/}|$ are $\\cC$-acyclic, then the right-hand side coincides with the ordinary colimit of $X$ over $I$, \"thus proving \\Cref{Local_Cof_Crit_Intro}.\" They remark that an alternative formula using the pointwise left Kan extension and oplax fibers $J_{/a}$ \"doesn't seem to lead to a proof\" of \\Cref{Local_Cof_Crit_Intro}, so \"the introduction of the additional weight variable\" is essential.",
+    "expanded_sketch": "We observe that $|J_{a/}|$ is $\\cC$-acyclic precisely when $J_{a/}\\to \\pt$ is $\\cC$-cofinal; thus \\Cref{Local_Cof_Crit_Intro} says informally that $\\cC$-cofinality is a ``lax fiberwise condition''.\n\nThey \"deduce \\cref{Local_Cof_Crit_Intro} from\" a more general result about *weighted* colimits, via the duality \\Cref{Colim_Duality_Intro}:\n\\[\n\\colim_J^W (X\\circ f) \\simeq \\colim_I^{f^\\op_! W} X.\n\\]\nSpecializing to the usual colimit by taking $W$ to be the constant functor on $\\pt$, they show $(f^\\op_!W)(a)\\simeq |J_{a/}|$, yielding\n\\[\n\\colim_J (X\\circ f) \\simeq \\colim_I^{|J_{(-)/}|} X.\n\\]\nIn particular, if all $|J_{a/}|$ are $\\cC$-acyclic, then the right-hand side coincides with the ordinary colimit of $X$ over $I$, \"thus proving \\Cref{Local_Cof_Crit_Intro}.\" They remark that an alternative formula using the pointwise left Kan extension and oplax fibers $J_{/a}$ \"doesn't seem to lead to a proof\" of \\Cref{Local_Cof_Crit_Intro}, so \"the introduction of the additional weight variable\" is essential.",
+    "expanded_theorem": "[\\Cref{Local_Cof_Crit}]\\label[thm]{Local_Cof_Crit_Intro}\n    Let $\\cC$ be an $\\infty$-category. A functor $f \\colon J \\to I$ of $\\infty$-categories is $\\cC$-cofinal if $|J_{a/}|$ is $\\cC$-acyclic for all $a \\in I$. The converse holds provided $\\cC$ admits enough colimits.\\footnote{We refer to \\Cref{Local_Cof_Crit} for the precise condition.}",
+    "theorem_type": [
+      "Biconditional or Equivalence",
+      "Implication"
+    ],
+    "mcq": {
+      "question": "Let $\\cC$ be an $\\infty$-category admitting enough colimits, and let $f\\colon J\\to I$ be a functor of $\\infty$-categories. Which of the following conditions is equivalent to $f$ being $\\cC$-cofinal?",
+      "correct_choice": {
+        "label": "A",
+        "text": "For every $a\\in I$, the space $\\lvert J_{a/}\\rvert$ is $\\cC$-acyclic."
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "For every $a\\in I$, the space $\\lvert J_{/a}\\rvert$ is $\\cC$-acyclic."
+        },
+        {
+          "label": "C",
+          "text": "For every $a\\in I$, the functor $J_{a/}\\to \\pt$ is $\\cC$-cofinal."
+        },
+        {
+          "label": "D",
+          "text": "For every $X\\colon I\\to \\cC$, the canonical map $\\colim_J(X\\circ f)\\to \\colim_I X$ is an equivalence."
+        },
+        {
+          "label": "E",
+          "text": "For every $a\\in I$, the space $\\lvert J_{a/}\\rvert$ is contractible."
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "B"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "other",
+          "tampered_component": "use undercategories $J_{/a}$ instead of overcategories $J_{a/}$ (oplax fiber alternative)",
+          "template_used": "wildcard"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "other",
+          "tampered_component": "replace $\\cC$-acyclicity of $|J_{a/}|$ by the equivalent statement that $J_{a/}\\to\\pt$ is $\\cC$-cofinal, dropping the explicit realization condition",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "other",
+          "tampered_component": "global colimit comparison for all $X$ (cofinality-in-$\\cC$) instead of the local fiberwise $\\cC$-acyclicity criterion",
+          "template_used": "property_confusion"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "other",
+          "tampered_component": "strengthen $\\cC$-acyclicity to contractibility of each $|J_{a/}|$",
+          "template_used": "stronger_trap"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2511.11409v1",
+    "paper_link": "http://arxiv.org/abs/2511.11409v1",
+    "theorems_cnt": 2,
+    "theorem": {
+      "env_name": "letterthm",
+      "content": "\\label{thm-characterization}\nLet $(M, \\varphi)$ be a diffuse separable $\\mathrm{W}^*$-probability space. The following assertions are equivalent:\n\\begin{enumerate}[{\\rm (i)}]\n\\item $(M, \\varphi)$ is selfless.\n\n\\item The first factor inclusion $(M, \\varphi) \\subset (M, \\varphi) \\ast (N, \\psi)$ is existentially closed for some nontrivial $\\mathrm{W}^*$-probability space $(N, \\psi)$.\n\n\\item The first factor inclusion $(M, \\varphi) \\subset (M, \\varphi) \\ast (\\operatorname{ L}(\\mathbb{Z}), \\tau_\\mathbb{Z})$ is existentially closed, where $\\tau_\\mathbb{Z}$ is the canonical trace on $\\operatorname{ L}(\\mathbb{Z})$. \n\n\\item $\\operatorname{B}(M, \\varphi) = \\mathbb{C} 1$.\n\\end{enumerate}",
+      "start_pos": 11142,
+      "end_pos": 11781,
+      "label": "thm-characterization"
+    },
+    "ref_dict": {
+      "thm-characterization": "\\begin{letterthm} \\label{thm-characterization}\nLet $(M, \\varphi)$ be a diffuse separable $\\mathrm{W}^*$-probability space. The following assertions are equivalent:\n\\begin{enumerate}[{\\rm (i)}]\n\\item $(M, \\varphi)$ is selfless.\n\n\\item The first factor inclusion $(M, \\varphi) \\subset (M, \\varphi) \\ast (N, \\psi)$ is existentially closed for some nontrivial $\\mathrm{W}^*$-probability space $(N, \\psi)$.\n\n\\item The first factor inclusion $(M, \\varphi) \\subset (M, \\varphi) \\ast (\\rL(\\Z), \\tau_\\Z)$ is existentially closed, where $\\tau_\\Z$ is the canonical trace on $\\rL(\\Z)$. \n\n\\item $\\rB(M, \\varphi) = \\C 1$.\n\\end{enumerate}\n\\end{letterthm}"
+    },
+    "post_theorem_intro_text_len": 2408,
+    "post_theorem_intro_text": "We point out that the first three conditions above are analogous to the ones appearing in \\cite[Theorem 2.6]{Ro23} for C$^*$-probability spaces.\n\nThe bicentralizer $\\operatorname{B}(M, \\varphi) \\subset M$ is a von Neumann subalgebra such that $\\operatorname{B}(M, \\varphi) \\subset (M_\\varphi)' \\cap M$ (see \\cite[Proposition 1.3]{Ha85}). Thus Theorem \\ref{thm-characterization} strengthens Houdayer--Isono's result \\cite[Theorem A]{HI14}. In fact, the proof of Theorem \\ref{thm-characterization} relies on \\cite[Theorem A]{HI14} combined with a diagonal argument.\n\nObserve that if $\\operatorname{B}(M, \\varphi) = \\C1$, then $M$ must be a factor. Moreover, according to \\cite{Ok21}, one and exactly one of the following assertions hold:\n\\begin{itemize}\n\\item $(M, \\varphi)$ is a tracial factor of type ${\\rm I}_n$ for $n \\in \\mathbb{N}^*$ or of type ${\\rm II_1}$.\n\\item There exists $\\lambda \\in (0, 1)$ such that $(M, \\varphi)$ is a type ${\\rm III_\\lambda}$ factor endowed with its $\\frac{2\\pi}{|\\log(\\lambda)|}$-periodic faithful normal state. In that case, we have $(M_\\varphi)' \\cap M = \\mathbb{C} 1$.\n\\item $M$ is a type ${\\rm III_1}$ factor. In that case, using \\cite[Corollary 1.5]{Ha85}, we further have $\\operatorname{B}(M, \\psi) = \\C1$ for \\emph{every} faithful normal state $\\psi \\in M_\\ast$.\n\\end{itemize}\n\nIn particular, Theorem \\ref{thm-characterization} implies that no W$^*$-probability space of type ${\\rm II_\\infty}$ or type ${\\rm III_0}$ can be selfless (this also follows by combining \\cite[Theorem 3.5]{GH21} and \\cite[Theorem 4.1]{Ue11}).\n\nOn the other hand, a famous conjecture of Connes, known as Connes'\\! bicentralizer problem, claims that $\\operatorname{B}(M,\\varphi)=\\mathbb{C} 1$ for \\emph{every} type ${\\rm III_1}$ factor $M$ and every faithful normal state $\\varphi \\in M_*$.  This conjecture has been verified for several families of type ${\\rm III_1}$ factors such as amenable factors \\cite{Ha85}, factors with a Cartan subalgebra, free products \\cite{HU15}, semisolid factors \\cite{HI15}, $q$-deformed Araki--Woods factors \\cite{HI20, Bi24} and tensor products of type ${\\rm III_1}$ factors \\cite{Ma25}.\n\n\\begin{lettercor}\\label{cor}\nLet $M$ be a separable type ${\\rm III_1}$ factor satisfying Connes'\\! bicentralizer conjecture. Then for {\\em every} faithful normal state $\\varphi \\in M_\\ast$, the $\\mathrm{W}^*$-probability space $(M, \\varphi)$ is selfless.\n\\end{lettercor}",
+    "sketch": "The text states explicitly that “the proof of Theorem~\\ref{thm-characterization} relies on \\cite[Theorem A]{HI14} combined with a diagonal argument.”",
+    "expanded_sketch": "The text states explicitly that “To prove the main theorem, the argument relies on \\cite[Theorem A]{HI14} combined with a diagonal argument.”",
+    "expanded_theorem": "\\label{thm-characterization}\nLet $(M, \\varphi)$ be a diffuse separable $\\mathrm{W}^*$-probability space. The following assertions are equivalent:\n\\begin{enumerate}[{\\rm (i)}]\n\\item $(M, \\varphi)$ is selfless.\n\n\\item The first factor inclusion $(M, \\varphi) \\subset (M, \\varphi) \\ast (N, \\psi)$ is existentially closed for some nontrivial $\\mathrm{W}^*$-probability space $(N, \\psi)$.\n\n\\item The first factor inclusion $(M, \\varphi) \\subset (M, \\varphi) \\ast (\\operatorname{ L}(\\mathbb{Z}), \\tau_\\mathbb{Z})$ is existentially closed, where $\\tau_\\mathbb{Z}$ is the canonical trace on $\\operatorname{ L}(\\mathbb{Z})$. \n\n\\item $\\operatorname{B}(M, \\varphi) = \\mathbb{C} 1$.\n\\end{enumerate}",
+    "theorem_type": [
+      "Biconditional or Equivalence"
+    ],
+    "mcq": {
+      "question": "Let $(M,\\varphi)$ be a diffuse separable $\\mathrm{W}^*$-probability space. Which of the following statements is equivalent to both of the following conditions?\n\n1. $(M,\\varphi)$ is selfless.\n2. $\\operatorname{B}(M,\\varphi)=\\mathbb{C}1$.",
+      "correct_choice": {
+        "label": "A",
+        "text": "The first factor inclusion $(M,\\varphi)\\subset (M,\\varphi)\\ast (N,\\psi)$ is existentially closed for some nontrivial $\\mathrm{W}^*$-probability space $(N,\\psi)$."
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "The first factor inclusion $(M,\\varphi)\\subset (M,\\varphi)\\ast (N,\\psi)$ is existentially closed for every nontrivial separable $\\mathrm{W}^*$-probability space $(N,\\psi)$."
+        },
+        {
+          "label": "C",
+          "text": "The first factor inclusion $(M,\\varphi)\\subset (M,\\varphi)\\ast (\\operatorname{L}(\\mathbb{Z}),\\tau_{\\mathbb{Z}})$ is existentially closed."
+        },
+        {
+          "label": "D",
+          "text": "The first factor inclusion $(M,\\varphi)\\subset (M,\\varphi)\\overline{\\otimes} (N,\\psi)$ is existentially closed for some nontrivial $\\mathrm{W}^*$-probability space $(N,\\psi)$."
+        },
+        {
+          "label": "E",
+          "text": "The first factor inclusion $(M,\\varphi)\\subset (M,\\varphi)\\ast (N,\\psi)$ is existentially closed for some nontrivial $\\mathrm{W}^*$-probability space $(N,\\psi)$, and moreover one may always take $(N,\\psi)=(\\operatorname{L}(\\mathbb{F}_2),\\tau)$."
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "E"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "finiteness",
+          "tampered_component": "some $\\Rightarrow$ every (uniformity in the choice of $(N,\\psi)$)",
+          "template_used": "quantifier_dependence"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "other",
+          "tampered_component": "drop the existential quantifier over general $(N,\\psi)$ and keep only the specific witness $(\\operatorname{L}(\\mathbb{Z}),\\tau_{\\mathbb{Z}})$",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "other",
+          "tampered_component": "replace free product $\\ast$ by spatial tensor product $\\overline{\\otimes}$",
+          "template_used": "property_confusion"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "other",
+          "tampered_component": "claim a fixed universal witness $(\\operatorname{L}(\\mathbb{F}_2),\\tau)$ works in place of an arbitrary nontrivial witness, ignoring the diagonal/witness-selection step",
+          "template_used": "wildcard"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2511.10742v1",
+    "paper_link": "http://arxiv.org/abs/2511.10742v1",
+    "theorems_cnt": 1,
+    "theorem": {
+      "env_name": "Question",
+      "content": "[{\\cite[Rahul Pandharipande]{Rahul}}] \\label{panda}\n    Consider the colimit\n    \\[ \\qin := \\underset{n \\rightarrow \\infty}{\\colim} \\qu . \\]\n    Is it the case that\n    \\[ H^*(\\qin) \\simeq \\mathbb{Z}[c_1,\\dots,c_d]/(c_d^r) \\]\n    where the variable $c_i$ has degree $2i$ for $i=1,\\dots,d$?",
+      "start_pos": 27428,
+      "end_pos": 27748,
+      "label": "panda"
+    },
+    "ref_dict": {
+      "Ch2prelim": "\\label{Ch2prelim}\n\n\\subsection{Notation}\nThroughout this work all schemes considered are $\\kk$-schemes over a fixed algebraically closed field $\\kk$ of characteristic zero. The assumption that $\\kk$ i",
+      "panda": "\\begin{Question}[{\\cite[Rahul Pandharipande]{Rahul}}] \\label{panda}\n    Consider the colimit\n    \\[ \\qin := \\underset{n \\rightarrow \\infty}{\\colim} \\qu . \\]\n    Is it the case that\n    \\[ H^*(\\qin) \\simeq \\mathbb{Z}[c_1,\\dots,c_d]/(c_d^r) \\]\n    where the variable $c_i$ has degree $2i$ for $i=1,\\dots,d$?\n\\end{Question}"
+    },
+    "post_theorem_intro_text_len": 3752,
+    "post_theorem_intro_text": "The case $r=1$ holds by the aforementioned work of \\cite{HJ25}.\\\\\nIn this work we use classical cohomological techniques to obtain results about components in $\\qu$, whose complement has codimension converging to infinity with $n \\rightarrow \\infty$. In light of purity theorems in algebraic geometry and motivic homotopy theory, this makes them relevant for understanding the general answer. Furthermore, we compute the cohomology of $\\qu$ and $\\qin$ in the case $d=2$, confirming the special case of the conjecture above.\n\n\\subsection{Outline of our work}\n\nIn Section \\ref{Ch2prelim} we outline the preliminaries to this work. We start by defining the Quot scheme of points and the morphism $\\pi: \\yuniv \\rightarrow \\qu$, which will allow us to define open, respectively closed, subsets on $\\qu$ using subsets of a better understood scheme $\\yuniv$ invariant under a certain group action. We introduce the resolution of singularities of the Quot scheme $\\qudwa$, following \\cite{S24}. We describe a version of the Białynicki-Birula decompositon of \\cite{HV15}, which we use in our cohomology computations for $\\qudwa$.\\\\\n\nIn Section \\ref{sec1} we analyse the dimensions of loci in $\\qu$ determined by the dimension of the linear span in $\\lendi(M)$ of the endomorphisms defined by the action of the variables $x_i$ on the module $M$. We prove that one of this loci has complement of codimension diverging to infinity for $n\\rightarrow \\infty$.\\\\\n\nIn Section \\ref{sec2subspaces} we study the commutative subspaces of $\\lendi(V)$ for a $d$-dimensional space $V$ satisfying a certain spanning condition for a fixed number $1\\leq r \\leq d$. The condition arises from the surjectivity of a homomorphism $\\kk[x_1,\\dots,x_n]^{\\oplus r} \\twoheadrightarrow M$, defining a point of $\\qu$. We cite the classical theorems of Schur and Jacobson in the $r \\geq \\frac{d}{2}$ case. In the case $1 < r < \\frac{d+1}{2}$ we give new classification results, after introducing a number of technical lemmas from commutative and linear algebra. Lastly, we present a classification of subspaces of commutative endomorphisms in the case $d \\leq 3$.\\\\\n\nIn Section \\ref{sec3coh} we use the results of Section \\ref{sec2subspaces} to explicitly describe certain loci in $\\qu$, which by the results of Section \\ref{sec1} have complement of codimension diverging to infinity for $n \\rightarrow \\infty$. We compute their cohomology using the Białynicki-Birula decomposition by interpreting the surjection $\\kk[x_1,\\dots,x_n]^{\\oplus r} \\twoheadrightarrow M$ as some geometric data. We hope that in the future, we will be able to use those results to compute the cohomology of $\\qin$ for general $d$, at least in the case $1<r<\\frac{d+1}{2}$. \\\\\n\nIn Section \\ref{sec4quot2} we compute the Hilbert-Poincaré series of the cohomology ring of $\\qudwa$. Our calculation confirms the conjecture of Pandharipande (Question \\ref{panda}) in the cases $d=1$ and $d=2$. We reduce our computation from the singular Quot scheme to the smooth scheme $\\Hilb_2(\\aff^n \\times \\mathbb{P}^{r-1})$ using a resolution of singularities given in \\cite{S24} and the long exact sequence in cohomology for abstract blowups. We then use a refined version of the Białynicki-Birula decomposition introduced in \\cite{HV15} to find a cell decomposition of the subscheme of $\\Hilb_2(\\aff^n \\times \\mathbb{P}^{r-1})$ whose embedding induces an isomorphism on cohomology.\n\n\\subsection{Acknowledgements}\n\nThis article is based on the author's Bachelor thesis at the University of Warsaw, supervised by Joachim Jelisiejew. I would like to express my deepest gratitude to Joachim Jelisiejew for enlightening discussions on the subject and countless, invaluable remarks to help improve the previous drafts of the article.",
+    "sketch": "The introduction does not give a full proof of Question~\\ref{panda}, but it outlines how the authors obtain evidence/confirmations in low-dimensional cases. Namely: they \"use classical cohomological techniques\" to study components in $\\qu$ \"whose complement has codimension converging to infinity with $n\\to\\infty$\" (motivated by \"purity theorems\"). They then (i) analyse dimensions of loci in $\\qu$ coming from the dimension of the linear span in $\\lendi(M)$ of endomorphisms induced by the $x_i$-action, proving one locus has complement of codimension diverging as $n\\to\\infty$ (Section~\\ref{sec1}); (ii) classify certain commutative subspaces of $\\lendi(V)$ satisfying a spanning condition arising from surjections $\\kk[x_1,\\dots,x_n]^{\\oplus r}\\twoheadrightarrow M$ (using Schur/Jacobson for $r\\ge \\frac d2$, new results for $1<r<\\frac{d+1}{2}$, and a classification for $d\\le 3$) (Section~\\ref{sec2subspaces}); (iii) use these classifications to explicitly describe loci in $\\qu$ with complement of codimension diverging, and \"compute their cohomology using the Bia\\l ynicki-Birula decomposition\" by reinterpreting the surjection as geometric data (Section~\\ref{sec3coh}); and (iv) for confirming Question~\\ref{panda} when $d=1,2$, they \"compute the Hilbert-Poincar\\'e series\" of $H^*(\\qudwa)$, \"reduce\" from the singular Quot scheme to the smooth $\\Hilb_2(\\aff^n\\times \\mathbb{P}^{r-1})$ via a resolution of singularities and the long exact sequence for abstract blowups, and then use a refined Bia\\l ynicki-Birula decomposition to produce a cell decomposition of a subscheme whose inclusion induces an isomorphism on cohomology (Section~\\ref{sec4quot2}).",
+    "expanded_sketch": "No expanded sketch found.",
+    "expanded_theorem": "[\\cite[Rahul Pandharipande]{Rahul}] \\label{panda}\nConsider the colimit\n\\[ \\qin := \\underset{n \\rightarrow \\infty}{\\colim} \\qu . \\]\nIs it the case that\n\\[ H^*(\\qin) \\simeq \\mathbb{Z}[c_1,\\dots,c_d]/(c_d^r) \\]\nwhere the variable $c_i$ has degree $2i$ for $i=1,\\dots,d$?,",
+    "theorem_type": [
+      "Biconditional or Equivalence"
+    ],
+    "mcq": {
+      "question": "Let\n\\[ \\qin := \\underset{n \\to \\infty}{\\colim}\\, \\qu . \\]\nWhich of the following statements describes the integral cohomology ring \\(H^*(\\qin)\\) together with the grading of the generators?",
+      "correct_choice": {
+        "label": "A",
+        "text": "\\(H^*(\\qin) \\simeq \\mathbb{Z}[c_1,\\dots,c_d]/(c_d^r)\\), where \\(\\deg(c_i)=2i\\) for \\(i=1,\\dots,d\\)."
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "\\(H^*(\\qin) \\simeq \\mathbb{Z}[c_1,\\dots,c_d]/(c_d^r)\\), where \\(\\deg(c_i)=i\\) for \\(i=1,\\dots,d\\)."
+        },
+        {
+          "label": "C",
+          "text": "\\(H^*(\\qin) \\simeq \\mathbb{Z}[c_1,\\dots,c_d]\\), where \\(\\deg(c_i)=2i\\) for \\(i=1,\\dots,d\\)."
+        },
+        {
+          "label": "D",
+          "text": "\\(H^*(\\qin) \\simeq \\mathbb{Z}[c_1,\\dots,c_d]/(c_d^{r+1})\\), where \\(\\deg(c_i)=2i\\) for \\(i=1,\\dots,d\\)."
+        },
+        {
+          "label": "E",
+          "text": "\\(H^*(\\qin) \\simeq \\mathbb{Z}[c_1,\\dots,c_d]/(c_1^r)\\), where \\(\\deg(c_i)=2i\\) for \\(i=1,\\dots,d\\)."
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "E"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "other",
+          "tampered_component": "grading_of_generators",
+          "template_used": "boundary_range"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "other",
+          "tampered_component": "relation_(c_d^r)_removed",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "other",
+          "tampered_component": "exponent_in_truncation_relation",
+          "template_used": "stronger_trap"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "other",
+          "tampered_component": "which_Chern_class_is_truncated",
+          "template_used": "wildcard"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2511.07712v2",
+    "paper_link": "http://arxiv.org/abs/2511.07712v2",
+    "theorems_cnt": 1,
+    "theorem": {
+      "env_name": "thm",
+      "content": "[\\cite{FYW12}]\\label{thm:FYW}\nLet $G$ be a graph of order $n$ with chromatic number $3\\leq \\chi \\leq \\frac{n}{2}$ and least adjacency eigenvalue $\\lambda_n$.\nThen\n$$\n\\chi \\le \\left(\\frac{n}{2}+1+\\lambda_n\\right) +\n\\sqrt{\\left(\\frac{n}{2}+1+\\lambda_n\\right)^2 - 4(\\lambda_n+1)\\left(\\lambda_n + \\frac{n}{2}\\right)},\n$$\nwith equality if and only if $G \\cong \\left(K_{\\frac{\\chi}{2}}\\cup\\tfrac{n-\\chi}{2}K_1\\right) \\vee \\left(K_{\\frac{\\chi}{2}}\\cup\\tfrac{n-\\chi}{2}K_1\\right)$, where both $n$ and $\\chi$ are even.",
+      "start_pos": 7287,
+      "end_pos": 7817,
+      "label": "thm:FYW"
+    },
+    "ref_dict": {},
+    "post_theorem_intro_text_len": 278,
+    "post_theorem_intro_text": "Fan, Yu and Wang~\\cite{FYW12} conjectured that the above bound continues to hold for \n$\\frac{n}{2}<\\chi\\le n-1$. In this paper we resolve this conjecture. This is achieved by replacing the calculus-based approach used in \\cite[Section~3]{FYW12}\nwith a purely algebraic approach.",
+    "sketch": "The post-theorem introduction gives only a high-level proof approach: to resolve the conjecture extending the bound to $\\frac{n}{2}<\\chi\\le n-1$, the paper \"replac[es] the calculus-based approach used in \\cite[Section~3]{FYW12} with a purely algebraic approach.\"",
+    "expanded_sketch": "The post-theorem introduction gives only a high-level proof approach: to resolve the conjecture extending the bound to $\\frac{n}{2}<\\chi\\le n-1$, the paper \"replac[es] the calculus-based approach used in \\cite[Section~3]{FYW12} with a purely algebraic approach.\"",
+    "expanded_theorem": "[\\cite{FYW12}]\\label{thm:FYW}\nLet $G$ be a graph of order $n$ with chromatic number $3\\leq \\chi \\leq \\frac{n}{2}$ and least adjacency eigenvalue $\\lambda_n$.\nThen\n$$\n\\chi \\le \\left(\\frac{n}{2}+1+\\lambda_n\\right) +\n\\sqrt{\\left(\\frac{n}{2}+1+\\lambda_n\\right)^2 - 4(\\lambda_n+1)\\left(\\lambda_n + \\frac{n}{2}\\right)},\n$$\nwith equality if and only if $G \\cong \\left(K_{\\frac{\\chi}{2}}\\cup\\tfrac{n-\\chi}{2}K_1\\right) \\vee \\left(K_{\\frac{\\chi}{2}}\\cup\\tfrac{n-\\chi}{2}K_1\\right)$, where both $n$ and $\\chi$ are even.,",
+    "theorem_type": [
+      "Inequality or Bound",
+      "Biconditional or Equivalence"
+    ],
+    "mcq": {
+      "question": "Let $G$ be a graph of order $n$ with chromatic number $3\\le \\chi \\le \\frac{n}{2}$ and least adjacency eigenvalue $\\lambda_n$. Consider the bound\n\\[\n\\chi \\le \\left(\\frac{n}{2}+1+\\lambda_n\\right) +\n\\sqrt{\\left(\\frac{n}{2}+1+\\lambda_n\\right)^2 - 4(\\lambda_n+1)\\left(\\lambda_n + \\frac{n}{2}\\right)}.\n\\]\nWhich of the following statements is equivalent to the case of equality in this bound?",
+      "correct_choice": {
+        "label": "A",
+        "text": "Equality holds if and only if $G \\cong \\left(K_{\\frac{\\chi}{2}}\\cup\\tfrac{n-\\chi}{2}K_1\\right) \\vee \\left(K_{\\frac{\\chi}{2}}\\cup\\tfrac{n-\\chi}{2}K_1\\right)$, and both $n$ and $\\chi$ are even."
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "Equality holds if and only if $G \\cong \\left(K_{\\frac{\\chi}{2}}\\cup\\tfrac{n-\\chi}{2}K_1\\right) \\vee \\left(K_{\\frac{\\chi}{2}}\\cup\\tfrac{n-\\chi}{2}K_1\\right)$, where $n$ is even (with no parity restriction on $\\chi$)."
+        },
+        {
+          "label": "C",
+          "text": "If equality holds, then $G \\cong \\left(K_{\\frac{\\chi}{2}}\\cup\\tfrac{n-\\chi}{2}K_1\\right) \\vee \\left(K_{\\frac{\\chi}{2}}\\cup\\tfrac{n-\\chi}{2}K_1\\right)$."
+        },
+        {
+          "label": "D",
+          "text": "Equality holds if and only if $G \\cong \\left(K_{\\frac{\\chi}{2}}\\cup\\tfrac{n-\\chi}{2}K_1\\right) \\vee \\left(K_{\\frac{\\chi}{2}}\\cup\\tfrac{n-\\chi}{2}K_1\\right)$, and both $n$ and $\\chi$ are odd."
+        },
+        {
+          "label": "E",
+          "text": "Equality holds if and only if $G \\cong \\left(K_{\\chi}\\cup(n-\\chi)K_1\\right) \\vee \\left(K_{\\chi}\\cup(n-\\chi)K_1\\right)$, and both $n$ and $\\chi$ are even."
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "E"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "case_split",
+          "tampered_component": "parity_condition_on_chi",
+          "template_used": "boundary_range"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "finiteness",
+          "tampered_component": "drop_only_if_direction_and_parity",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "case_split",
+          "tampered_component": "parity_condition_swapped_to_odd",
+          "template_used": "property_confusion"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "other",
+          "tampered_component": "wrong_extremal_join_structure_parameters",
+          "template_used": "wildcard"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2511.04193v1",
+    "paper_link": "http://arxiv.org/abs/2511.04193v1",
+    "theorems_cnt": 1,
+    "theorem": {
+      "env_name": "theorem",
+      "content": "\\label{Th:APN}\\cite[Theorem 6.2]{APN}\nLet $n = 2m$ with $m$ even, and let $r < m/2$ be such that $\\gcd(r,m) = 1$.  Consider $b,c \\in \\mathbb{F}_{2^{m}}$\nThen\n\\[\nf_{b,c,r}(x,y) = \\big(xy,\\, x^{2^r+1} + x^{2^{r+m/2}} y^{2^{m/2}} + bxy^{2^r} + cy^{2^r+1}\\big)\n\\]\nis APN if and only if\n\\[\nP_{c,b}(X)=\\big(cX^{2^r+1} + bX^{2^r} + 1\\big)^{2^{m/2}+1} + X^{2^{m/2}+1}\n\\]\nhas no zero in $\\mathbb{F}_{2^m}$.",
+      "start_pos": 10034,
+      "end_pos": 10460,
+      "label": "Th:APN"
+    },
+    "ref_dict": {
+      "Th:APN": "\\begin{theorem}\\label{Th:APN}\\cite[Theorem 6.2]{APN}\nLet $n = 2m$ with $m$ even, and let $r < m/2$ be such that $\\gcd(r,m) = 1$.  Consider $b,c \\in \\mathbb{F}_{2^{m}}$\nThen\n\\[\nf_{b,c,r}(x,y) = \\big(xy,\\, x^{2^r+1} + x^{2^{r+m/2}} y^{2^{m/2}} + bxy^{2^r} + cy^{2^r+1}\\big)\n\\]\nis APN if and only if\n\\[\nP_{c,b}(X)=\\big(cX^{2^r+1} + bX^{2^r} + 1\\big)^{2^{m/2}+1} + X^{2^{m/2}+1}\n\\]\nhas no zero in $\\mathbb{F}_{2^m}$.\n\\end{theorem}"
+    },
+    "post_theorem_intro_text_len": 2399,
+    "post_theorem_intro_text": "The authors showed that for $n\\le 12$ (so $m\\le 6$) it was possible to produce new APN functions (up to CCZ-equivalence). However, if such functions exist also for higher dimensions is an open problem.\n\nThe aim of this work is to investigate such an open question. In particular, we prove that for each $r <m/8-1$ there are no instances of $b,c \\in \\mathbb{F}_{2^{m}}$ for which $f_{b,c,r}(x,y)$ is APN.\n\nThe main tool is given by application of techniques from algebraic varieties over finite fields. \n\nDenote $q=2^{m/2}$. \nFirst observe that $P_{c,b}(X)$ has a zero in $\\mathbb{F}_{q^2}$ if and only if there exists $x\\in \\mathbb{F}_{q^2}^*$ such that \n\\begin{align}\n\\frac{cx^{2^r+1} + bx^{2^r} + 1}{x}  \\label{eq0}\n\\end{align}\nis a $(q+1)$-root of unity. This is equivalent to ask that \n\\begin{align*}\n\\frac{cx^{2^r+1} + bx^{2^r} + 1}{x}=\\frac{x^q}{c^qx^{(2^r+1)q} + b^qx^{2^rq} + 1}.\n\\end{align*}\nLet $x=x_0+\\xi x_1$, where $\\{1,\\xi\\}$ is an $\\mathbb{F}_q$ basis of $\\mathbb{F}_{q^2}$ and $x_0,x_1 \\in \\mathbb{F}_q$. The previous condition (since $x\\neq 0$) can be equivalently rewritten as \n\\begin{align*}\n\\left(c(x_0+\\xi x_1)^{2^r+1} + b(x_0+\\xi x_1)^{2^r} + 1\\right)\\left(c^q(x_0+\\xi^q x_1)^{2^r+1} + b^q(x_0+\\xi^q x_1)^{2^r} + 1\\right)+(x_0+\\xi x_1)(x_0+\\xi^q x_1)=0.\n\\end{align*}\nIn order to prove that for each $b,c \\in \\mathbb{F}_{q^2}$ there is at least a solution $(\\overline{x_0},\\overline{x_1}) \\in \\mathbb{F}_q^2$ to the above equation, we consider the algebraic curve $\\mathcal{D}_{b,c,r}$ defined by\n\\begin{align*}\n\\left(c(X+\\xi Y)^{2^r+1} + b(X+\\xi Y)^{2^r} + 1\\right)\\left(c^q(X+\\xi^q Y)^{2^r+1} + b^q(X+\\xi^q Y)^{2^r} + 1\\right)+(X+\\xi Y)(X+\\xi^q Y)=0.\n\\end{align*}\nVia the change of variables $(X+\\xi Y,X+\\xi^q Y)\\mapsto (X,Y)$, $\\mathcal{D}_{b,c,r}$ is affinely equivalent to the plane curve \n$\\mathcal{C}_{b,c,r}$ defined by\n\\begin{align*}\n\\left(cX^{2^r+1} + bX^{2^r} + 1\\right)\\left(c^qY^{2^r+1} + b^qY^{2^r} + 1\\right)+XY=0.\n\\end{align*}\nOur strategy consists in proving that $\\mathcal{C}_{b,c,r}$, $b, c \\in \\F_{q^2}$, $c \\ne 0$, $r \\ge 1$, is absolutely irreducible and so is $\\mathcal{D}_{b,c,r}$. Hence, by the Hasse-Weil bound we obtain the existence of at least one point $(\\overline{x_0},\\overline{x_1}) \\in \\mathbb{F}_q^2$ in $\\mathcal{D}_{b,c,r}$. The case $c = 0$ is treated separataly. Therefore, by Theorem \\ref{Th:APN} the function $f_{b,c,r}(x,y)$ is not APN.",
+    "sketch": "Denote $q=2^{m/2}$. Using Theorem~\\ref{Th:APN}, the goal is to show that for the relevant parameters $P_{c,b}(X)$ always has a zero in $\\mathbb{F}_{2^m}=\\mathbb{F}_{q^2}$, hence $f_{b,c,r}(x,y)$ is not APN.\n\nFirst, “observe that $P_{c,b}(X)$ has a zero in $\\mathbb{F}_{q^2}$ if and only if there exists $x\\in \\mathbb{F}_{q^2}^*$ such that”\n\\[\n\\frac{cx^{2^r+1} + bx^{2^r} + 1}{x}\n\\]\n“is a $(q+1)$-root of unity,” equivalently\n\\[\n\\frac{cx^{2^r+1} + bx^{2^r} + 1}{x}=\\frac{x^q}{c^qx^{(2^r+1)q} + b^qx^{2^rq} + 1}.\n\\]\nWrite $x=x_0+\\xi x_1$ with $\\{1,\\xi\\}$ an $\\mathbb{F}_q$-basis of $\\mathbb{F}_{q^2}$ and $x_0,x_1\\in\\mathbb{F}_q$. Then the condition (with $x\\neq 0$) is “equivalently rewritten” as a plane equation in $(x_0,x_1)$.\n\nTo ensure there is always at least one solution $(\\overline{x_0},\\overline{x_1})\\in\\mathbb{F}_q^2$, the authors “consider the algebraic curve $\\mathcal{D}_{b,c,r}$” over $\\mathbb{F}_q$ defined by that equation, and after “the change of variables $(X+\\xi Y,X+\\xi^q Y)\\mapsto (X,Y)$,” replace it by the affinely equivalent plane curve $\\mathcal{C}_{b,c,r}$:\n\\[\n\\left(cX^{2^r+1} + bX^{2^r} + 1\\right)\\left(c^qY^{2^r+1} + b^qY^{2^r} + 1\\right)+XY=0.\n\\]\n\nThe “strategy consists in proving that $\\mathcal{C}_{b,c,r}$, $b, c \\in \\F_{q^2}$, $c \\ne 0$, $r \\ge 1$, is absolutely irreducible and so is $\\mathcal{D}_{b,c,r}$. Hence, by the Hasse-Weil bound we obtain the existence of at least one point $(\\overline{x_0},\\overline{x_1}) \\in \\mathbb{F}_q^2$ in $\\mathcal{D}_{b,c,r}$. The case $c = 0$ is treated separataly.” This gives a zero of $P_{c,b}$ in $\\mathbb{F}_{q^2}$, and “therefore, by Theorem \\ref{Th:APN} the function $f_{b,c,r}(x,y)$ is not APN.”",
+    "expanded_sketch": "Denote $q=2^{m/2}$. To prove the main theorem, the goal is to show that for the relevant parameters $P_{c,b}(X)$ always has a zero in $\\mathbb{F}_{2^m}=\\mathbb{F}_{q^2}$, hence $f_{b,c,r}(x,y)$ is not APN.\n\nFirst, “observe that $P_{c,b}(X)$ has a zero in $\\mathbb{F}_{q^2}$ if and only if there exists $x\\in \\mathbb{F}_{q^2}^*$ such that”\n\\[\n\\frac{cx^{2^r+1} + bx^{2^r} + 1}{x}\n\\]\n“is a $(q+1)$-root of unity,” equivalently\n\\[\n\\frac{cx^{2^r+1} + bx^{2^r} + 1}{x}=\\frac{x^q}{c^qx^{(2^r+1)q} + b^qx^{2^rq} + 1}.\n\\]\nWrite $x=x_0+\\xi x_1$ with $\\{1,\\xi\\}$ an $\\mathbb{F}_q$-basis of $\\mathbb{F}_{q^2}$ and $x_0,x_1\\in\\mathbb{F}_q$. Then the condition (with $x\\neq 0$) is “equivalently rewritten” as a plane equation in $(x_0,x_1)$.\n\nTo ensure there is always at least one solution $(\\overline{x_0},\\overline{x_1})\\in\\mathbb{F}_q^2$, the authors “consider the algebraic curve $\\mathcal{D}_{b,c,r}$” over $\\mathbb{F}_q$ defined by that equation, and after “the change of variables $(X+\\xi Y,X+\\xi^q Y)\\mapsto (X,Y)$,” replace it by the affinely equivalent plane curve $\\mathcal{C}_{b,c,r}$:\n\\[\n\\left(cX^{2^r+1} + bX^{2^r} + 1\\right)\\left(c^qY^{2^r+1} + b^qY^{2^r} + 1\\right)+XY=0.\n\\]\n\nThe “strategy consists in proving that $\\mathcal{C}_{b,c,r}$, $b, c \\in \\F_{q^2}$, $c \\ne 0$, $r \\ge 1$, is absolutely irreducible and so is $\\mathcal{D}_{b,c,r}$. Hence, by the Hasse-Weil bound we obtain the existence of at least one point $(\\overline{x_0},\\overline{x_1}) \\in \\mathbb{F}_q^2$ in $\\mathcal{D}_{b,c,r}$. The case $c = 0$ is treated separataly.” This gives a zero of $P_{c,b}$ in $\\mathbb{F}_{q^2}$, and therefore, in establishing the main theorem, the function $f_{b,c,r}(x,y)$ is not APN.",
+    "expanded_theorem": "\\label{Th:APN}To prove the main theorem, we use \\cite[Theorem 6.2]{APN}.\nLet $n = 2m$ with $m$ even, and let $r < m/2$ be such that $\\gcd(r,m) = 1$.  Consider $b,c \\in \\mathbb{F}_{2^{m}}$\nThen\n\\[\nf_{b,c,r}(x,y) = \\big(xy,\\, x^{2^r+1} + x^{2^{r+m/2}} y^{2^{m/2}} + bxy^{2^r} + cy^{2^r+1}\\big)\n\\]\nis APN if and only if\n\\[\nP_{c,b}(X)=\\big(cX^{2^r+1} + bX^{2^r} + 1\\big)^{2^{m/2}+1} + X^{2^{m/2}+1}\n\\]\nhas no zero in $\\mathbb{F}_{2^m}$.,",
+    "theorem_type": [
+      "Biconditional or Equivalence",
+      "Nonexistence"
+    ],
+    "mcq": {
+      "question": "Let \\(n=2m\\) with \\(m\\) even, and let \\(r<m/2\\) satisfy \\(\\gcd(r,m)=1\\). For \\(b,c\\in\\mathbb{F}_{2^{m}}\\), define\n\\[\nf_{b,c,r}(x,y)=\\big(xy,\\, x^{2^r+1}+x^{2^{r+m/2}}y^{2^{m/2}}+bxy^{2^r}+cy^{2^r+1}\\big).\n\\]\nWhich of the following statements is equivalent to \\(f_{b,c,r}\\) being APN?",
+      "correct_choice": {
+        "label": "A",
+        "text": "The polynomial\n\\[\nP_{c,b}(X)=\\big(cX^{2^r+1}+bX^{2^r}+1\\big)^{2^{m/2}+1}+X^{2^{m/2}+1}\n\\]\nhas no zero in \\(\\mathbb{F}_{2^m}\\)."
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "The polynomial\n\\[\nP_{c,b}(X)=\\big(cX^{2^r+1}+bX^{2^r}+1\\big)^{2^{m/2}+1}+X^{2^{m/2}+1}\n\\]\nhas no zero in \\(\\mathbb{F}_{2^{n}}=\\mathbb{F}_{2^{2m}}\\)."
+        },
+        {
+          "label": "C",
+          "text": "The polynomial\n\\[\nP_{c,b}(X)=\\big(cX^{2^r+1}+bX^{2^r}+1\\big)^{2^{m/2}+1}+X^{2^{m/2}+1}\n\\]\nhas no zero in \\(\\mathbb{F}_{2^{m/2}}\\)."
+        },
+        {
+          "label": "D",
+          "text": "The polynomial\n\\[\nP_{c,b}(X)=\\big(cX^{2^r+1}+bX^{2^r}+1\\big)^{2^{m/2}-1}+X^{2^{m/2}+1}\n\\]\nhas no zero in \\(\\mathbb{F}_{2^m}\\)."
+        },
+        {
+          "label": "E",
+          "text": "The polynomial\n\\[\nP_{c,b}(X)=\\big(cX^{2^r+1}+bX^{2^r}+1\\big)^{2^{m/2}+1}+X^{2^{m/2}+1}\n\\]\nhas a unique zero in \\(\\mathbb{F}_{2^m}\\)."
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "E"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "characteristic",
+          "tampered_component": "base_field_of_zeros_F_{2^m}_vs_F_{2^{2m}}",
+          "template_used": "boundary_range"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "characteristic",
+          "tampered_component": "weaken_field_condition_to_subfield_F_{2^{m/2}}",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "trace_identity",
+          "tampered_component": "exponent_(2^{m/2}+1)_replaced_by_(2^{m/2}-1)",
+          "template_used": "property_confusion"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "finiteness",
+          "tampered_component": "replace_no_zero_by_unique_zero_condition",
+          "template_used": "wildcard"
+        }
+      ]
+    }
+  }
+]

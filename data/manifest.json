@@ -1,0 +1,26 @@
+{
+  "202511": {
+    "source": "Mathematician/helpers/qa_runs_2025_11_2026_01_02_20260302_044401/202511",
+    "json_files": 20,
+    "qa_files": 10,
+    "qa_eval_files": 10
+  },
+  "202512": {
+    "source": "Mathematician/helpers/qa_runs_2025_12_sync_20260227_031304/202512",
+    "json_files": 24,
+    "qa_files": 10,
+    "qa_eval_files": 10
+  },
+  "202601": {
+    "source": "Mathematician/helpers/qa_runs_2025_11_2026_01_02_20260302_044401/202601",
+    "json_files": 20,
+    "qa_files": 10,
+    "qa_eval_files": 10
+  },
+  "202602": {
+    "source": "Mathematician/helpers/qa_runs_2025_11_2026_01_02_20260302_044401/202602",
+    "json_files": 20,
+    "qa_files": 10,
+    "qa_eval_files": 10
+  }
+}

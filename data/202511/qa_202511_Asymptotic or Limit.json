@@ -1,0 +1,951 @@
+[
+  {
+    "id": "2512.01137v1",
+    "paper_link": "http://arxiv.org/abs/2512.01137v1",
+    "theorems_cnt": 2,
+    "theorem": {
+      "env_name": "theorem",
+      "content": "\\label{th:lambda-to-0}\nFor any $n\\ge3$ we have $\\lim\\limits_{d\\to\\infty}\\frac{\\lambda(n,d)}d=0$.",
+      "start_pos": 17951,
+      "end_pos": 18076,
+      "label": "th:lambda-to-0"
+    },
+    "ref_dict": {
+      "r:comb-nondegenerate": "\\begin{remark}\\label{r:comb-nondegenerate}\nNote that\nthis triangulation, as well as a triangulation from theorem~\\ref{th:lambda-to-0}, is combinatorial\n(the star of every vertex has simplicial embedding into $\\R^n$, so the stars form a $PL$-atlas of~$\\SS^n$),\nsince the join of combinatorial triangulations of spheres is a combinatorial triangulation of a sphere.\n\nMoreover, these triangulations are isomorphic to the boundary of a convex polytope simplicial in $\\R^{n+1}$.\nIndeed, if $P\\subset\\R^{k+1}$ and $Q\\subset\\R^{m+1}$ are convex polytopes containing the origins in their interiors,\nthen the join $S=\\partial P\\star\\partial Q$ is canonically embedded into $\\R^{k+m+2}=\\R^{k+1}\\times\\R^{m+1}$.\nIt remains to notice that $S$ is the boundary of the cone over $S$ with the vertex at the origin\n(which in fact coincides with $\\mathrm{conv}(S)\\subset\\R^{k+m+2}$).\n\\end{remark}",
+      "th:f-vectors": "\\begin{theorem}\\label{th:f-vectors}\nTake any $n\\ge3$, and any $C>0$.\nThen there is a triangulation of $\\SS^n$ for which $\\frac{f_j}{f_i}>C$\nfor any $0\\le i<j\\le n$ such that $i<\\lfloor\\frac {n-1}2\\rfloor$.\n\\end{theorem}",
+      "th:lambda-to-0": "\\begin{theorem}\\label{th:lambda-to-0}\nFor any $n\\ge3$ we have $\\lim\\limits_{d\\to\\infty}\\frac{\\lambda(n,d)}d=0$.\n\\end{theorem}"
+    },
+    "post_theorem_intro_text_len": 954,
+    "post_theorem_intro_text": "The key idea of the proof of theorem~\\ref{th:lambda-to-0}\nis to construct a triangulation of $\\mathbb{S}^n$ which has quite a lot of $n$-simplices with respect to the number of its vertices.\nThis idea can also be applied to show the following fact.\n\nFor a finite simplicial complex $K$,\nits {\\it $f$-vector} is the sequence $f_0,f_1,\\ldots$,\nwhere $f_k$ is the number of $k$-simplices in $K$.\n\n\\begin{theorem}\\label{th:f-vectors}\nTake any $n\\ge3$, and any $C>0$.\nThen there is a triangulation of $\\mathbb{S}^n$ for which $\\frac{f_j}{f_i}>C$\nfor any $0\\le i<j\\le n$ such that $i<\\lfloor\\frac {n-1}2\\rfloor$.\n\\end{theorem}\n\nNote that the estimations from theorems~\\ref{th:lambda-to-0} and \\ref{th:f-vectors}\nhold even if we\nconsider\nonly {\\it combinatorial} triangulations.\nMoreover, we can consider only triangulations which are {\\it isomorphic to the boundary of a convex simplicial polytope in $\\mathbb{R}^{n+1}$}.\nSee remark~\\ref{r:comb-nondegenerate}.",
+    "sketch": "“The key idea of the proof of theorem~\\ref{th:lambda-to-0} is to construct a triangulation of $\\mathbb{S}^n$ which has quite a lot of $n$-simplices with respect to the number of its vertices.”",
+    "expanded_sketch": "The key idea of the proof of the main theorem is to construct a triangulation of $\\mathbb{S}^n$ which has quite a lot of $n$-simplices with respect to the number of its vertices.",
+    "expanded_theorem": "\\label{th:lambda-to-0}\nFor any $n\\ge3$ we have $\\lim\\limits_{d\\to\\infty}\\frac{\\lambda(n,d)}d=0$.",
+    "theorem_type": [
+      "Asymptotic or Limit",
+      "Universal"
+    ],
+    "mcq": {
+      "question": "Let $n\\ge 3$ be fixed, and let $\\lambda(n,d)$ be a quantity depending on $n$ and $d$. As $d\\to\\infty$, which strongest limiting conclusion is justified about the ratio $\\lambda(n,d)/d$?",
+      "correct_choice": {
+        "label": "A",
+        "text": "For every fixed integer $n\\ge 3$, one has $\\displaystyle \\lim_{d\\to\\infty}\\frac{\\lambda(n,d)}{d}=0$."
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "For every fixed integer $n\\ge 3$, one has $\\displaystyle \\lim_{d\\to\\infty}\\frac{\\lambda(n,d)}{d}=c_n>0$ for some constant $c_n$ depending only on $n$."
+        },
+        {
+          "label": "C",
+          "text": "For every fixed integer $n\\ge 3$, one has $\\displaystyle \\liminf_{d\\to\\infty}\\frac{\\lambda(n,d)}{d}=0$."
+        },
+        {
+          "label": "D",
+          "text": "For every fixed integer $n\\ge 3$, one has $\\displaystyle \\lim_{d\\to\\infty}\\frac{\\lambda(n,d)}{d^{\\,1-1/n}}=0$."
+        },
+        {
+          "label": "E",
+          "text": "For every fixed integer $n\\ge 3$, one has $\\displaystyle \\sup_{d\\ge 1}\\frac{\\lambda(n,d)}{d}<\\infty$ (equivalently, $\\lambda(n,d)=O(d)$ as $d\\to\\infty$)."
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "D"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "counting_estimate",
+          "tampered_component": "sublinear_vs_linear_growth (forces positive linear density)",
+          "template_used": "stronger_trap"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "counting_estimate",
+          "tampered_component": "limit_exists_and_equals_0 (weaken to liminf)",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "geometric_construction",
+          "tampered_component": "normalization_by_d (replace by $d^{1-1/n}$ unrelated to triangulation vertex/simplex ratio)",
+          "template_used": "wildcard"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "counting_estimate",
+          "tampered_component": "conclude_only_ratio_to_0_not_bigO (drop decay, keep mere linear bound)",
+          "template_used": "uniformity_effectivity"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2511.18602v1",
+    "paper_link": "http://arxiv.org/abs/2511.18602v1",
+    "theorems_cnt": 2,
+    "theorem": {
+      "env_name": "corollary",
+      "content": "\\label{cor:visaswedge}\nWe have\n$$ {\\rm vis}(\\mathbb{S}) \\sim_d \\left(\\int_S \\dots \\int_S |v(x_1) \\wedge \\dots \\wedge v(x_d)| {\\rm d} \\sigma(x_1) \\dots  {\\rm d} \\sigma(x_d)\\right)^{1/d} = \\; Q_d^1(\\mathbb{S}).$$",
+      "start_pos": 37373,
+      "end_pos": 37616,
+      "label": "cor:visaswedge"
+    },
+    "ref_dict": {
+      "ell_brascamp_lieb": "\\begin{theorem}[Ellipsoids and Brascamp--Lieb]\\label{ell_brascamp_lieb}\nLet $\\mathcal{E}\\subset\\mathbb{R}^d$ be an ellipsoid and $\\{w_1,\\dots,w_d\\}$ a basis of $\\mathbb{R}^d$. Let $m\\ge1$ and let $(\\sigma_1,\\dots,\\sigma_m)$ a uniform cover of $[d]$ with weights $(p_1,\\dots,p_m)$. Let $F_j=span\\{w_k:k\\in\\sigma_j\\}$ and $dim(F_j)=|\\sigma_j|=d_j$ let $\\{P_{F_j}\\}$ be orthogonal projections onto subspaces $F_j$ with $\\dim F_j=d_j$.\nThen\n\\begin{equation}\\label{main-ell}\n\\frac{c_{\\mathrm{ell}}}{BL_2}\\prod_j |P_{F_j}\\mathcal{E}|^{p_j}\\le|\\mathcal{E}| \\le C_{\\mathrm{ell}}BL_2\\prod_j |P_{F_j}\\mathcal{E}|^{p_j},\n\\end{equation}\nwhere\n\\begin{equation}\\label{Cell}\nC_{\\mathrm{ell}}\\;=\\;\\frac{\\omega_d}{\\prod_j \\omega_{d_j}^{\\,p_j}} \\qquad\\text{and }\\qquad\\text{} c_{\\mathrm{ell}}=\\frac{\\omega_d}{d^{d/2}}\\prod_{j=1}^{m}\\Bigg(\\frac{d_j^{d_j/2}}{\\omega_{d_j}}\\Bigg)^{p_j}\n\\end{equation}\nand $\\omega_m=|B_2^m|=\\pi^{m/2}/\\Gamma(\\tfrac m2+1)$ is the volume of the unit Euclidean ball in $\\mathbb{R}^m$. Moreover, the constant $C_{\\mathrm{ell}}$ is optimal (it cannot be decreased uniformly for all ellipsoids).\n\\end{theorem}",
+      "reverse_loomis_zonoids": "\\begin{theorem}\\label{reverse_loomis_zonoids}\n    Let $\\mathbb{S}=(S,\\sigma,v)$ a generalised $d$-hypersurface. There exists an orthonormal basis $\\{w_i\\}_{i=1}^{d}$ of $\\mathbb{R}^d$ such that for any $1$-uniform cover $(\\sigma_1,\\dots, \\sigma_m)$ of $[d]$ and $E_i = span\\{w_j : j\\in\\sigma_i\\}$ we have\n     \\begin{equation}\n    \\prod_{j=1}^m|P_{E_j}(\\Pi(\\mathbb{S}))|\\le\\frac{(\\sqrt{d})^{d}}{\\prod_{j=1}^m\\sqrt{d_j!}}|\\Pi(\\mathbb{S})|.\n     \\end{equation}\n\\end{theorem}",
+      "thm:vis-vs-I": "\\begin{theorem}\\label{thm:vis-vs-I}\nWith the notation above there exist positive constants $C_1(d,p),C_2(d,p)$ depending only on $d,p$ such that\n\\[\nC_1(d,p)\\; Q_d^p(\\mathbb{S}) \\;\\le\\; \\mathrm{vis}^p(\\mathbb S) \\;\\le\\; C_2(d,p)\\; Q_d^p(\\mathbb{S}).\n\\]\nCombining with Proposition~\\ref{thm:inf-a-vs-I}, one has\n\\[\n\\mathrm{vis}^p(\\mathbb S) \\;\\asymp_{d,p}\\; \\inf_{\\substack{A\\in GL(d)\\\\|\\det A|=1}} a(A)\n\\;\\asymp_{d,p}\\; Q_d^p(\\mathbb{S}).\n\\]\n\\end{theorem}",
+      "cont_brascamp_lieb": "\\begin{theorem}[Continuous Brascamp--Lieb on $S$]\\label{cont_brascamp_lieb}\nLet $S$ be a hypersurface equipped with a positive measure $\\mu$.\nLet $v:S\\to\\mathbb{R}^n$ be measurable with $v(x)\\neq0$ for $\\mu$‑almost every $x\\in S$, and assume the normalization\n\\begin{equation}\\label{eq:identity_assumption}\nI_d= \\int_S \\frac{v(x)\\otimes v(x)}{\\|v(x)\\|_2^2}\\,d\\mu(x).\n\\end{equation}\nDefine the unit directions $u(x):=v(x)/\\|v(x)\\|_2\\in S^{n-1}$ and suppose we are given a measurable family\nof non-negative functions ${f_x:\\mathbb R\\to[0,\\infty)},{x\\in S}$ that meets the usual technical integrability\nconditions.\n\nThen the following inequality holds:\n\\begin{equation}\\label{eq:conclusion_S}\n\\int_{\\mathbb R^n}\\exp\\Big(\\int_S\\log\\bigl(f_x(\\langle y,u(x)\\rangle)\\bigr)\\,d\\mu(x)\\Big)\\,dy\n\\le\n\\exp\\Big(\\int_S\\log\\Big(\\int_{\\mathbb R} f_x(t)\\,dt\\Big)\\, d\\mu(x)\\Big).\n\\end{equation}\n\\end{theorem}"
+    },
+    "post_theorem_intro_text_len": 2141,
+    "post_theorem_intro_text": "In our work, we establish a sharp version, in terms of the constants that depend on $d$ and $k_i$. One of the ingredients of the proof in \\cite{BrazitikosCarberyMacIntyre2023} was an inequality from \\cite[Theorem~3.1]{Zhang}. We first observe that this inequality is in fact the reverse Santal\\'\n{o} or Bourgain Milman inequality, see for example \\cite[ Theorem~8.2.2]{GianMilArt}, which provides a lower bound for the product of the volume of a convex body and its polar.  While it is an open problem to find the exact lower bound for general convex bodies, it is known in the class of generalised zonoids, which is the case for $\\Pi\\mathbb{S}$. Moreover, the fact that the class of extremisers of this inequality are also extremisers for the affine-invariant Loomis--Whitney inequality allows us to obtain a sharp inequality for the upper bound. \n\nOn the other hand, for the lower bound, instead of using the axes of the John ellipsoid, we use the axes of the Binet ellipsoid. Utilizing the isotropicity present there, with the aid of a refinement of the Continuous Brascamp--Lieb inequality, see Lemma \\ref{cont_brascamp_lieb}, we are able to obtain a sharp lower bound. We note that the lower bound is also connected with the reverse Loomis--Whitney inequalities from \\cite{KoldobskySaroglouZvavitch2019} and \\cite{alonso2021reverse}. Here we prove such an inequality for all zonoids and $k$-dimensional  projections, see Theorem \\ref{reverse_loomis_zonoids}. \n\nFinally, we obtain sharp bounds for ${\\mathrm {vis}}^p$ for other values of $p$. In Theorem \\ref{ell_brascamp_lieb}, a sharp inequality for $p=2$ is obtained, while in Theorem~\\ref{thm:vis-vs-I}, we prove that in general $$ {\\rm {vis}}^p(\\mathbb{S}) \\sim_{d,p} \\left(\\int_S \\dots \\int_S |v(x_1) \\wedge \\dots \\wedge v(x_d)|^p {\\rm d} \\sigma(x_1) \\dots  {\\rm d} \\sigma(x_d)\\right)^{1/pd} = \\; Q_d^p(\\mathbb{S}).$$ \nThe proof proceeds via Lewis's position. The advantage there is that the transformation preserves volume, so it does not change ${\\rm vis^p}$, and, in a sense, places the body in an isotropic position, allowing the use of the continuous Brascamp–Lieb inequality.",
+    "sketch": "To prove Corollary~\\ref{cor:visaswedge} sharply (with explicit dependence on $d$ and the $k_i$), one uses two main ingredients.\n\n(i) For the **upper bound**, one “first observe[s]” that the inequality used in \\cite{BrazitikosCarberyMacIntyre2023} (from \\cite[Theorem~3.1]{Zhang}) “is in fact the reverse Santal\\\n{o} or Bourgain--Milman inequality,” giving “a lower bound for the product of the volume of a convex body and its polar.” Although the exact bound is open “for general convex bodies,” it “is known in the class of generalised zonoids, which is the case for $\\Pi\\mathbb{S}$.” Moreover, “the fact that the class of extremisers of this inequality are also extremisers for the affine-invariant Loomis--Whitney inequality allows us to obtain a sharp inequality for the upper bound.”\n\n(ii) For the **lower bound**, “instead of using the axes of the John ellipsoid,” one uses “the axes of the Binet ellipsoid.” “Utilizing the isotropicity present there,” and “with the aid of a refinement of the Continuous Brascamp--Lieb inequality, see Lemma \\ref{cont_brascamp_lieb}, we are able to obtain a sharp lower bound.” This is “also connected with the reverse Loomis--Whitney inequalities” (and they “prove such an inequality for all zonoids and $k$-dimensional projections,” Theorem~\\ref{reverse_loomis_zonoids}).",
+    "expanded_sketch": "To prove Corollary~\\ref{cor:visaswedge} sharply (with explicit dependence on $d$ and the $k_i$), one uses two main ingredients.\n\n(i) For the **upper bound**, one “first observe[s]” that the inequality used in Brazitikos--Carbery--MacIntyre (2023) (from Zhang, Theorem~3.1) “is in fact the reverse Santal\\\n{o} or Bourgain--Milman inequality,” giving “a lower bound for the product of the volume of a convex body and its polar.” Although the exact bound is open “for general convex bodies,” it “is known in the class of generalised zonoids, which is the case for $\\Pi\\mathbb{S}$.” Moreover, “the fact that the class of extremisers of this inequality are also extremisers for the affine-invariant Loomis--Whitney inequality allows us to obtain a sharp inequality for the upper bound.”\n\n(ii) For the **lower bound**, “instead of using the axes of the John ellipsoid,” one uses “the axes of the Binet ellipsoid.” “Utilizing the isotropicity present there,” and “with the aid of a refinement of the Continuous Brascamp--Lieb inequality,” we use the following result.\n\n\\begin{theorem}[Continuous Brascamp--Lieb on $S$]\\label{cont_brascamp_lieb}\nLet $S$ be a hypersurface equipped with a positive measure $\\mu$.\nLet $v:S\\to\\mathbb{R}^n$ be measurable with $v(x)\\neq0$ for $\\mu$‑almost every $x\\in S$, and assume the normalization\n\\begin{equation}\\label{eq:identity_assumption}\nI_d= \\int_S \\frac{v(x)\\otimes v(x)}{\\|v(x)\\|_2^2}\\,d\\mu(x).\n\\end{equation}\nDefine the unit directions $u(x):=v(x)/\\|v(x)\\|_2\\in S^{n-1}$ and suppose we are given a measurable family\nof non-negative functions ${f_x:\\mathbb R\\to[0,\\infty)},{x\\in S}$ that meets the usual technical integrability\nconditions.\n\nThen the following inequality holds:\n\\begin{equation}\\label{eq:conclusion_S}\n\\int_{\\mathbb R^n}\\exp\\Big(\\int_S\\log\\bigl(f_x(\\langle y,u(x)\\rangle)\\bigr)\\,d\\mu(x)\\Big)\\,dy\n\\le\n\\exp\\Big(\\int_S\\log\\Big(\\int_{\\mathbb R} f_x(t)\\,dt\\Big)\\, d\\mu(x)\\Big).\n\\end{equation}\n\\end{theorem}\n\nWith this refinement, we are able to obtain a sharp lower bound. This is “also connected with the reverse Loomis--Whitney inequalities”; in particular, they prove the following reverse Loomis--Whitney inequality for generalised $d$-hypersurfaces.\n\n\\begin{theorem}\\label{reverse_loomis_zonoids}\n    Let $\\mathbb{S}=(S,\\sigma,v)$ a generalised $d$-hypersurface. There exists an orthonormal basis $\\{w_i\\}_{i=1}^{d}$ of $\\mathbb{R}^d$ such that for any $1$-uniform cover $(\\sigma_1,\\dots, \\sigma_m)$ of $[d]$ and $E_i = span\\{w_j : j\\in\\sigma_i\\}$ we have\n     \\begin{equation}\n    \\prod_{j=1}^m|P_{E_j}(\\Pi(\\mathbb{S}))|\\le\\frac{(\\sqrt{d})^{d}}{\\prod_{j=1}^m\\sqrt{d_j!}}|\\Pi(\\mathbb{S})|.\n     \\end{equation}\n\\end{theorem}\n",
+    "expanded_theorem": "\\label{cor:visaswedge}\nWe have\n$$ {\\rm vis}(\\mathbb{S}) \\sim_d \\left(\\int_S \\dots \\int_S |v(x_1) \\wedge \\dots \\wedge v(x_d)| {\\rm d} \\sigma(x_1) \\dots  {\\rm d} \\sigma(x_d)\\right)^{1/d} = \\; Q_d^1(\\mathbb{S}).$$,",
+    "theorem_type": [
+      "Asymptotic or Limit",
+      "Equivalence"
+    ],
+    "mcq": {
+      "question": "Let \\(\\mathbb{S}\\) be such that \\(S\\) carries a measure \\(\\sigma\\) and a vector field \\(v(x)\\) on \\(S\\). Define\n\\[\nQ_d^1(\\mathbb{S}) := \\left(\\int_S \\cdots \\int_S \\bigl|v(x_1)\\wedge\\cdots\\wedge v(x_d)\\bigr|\\,\\mathrm d\\sigma(x_1)\\cdots\\mathrm d\\sigma(x_d)\\right)^{1/d}.\n\\]\nWhat is the strongest conclusion (up to multiplicative constants depending only on \\(d\\)) relating \\({\\rm vis}(\\mathbb{S})\\) and \\(Q_d^1(\\mathbb{S})\\)?",
+      "correct_choice": {
+        "label": "A",
+        "text": "\\[ {\\rm vis}(\\mathbb{S})\\sim_d \\left(\\int_S\\cdots\\int_S \\bigl|v(x_1)\\wedge\\cdots\\wedge v(x_d)\\bigr|\\,\\mathrm d\\sigma(x_1)\\cdots\\mathrm d\\sigma(x_d)\\right)^{1/d} = Q_d^1(\\mathbb{S}).\\]"
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "\\[ {\\rm vis}(\\mathbb{S})\\lesssim_d \\left(\\int_S\\cdots\\int_S \\bigl|v(x_1)\\wedge\\cdots\\wedge v(x_d)\\bigr|\\,\\mathrm d\\sigma(x_1)\\cdots\\mathrm d\\sigma(x_d)\\right)^{1/d}=Q_d^1(\\mathbb{S}).\\]"
+        },
+        {
+          "label": "C",
+          "text": "\\[ {\\rm vis}(\\mathbb{S})\\lesssim_d Q_d^1(\\mathbb{S}).\\]"
+        },
+        {
+          "label": "D",
+          "text": "\\[ {\\rm vis}(\\mathbb{S})\\sim \\left(\\int_S\\cdots\\int_S \\bigl|v(x_1)\\wedge\\cdots\\wedge v(x_d)\\bigr|\\,\\mathrm d\\sigma(x_1)\\cdots\\mathrm d\\sigma(x_d)\\right)^{1/d}=Q_d^1(\\mathbb{S}),\\]"
+        },
+        {
+          "label": "E",
+          "text": "\\[ {\\rm vis}(\\mathbb{S})\\sim_d \\left(\\int_S\\cdots\\int_S \\bigl|v(x_1)\\wedge\\cdots\\wedge v(x_d)\\bigr|^2\\,\\mathrm d\\sigma(x_1)\\cdots\\mathrm d\\sigma(x_d)\\right)^{1/(2d)}.\\]"
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "E"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "finiteness",
+          "tampered_component": "two_sided_equivalence_vs_one_sided_bound",
+          "template_used": "property_confusion"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "finiteness",
+          "tampered_component": "dropped_lower_bound_direction_in_\\sim_d",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "uniformity_effectivity",
+          "tampered_component": "dependence_of_constants_only_on_d",
+          "template_used": "uniformity_effectivity"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "other",
+          "tampered_component": "L1_wedge_integrand_replaced_by_L2_and_root_adjusted",
+          "template_used": "wildcard"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2511.17328v2",
+    "paper_link": "http://arxiv.org/abs/2511.17328v2",
+    "theorems_cnt": 1,
+    "theorem": {
+      "env_name": "theorem",
+      "content": "[Existence and Uniqueness of Fast Pulses]\\label{thm: E}\nWhen $0<\\epsilon \\ll 1,$ there exists a unique $C^2$ (modulo translation) fast traveling pulse solution $(U_\\epsilon,Q_\\epsilon)$ to system \\eqref{eq: intro_system_1}-\\eqref{eq: intro_system_2}. In particular, with $z=x+ct$, there exists unique $C^1$ curves $c_\\epsilon=c(\\epsilon)$ and $a_\\epsilon=a(\\epsilon)$ such that $U_\\epsilon(z)<\\theta$ on $(-\\infty,0)\\cup(a_\\epsilon,\\infty)$ and $U_\\epsilon(z)>\\theta$ on $(0,a_\\epsilon)$. The parameters satisfy $c_\\epsilon\\to c_f$ and $a_\\epsilon\\to +\\infty$ as $\\epsilon \\to 0$, where $c_f>0$ is the unique speed of the front solution to \\eqref{eq: intro_scalar}. As a homoclinic orbit, $\\mathcal{S}_\\epsilon=\\Bigl\\{(U_\\epsilon(z),Q_\\epsilon(z)): z\\in \\R \\Bigr\\}$ satisfies $d_H(\\mathcal{S}_\\epsilon,\\mathcal{S}_0)\\to 0$ as $\\epsilon\\to 0$. Here, \n$$\nd_H(\\mathcal{S}_\\epsilon,\\mathcal{S}_0)=\\max\\left\\lbrace \\sup_{(U,Q)\\in \\mathcal{S}_0}d\\Bigl(\\mathcal{S}_\\epsilon,(U,Q)\\Bigr),\\sup_{(U_\\epsilon,Q_\\epsilon)\\in \\mathcal{S}_\\epsilon}d\\Bigl((U_\\epsilon,Q_\\epsilon),\\mathcal{S}_0\\Bigr) \\right\\rbrace\n$$ \nis the Hausdorff distance between sets in $(U,Q)$ space with respect to the standard Euclidean metric, and $\\mathcal{S}_0$ is the singular homoclinic orbit at $\\epsilon=0$.",
+      "start_pos": 78396,
+      "end_pos": 79699,
+      "label": "thm: E"
+    },
+    "ref_dict": {
+      "eq: intro_system_2": "\\begin{align}\nu_t&=-u-q+ \\integ{y}{\\R}[]<K(x-y)H(u(y,t)-\\theta)>, \\label{eq: intro_system_1}\\\\\nq_t &=\\epsilon (u-\\gamma q). \\label{eq: intro_system_2}\n\\end{align}",
+      "eq: intro_system_1": "\\begin{align}\nu_t&=-u-q+ \\integ{y}{\\R}[]<K(x-y)H(u(y,t)-\\theta)>, \\label{eq: intro_system_1}\\\\\nq_t &=\\epsilon (u-\\gamma q). \\label{eq: intro_system_2}\n\\end{align}",
+      "thm: E": "\\begin{theorem}[Existence and Uniqueness of Fast Pulses]\\label{thm: E}\nWhen $0<\\epsilon \\ll 1,$ there exists a unique $C^2$ (modulo translation) fast traveling pulse solution $(U_\\epsilon,Q_\\epsilon)$ to system \\eqref{eq: intro_system_1}-\\eqref{eq: intro_system_2}. In particular, with $z=x+ct$, there exists unique $C^1$ curves $c_\\epsilon=c(\\epsilon)$ and $a_\\epsilon=a(\\epsilon)$ such that $U_\\epsilon(z)<\\theta$ on $(-\\infty,0)\\cup(a_\\epsilon,\\infty)$ and $U_\\epsilon(z)>\\theta$ on $(0,a_\\epsilon)$. The parameters satisfy $c_\\epsilon\\to c_f$ and $a_\\epsilon\\to +\\infty$ as $\\epsilon \\to 0$, where $c_f>0$ is the unique speed of the front solution to \\eqref{eq: intro_scalar}. As a homoclinic orbit, $\\mathcal{S}_\\epsilon=\\Bigl\\{(U_\\epsilon(z),Q_\\epsilon(z)): z\\in \\R \\Bigr\\}$ satisfies $d_H(\\mathcal{S}_\\epsilon,\\mathcal{S}_0)\\to 0$ as $\\epsilon\\to 0$. Here, \n$$\nd_H(\\mathcal{S}_\\epsilon,\\mathcal{S}_0)=\\max\\left\\lbrace \\sup_{(U,Q)\\in \\mathcal{S}_0}d\\Bigl(\\mathcal{S}_\\epsilon,(U,Q)\\Bigr),\\sup_{(U_\\epsilon,Q_\\epsilon)\\in \\mathcal{S}_\\epsilon}d\\Bigl((U_\\epsilon,Q_\\epsilon),\\mathcal{S}_0\\Bigr) \\right\\rbrace\n$$ \nis the Hausdorff distance between sets in $(U,Q)$ space with respect to the standard Euclidean metric, and $\\mathcal{S}_0$ is the singular homoclinic orbit at $\\epsilon=0$.\n\\end{theorem}"
+    },
+    "post_theorem_intro_text_len": 4357,
+    "post_theorem_intro_text": "As a result of the original work of Pinto and Ermentrout \\cite{PintoandErmentrout-SpatiallyStructuredActivityinSynapticallyCoupledI.TravelingWaves}, as well as follow-up mathematical analysis (such as  by Pinto et al. \\cite{Pinto2005}), there is a heuristically and computationally justified acceptance of much of \\cref{thm: E} (especially for nonnegative kernels), but a complete proof of existence and uniqueness is lacking prior to this paper. \n\nIn particular, to the author's knowledge, there have been no other results that rigorously study the fast pulse solutions in the Heaviside model when they are broken down by fast and slow representations in inner and outer regions for $\\epsilon \\ll 1$. Unlike the singular homoclinic orbit, when $\\epsilon>0$, the fast and slow dynamics need to be analyzed when they overlap. When $K$ is chosen as the exponential type. we have PDE reductions and applications of classic geometric singular perturbation theory can be applied. We avoid requiring this reduction.\n\nIn order to prove \\cref{thm: E}, we derive a number of new estimates of the solutions and their wave speeds and widths. The following corollary summarizes first-order approximations of the parameters. Denote $\\tau(\\epsilon):=\\epsilon a(\\epsilon)$, a natural change of variable since $a(\\epsilon)=O\\left(\\f{\\epsilon}\\right)$ is known based on the fast and slow time scales. The functions $f$ and $g$ are discussed at length in \\cref{sec: calc}.\n\\begin{corollary}[First-Order Approximations of $\\tau(\\epsilon)$ and $c(\\epsilon)$] \\label{thm: first_order}Consider the unique pair of $C^1$ curves $\\tau_\\epsilon=\\tau(\\epsilon)$ and $c_\\epsilon=c(\\epsilon)$ from \\cref{thm: E}. The limits $\\tau(\\epsilon)\\to \\tau_0$ and $c(\\epsilon)\\to c_f$ hold, where\n$$\n\\tau_0=-\\f{c_f}{1+\\gamma}\\ln(2\\theta(1+\\gamma)-\\gamma).\n$$\nThe derivative of the vector $(\\tau(\\epsilon),c(\\epsilon))^T$ satisfies\n\\begin{equation}\n \\begin{pmatrix}\n\\tau'(0) \\\\ c'(0)\n\\end{pmatrix}\n=-J^{-1}(\\tau_0,c_f,0)\n\\begin{pmatrix}\nf_\\epsilon(\\tau_0,c_f,0) \\\\ g_\\epsilon(\\tau_0,c_f,0)\n\\end{pmatrix},\n\\end{equation}\nwhere $f(\\tau(\\epsilon),c(\\epsilon),\\epsilon)=U(0)=\\theta$ and $g(\\tau(\\epsilon),c(\\epsilon),\\epsilon)=U(a(\\epsilon))=\\theta$ are the speed index equations for the pulse. Hence, $\\tau(\\epsilon)\\approx \\tau_0 +\\tau'(0)\\epsilon$ and $c(\\epsilon)\\approx c_f +c'(0)\\epsilon$ are first-order approximations of $\\tau(\\epsilon)$ and $c(\\epsilon)$, respectively. In particular,\n\\begin{equation}\\label{eq: cp_zero}\nc'(0)=-\\f{\\phi_f'(c_f)}\\left\\lbrace 2\\theta-\\f{c_f}\\integ{x}{-\\infty}[0]<|x|\\left(e^{\\f{x}{c_f}}+1\\right)K(x)>\\right\\rbrace,\n\\end{equation}\nwhere $\\phi_f$ is the speed index function for the front that satisfies $\\phi_f'(c_f)<0$.\n\\end{corollary}\n\\subsection{Hypotheses} \\label{subsec: hyp}\nWe state our main hypotheses and then offer some remarks as to why they are necessary.\n\\begin{itemize}\n\\item[(H1)] The parameters satisfy $0<\\theta<\\min\\{\\f{2},\\int_{-\\infty}^0 K\\}$, \\, $\\f{\\gamma}{1+\\gamma}<\\theta,\\,$ and $\\epsilon \\ll 1$.\n\\item[(H2)] When $\\epsilon=0$, there exists a traveling front solution $u(x,t)=U_f(x+c_ft)$ to \\eqref{eq: intro_scalar} with $U_f(\\cdot)<\\theta$ on $(-\\infty,0)$, $U_f(\\cdot)>\\theta$ on $(0,\\infty)$, $U_f(-\\infty)=0$, and $U_f(\\infty)=1$. The solution is translation invariant, but we will assume $U_f(0)=\\theta$ unless stated otherwise.\n\\item[(H3)] There exists $\\alpha>0$ and $\\rho>0$ such that $|K(x)|\\leq \\alpha e^{-\\rho|x|}$. Moreover, assume $K$ is continuous and $\\int_\\R K = 1$.\n\\end{itemize}\nWe require $0<\\theta<\\int_{-\\infty}^0 K$ because it is necessary in order for the front to exist, while $\\theta <\\f{2}$ is required for the pulse. Often $K$ is symmetrical so these conditions are equivalent. To conclude remarks on (H1), we note that the assumption $\\frac{\\gamma}{1+\\gamma}<\\theta$ ensures that the line $Q=\\frac{U}{\\gamma}$ does not intersect $Q=-U+H(U-\\theta)$ when $U>\\theta$, which would lead to a second fixed point, and the homoclinic orbit would be replaced by a heteroclinic orbit. Hypothesis (H2) ensures we have a leading order inner solution. Finally, hypothesis (H3) is a common assumption in nonlocal problems. Biologically, long-range synaptic interaction strengths decay sharply, while mathematically, exponential decay ensures that terms of order $O\\left(\\epsilon^{-k}e^{-\\f{|C|}{\\epsilon}}\\right)$ vanish.",
+    "sketch": "To prove \\cref{thm: E}, the introduction indicates that the paper (unlike prior heuristic/computational work) provides a complete proof by \\emph{deriving “a number of new estimates of the solutions and their wave speeds and widths.”} It emphasizes that, for $\\epsilon>0$, \\emph{“the fast and slow dynamics need to be analyzed when they overlap”} (in contrast to the singular homoclinic orbit at $\\epsilon=0$), and that the approach \\emph{“avoid[s] requiring”} a PDE reduction available for exponential-type kernels.\n\nA key structural element of the argument is to characterize the pulse parameters via the \\emph{“speed index equations”} for the pulse, namely $f(\\tau(\\epsilon),c(\\epsilon),\\epsilon)=U(0)=\\theta$ and $g(\\tau(\\epsilon),c(\\epsilon),\\epsilon)=U(a(\\epsilon))=\\theta$, after introducing the rescaled width $\\tau(\\epsilon):=\\epsilon a(\\epsilon)$ as a \\emph{“natural change of variable”} (since $a(\\epsilon)$ is tied to fast/slow time scales). The corollary then summarizes the resulting first-order parameter information: $\\tau(\\epsilon)\\to\\tau_0$ and $c(\\epsilon)\\to c_f$, and $(\\tau'(0),c'(0))^T$ is obtained from an implicit-differentiation/Jacobian formula $-J^{-1}(\\tau_0,c_f,0)(f_\\epsilon(\\tau_0,c_f,0),g_\\epsilon(\\tau_0,c_f,0))^T$, yielding first-order approximations $\\tau(\\epsilon)\\approx \\tau_0+\\tau'(0)\\epsilon$ and $c(\\epsilon)\\approx c_f+c'(0)\\epsilon$ (with an explicit expression for $c'(0)$ in \\eqref{eq: cp_zero}).",
+    "expanded_sketch": "To prove the main theorem, the introduction indicates that the paper (unlike prior heuristic/computational work) provides a complete proof by \\emph{deriving “a number of new estimates of the solutions and their wave speeds and widths.”} It emphasizes that, for $\\epsilon>0$, \\emph{“the fast and slow dynamics need to be analyzed when they overlap”} (in contrast to the singular homoclinic orbit at $\\epsilon=0$), and that the approach \\emph{“avoid[s] requiring”} a PDE reduction available for exponential-type kernels.\n\nA key structural element of the argument is to characterize the pulse parameters via the \\emph{“speed index equations”} for the pulse, namely $f(\\tau(\\epsilon),c(\\epsilon),\\epsilon)=U(0)=\\theta$ and $g(\\tau(\\epsilon),c(\\epsilon),\\epsilon)=U(a(\\epsilon))=\\theta$, after introducing the rescaled width $\\tau(\\epsilon):=\\epsilon a(\\epsilon)$ as a \\emph{“natural change of variable”} (since $a(\\epsilon)$ is tied to fast/slow time scales). The corollary then summarizes the resulting first-order parameter information: $\\tau(\\epsilon)\\to\\tau_0$ and $c(\\epsilon)\\to c_f$, and $(\\tau'(0),c'(0))^T$ is obtained from an implicit-differentiation/Jacobian formula $-J^{-1}(\\tau_0,c_f,0)(f_\\epsilon(\\tau_0,c_f,0),g_\\epsilon(\\tau_0,c_f,0))^T$, yielding first-order approximations $\\tau(\\epsilon)\\approx \\tau_0+\\tau'(0)\\epsilon$ and $c(\\epsilon)\\approx c_f+c'(0)\\epsilon$ (with an explicit expression for $c'(0)$ in \\eqref{eq: cp_zero}).,",
+    "expanded_theorem": "[Existence and Uniqueness of Fast Pulses]\\label{thm: E}\nWhen $0<\\epsilon \\ll 1,$ there exists a unique $C^2$ (modulo translation) fast traveling pulse solution $(U_\\epsilon,Q_\\epsilon)$ to the system\n\\begin{align}\\nu_t&=-u-q+ \\\\integ{y}{\\R}[]<K(x-y)H(u(y,t)-\\theta)>, \\\\label{eq: intro_system_1}\\\\\nq_t &=\\epsilon (u-\\gamma q). \\\\label{eq: intro_system_2}\n\\end{align}\nIn particular, with $z=x+ct$, there exists unique $C^1$ curves $c_\\epsilon=c(\\epsilon)$ and $a_\\epsilon=a(\\epsilon)$ such that $U_\\epsilon(z)<\\theta$ on $(-\\infty,0)\\cup(a_\\epsilon,\\infty)$ and $U_\\epsilon(z)>\\theta$ on $(0,a_\\epsilon)$. The parameters satisfy $c_\\epsilon\\to c_f$ and $a_\\epsilon\\to +\\infty$ as $\\epsilon \\to 0$, where $c_f>0$ is the unique speed of the front solution to \\eqref{eq: intro_scalar}. As a homoclinic orbit, $\\mathcal{S}_\\epsilon=\\Bigl\\{(U_\\epsilon(z),Q_\\epsilon(z)): z\\in \\R \\Bigr\\}$ satisfies $d_H(\\mathcal{S}_\\epsilon,\\mathcal{S}_0)\\to 0$ as $\\epsilon\\to 0$. Here, \n$$\nd_H(\\mathcal{S}_\\epsilon,\\mathcal{S}_0)=\\max\\left\\lbrace \\sup_{(U,Q)\\in \\mathcal{S}_0}d\\Bigl(\\mathcal{S}_\\epsilon,(U,Q)\\Bigr),\\sup_{(U_\\epsilon,Q_\\epsilon)\\in \\mathcal{S}_\\epsilon}d\\Bigl((U_\\epsilon,Q_\\epsilon),\\mathcal{S}_0\\Bigr) \\right\\rbrace\n$$ \nis the Hausdorff distance between sets in $(U,Q)$ space with respect to the standard Euclidean metric, and $\\mathcal{S}_0$ is the singular homoclinic orbit at $\\epsilon=0$.",
+    "theorem_type": [
+      "Uniqueness",
+      "Asymptotic or Limit"
+    ],
+    "mcq": {
+      "question": "Consider the system\n\\[\n\\begin{aligned}\n u_t&=-u-q+\\int_{\\mathbb R} K(x-y)\\,H\\bigl(u(y,t)-\\theta\\bigr)\\,dy,\\\\\n q_t&=\\epsilon\\,(u-\\gamma q),\n\\end{aligned}\n\\]\nwhere $H$ is the Heaviside function and $K,\\theta,\\gamma$ are fixed. For $0<\\epsilon\\ll 1$, suppose one seeks a fast traveling pulse of the form $(u(x,t),q(x,t))=(U_\\epsilon(z),Q_\\epsilon(z))$ with traveling coordinate $z=x+c t$. As $\\epsilon\\to 0^+$, what is the strongest conclusion (including existence/uniqueness, the threshold-crossing structure, and the limiting behavior of parameters and phase-plane orbit) that can be justified?",
+      "correct_choice": {
+        "label": "A",
+        "text": "For every sufficiently small $\\epsilon>0$, there exists a unique (modulo translation in $z$) $C^2$ fast traveling pulse solution $(U_\\epsilon,Q_\\epsilon)$ of the system. Moreover, writing $z=x+ct$, there exist unique $C^1$ functions $c_\\epsilon=c(\\epsilon)$ and $a_\\epsilon=a(\\epsilon)$ such that $U_\\epsilon(z)<\\theta$ on $(-\\infty,0)\\cup(a_\\epsilon,\\infty)$ and $U_\\epsilon(z)>\\theta$ on $(0,a_\\epsilon)$. The parameters satisfy $c_\\epsilon\\to c_f$ and $a_\\epsilon\\to +\\infty$ as $\\epsilon\\to 0$, where $c_f>0$ is the unique speed of the associated front solution. Finally, the phase-space homoclinic orbit \\(\\mathcal S_\\epsilon=\\{(U_\\epsilon(z),Q_\\epsilon(z)):\\ z\\in\\mathbb R\\}\\) converges to the singular homoclinic orbit $\\mathcal S_0$ at $\\epsilon=0$ in Hausdorff distance (with respect to the standard Euclidean metric on $(U,Q)$-space), i.e. $d_H(\\mathcal S_\\epsilon,\\mathcal S_0)\\to 0$ as $\\epsilon\\to 0$."
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "For every sufficiently small $\\epsilon>0$, there exists a (modulo translation) $C^2$ fast traveling pulse solution $(U_\\epsilon,Q_\\epsilon)$, and there are $C^1$ functions $c_\\epsilon=c(\\epsilon)$ and $a_\\epsilon=a(\\epsilon)$ such that $U_\\epsilon(z)<\\theta$ on $(-\\infty,0)\\cup(a_\\epsilon,\\infty)$ and $U_\\epsilon(z)>\\theta$ on $(0,a_\\epsilon)$. The parameters satisfy $c_\\epsilon\\to c_f$ and $a_\\epsilon\\to a_0<\\infty$ as $\\epsilon\\to 0$, where $c_f>0$ is the unique speed of the associated front solution. Moreover the homoclinic orbits $\\mathcal S_\\epsilon=\\{(U_\\epsilon(z),Q_\\epsilon(z)):\\ z\\in\\mathbb R\\}$ satisfy $d_H(\\mathcal S_\\epsilon,\\mathcal S_0)\\to 0$ as $\\epsilon\\to 0$."
+        },
+        {
+          "label": "C",
+          "text": "For every sufficiently small $\\epsilon>0$, there exists at least one (modulo translation) $C^2$ fast traveling pulse solution $(U_\\epsilon,Q_\\epsilon)$ with threshold-crossing structure: for some $a_\\epsilon>0$, one has $U_\\epsilon(z)<\\theta$ on $(-\\infty,0)\\cup(a_\\epsilon,\\infty)$ and $U_\\epsilon(z)>\\theta$ on $(0,a_\\epsilon)$. Furthermore $c_\\epsilon\\to c_f$ as $\\epsilon\\to 0$, where $c_f>0$ is the unique speed of the associated front solution."
+        },
+        {
+          "label": "D",
+          "text": "There exists $\\epsilon_0>0$ such that for every $\\epsilon\\in(0,\\epsilon_0)$ there exist unique (modulo translation) $C^2$ fast traveling pulse profiles $(U_\\epsilon,Q_\\epsilon)$ and unique $C^1$ functions $c_\\epsilon=c(\\epsilon)$, $a_\\epsilon=a(\\epsilon)$ with $U_\\epsilon(z)<\\theta$ on $(-\\infty,0)\\cup(a_\\epsilon,\\infty)$ and $U_\\epsilon(z)>\\theta$ on $(0,a_\\epsilon)$. The parameters satisfy $c_\\epsilon\\to c_f$ and $\\tau(\\epsilon):=\\epsilon a_\\epsilon\\to +\\infty$ as $\\epsilon\\to 0$, and the associated homoclinic orbit $\\mathcal S_\\epsilon$ converges to $\\mathcal S_0$ in Hausdorff distance, i.e. $d_H(\\mathcal S_\\epsilon,\\mathcal S_0)\\to 0$."
+        },
+        {
+          "label": "E",
+          "text": "For every sufficiently small $\\epsilon>0$, there exists a unique (modulo translation) $C^2$ fast traveling pulse $(U_\\epsilon,Q_\\epsilon)$ with unique $C^1$ functions $c_\\epsilon=c(\\epsilon)$ and $a_\\epsilon=a(\\epsilon)$ such that $U_\\epsilon(z)<\\theta$ on $(-\\infty,0)\\cup(a_\\epsilon,\\infty)$ and $U_\\epsilon(z)>\\theta$ on $(0,a_\\epsilon)$. In addition, the convergence to the singular homoclinic orbit is uniform in phase space in the sense that $\\sup_{z\\in\\mathbb R}\\|(U_\\epsilon(z),Q_\\epsilon(z))-(U_0(z),Q_0(z))\\|\\to 0$ as $\\epsilon\\to 0$, where $(U_0,Q_0)$ parametrizes $\\mathcal S_0$, and one has $c_\\epsilon\\to c_f$ and $a_\\epsilon\\to +\\infty$."
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "E"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "boundary_range",
+          "tampered_component": "limit of width parameter $a_\\epsilon$ (should diverge)",
+          "template_used": "boundary_range"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "finiteness",
+          "tampered_component": "dropped uniqueness (mod translation) and dropped Hausdorff convergence / $a_\\epsilon\\to\\infty$",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "quantifier_dependence",
+          "tampered_component": "rescaled width behavior: replaced $a_\\epsilon\\to\\infty$ with $\\tau(\\epsilon)=\\epsilon a_\\epsilon\\to\\infty$ (contradicts speed-index/Jacobian asymptotics $\\tau(\\epsilon)\\to\\tau_0$)",
+          "template_used": "quantifier_dependence"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "regularity",
+          "tampered_component": "strengthened Hausdorff set convergence to uniform-in-$z$ profile convergence to a parametrized singular orbit",
+          "template_used": "wildcard"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2511.17778v1",
+    "paper_link": "http://arxiv.org/abs/2511.17778v1",
+    "theorems_cnt": 3,
+    "theorem": {
+      "env_name": "theorem",
+      "content": "\\label{main thm 1}\nLet $r\\ge 2$ be an integer and $\\chi$ be a primitive Dirichlet character modulo~$q$. Let $C(r)$ be defined as in Table \\ref{Table 1}. Let $a(r) = 2\\log{2}\\left(3.0758r+1.38402\\log(4r)-1.5379\\right)$. Then, for $q \\ge \\max\\{10^{1145},e^{e^{a(r)}}\\}$, if $r=2$ or $q$ is cubefree, we have\n    $$|S_{\\chi}(M,N)| \\le C(r)N^{1-\\frac{1}{r}} q^{\\frac{r+1}{4r^2}}(\\log{q})^{\\frac{1}{2r}}\\left((4r)^{\\omega(q)}m_r(q)\\right)^{\\frac{1}{2r}-\\frac{1}{2r^2}}\\left(\\frac{q}{\\phi(q)}\\right)^{\\frac{1}{r}}.$$\n\n    Furthermore, as $q\\rightarrow\\infty$, we have a constant $D(r)$ from Table \\ref{Table 1} such that\n    $$|S_{\\chi}(M,N)| \\le (D(r)+o(1))N^{1-\\frac{1}{r}} q^{\\frac{r+1}{4r^2}}(\\log{q})^{\\frac{1}{2r}}\\left((4r)^{\\omega(q)}m_r(q)\\right)^{\\frac{1}{2r}-\\frac{1}{2r^2}}\\left(\\frac{q}{\\phi(q)}\\right)^{\\frac{1}{r}}.$$",
+      "start_pos": 67504,
+      "end_pos": 68359,
+      "label": "main thm 1"
+    },
+    "ref_dict": {
+      "main theorem 2": "\\begin{theorem}\\label{main theorem 2}\n    Let $\\chi$ be a primitive Dirichlet character modulo $q$ . Let $C(r)$ be defined as in Table \\ref{Table 1}. Then, for $q \\ge \\max\\{10^{1145}, 2^{4r-2}\\}$, if $r=2$ or $q$ is cubefree, we have\n    $$|S_{\\chi}(M,N)| \\le C(r)N^{1-\\frac{1}{r}} q^{\\frac{r+1}{4r^2}}(\\log{q})^{\\frac{1}{2r}}\\left((4r)^{\\omega(q)}m_r(q)\\right)^{\\frac{1}{2r}}\\left(\\frac{q}{\\phi(q)}\\right)^{\\frac{1}{r}}.$$\n\\end{theorem}",
+      "Table 1": "\\label{Table 1}\n\\end{center}\n\\end{table}\n\nThe theorem above requires $q$ to be very large, so we have the following theorem which is weaker asymptotically but works for smaller values of $q$.\n\n\\begin{",
+      "main thm 1": "\\begin{theorem}\\label{main thm 1}\nLet $r\\ge 2$ be an integer and $\\chi$ be a primitive Dirichlet character modulo~$q$. Let $C(r)$ be defined as in Table \\ref{Table 1}. Let $a(r) = 2\\log{2}\\left(3.0758r+1.38402\\log(4r)-1.5379\\right)$. Then, for $q \\ge \\max\\{10^{1145},e^{e^{a(r)}}\\}$, if $r=2$ or $q$ is cubefree, we have\n    $$|S_{\\chi}(M,N)| \\le C(r)N^{1-\\frac{1}{r}} q^{\\frac{r+1}{4r^2}}(\\log{q})^{\\frac{1}{2r}}\\left((4r)^{\\omega(q)}m_r(q)\\right)^{\\frac{1}{2r}-\\frac{1}{2r^2}}\\left(\\frac{q}{\\phi(q)}\\right)^{\\frac{1}{r}}.$$\n\n    Furthermore, as $q\\rightarrow\\infty$, we have a constant $D(r)$ from Table \\ref{Table 1} such that\n    $$|S_{\\chi}(M,N)| \\le (D(r)+o(1))N^{1-\\frac{1}{r}} q^{\\frac{r+1}{4r^2}}(\\log{q})^{\\frac{1}{2r}}\\left((4r)^{\\omega(q)}m_r(q)\\right)^{\\frac{1}{2r}-\\frac{1}{2r^2}}\\left(\\frac{q}{\\phi(q)}\\right)^{\\frac{1}{r}}.$$\n\\end{theorem}",
+      "weil": "\\begin{theorem}[Weil-type inequality]\\label{weil}\nLet $r\\ge 2$ and $q$ be positive integers such that $r=2$ or $q$ is cubefree. Let $\\chi$ be a primitive Dirichlet modulo $q$. Let $B \\ge 2$ be a real number.  \nThen\n\\begin{equation*}\n\\sum_{x=1}^q\\left|\\sum_{1\\le b\\le B}\\chi(x+b)\\right|^{2r} \\le 2r(4r)^{\\omega(q)} B^{2r}m_r(q)\\sqrt{q} + \\frac{r^{2r}}{r!} B^r q.\n\\end{equation*}\n\\end{theorem}",
+      "General setup": "\\begin{align}\\label{eq bad tuples}\n    \\sum_{(b_1,b_2,\\ldots,b_{2r})\\in \\cB_2}\\sum_{x\\bmod{q}}\\chi(f_1(x)f_2^{(\\phi(q)-1)}(x)) \\le r^{2r} \\binom{\\lfloor B\\rfloor}{r} q \\le \\frac{r^{2r} \\lfloor B\\rfloor^r}{r!}q.\n\\end{align}\nCombining the bounds in \\eqref{eq good tuples} and \\eqref{eq bad tuples}, we get the desired upper bound in the Weil-type inequality.\n\\end{proof}\n\n\\section{General setup}\\label{General setup}\n\nLet $r\\ge 2, N$ be positive integers, and let $q$ be a positive integer that is cubefree when $r\\ge 3$ for the remainder of the paper.\nGiven a primitive Dirichlet character $\\chi\\pmod q$ and integers~$M$ and ~$N\\ge1$, we consider the character sum\n\\begin{equation*}\n    S_\\chi\\left(M, N\\right)=\\sum_{M<n \\le M+N}\\chi(n).\n\\end{equation*}\nGiven an integer $r\\ge2$, we use induction to prove a bound of the form\n\\begin{equation} \\label{eq desired bound}\n| S_\\chi(M,N) | \\le E_{q,r}(N), \\quad\\text{where }\nE_{q,r}(N) = C N^{1-1/r} q^{\\frac{r+1}{4r^2}} (\\log q)^{\\frac{1}{2r}} T(q),\n\\end{equation}\nwhere $C\\ge 1$ is a constant to be determined later, $m_r(q)$ is defined in \\eqref{meet Mr. Q}, and\n\\begin{equation}\\label{meet T(q)}\nT(q) = \\begin{cases}\\bigl((4r)^{\\omega(q)} m_r(q)\\bigr)^{\\left({\\frac{1}{2r}-\\frac{1}{2r^2}}\\right)} \\bigl( \\frac q{\\phi(q)} \\bigr)^{1/r}& \\text{ under the conditions of Theorem } \\ref{main thm 1},\\\\\n\\bigl((4r)^{\\omega(q)} m_r(q)\\bigr)^{\\left({\\frac{1}{2r}}\\right)} \\bigl( \\frac q{\\phi(q)} \\bigr)^{1/r}& \\text{ under the conditions of Theorem } \\ref{main theorem 2} \n.\\end{cases}\n\\end{equation}\n\nWe take $1\\le N\\le q^{\\frac{1}{4}+\\frac{1}{4r}}$ as the base case. In this case, the inequality~\\eqref{eq desired bound} follows from the trivial bound $|S_\\chi(M,N)| \\le N$, since\n\\begin{align*}\n&N \\le C N^{1-1/r} q^{\\frac{r+1}{4r^2}} (\\log q)^{\\frac{1}{2r}} T(q) \\\\\n\\implies &N^{1/r} \\le C q^{\\frac{r+1}{4r^2}} (\\log q)^{\\frac{1}{2r}} T(q) \\\\\n\\implies &N \\le q^{\\frac{r+1}{4r}} \\bigl( C (\\log q)^{\\frac{1}{2r}} T(q) \\bigr)^r,\n\\end{align*}\nwhen $N \\le q^{\\frac{1}{4}+\\frac{1}{4r}}$ (because $C(\\log q)^{\\frac{1}{2r}} T(q) \\ge 1$).\n\\\\\nTherefore, in the induction step, we assume\n\\begin{align}\\label{inductive hypothesis}\n\\text{for $N > q^{\\frac{1}{4}+\\frac{1}{4r}}$, the bound in \\eqref{eq desired bound} holds for all smaller positive integers.}\n\\end{align}"
+    },
+    "post_theorem_intro_text_len": 2699,
+    "post_theorem_intro_text": "\\begin{table}[h!]\n\\begin{center}\n  \\begin{tabular}{ | c | c | c|}\n    \\hline\n    $r$ & $C(r)$ & $D(r)$ \\\\ \\hline\n    2 & 15.219 & 8.362 \\\\ \\hline\n    3 & 5.359 & 4.581\\\\ \\hline\n    4 & 3.671 & 3.396\\\\ \\hline\n    5 & 2.953 & 2.811\\\\ \\hline\n    6 & 2.549 & 2.462\\\\ \\hline\n    7 & 2.290 & 2.229\\\\ \\hline\n    8 & 2.108 & 2.063\\\\ \\hline\n    9 & 1.973 & 1.938\\\\ \\hline\n    $\\ge$10 & 1.869 & 1.841 \\\\ \\hline\n  \\end{tabular}\n  \\caption{Constants in the Burgess inequality for values of $r$.}\\label{Table 1}\n\\end{center}\n\\end{table}\n\nThe theorem above requires $q$ to be very large, so we have the following theorem which is weaker asymptotically but works for smaller values of $q$.\n\n\\begin{theorem}\\label{main theorem 2}\n    Let $\\chi$ be a primitive Dirichlet character modulo $q$ . Let $C(r)$ be defined as in Table \\ref{Table 1}. Then, for $q \\ge \\max\\{10^{1145}, 2^{4r-2}\\}$, if $r=2$ or $q$ is cubefree, we have\n    $$|S_{\\chi}(M,N)| \\le C(r)N^{1-\\frac{1}{r}} q^{\\frac{r+1}{4r^2}}(\\log{q})^{\\frac{1}{2r}}\\left((4r)^{\\omega(q)}m_r(q)\\right)^{\\frac{1}{2r}}\\left(\\frac{q}{\\phi(q)}\\right)^{\\frac{1}{r}}.$$\n\\end{theorem}\n\nTo prove Theorems \\ref{main thm 1} and \\ref{main theorem 2} we need the following explicit Weil-type inequality, which we consider of independent interest. \n\n\\begin{theorem}[Weil-type inequality]\\label{weil}\nLet $r\\ge 2$ and $q$ be positive integers such that $r=2$ or $q$ is cubefree. Let $\\chi$ be a primitive Dirichlet modulo $q$. Let $B \\ge 2$ be a real number.  \nThen\n\\begin{equation*}\n\\sum_{x=1}^q\\left|\\sum_{1\\le b\\le B}\\chi(x+b)\\right|^{2r} \\le 2r(4r)^{\\omega(q)} B^{2r}m_r(q)\\sqrt{q} + \\frac{r^{2r}}{r!} B^r q.\n\\end{equation*}\n\\end{theorem}\n\nThe paper is organized as follows. We prove Theorem \\ref{weil} in Section~\\ref{sec: weil}. In Section~\\ref{General setup} we describe the overall plan for the proofs of our main theorems following the approach for the explicit Burgess inequality detailed in \\cite[Theorem 12.6]{IK2004}. We prove other technical lemmas in Section~\\ref{sec: technical}, some important bounds in Section~\\ref{section asymptotics}, and we prove our main theorems in Section~\\ref{sec: main theorems}.\n\n\\subsection*{Notation}\nMost of the notation in the paper is standard, for example, $\\phi(n)$ is Euler's totient function, for a finite set $S$, $\\#S$ is the number of elements of $S$, $\\lfloor x\\rfloor$ is the floor of $x$, for a pair of integers $a,b$, $(a,b) = \\gcd(a,b)$. We also use Landau's $O$ notation, i.e., $f(x) = O(g(x))$ if there exists a positive constant $C$ such that $|f(x)| \\le C|g(x)|$ for large enough $x$. A notation we use that is less well-known is $O^*$. We say that $f(x) = O^*(g(x))$ if for all $x\\ge x_0$, $|f(x)| \\le |g(x)|$.",
+    "sketch": "To prove Theorems \\ref{main thm 1} and \\ref{main theorem 2} we need the following explicit Weil-type inequality (Theorem~\\ref{weil}). The paper then follows the approach for the explicit Burgess inequality detailed in \\cite[Theorem 12.6]{IK2004}: it proves Theorem~\\ref{weil} in Section~\\ref{sec: weil}, describes the overall plan for the proofs of the main theorems in Section~\\ref{General setup}, proves other technical lemmas in Section~\\ref{sec: technical} and some important bounds in Section~\\ref{section asymptotics}, and finally proves the main theorems in Section~\\ref{sec: main theorems}.",
+    "expanded_sketch": "To prove the main theorem and Theorem \\ref{main theorem 2} we need the following explicit Weil-type inequality.\n\n\\begin{theorem}[Weil-type inequality]\\label{weil}\nLet $r\\ge 2$ and $q$ be positive integers such that $r=2$ or $q$ is cubefree. Let $\\chi$ be a primitive Dirichlet modulo $q$. Let $B \\ge 2$ be a real number.  \nThen\n\\begin{equation*}\n\\sum_{x=1}^q\\left|\\sum_{1\\le b\\le B}\\chi(x+b)\\right|^{2r} \\le 2r(4r)^{\\omega(q)} B^{2r}m_r(q)\\sqrt{q} + \\frac{r^{2r}}{r!} B^r q.\n\\end{equation*}\n\\end{theorem}\n\nThe paper then follows the approach for the explicit Burgess inequality detailed in Iwaniec--Kowalski, \\cite[Theorem 12.6]{IK2004}: it proves Theorem~\\ref{weil} next, describes the overall plan for the proofs of the main theorem and Theorem~\\ref{main theorem 2} as follows.\n\n\\begin{align}\\label{eq bad tuples}\n    \\sum_{(b_1,b_2,\\ldots,b_{2r})\\in \\cB_2}\\sum_{x\\bmod{q}}\\chi(f_1(x)f_2^{(\\phi(q)-1)}(x)) \\le r^{2r} \\binom{\\lfloor B\\rfloor}{r} q \\le \\frac{r^{2r} \\lfloor B\\rfloor^r}{r!}q.\n\\end{align}\nCombining the bounds in \\eqref{eq good tuples} and \\eqref{eq bad tuples}, we get the desired upper bound in the Weil-type inequality.\n\\end{proof}\n\n\\section{General setup}\\label{General setup}\n\nLet $r\\ge 2, N$ be positive integers, and let $q$ be a positive integer that is cubefree when $r\\ge 3$ for the remainder of the paper.\nGiven a primitive Dirichlet character $\\chi\\pmod q$ and integers~$M$ and ~$N\\ge1$, we consider the character sum\n\\begin{equation*}\n    S_\\chi\\left(M, N\\right)=\\sum_{M<n \\le M+N}\\chi(n).\n\\end{equation*}\nGiven an integer $r\\ge2$, we use induction to prove a bound of the form\n\\begin{equation} \\label{eq desired bound}\n| S_\\chi(M,N) | \\le E_{q,r}(N), \\quad\\text{where }\nE_{q,r}(N) = C N^{1-1/r} q^{\\frac{r+1}{4r^2}} (\\log q)^{\\frac{1}{2r}} T(q),\n\\end{equation}\nwhere $C\\ge 1$ is a constant to be determined later, $m_r(q)$ is defined in \\eqref{meet Mr. Q}, and\n\\begin{equation}\\label{meet T(q)}\nT(q) = \\begin{cases}\\bigl((4r)^{\\omega(q)} m_r(q)\\bigr)^{\\left({\\frac{1}{2r}-\\frac{1}{2r^2}}\\right)} \\bigl( \\frac q{\\phi(q)} \\bigr)^{1/r}& \\text{ under the conditions of Theorem } \\ref{main thm 1},\\\\\n\\bigl((4r)^{\\omega(q)} m_r(q)\\bigr)^{\\left({\\frac{1}{2r}}\\right)} \\bigl( \\frac q{\\phi(q)} \\bigr)^{1/r}& \\text{ under the conditions of Theorem } \\ref{main theorem 2} \n.\\end{cases}\n\\end{equation}\n\nWe take $1\\le N\\le q^{\\frac{1}{4}+\\frac{1}{4r}}$ as the base case. In this case, the inequality~\\eqref{eq desired bound} follows from the trivial bound $|S_\\chi(M,N)| \\le N$, since\n\\begin{align*}\n&N \\le C N^{1-1/r} q^{\\frac{r+1}{4r^2}} (\\log q)^{\\frac{1}{2r}} T(q) \\\\\n\\implies &N^{1/r} \\le C q^{\\frac{r+1}{4r^2}} (\\log q)^{\\frac{1}{2r}} T(q) \\\\\n\\implies &N \\le q^{\\frac{r+1}{4r}} \\bigl( C (\\log q)^{\\frac{1}{2r}} T(q) \\bigr)^r,\n\\end{align*}\nwhen $N \\le q^{\\frac{1}{4}+\\frac{1}{4r}}$ (because $C(\\log q)^{\\frac{1}{2r}} T(q) \\ge 1$).\n\\\\\nTherefore, in the induction step, we assume\n\\begin{align}\\label{inductive hypothesis}\n\\text{for $N > q^{\\frac{1}{4}+\\frac{1}{4r}}$, the bound in \\eqref{eq desired bound} holds for all smaller positive integers.}\n\\end{align}\n\nIt then proves other technical lemmas later and some important bounds later, and finally proves the main theorem and Theorem~\\ref{main theorem 2} later.",
+    "expanded_theorem": "\\label{main thm 1}\nLet $r\\ge 2$ be an integer and $\\chi$ be a primitive Dirichlet character modulo~$q$. Let $C(r)$ be defined as in Table \\label{Table 1}\n\\end{center}\n\\end{table}\n\nThe theorem above requires $q$ to be very large, so we have the following theorem which is weaker asymptotically but works for smaller values of $q$.\n\n\\begin{. Let $a(r) = 2\\log{2}\\left(3.0758r+1.38402\\log(4r)-1.5379\\right)$. Then, for $q \\ge \\max\\{10^{1145},e^{e^{a(r)}}\\}$, if $r=2$ or $q$ is cubefree, we have\n    $$|S_{\\chi}(M,N)| \\le C(r)N^{1-\\frac{1}{r}} q^{\\frac{r+1}{4r^2}}(\\log{q})^{\\frac{1}{2r}}\\left((4r)^{\\omega(q)}m_r(q)\\right)^{\\frac{1}{2r}-\\frac{1}{2r^2}}\\left(\\frac{q}{\\phi(q)}\\right)^{\\frac{1}{r}}.$$\n\n    Furthermore, as $q\\rightarrow\\infty$, we have a constant $D(r)$ from the same table such that\n    $$|S_{\\chi}(M,N)| \\le (D(r)+o(1))N^{1-\\frac{1}{r}} q^{\\frac{r+1}{4r^2}}(\\log{q})^{\\frac{1}{2r}}\\left((4r)^{\\omega(q)}m_r(q)\\right)^{\\frac{1}{2r}-\\frac{1}{2r^2}}\\left(\\frac{q}{\\phi(q)}\\right)^{\\frac{1}{r}}.$$",
+    "theorem_type": [
+      "Inequality or Bound",
+      "Asymptotic or Limit"
+    ],
+    "mcq": {
+      "question": "Let $r\\ge 2$ be an integer and let $\\chi$ be a primitive Dirichlet character modulo $q$. Define\n\\[\na(r)=2\\log 2\\,\\bigl(3.0758r+1.38402\\log(4r)-1.5379\\bigr).\n\\]\nAssume\n\\[q\\ge \\max\\{10^{1145},\\,e^{e^{a(r)}}\\},\\]\nand that either $r=2$ or $q$ is cubefree. For the character sum $S_{\\chi}(M,N)$, as $q\\to\\infty$ (with $r$ fixed), which bound is justified (including the explicit bound for such $q$ and its asymptotic refinement)?",
+      "correct_choice": {
+        "label": "A",
+        "text": "Let $C(r)$ be the constant specified for this $r$ (and let $\\omega(q)$ denote the number of distinct prime factors of $q$, with $\\phi(q)$ Euler’s totient). If $q\\ge \\max\\{10^{1145},e^{e^{a(r)}}\\}$ and either $r=2$ or $q$ is cubefree, then\n\\[\n|S_{\\chi}(M,N)| \\le C(r)\\,N^{1-\\frac{1}{r}}\\, q^{\\frac{r+1}{4r^2}}(\\log q)^{\\frac{1}{2r}}\\Bigl((4r)^{\\omega(q)}m_r(q)\\Bigr)^{\\frac{1}{2r}-\\frac{1}{2r^2}}\\left(\\frac{q}{\\phi(q)}\\right)^{\\frac{1}{r}}.\n\\]\nMoreover, as $q\\to\\infty$ there is a constant $D(r)$ (specified for this $r$) such that\n\\[\n|S_{\\chi}(M,N)| \\le (D(r)+o(1))\\,N^{1-\\frac{1}{r}}\\, q^{\\frac{r+1}{4r^2}}(\\log q)^{\\frac{1}{2r}}\\Bigl((4r)^{\\omega(q)}m_r(q)\\Bigr)^{\\frac{1}{2r}-\\frac{1}{2r^2}}\\left(\\frac{q}{\\phi(q)}\\right)^{\\frac{1}{r}},\n\\]\nwhere $o(1)\\to 0$ as $q\\to\\infty$."
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "Let $C(r)$ be the constant specified for this $r$ (and let $\\omega(q)$ denote the number of distinct prime factors of $q$, with $\\phi(q)$ Euler’s totient). If $q\\ge \\max\\{10^{1145},e^{e^{a(r)}}\\}$, then for every primitive Dirichlet character $\\chi\\pmod q$ we have\n\\[\n|S_{\\chi}(M,N)| \\le C(r)\\,N^{1-\\frac{1}{r}}\\, q^{\\frac{r+1}{4r^2}}(\\log q)^{\\frac{1}{2r}}\\Bigl((4r)^{\\omega(q)}m_r(q)\\Bigr)^{\\frac{1}{2r}-\\frac{1}{2r^2}}\\left(\\frac{q}{\\phi(q)}\\right)^{\\frac{1}{r}}.\n\\]\nMoreover, as $q\\to\\infty$ there is a constant $D(r)$ such that the same bound holds with $C(r)$ replaced by $(D(r)+o(1))$."
+        },
+        {
+          "label": "C",
+          "text": "Let $C(r)$ be the constant specified for this $r$. If $q\\ge \\max\\{10^{1145},e^{e^{a(r)}}\\}$ and either $r=2$ or $q$ is cubefree, then\n\\[\n|S_{\\chi}(M,N)| \\le C(r)\\,N^{1-\\frac{1}{r}}\\, q^{\\frac{r+1}{4r^2}}(\\log q)^{\\frac{1}{2r}}\\Bigl((4r)^{\\omega(q)}m_r(q)\\Bigr)^{\\frac{1}{2r}}\\left(\\frac{q}{\\phi(q)}\\right)^{\\frac{1}{r}}.\n\\]\nIn particular, as $q\\to\\infty$ one may replace $C(r)$ by $(C(r)+o(1))$ in the displayed inequality."
+        },
+        {
+          "label": "D",
+          "text": "Let $C(r)$ be the constant specified for this $r$. If $q\\ge \\max\\{10^{1145},e^{e^{a(r)}}\\}$ and either $r=2$ or $q$ is cubefree, then\n\\[\n|S_{\\chi}(M,N)| \\le C(r)\\,N^{1-\\frac{1}{r}}\\, q^{\\frac{r+1}{4r^2}}(\\log q)^{\\frac{1}{2r}}\\Bigl((4r)^{\\omega(q)}m_r(q)\\Bigr)^{\\frac{1}{2r}-\\frac{1}{2r^2}}\\left(\\frac{\\phi(q)}{q}\\right)^{\\frac{1}{r}}.\n\\]\nMoreover, as $q\\to\\infty$ there is a constant $D(r)$ such that the same bound holds with $C(r)$ replaced by $(D(r)+o(1))$."
+        },
+        {
+          "label": "E",
+          "text": "Let $C(r)$ be the constant specified for this $r$. If $q\\ge \\max\\{10^{1145},e^{e^{a(r)}}\\}$ and either $r=2$ or $q$ is cubefree, then\n\\[\n|S_{\\chi}(M,N)| \\le C(r)\\,N^{1-\\frac{1}{r}}\\, q^{\\frac{r+1}{4r^2}}(\\log q)^{\\frac{1}{2r}}\\Bigl((4r)^{\\omega(q)}m_r(q)\\Bigr)^{\\frac{1}{2r}-\\frac{1}{2r^2}}\\left(\\frac{q}{\\phi(q)}\\right)^{\\frac{1}{r}}.\n\\]\nMoreover, as $q\\to\\infty$ one has the asymptotic refinement\n\\[\n|S_{\\chi}(M,N)| \\le (D(r)+o(1))\\,N^{1-\\frac{1}{r}}\\, q^{\\frac{r+1}{4r^2}}(\\log q)^{\\frac{1}{2r}}\\Bigl((4r)^{\\omega(q)}m_r(q)\\Bigr)^{\\frac{1}{2r}-\\frac{1}{2r^2}}\\left(\\frac{q}{\\phi(q)}\\right)^{\\frac{1}{r}},\n\\]\nwhere $D(r)$ may be taken to equal $C(r)$."
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "E"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "characteristic",
+          "tampered_component": "missing cubefree-or-r=2 hypothesis needed for Weil-type inequality",
+          "template_used": "boundary_range"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "other",
+          "tampered_component": "weaken exponent on \\bigl((4r)^{\\omega(q)}m_r(q)\\bigr) from \\frac{1}{2r}-\\frac{1}{2r^2} to \\frac{1}{2r}",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "other",
+          "tampered_component": "invert the totient factor (uses (\\phi(q)/q)^{1/r} instead of (q/\\phi(q))^{1/r})",
+          "template_used": "property_confusion"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "uniformity",
+          "tampered_component": "asserts asymptotic constant D(r) can be taken equal to C(r) (no separate refinement)",
+          "template_used": "wildcard"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2511.16459v1",
+    "paper_link": "http://arxiv.org/abs/2511.16459v1",
+    "theorems_cnt": 2,
+    "theorem": {
+      "env_name": "theorem",
+      "content": "\\label{thm:main}\nLet $(\\theta_n)$ be i.i.d. random variables on $[0,2\\pi)$ satisfying \\eqref{eqn:Nunidimensional}, and $(S_n, n \\geq 1)$ the ERW defined by \\eqref{eqn:defERWC}.\n\\begin{itemize}\n  \\item If $\\Re(\\Phi_1) < 1/2$, then writing $\\sigma^2 = \\frac{1}{1 - 2 \\Re(\\Phi_1)} \\in (1/3,\\infty)$, we have\n  \\begin{equation}\n   \\label{eqn:mainSub}\n    \\lim_{n \\to \\infty} \\frac{S_n}{n^{1/2}} = \\mathcal{N}_\\mathbb{C}(0,\\sigma^2) \\quad \\text{ in law}.\n  \\end{equation}\n  \\item If $\\Re(\\Phi_1)= 1/2$, then\n  \\begin{equation}\n    \\label{eqn:mainCrit}\n    \\lim_{n \\to \\infty} \\frac{S_n}{(n \\log n)^{1/2}} = \\mathcal{N}_\\mathbb{C}(0, 1)\\quad \\text{ in law}.\n  \\end{equation}\n  \\item If $\\Re(\\Phi_1)> 1/2$, there exists a $\\mathbb{C}$-valued random variable $W$ such that, writing $\\sigma^2 =\\frac{1}{2 \\Re(\\Phi_1) - 1} \\in(1,\\infty)$, we have\n  \\begin{equation}\n    \\label{eqn:mainSup}\n    \\lim_{n \\to \\infty} S_n\\mathrm{e}^{- \\Phi_1 \\log n} = W \\quad \\text{a.s. \\quad and} \\quad \\lim_{n \\to \\infty} \\frac{S_n  - \\mathrm{e}^{\\Phi_1 \\log n} W}{n^{1/2}} = \\mathcal{N}_\\mathbb{C}(0,\\sigma^2) \\quad \\text{ in law}.\n  \\end{equation}\n\\end{itemize}",
+      "start_pos": 191118,
+      "end_pos": 192239,
+      "label": "thm:main"
+    },
+    "ref_dict": {
+      "eqn:defERWC": "\\begin{equation}\n  \\label{eqn:defERWC}\n  S_0 = 0, \\quad S_1 = 1 \\quad \\text{and}\\quad S_n= S_{n-1} + (S_{I_n} - S_{I_n-1}) \\erm^{i \\theta_n}.\n\\end{equation}",
+      "eqn:mainSup": "\\begin{equation}\n    \\label{eqn:mainSup}\n    \\lim_{n \\to \\infty} S_n\\erm^{- \\Phi_1 \\log n} = W \\quad \\text{a.s. \\quad and} \\quad \\lim_{n \\to \\infty} \\frac{S_n  - \\erm^{\\Phi_1 \\log n} W}{n^{1/2}} = \\mathcal{N}_\\C(0,\\sigma^2) \\quad \\text{ in law}.\n  \\end{equation}",
+      "thm:main": "\\begin{theorem}\n\\label{thm:main}\nLet $(\\theta_n)$ be i.i.d. random variables on $[0,2\\pi)$ satisfying \\eqref{eqn:Nunidimensional}, and $(S_n, n \\geq 1)$ the ERW defined by \\eqref{eqn:defERWC}.\n\\begin{itemize}\n  \\item If $\\Re(\\Phi_1) < 1/2$, then writing $\\sigma^2 = \\frac{1}{1 - 2 \\Re(\\Phi_1)} \\in (1/3,\\infty)$, we have\n  \\begin{equation}\n   \\label{eqn:mainSub}\n    \\lim_{n \\to \\infty} \\frac{S_n}{n^{1/2}} = \\mathcal{N}_\\C(0,\\sigma^2) \\quad \\text{ in law}.\n  \\end{equation}\n  \\item If $\\Re(\\Phi_1)= 1/2$, then\n  \\begin{equation}\n    \\label{eqn:mainCrit}\n    \\lim_{n \\to \\infty} \\frac{S_n}{(n \\log n)^{1/2}} = \\mathcal{N}_\\C(0, 1)\\quad \\text{ in law}.\n  \\end{equation}\n  \\item If $\\Re(\\Phi_1)> 1/2$, there exists a $\\C$-valued random variable $W$ such that, writing $\\sigma^2 =\\frac{1}{2 \\Re(\\Phi_1) - 1} \\in(1,\\infty)$, we have\n  \\begin{equation}\n    \\label{eqn:mainSup}\n    \\lim_{n \\to \\infty} S_n\\erm^{- \\Phi_1 \\log n} = W \\quad \\text{a.s. \\quad and} \\quad \\lim_{n \\to \\infty} \\frac{S_n  - \\erm^{\\Phi_1 \\log n} W}{n^{1/2}} = \\mathcal{N}_\\C(0,\\sigma^2) \\quad \\text{ in law}.\n  \\end{equation}\n\\end{itemize}\n\\end{theorem}",
+      "eqn:mainCrit": "\\begin{equation}\n    \\label{eqn:mainCrit}\n    \\lim_{n \\to \\infty} \\frac{S_n}{(n \\log n)^{1/2}} = \\mathcal{N}_\\C(0, 1)\\quad \\text{ in law}.\n  \\end{equation}",
+      "eqn:mainSub": "\\begin{equation}\n   \\label{eqn:mainSub}\n    \\lim_{n \\to \\infty} \\frac{S_n}{n^{1/2}} = \\mathcal{N}_\\C(0,\\sigma^2) \\quad \\text{ in law}.\n  \\end{equation}",
+      "eqn:Nunidimensional": "\\begin{equation}\n  \\label{eqn:Nunidimensional}\n  \\IP(\\theta \\in \\{0,\\pi\\}) < 1, \\quad \\text{or equivalently}\\quad \\Re(\\Phi_2) < 1.\n\\end{equation}"
+    },
+    "post_theorem_intro_text_len": 4023,
+    "post_theorem_intro_text": "In order to provide variety to this article, we propose to prove Theorem~\\ref{thm:main} in two different ways. We study the regime $\\Re(\\Phi_1) \\leq 1/2$ in Section~\\ref{sec:diffusive} using Lindeberg's central limit theorem. The key observation in this section is that\n\\begin{equation}\n  \\label{eqn:defMartingale}\n  \\left( \\frac{S_n}{\\prod_{j=1}^n \\left( 1 + \\frac{\\Phi_1}{j} \\right)}, n\\geq 1 \\right) \\text{ is a martingale,}\n\\end{equation}\nits asymptotic behaviour can be deduced from studying its quadratic variation. Up to the difficulty of dealing with a complex martingale, the argument there follows closely standard methods in dimension 1 or $d$ \\cite{BaB,BercuLaulin2019}.\n\nWe then turn to the regime $\\Re(\\Phi_1)> 1/2$ in Section~\\ref{sec:spiraling}. We use there the known connection between ERW and P\\'olya urns, which was notably exploited by Baur and Bertoin in \\cite{BaB} to obtain a functional central limit theorem, as well as the connection between P\\'olya urns and multitype Galton-Watson processes, that was exploited by Janson~\\cite{Jan} to obtain asymptotics on the behaviour of these urns. These results cannot be applied immediately as we do not necessarily have a finite number of colors\\footnote{Understand here directions that steps of the ERW might align with.}. P\\'olya urns with infinite number have been already studied in the literature \\cite{JMV} however, considering that we are only interested with a single martingale of that process, the analysis can be simplified. Specifically, borrowing arguments from the study of the additive martingales of branching random walks at complex parameters \\cite{IKM} will allow us to conclude.\n\nBefore turning to the proofs though, we begin by stating explicitly the behaviour of the ERW in $\\mathbb{Z}^2$. This process is parametrized by four positive numbers $p,q,r,s$ such that $p+q+r+s=1$.  These parameters correspond respectively to the probability for a walker oriented according to one of its uniformly sampled previous steps to move forward (repeating the step), to the left (making a rotation of angle $\\pi/2$), backward (making a rotation of angle $\\pi$) or to the right (making a rotation of angle $3\\pi/2$). The case $q=r=s=(1-p)/3$ reduces to the previously studied standard ERW in the plane.\n\nIn this model, remark that $\\Phi_1= p - r + i (q-s)$, therefore Theorem~\\ref{thm:main} implies the following behaviour for $(S_n, n \\geq 1)$, depending on the sign of $p-r-1/2$.\n\\begin{corollary}\nLet $(S_n, n \\geq 1) $ be the ERW in $\\mathbb{Z}^2$ with parameters $p,q,r,s$ defined above.\n\\begin{itemize}\n  \\item If $p < r+1/2$, then $\\lim_{n \\to \\infty} \\frac{S_n}{n^{1/2}} = \\mathcal{N}(0, \\frac{1}{2 - 4 (p-r)} I_2)$ in law.\n  \\item If $p=r+1/2$, then $\\lim_{n \\to \\infty} \\frac{S_n}{(n\\log )^{1/2}}= \\mathcal{N}(0, \\frac{1}{2} I_2)$ in law.\n  \\item If $p > r+1/2$, then there exists a random vector $W \\in \\mathbb{R}^2$ such that\n  \\begin{multline*}\n    \\lim_{n \\to \\infty}  \\frac{\\mathcal{R}_{-(q-s)\\log n}S_n}{n^{p-r}} = W \\quad \\text{a.s.} \\\\ \\text{and}\\quad \\lim_{n \\to \\infty} \\frac{S_n - n^{p-r} \\mathcal{R}_{(q-s)\\log n}W}{n^{1/2}} = \\mathcal{N}(0,\\frac{1}{4(p-r)-2}I_2) \\quad \\text{ in law},\n  \\end{multline*}\n  writing $\\mathcal{R}_\\theta$ for a rotation of angle $\\theta$.\n\\end{itemize}\n\\end{corollary}\n\nFinally, remark that the ERW in $\\mathbb{Z}^2$ can be seen as a reinforced version of the Markov chains studied by Lopusanschi and Simon in \\cite{LoS}, studying the asymptotic behaviour of the Lévy area of this path would therefore be of interest, especially studying the convergence of the ERW under a rough path topology.\n\n\\medskip\nWe now turn to the proof of Theorem~\\ref{thm:main} in the two following sections. The proof of \\eqref{eqn:mainSub} is given in the following section using Lindenberg's central limit theorem, with a sketch of the proof of \\eqref{eqn:mainCrit}. The proof of \\eqref{eqn:mainSup} is completed in Section~\\ref{sec:spiraling}, using Poissonization methods and the analysis of a branching process.",
+    "sketch": "To prove Theorem~\\ref{thm:main}, the paper proceeds in two regimes.\n\n- Regime $\\Re(\\Phi_1)\\le 1/2$ (Section~\\ref{sec:diffusive}): the proof uses Lindeberg's central limit theorem. The key observation is that\n\\[\n\\left( \\frac{S_n}{\\prod_{j=1}^n \\left( 1 + \\frac{\\Phi_1}{j} \\right)},\\ n\\geq 1 \\right) \\text{ is a martingale,}\n\\]\nwhose asymptotic behaviour is deduced by studying its quadratic variation (with the noted difficulty of dealing with a complex martingale), following standard arguments as in dimension $1$ or $d$.\n\n- Regime $\\Re(\\Phi_1)>1/2$ (Section~\\ref{sec:spiraling}): the proof uses the known connection between ERW and P\\'olya urns, and between P\\'olya urns and multitype Galton--Watson processes (as in \\cite{BaB,Jan}). Since “we do not necessarily have a finite number of colors”, the analysis is simplified because the authors “are only interested with a single martingale of that process”; borrowing arguments from “additive martingales of branching random walks at complex parameters” \\cite{IKM} “will allow us to conclude.”\n\nConcretely, the text states: the proof of \\eqref{eqn:mainSub} is in the next section via Lindeberg's CLT (with a sketch for \\eqref{eqn:mainCrit}), while \\eqref{eqn:mainSup} is proved in Section~\\ref{sec:spiraling} using “Poissonization methods and the analysis of a branching process.”",
+    "expanded_sketch": "To prove the main theorem, the paper proceeds in two regimes.\n\n- Regime $\\Re(\\Phi_1)\\le 1/2$ (Section~\\ref{sec:diffusive}): the proof uses Lindeberg's central limit theorem. The key observation is that\n\\[\n\\left( \\frac{S_n}{\\prod_{j=1}^n \\left( 1 + \\frac{\\Phi_1}{j} \\right)},\\ n\\geq 1 \\right) \\text{ is a martingale,}\n\\]\nwhose asymptotic behaviour is deduced by studying its quadratic variation (with the noted difficulty of dealing with a complex martingale), following standard arguments as in dimension $1$ or $d$.\n\nConcretely, the text states that the proof of\n\\begin{equation}\n   \\label{eqn:mainSub}\n    \\lim_{n \\to \\infty} \\frac{S_n}{n^{1/2}} = \\mathcal{N}_\\C(0,\\sigma^2) \\quad \\text{ in law}.\n  \\end{equation}\nis in the next section via Lindeberg's CLT, with a sketch for\n\\begin{equation}\n    \\label{eqn:mainCrit}\n    \\lim_{n \\to \\infty} \\frac{S_n}{(n \\log n)^{1/2}} = \\mathcal{N}_\\C(0, 1)\\quad \\text{ in law}.\n  \\end{equation}\n\n- Regime $\\Re(\\Phi_1)>1/2$ (Section~\\ref{sec:spiraling}): the proof uses the known connection between ERW and P\\'olya urns, and between P\\'olya urns and multitype Galton--Watson processes (as in \\cite{BaB,Jan}). Since “we do not necessarily have a finite number of colors”, the analysis is simplified because the authors “are only interested with a single martingale of that process”; borrowing arguments from “additive martingales of branching random walks at complex parameters” \\cite{IKM} “will allow us to conclude.”\n\nIn this regime, the paper proves\n\\begin{equation}\n    \\label{eqn:mainSup}\n    \\lim_{n \\to \\infty} S_n\\erm^{- \\Phi_1 \\log n} = W \\quad \\text{a.s. \\quad and} \\quad \\lim_{n \\to \\infty} \\frac{S_n  - \\erm^{\\Phi_1 \\log n} W}{n^{1/2}} = \\mathcal{N}_\\C(0,\\sigma^2) \\quad \\text{ in law}.\n  \\end{equation}\nin Section~\\ref{sec:spiraling} using “Poissonization methods and the analysis of a branching process.”",
+    "expanded_theorem": "\\label{thm:main}\nLet $(\\theta_n)$ be i.i.d. random variables on $[0,2\\pi)$ satisfying\n\\begin{equation}\n  \\label{eqn:Nunidimensional}\n  \\IP(\\theta \\in \\{0,\\pi\\}) < 1, \\quad \\text{or equivalently}\\quad \\Re(\\Phi_2) < 1.\n\\end{equation}\nand $(S_n, n \\geq 1)$ the ERW defined by\n\\begin{equation}\n  \\label{eqn:defERWC}\n  S_0 = 0, \\quad S_1 = 1 \\quad \\text{and}\\quad S_n= S_{n-1} + (S_{I_n} - S_{I_n-1}) \\erm^{i \\theta_n}.\n\\end{equation}\n\\begin{itemize}\n  \\item If $\\Re(\\Phi_1) < 1/2$, then writing $\\sigma^2 = \\frac{1}{1 - 2 \\Re(\\Phi_1)} \\in (1/3,\\infty)$, we have\n  \\begin{equation}\n   \\label{eqn:mainSub}\n    \\lim_{n \\to \\infty} \\frac{S_n}{n^{1/2}} = \\mathcal{N}_\\mathbb{C}(0,\\sigma^2) \\quad \\text{ in law}.\n  \\end{equation}\n  \\item If $\\Re(\\Phi_1)= 1/2$, then\n  \\begin{equation}\n    \\label{eqn:mainCrit}\n    \\lim_{n \\to \\infty} \\frac{S_n}{(n \\log n)^{1/2}} = \\mathcal{N}_\\mathbb{C}(0, 1)\\quad \\text{ in law}.\n  \\end{equation}\n  \\item If $\\Re(\\Phi_1)> 1/2$, there exists a $\\mathbb{C}$-valued random variable $W$ such that, writing $\\sigma^2 =\\frac{1}{2 \\Re(\\Phi_1) - 1} \\in(1,\\infty)$, we have\n  \\begin{equation}\n    \\label{eqn:mainSup}\n    \\lim_{n \\to \\infty} S_n\\mathrm{e}^{- \\Phi_1 \\log n} = W \\quad \\text{a.s. \\quad and} \\quad \\lim_{n \\to \\infty} \\frac{S_n  - \\mathrm{e}^{\\Phi_1 \\log n} W}{n^{1/2}} = \\mathcal{N}_\\mathbb{C}(0,\\sigma^2) \\quad \\text{ in law}.\n  \\end{equation}\n\\end{itemize}",
+    "theorem_type": [
+      "Asymptotic or Limit",
+      "Existential–Universal"
+    ],
+    "mcq": {
+      "question": "Let $(\\theta_n)$ be i.i.d. random variables on $[0,2\\pi)$ such that $\\mathbb P(\\theta\\in\\{0,\\pi\\})<1$ (equivalently $\\Re(\\Phi_2)<1$). Let $(S_n)_{n\\ge1}$ be the complex-valued ERW defined by $S_0=0$, $S_1=1$, and\n\\[\nS_n=S_{n-1}+(S_{I_n}-S_{I_n-1})e^{i\\theta_n}.\n\\]\nAs $n\\to\\infty$, what is the strongest limiting/asymptotic behavior of $S_n$ that holds, depending on the value of $\\Re(\\Phi_1)$?",
+      "correct_choice": {
+        "label": "A",
+        "text": "If $\\Re(\\Phi_1)<\\tfrac12$, then with $\\sigma^2=\\frac{1}{1-2\\Re(\\Phi_1)}\\in(\\tfrac13,\\infty)$ one has $\\frac{S_n}{n^{1/2}}\\Rightarrow \\mathcal N_\\mathbb C(0,\\sigma^2)$. If $\\Re(\\Phi_1)=\\tfrac12$, then $\\frac{S_n}{(n\\log n)^{1/2}}\\Rightarrow \\mathcal N_\\mathbb C(0,1)$. If $\\Re(\\Phi_1)>\\tfrac12$, then there exists a $\\mathbb C$-valued random variable $W$ such that, with $\\sigma^2=\\frac{1}{2\\Re(\\Phi_1)-1}\\in(1,\\infty)$, one has $S_n e^{-\\Phi_1\\log n}\\to W$ almost surely and also $\\frac{S_n-e^{\\Phi_1\\log n}W}{n^{1/2}}\\Rightarrow \\mathcal N_\\mathbb C(0,\\sigma^2)$."
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "If $\\Re(\\Phi_1)<\\tfrac12$, then with $\\sigma^2=\\frac{1}{1-2\\Re(\\Phi_1)}$ one has $\\frac{S_n}{n^{1/2}}\\Rightarrow \\mathcal N_\\mathbb C(0,\\sigma^2)$. If $\\Re(\\Phi_1)=\\tfrac12$, then $\\frac{S_n}{(n\\log n)^{1/2}}\\Rightarrow \\mathcal N_\\mathbb C(0,1)$. If $\\Re(\\Phi_1)>\\tfrac12$, then there exists a $\\mathbb C$-valued random variable $W$ such that $S_n e^{-\\Phi_1\\log n}\\to W$ almost surely and also $\\frac{S_n-e^{\\Phi_1\\log n}W}{n^{1/2}}\\Rightarrow \\mathcal N_\\mathbb C\\bigl(0,\\tfrac{1}{1-2\\Re(\\Phi_1)}\\bigr)$."
+        },
+        {
+          "label": "C",
+          "text": "If $\\Re(\\Phi_1)<\\tfrac12$, then with $\\sigma^2=\\frac{1}{1-2\\Re(\\Phi_1)}$ one has $\\frac{S_n}{n^{1/2}}\\Rightarrow \\mathcal N_\\mathbb C(0,\\sigma^2)$. If $\\Re(\\Phi_1)=\\tfrac12$, then $\\frac{S_n}{(n\\log n)^{1/2}}\\Rightarrow \\mathcal N_\\mathbb C(0,1)$. If $\\Re(\\Phi_1)>\\tfrac12$, then there exists a $\\mathbb C$-valued random variable $W$ such that $S_n e^{-\\Phi_1\\log n}\\to W$ almost surely."
+        },
+        {
+          "label": "D",
+          "text": "If $\\Re(\\Phi_1)\\le \\tfrac12$, then writing $\\sigma^2=\\frac{1}{1-2\\Re(\\Phi_1)}$, one has the unified diffusive limit $\\frac{S_n}{n^{1/2}}\\Rightarrow \\mathcal N_\\mathbb C(0,\\sigma^2)$. If $\\Re(\\Phi_1)>\\tfrac12$, then there exists a $\\mathbb C$-valued random variable $W$ such that, with $\\sigma^2=\\frac{1}{2\\Re(\\Phi_1)-1}$, one has $S_n e^{-\\Phi_1\\log n}\\to W$ almost surely and $\\frac{S_n-e^{\\Phi_1\\log n}W}{n^{1/2}}\\Rightarrow \\mathcal N_\\mathbb C(0,\\sigma^2)$."
+        },
+        {
+          "label": "E",
+          "text": "If $\\Re(\\Phi_1)<\\tfrac12$, then with $\\sigma^2=\\frac{1}{1-2\\Re(\\Phi_1)}$ one has the stronger almost sure limit $\\frac{S_n}{n^{1/2}}\\to \\mathcal N_\\mathbb C(0,\\sigma^2)$. If $\\Re(\\Phi_1)=\\tfrac12$, then $\\frac{S_n}{(n\\log n)^{1/2}}\\to \\mathcal N_\\mathbb C(0,1)$. If $\\Re(\\Phi_1)>\\tfrac12$, then there exists a $\\mathbb C$-valued random variable $W$ such that $S_n e^{-\\Phi_1\\log n}\\to W$ almost surely and $\\frac{S_n-e^{\\Phi_1\\log n}W}{n^{1/2}}\\to \\mathcal N_\\mathbb C(0,\\sigma^2)$."
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "B"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "other",
+          "tampered_component": "supercritical-CLT variance formula $\\sigma^2=\\frac{1}{2\\Re(\\Phi_1)-1}$",
+          "template_used": "wildcard"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "finiteness",
+          "tampered_component": "dropped the supercritical centered CLT fluctuation statement (kept only a.s. martingale-type limit)",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "case_split",
+          "tampered_component": "critical scaling $(n\\log n)^{1/2}$ replaced by diffusive $n^{1/2}$ at $\\Re(\\Phi_1)=1/2$",
+          "template_used": "boundary_range"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "regularity",
+          "tampered_component": "convergence in law incorrectly strengthened to almost sure convergence to a Gaussian law",
+          "template_used": "stronger_trap"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2511.10422v2",
+    "paper_link": "http://arxiv.org/abs/2511.10422v2",
+    "theorems_cnt": 5,
+    "theorem": {
+      "env_name": "theorem",
+      "content": "\\label{thm:main2}\n    For nonzero integers $r,s,t$, we have that $\\frac{r+t}{rst}$ is a limit of a non-constant sequence of non-free rational numbers.",
+      "start_pos": 9148,
+      "end_pos": 9328,
+      "label": "thm:main2"
+    },
+    "ref_dict": {
+      "thm:main2": "\\begin{theorem}\n\\label{thm:main2}\n    For nonzero integers $r,s,t$, we have that $\\frac{r+t}{rst}$ is a limit of a non-constant sequence of non-free rational numbers.\n\\end{theorem}",
+      "kimkoberdaconjecture": "\\begin{conjecture}\n\\label{kimkoberdaconjecture}\n    $\\mathcal{R}_\\bbQ=\\bbQ\\cap(-4,4)$.\n\\end{conjecture}"
+    },
+    "post_theorem_intro_text_len": 6758,
+    "post_theorem_intro_text": "\\subsection{Sketch of the proof}\nIn \\cite{Smilga2021}, the author shows that a relation of a particular form in $A$ and $B_q$ holding is equivalent to $q$ being a root of a polynomial in a certain family. The roots of the quadratic polynomials in this family can be explicitly determined, but for these roots to be rational, a certain discriminant must be a perfect square. To construct non-free rational numbers accumulating at many different points in $[-4,4]$, we use work of \\cite{SILVERMAN2000163} to show that for some of the quadratic polynomials in this family, this Diophantine obstruction is described by an algebraic curve containing infinitely many integral points. Consequently, we produce many $q\\in\\mathbb{Q}$ satisfying \\textit{half-relations} of the form in \\cite{Smilga2021}. The non-free rational numbers produced depend on a tuple of parameters, $(a_1,a_2,a_3,a_4,a_5)$ which, when sent to infinity appropriately, produce the various accumulation points in Theorem~\\ref{thm:main2}.\n\n\\subsection{Groups generated by opposite parabolic matrices}\nA subgroup of $\\operatorname{SL}(2,\\mathbb{Q})$ generated by a pair of parabolic matrices stabilizing distinct lines in $\\mathbb{R}\\mathbb{P}^1$ is always conjugate over $\\operatorname{SL}(2,\\mathbb{R})$ to a group of the form $G_q$ for some choice of $q$. Such a conjugacy need not preserve the group being contained in $\\operatorname{SL}(2,\\mathbb{Q})$ and so, more generally, one can study similar questions explored here about subgroups generated by any pair of distinct parabolic matrices with rational entries.\n\nRecent work on questions asked by Greenberg and Shalom on commensurators of discrete subgroups of semisimple Lie groups bears a number of consequences on the structure of such groups. In \\cite{brody-fisher-mj-limbeek-2023}, the authors consider the question (dubbed \\textit{the Greenberg--Shalom Hypothesis}) of whether Zariski-dense discrete subgroups of semisimple Lie groups with almost dense commensurator are necessarily arithmetic lattices. This question generalizes a characterization of arithmeticity among lattices originally due to Margulis and in particular, if true, would imply that Conjecture~\\ref{kimkoberdaconjecture} holds. More specifically (c.f. Theorem 4.8 in \\cite{brody-fisher-mj-limbeek-2023}), if $q=\\frac{r}{s}\\in\\mathbb{Q}\\cap(-4,4)$ is written in least terms, then the Greenberg--Shalom Hypothesis implies that $G_q$ is a finite-index subgroup of the $S$-arithmetic group $\\operatorname{SL}(2,\\mathbb{Z}[\\frac{1}{s}])$, and in particular, is not isomorphic to a free group. \n\nFurther evidence for both the Greenberg--Shalom Hypothesis and Conjecture~\\ref{kimkoberdaconjecture} is given in \\cite{nybergbrodda} where the author shows, among other results, that $G_q$ is indeed finite index in the corresponding $S$-arithmetic group for $q\\in\\mathbb{Q}\\cap(-4,4)$ whose numerator, in least terms, is at most $4$. \n\n\\subsection{Some further questions}\nWe close with a number of questions that have not been recorded in previous literature on this topic, but we feel are worth further exploration.\n\nFirst, the rational numbers in the statement of Theorem~\\ref{thm:main2} are of note because they arise as some of the simplest types of relation non-free within a hierarchy introduced in \\cite{kimkoberda}. See \\S\\ref{sec:step} for a precise definition but, in short, these \\textit{$1$-step relation numbers} are among the elements of $\\mathcal{R}_\\mathbb{Q}$ for which it is particularly easy to exhibit a relation in the corresponding group. It is worth further understanding the relationship between the hierarchy of non-free numbers used in \\cite{kimkoberda} and the property of being an accumulation point of $\\mathcal{R}_\\mathbb{Q}$. If $1$-step relation numbers are among the easiest rationals for which one can exhibit a nontrivial relation in $G_q$, then our work establishes that they are also among the easiest to exhibit as accumulation points of $\\mathcal{R}_\\mathbb{Q}$. Since Kim and Koberda also give a number of explicit examples of \\textit{$2$-step relation numbers}, the next stage in their hierarchy, it is natural to wonder whether it is also relatively easy to show these are accumulation points. Notably, the rationals in $\\mathbb{Q}\\cap(-4,4)$ with numerator at most $27$ and not $24$ are all $2$-step relation numbers. Thus, we ask the following.\n\n\\begin{question}\n    Are $2$-step relation numbers accumulation points of $\\mathcal{R}_\\mathbb{Q}$?\n\\end{question}\n\nNotably, if true, then this would imply $\\frac{27}{7}\\approx 3.857$ is an accumulation point of non-free rational numbers and, to our best understanding, would be the largest such example known to date. \n\nBeyond just producing new examples of elements in $\\mathcal{R}_\\mathbb{Q}$, it would be meaningful progress towards Conjecture~\\ref{kimkoberdaconjecture} to describe how quantitatively ``large'' this set is. While it has been previously asked whether $\\mathcal{R}_\\mathbb{Q}$ is dense in $[-4,4]$, the following more elementary questions seem to still be unknown.\n\n\\begin{question}\n    Does $\\overline{\\mathcal{R}}_\\mathbb{Q}$ contain any interval? Does it have positive measure?\n\\end{question}\n\nLastly, we note that our focus on \\textit{rationals} in $(-4,4)$ is in some sense superficial. The freeness question and the implications of the Greenberg--Shalom Hypothesis on $G_q$ also apply to many algebraic choices of $q\\in(-4,4)$. We let\n\\[\n\\mathcal{R}_{\\overline{\\mathbb{Q}}}:=\\left\\{q\\in\\mathbb{R}\\cap\\overline{\\mathbb{Q}}\\,:\\,G_q\\textrm{ is not freely generated by }A\\textrm{ and }B_q\\right\\}.\n\\]\nThe Greenberg--Shalom Hypothesis implies that for non-integral $q$, $q\\notin\\mathcal{R}_{\\overline{\\mathbb{Q}}}$ if and only if $q$ has a conjugate, $q^\\sigma$, such that $G_{q^\\sigma}$ is both free \\textit{and} discrete (c.f. Theorem 4.9 in \\cite{brody-fisher-mj-limbeek-2023}). Unlike the rational case, work in \\cite{cjr} shows that $\\mathcal{R}_{\\overline{\\mathbb{Q}}}$ is dense in $[-4,4]$; however, density is established using algebraic numbers of arbitrarily large degree. For any $d\\geq 1$, if we set\n\\[\n\\mathcal{R}_{\\overline{\\mathbb{Q}}}^{(d)}:=\\left\\{q\\in\\mathbb{R}\\cap\\overline{\\mathbb{Q}}\\,:\\,q\\textrm{ has degree }\\leq d\\textrm{ and }G_q\\textrm{ is not freely generated by }A\\textrm{ and }B_q\\right\\},\n\\]\nthen density and other related questions for this set appear to be unknown. Since the methods of this paper are particularly suited towards understanding accumulation points of non-free numbers in relatively low degree, we ask \n\n\\begin{question}\n\\label{question:algebraic}\n    Is $\\mathcal{R}_{\\overline{\\mathbb{Q}}}^{(d)}$ dense in $[-4,4]$ for any $d<\\infty$? Does its closure contain any interval or have positive measure?\n\\end{question}",
+    "sketch": "Using \\cite{Smilga2021}, one has that “a relation of a particular form in $A$ and $B_q$ holding is equivalent to $q$ being a root of a polynomial in a certain family.” For the relevant quadratic polynomials in this family, “the roots … can be explicitly determined,” but for these roots to be rational “a certain discriminant must be a perfect square.” To produce “non-free rational numbers accumulating at many different points in $[-4,4]$,” the authors “use work of \\cite{SILVERMAN2000163} to show that for some of the quadratic polynomials in this family, this Diophantine obstruction is described by an algebraic curve containing infinitely many integral points.” Hence they “produce many $q\\in\\mathbb{Q}$ satisfying \\textit{half-relations} of the form in \\cite{Smilga2021}.” These non-free rationals “depend on a tuple of parameters, $(a_1,a_2,a_3,a_4,a_5)$ which, when sent to infinity appropriately, produce the various accumulation points in Theorem~\\ref{thm:main2}.”",
+    "expanded_sketch": "Using \\cite{Smilga2021}, one has that “a relation of a particular form in $A$ and $B_q$ holding is equivalent to $q$ being a root of a polynomial in a certain family.” For the relevant quadratic polynomials in this family, “the roots … can be explicitly determined,” but for these roots to be rational “a certain discriminant must be a perfect square.” To produce “non-free rational numbers accumulating at many different points in $[-4,4]$,” the authors “use work of \\cite{SILVERMAN2000163} to show that for some of the quadratic polynomials in this family, this Diophantine obstruction is described by an algebraic curve containing infinitely many integral points.” Hence they “produce many $q\\in\\mathbb{Q}$ satisfying \\textit{half-relations} of the form in \\cite{Smilga2021}.” These non-free rationals “depend on a tuple of parameters, $(a_1,a_2,a_3,a_4,a_5)$ which, when sent to infinity appropriately, produce the various accumulation points in establishing the main theorem.”",
+    "expanded_theorem": "\\label{thm:main2}\n    For nonzero integers $r,s,t$, we have that $\\frac{r+t}{rst}$ is a limit of a non-constant sequence of non-free rational numbers.",
+    "theorem_type": [
+      "Asymptotic or Limit",
+      "Universal"
+    ],
+    "mcq": {
+      "question": "Let $r,s,t$ be nonzero integers. As $n\\to\\infty$, which of the following is the strongest justified conclusion about the real number $\\frac{r+t}{rst}$ in terms of limits of sequences of (so-called) non-free rational numbers?",
+      "correct_choice": {
+        "label": "A",
+        "text": "There exists a non-constant sequence $(q_n)_{n\\ge1}$ of non-free rational numbers such that $\\lim_{n\\to\\infty} q_n = \\frac{r+t}{rst}$."
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "There exists a sequence $(q_n)_{n\\ge1}$ of \\emph{pairwise distinct} non-free rational numbers such that for all sufficiently large $n$ one has $q_n=\\frac{r+t}{rst}$, and hence $\\lim_{n\\to\\infty}q_n=\\frac{r+t}{rst}$."
+        },
+        {
+          "label": "C",
+          "text": "The real number $\\frac{r+t}{rst}$ lies in the closure (in $\\mathbb R$) of the set of non-free rational numbers."
+        },
+        {
+          "label": "D",
+          "text": "For every sequence $(a_1^{(n)},a_2^{(n)},a_3^{(n)},a_4^{(n)},a_5^{(n)})$ of integer parameter tuples with $\\max_i |a_i^{(n)}|\\to\\infty$, there exists a non-constant sequence $(q_n)_{n\\ge1}$ of non-free rational numbers arising from the corresponding half-relations such that $\\lim_{n\\to\\infty} q_n = \\frac{r+t}{rst}$."
+        },
+        {
+          "label": "E",
+          "text": "There exists a non-constant sequence $(q_n)_{n\\ge1}$ of rational numbers such that each $q_n$ satisfies the relevant half-relations and $\\lim_{n\\to\\infty} q_n = \\frac{r+t}{rst}$."
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "B"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "other",
+          "tampered_component": "non-constant limit vs eventually constant at the limit",
+          "template_used": "wildcard"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "finiteness",
+          "tampered_component": "drop existence of a single convergent non-constant sequence; keep only closure/accumulation property",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "quantifier_dependence",
+          "tampered_component": "uniformity in parameter tuples (\"for every\" choice sent to infinity) rather than existence of some suitable parameter path",
+          "template_used": "quantifier_dependence"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "other",
+          "tampered_component": "replace \"non-free rational numbers\" by rationals merely satisfying half-relations (ignoring the discriminant/perfect-square obstruction needed for non-freeness)",
+          "template_used": "property_confusion"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2511.05631v1",
+    "paper_link": "http://arxiv.org/abs/2511.05631v1",
+    "theorems_cnt": 2,
+    "theorem": {
+      "env_name": "theorem",
+      "content": "$E(X)=O(X^{0.709})$, where the implicit constant is ineffective.",
+      "start_pos": 4974,
+      "end_pos": 5070,
+      "label": null
+    },
+    "ref_dict": {
+      "eq: final": "\\begin{theorem}Let $q,T,H,M\\geq 2$, $c_0>0$, and   $\\{\\mathcal{K}_i\\}_{i\\geq 1} $ be pairwise disjoint sets of characters $\\chi (\\mod q)$. For each $i$, define the  the multi-set\n\\beq\n \\mathcal{L}_i=\\{\\lambda=(1-\\beta)\\log q: L(\\beta+i\\gamma ,\\chi)=0, \\lambda\\leq H,|\\gamma|\\leq T,\\chi\\in \\mathcal{K}_i  \\},\n \\eeq\nand assume that     \n \\beq \n \\max_{(\\chi,\\chi')\\in \\mathcal{K}_i^2}\\operatorname{cond}(\\bar \\chi \\chi')\\leq M,\\quad \\min_{\\lambda \\in \\mathcal{L}_i} \\lambda\\geq c_0.\n \\eeq \n   Then for $q\\geq q(T,H,M,c_0)$ we have  \\beq \\label{eq: final}\n \\sum_{i\\geq 1} \\bb{\\sum_{\\lambda\\in \\mathcal{L}_i} e^{-\\delta^{-1} \\lambda}}^2 \\leq 1-c_1,\n \\eeq \n where $\\delta=0.291$ and $c_1>0$ depends only on $c_0$.\n \\end{theorem}"
+    },
+    "post_theorem_intro_text_len": 1711,
+    "post_theorem_intro_text": "The main advantage of Pintz's method is that we only need to consider the influence of zeroes of Dirichlet $L$-functions for a single moduli and  in a highly restricted area.   This feature has been shared with Linnik's problem on the least prime in an arithmetic progression. The best numerical result in this topic  is due to Xylouris \\cite{Xylouris}, based on a refinement of  the method of Heath-Brown \\cite{Heath-Brown}. In Pintz's argument, the proof of Theorem 1.1  can be  reduced to showing   the following result, which can be regarded as a two-dimensional version of Linnik's problem. \n\n \\begin{theorem}Let $q,T,H,M\\geq 2$, $c_0>0$, and   $\\{\\mathcal{K}_i\\}_{i\\geq 1} $ be pairwise disjoint sets of characters $\\chi (\\mod q)$. For each $i$, define the  the multi-set\n\\begin{equation}\n \\mathcal{L}_i=\\{\\lambda=(1-\\beta)\\log q: L(\\beta+i\\gamma ,\\chi)=0, \\lambda\\leq H,|\\gamma|\\leq T,\\chi\\in \\mathcal{K}_i  \\},\n \\end{equation}\nand assume that     \n \\begin{equation} \n \\max_{(\\chi,\\chi')\\in \\mathcal{K}_i^2}\\operatorname{cond}(\\bar \\chi \\chi')\\leq M,\\quad \\min_{\\lambda \\in \\mathcal{L}_i} \\lambda\\geq c_0.\n \\end{equation} \n   Then for $q\\geq q(T,H,M,c_0)$ we have  \\begin{equation} \\label{eq: final}\n \\sum_{i\\geq 1} \\bb{\\sum_{\\lambda\\in \\mathcal{L}_i} e^{-\\delta^{-1} \\lambda}}^2 \\leq 1-c_1,\n \\end{equation} \n where $\\delta=0.291$ and $c_1>0$ depends only on $c_0$.\n \\end{theorem}\n We will briefly introduce this reduction in the next section and then give a proof to the inequality \\eqref{eq: final} in the rest sections. We achieve this improvement by introducing a dichotomy argument which can reduce nearly half of the number of zeroes under consideration. This will be shown in the end of Section 3.",
+    "sketch": "In Pintz's argument, the proof of Theorem 1.1 can be reduced to showing the stated auxiliary result (a \"two-dimensional version of Linnik's problem\"). The paper then \"briefly introduce[s] this reduction in the next section\" and proves the key inequality \\eqref{eq: final} in the remaining sections. The improvement is obtained \"by introducing a dichotomy argument which can reduce nearly half of the number of zeroes under consideration,\" to be shown \"in the end of Section 3.\"",
+    "expanded_sketch": "No expanded sketch found.",
+    "expanded_theorem": "$E(X)=O(X^{0.709})$, where the implicit constant is ineffective.",
+    "theorem_type": [
+      "Asymptotic or Limit",
+      "Inequality or Bound"
+    ],
+    "mcq": {
+      "question": "Let $E(X)$ be a quantity depending on a real parameter $X>0$. As $X\\to\\infty$, what is the strongest asymptotic bound that can be concluded for $E(X)$, including any statement about the effectiveness of the implied constant?",
+      "correct_choice": {
+        "label": "A",
+        "text": "As $X\\to\\infty$, one has $E(X)=O\\!\n\\left(X^{0.709}\\right)$; i.e. there exist constants $C>0$ and $X_0$ such that $|E(X)|\\le C X^{0.709}$ for all $X\\ge X_0$, but the implied constant $C$ is ineffective."
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "As $X\\to\\infty$, one has $E(X)=O\\!\\left(X^{0.709}\\right)$; i.e. there exist constants $C>0$ and $X_0$ such that $|E(X)|\\le C X^{0.709}$ for all $X\\ge X_0$, and moreover the implied constant $C$ is effective."
+        },
+        {
+          "label": "C",
+          "text": "As $X\\to\\infty$, one has $E(X)=O\\!\\left(X^{0.709}\\right)$; i.e. there exist constants $C>0$ and $X_0$ such that $|E(X)|\\le C X^{0.709}$ for all $X\\ge X_0$."
+        },
+        {
+          "label": "D",
+          "text": "As $X\\to\\infty$, one has $E(X)=O\\!\\left(X^{0.709+\\varepsilon}\\right)$ for every $\\varepsilon>0$; i.e. for each $\\varepsilon>0$ there exist constants $C_\\varepsilon>0$ and $X_0(\\varepsilon)$ such that $|E(X)|\\le C_\\varepsilon X^{0.709+\\varepsilon}$ for all $X\\ge X_0(\\varepsilon)$, but the implied constants $C_\\varepsilon$ are ineffective."
+        },
+        {
+          "label": "E",
+          "text": "As $X\\to\\infty$, one has $E(X)=O\\!\\left(X^{0.709}\\right)$; i.e. there exists a constant $C>0$ such that $|E(X)|\\le C X^{0.709}$ for all $X>0$, but the implied constant $C$ is ineffective."
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "E"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "other",
+          "tampered_component": "ineffectivity_of_implied_constant",
+          "template_used": "uniformity_effectivity"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "other",
+          "tampered_component": "dropped_ineffectivity_clause",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "other",
+          "tampered_component": "exponent_weakened_to_0.709+epsilon_with_per-epsilon_constants",
+          "template_used": "boundary_range"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "other",
+          "tampered_component": "removed_eventual_quantifier_X>=X0_replaced_by_all_X>0",
+          "template_used": "wildcard"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2511.04672v1",
+    "paper_link": "http://arxiv.org/abs/2511.04672v1",
+    "theorems_cnt": 1,
+    "theorem": {
+      "env_name": "thm",
+      "content": "\\label{thm:maindiv}\nLet $\\Omega\\subset\\mathbb{R}^2$ be open, bounded, and simply-connected with $C^{3,1}-$boundary $\\Gamma$. \nLet $\\{u_{\\varepsilon}\\}_{\\varepsilon>0}$ be a sequence of $H^1_T(\\Omega;\\mathbb{R}^2)$-minimizers for $E_{\\varepsilon,\\Div}$ or $E_{\\varepsilon,\\Cur}$. \nThen there is a subsequence $\\e_n\\to 0$ and a finite set of point singularities $\\Sigma\\subset\\overline{\\Omega}$ such that \n\\begin{equation*}\n    u_{\\e_n}\\rightharpoonup u_0 \\quad\\mbox{weakly in}\\ \\Hloc^1(\\overline{\\Omega}\\setminus\\Sigma;\\mathbb{R}^2)\n    \\, ,\n\\end{equation*}\nwhere $u_0\\in \\Hloc^1(\\overline{\\Omega}\\setminus\\Sigma;\\mathbb{R}^2)$ with $|u_0|=1$ $\\mathcal{H}^2-$almost everywhere and $\\langle u_0,n\\rangle=0$ $\\mathcal{H}^1-$almost everywhere on $\\Gamma$. \nThe degree and boundary index associated to each vortex for $u_0$ in $\\Sigma$ is equal to one. Moreover,\n\n\\begin{enumerate}[(i)]\n    \\item $\\Sigma=\\{p\\}\\subset\\Omega$ in the case of divergence penalization, and\n    \\item $\\Sigma=\\{p\\}\\subset\\Omega$ or $\\Sigma=\\{q_1,q_2\\}\\subset\\Gamma$ in the case of curl penalization. \n\\end{enumerate}",
+      "start_pos": 613252,
+      "end_pos": 614301,
+      "label": "thm:maindiv"
+    },
+    "ref_dict": {
+      "fig:disk:strAnch:div_curl": "\\begin{center}\n\\includegraphics[scale=0.22, angle=90]{fig_disk_strAnch_div.png} \n\\includegraphics[scale=0.22, angle=90]{fig_disk_strAnch_curl.png} \n\\caption{Plot of energy minimal vector fields $u_\\e$ of $E_\\e$ with divergence penalization (left) and curl penalization (right) for $k=1$ and $\\e=0.01$ on the unit disk subject to the boundary condition $\\langle u_\\e,x\\rangle=0$. \nThe divergence penalized minimizers shows a divergence-free interior degree $1$ vortex, while in the curl-penalized case two opposing half-vortices on the boundary are preferred.}\n\\label{fig:disk:strAnch:div_curl}\n\\end{center}",
+      "thm:maindiv": "\\begin{thm}\\label{thm:maindiv}\nLet $\\Omega\\subset\\mathbb{R}^2$ be open, bounded, and simply-connected with $C^{3,1}-$boundary $\\Gamma$. \nLet $\\{u_{\\e}\\}_{\\e>0}$ be a sequence of $H^1_T(\\Omega;\\mathbb{R}^2)$-minimizers for $\\Ediv$ or $\\Ecur$. \nThen there is a subsequence $\\e_n\\to 0$ and a finite set of point singularities $\\Sigma\\subset\\overline{\\Omega}$ such that \n\\begin{equation*}\n    u_{\\e_n}\\w u_0 \\quad\\mbox{weakly in}\\ \\Hloc^1(\\overline{\\Omega}\\setminus\\Sigma;\\mathbb{R}^2)\n    \\, ,\n\\end{equation*}\nwhere $u_0\\in \\Hloc^1(\\overline{\\Omega}\\setminus\\Sigma;\\mathbb{R}^2)$ with $|u_0|=1$ $\\mathcal{H}^2-$almost everywhere and $\\langle u_0,n\\rangle=0$ $\\mathcal{H}^1-$almost everywhere on $\\Gamma$. \nThe degree and boundary index associated to each vortex for $u_0$ in $\\Sigma$ is equal to one. Moreover,\n\n\\begin{enumerate}[(i)]\n    \\item $\\Sigma=\\{p\\}\\subset\\Omega$ in the case of divergence penalization, and\n    \\item $\\Sigma=\\{p\\}\\subset\\Omega$ or $\\Sigma=\\{q_1,q_2\\}\\subset\\Gamma$ in the case of curl penalization. \n\\end{enumerate}\n\\end{thm}",
+      "fig:disk:Dirichlet:curl": "\\begin{center}\n\\includegraphics[scale=0.22]{fig_disk_Dirichlet_curl.png} \n\\caption{Plot of a minimizer $u_\\e$ of $E_\\e$ with curl-penalization and $u_\\e(x)=x^\\perp$ imposed on the boundary. \nNote that this is not the energy minimal configuration for $\\langle u_\\e,x\\rangle=0$ (see Figure \\ref{fig:disk:strAnch:div_curl}). \nThe Dirichlet condition forces an interior defect of type $\\frac{x}{|x|}$ at the origin, see also \\cite{LKM2006}.}\n\\label{fig:disk:Dirichlet:curl}\n\\end{center}",
+      "fig:peanut:strAnch:div_curl": "\\begin{center}\n\\includegraphics[scale=0.25, angle=90]{fig_peanut_Dirichlet_div.png} \n\\includegraphics[scale=0.25, angle=90]{fig_peanut_strAnch_curl.png} \n\\caption{Plot of energy minimal vector fields $u_\\e$ of $E_\\e$ with divergence penalization (left) and curl penalization (right) for $k=1$ and $\\e=0.01$ on a peanut shaped domain subject to the boundary condition $\\langle u_\\e,n\\rangle=0$. \nFor $\\e$ sufficiently small, the divergence penalized minimizers shows a divergence-free interior degree $1$ vortex. \nIn the curl-penalized case, two half-vortices on the boundary placed as far from each other as possible are optimal.}\n\\label{fig:peanut:strAnch:div_curl}\n\\end{center}"
+    },
+    "post_theorem_intro_text_len": 3613,
+    "post_theorem_intro_text": "In the case of divergence penalization, our theorem guarantees a single interior vortex. However, the theorem does not give direct insight to precisely which vortex type is expected in the case of curl penalization. Numerical simulations suggest curl penalization favours boundary defects, see Figure~\\ref{fig:disk:strAnch:div_curl} and \\ref{fig:peanut:strAnch:div_curl}. \nThis is due to the freedom of the boundary condition, which cannot be obtained by a smooth tangential Dirichlet condition, see Figure \\ref{fig:disk:Dirichlet:curl}.\\\\\n\n\\begin{figure}\n\\begin{center}\n\\includegraphics[scale=0.22, angle=90]{fig_disk_strAnch_div.png} \n\\includegraphics[scale=0.22, angle=90]{fig_disk_strAnch_curl.png} \n\\caption{Plot of energy minimal vector fields $u_\\varepsilon$ of $E_\\varepsilon$ with divergence penalization (left) and curl penalization (right) for $k=1$ and $\\varepsilon=0.01$ on the unit disk subject to the boundary condition $\\langle u_\\varepsilon,x\\rangle=0$. \nThe divergence penalized minimizers shows a divergence-free interior degree $1$ vortex, while in the curl-penalized case two opposing half-vortices on the boundary are preferred.}\n\\label{fig:disk:strAnch:div_curl}\n\\end{center}\n\\end{figure}\n\n\\begin{figure}\n\\begin{center}\n\\includegraphics[scale=0.22]{fig_disk_Dirichlet_curl.png} \n\\caption{Plot of a minimizer $u_\\varepsilon$ of $E_\\varepsilon$ with curl-penalization and $u_\\varepsilon(x)=x^\\perp$ imposed on the boundary. \nNote that this is not the energy minimal configuration for $\\langle u_\\varepsilon,x\\rangle=0$ (see Figure \\ref{fig:disk:strAnch:div_curl}). \nThe Dirichlet condition forces an interior defect of type $\\frac{x}{|x|}$ at the origin, see also \\cite{LKM2006}.}\n\\label{fig:disk:Dirichlet:curl}\n\\end{center}\n\\end{figure}\n\n\\begin{figure}\n\\begin{center}\n\\includegraphics[scale=0.25, angle=90]{fig_peanut_Dirichlet_div.png} \n\\includegraphics[scale=0.25, angle=90]{fig_peanut_strAnch_curl.png} \n\\caption{Plot of energy minimal vector fields $u_\\varepsilon$ of $E_\\varepsilon$ with divergence penalization (left) and curl penalization (right) for $k=1$ and $\\varepsilon=0.01$ on a peanut shaped domain subject to the boundary condition $\\langle u_\\varepsilon,n\\rangle=0$. \nFor $\\varepsilon$ sufficiently small, the divergence penalized minimizers shows a divergence-free interior degree $1$ vortex. \nIn the curl-penalized case, two half-vortices on the boundary placed as far from each other as possible are optimal.}\n\\label{fig:peanut:strAnch:div_curl}\n\\end{center}\n\\end{figure}\n\nThe proof of Theorem~\\ref{thm:maindiv} is presented in the following three sections of this article. \nIn each section, we first analyze the case of divergence-penalized minimizers, followed by the necessary modifications for curl-penalized minimizers. \nBeginning in Section~\\ref{sec:bounds}, we obtain an upper bound for minimizing energies and then provide a priori $L^{\\infty}$-bounds for minimizers and their gradients. \nThese a priori bounds are then used in Section~\\ref{sec:eta} to prove an $\\eta$-compactness result for both divergence and curl-dependent energies. \nThe proof concludes with Section~\\ref{sec:lowerbound} where a matching lower bound for the energies is found away from defects and the nonexistence of boundary vortices in the case of divergence penalization is shown.\n\n\\paragraph{Acknowledgment}\nWe would like to thank Stan Alama for his helpful discussions during Lee van Brussel's doctoral thesis on which part of this article is based.\nLB is supported by an NSERC discovery grant. Part of this work was carried out while AC and DS were affiliated with McMaster University.",
+    "sketch": "The post-theorem introduction outlines the proof of Theorem~\\ref{thm:maindiv} as follows. The proof is \"presented in the following three sections\" and, in each section, the authors \"first analyze the case of divergence-penalized minimizers, followed by the necessary modifications for curl-penalized minimizers.\" In Section~\\ref{sec:bounds}, they \"obtain an upper bound for minimizing energies\" and then give \"a priori $L^{\\infty}$-bounds for minimizers and their gradients.\" These a priori bounds are used in Section~\\ref{sec:eta} to prove an \"$\\eta$-compactness result for both divergence and curl-dependent energies.\" Finally, in Section~\\ref{sec:lowerbound}, they obtain \"a matching lower bound for the energies\" (\"away from defects\") and show \"the nonexistence of boundary vortices in the case of divergence penalization.\"",
+    "expanded_sketch": "No expanded sketch found.",
+    "expanded_theorem": "\\label{thm:maindiv}\nLet $\\Omega\\subset\\mathbb{R}^2$ be open, bounded, and simply-connected with $C^{3,1}-$boundary $\\Gamma$. \nLet $\\{u_{\\varepsilon}\\}_{\\varepsilon>0}$ be a sequence of $H^1_T(\\Omega;\\mathbb{R}^2)$-minimizers for $E_{\\varepsilon,\\Div}$ or $E_{\\varepsilon,\\Cur}$. \nThen there is a subsequence $\\e_n\\to 0$ and a finite set of point singularities $\\Sigma\\subset\\overline{\\Omega}$ such that \n\\begin{equation*}\n    u_{\\e_n}\\rightharpoonup u_0 \\quad\\mbox{weakly in}\\ \\Hloc^1(\\overline{\\Omega}\\setminus\\Sigma;\\mathbb{R}^2)\n    \\, ,\n\\end{equation*}\nwhere $u_0\\in \\Hloc^1(\\overline{\\Omega}\\setminus\\Sigma;\\mathbb{R}^2)$ with $|u_0|=1$ $\\mathcal{H}^2-$almost everywhere and $\\langle u_0,n\\rangle=0$ $\\mathcal{H}^1-$almost everywhere on $\\Gamma$. \nThe degree and boundary index associated to each vortex for $u_0$ in $\\Sigma$ is equal to one. Moreover,\n\n\\begin{enumerate}[(i)]\n    \\item $\\Sigma=\\{p\\}\\subset\\Omega$ in the case of divergence penalization, and\n    \\item $\\Sigma=\\{p\\}\\subset\\Omega$ or $\\Sigma=\\{q_1,q_2\\}\\subset\\Gamma$ in the case of curl penalization. \n\\end{enumerate}",
+    "theorem_type": [
+      "Existence",
+      "Asymptotic or Limit"
+    ],
+    "mcq": {
+      "question": "Let $\\Omega\\subset\\mathbb{R}^2$ be open, bounded, simply-connected, with $C^{3,1}$ boundary $\\Gamma$. Let $\\{u_{\\varepsilon}\\}_{\\varepsilon>0}\\subset H^1_T(\\Omega;\\mathbb{R}^2)$ be minimizers of either $E_{\\varepsilon,\\Div}$ (divergence penalization) or $E_{\\varepsilon,\\Cur}$ (curl penalization). As $\\varepsilon\\to 0$, what is the strongest conclusion about the existence of a subsequence, its weak limit away from singularities, the properties of the limit, and the possible location/number of point singularities (distinguishing the two penalizations)?",
+      "correct_choice": {
+        "label": "A",
+        "text": "There exist a subsequence $\\varepsilon_n\\to 0$ and a finite set of point singularities $\\Sigma\\subset\\overline{\\Omega}$ such that $u_{\\varepsilon_n}\\rightharpoonup u_0$ weakly in $H^1_{\\mathrm{loc}}(\\overline{\\Omega}\\setminus\\Sigma;\\mathbb{R}^2)$. The limit satisfies $u_0\\in H^1_{\\mathrm{loc}}(\\overline{\\Omega}\\setminus\\Sigma;\\mathbb{R}^2)$, $|u_0|=1$ $\\mathcal{H}^2$-a.e., and $\\langle u_0,n\\rangle=0$ $\\mathcal{H}^1$-a.e. on $\\Gamma$. The degree and boundary index associated to each vortex of $u_0$ in $\\Sigma$ equals $1$. Moreover, (i) for divergence penalization $\\Sigma=\\{p\\}\\subset\\Omega$ (a single interior singularity), and (ii) for curl penalization either $\\Sigma=\\{p\\}\\subset\\Omega$ (a single interior singularity) or $\\Sigma=\\{q_1,q_2\\}\\subset\\Gamma$ (two boundary singularities)."
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "There exist a subsequence $\\varepsilon_n\\to 0$ and a finite set of point singularities $\\Sigma\\subset\\overline{\\Omega}$ such that $u_{\\varepsilon_n}\\rightharpoonup u_0$ weakly in $H^1_{\\mathrm{loc}}(\\overline{\\Omega}\\setminus\\Sigma;\\mathbb{R}^2)$. The limit satisfies $|u_0|=1$ $\\mathcal{H}^2$-a.e. and $\\langle u_0,n\\rangle=0$ $\\mathcal{H}^1$-a.e. on $\\Gamma$, and each vortex has degree (and boundary index, when applicable) equal to $1$. Moreover, (i) for divergence penalization either $\\Sigma=\\{p\\}\\subset\\Omega$ or $\\Sigma=\\{q_1,q_2\\}\\subset\\Gamma$, and (ii) for curl penalization necessarily $\\Sigma=\\{q_1,q_2\\}\\subset\\Gamma$."
+        },
+        {
+          "label": "C",
+          "text": "There exist a subsequence $\\varepsilon_n\\to 0$ and a finite set of point singularities $\\Sigma\\subset\\overline{\\Omega}$ such that $u_{\\varepsilon_n}\\rightharpoonup u_0$ weakly in $H^1_{\\mathrm{loc}}(\\overline{\\Omega}\\setminus\\Sigma;\\mathbb{R}^2)$, where $u_0\\in H^1_{\\mathrm{loc}}(\\overline{\\Omega}\\setminus\\Sigma;\\mathbb{R}^2)$ satisfies $|u_0|=1$ $\\mathcal{H}^2$-a.e. and $\\langle u_0,n\\rangle=0$ $\\mathcal{H}^1$-a.e. on $\\Gamma$, with $\\Sigma$ finite (distinguishing neither the exact cardinality nor the interior/boundary location in the two penalizations)."
+        },
+        {
+          "label": "D",
+          "text": "There exist a subsequence $\\varepsilon_n\\to 0$ and a finite set of point singularities $\\Sigma\\subset\\overline{\\Omega}$ such that $u_{\\varepsilon_n}\\rightharpoonup u_0$ weakly in $H^1_{\\mathrm{loc}}(\\overline{\\Omega}\\setminus\\Sigma;\\mathbb{R}^2)$. The limit satisfies $u_0\\in H^1_{\\mathrm{loc}}(\\overline{\\Omega}\\setminus\\Sigma;\\mathbb{R}^2)$, $|u_0|=1$ $\\mathcal{H}^2$-a.e., and $\\langle u_0,n\\rangle=0$ $\\mathcal{H}^1$-a.e. on $\\Gamma$. The degree and boundary index associated to each vortex for $u_0$ in $\\Sigma$ is equal to one. Moreover, (i) in the divergence penalization case one has either $\\Sigma=\\{p\\}\\subset\\Omega$ or $\\Sigma=\\{q\\}\\subset\\Gamma$, and (ii) in the curl penalization case one has $\\Sigma=\\{p\\}\\subset\\Omega$ or $\\Sigma=\\{q_1,q_2\\}\\subset\\Gamma$."
+        },
+        {
+          "label": "E",
+          "text": "There exist a subsequence $\\varepsilon_n\\to 0$ and a finite set of point singularities $\\Sigma\\subset\\overline{\\Omega}$ such that $u_{\\varepsilon_n}\\rightharpoonup u_0$ weakly in $H^1_{\\mathrm{loc}}(\\overline{\\Omega}\\setminus\\Sigma;\\mathbb{R}^2)$. The limit satisfies $u_0\\in H^1_{\\mathrm{loc}}(\\overline{\\Omega}\\setminus\\Sigma;\\mathbb{R}^2)$, $|u_0|=1$ $\\mathcal{H}^2$-a.e., and $\\langle u_0,n\\rangle=0$ $\\mathcal{H}^1$-a.e. on $\\Gamma$. Moreover, $\\Sigma$ consists of exactly one point in all cases: for divergence penalization $\\Sigma=\\{p\\}\\subset\\Omega$, while for curl penalization $\\Sigma=\\{q\\}\\subset\\Gamma$, and the degree (and boundary index) of that unique vortex is equal to $1$."
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "D"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "case_split",
+          "tampered_component": "swap/force singularity-location alternatives between divergence vs curl penalization",
+          "template_used": "property_confusion"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "case_split",
+          "tampered_component": "dropped the precise classification of $\\Sigma$ (single interior vs two boundary points) and the degree/index statement",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "case_split",
+          "tampered_component": "allowed a single boundary singularity for divergence penalization",
+          "template_used": "wildcard"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "case_split",
+          "tampered_component": "collapsed curl case to exactly one boundary singularity (excluding the two-boundary-points alternative)",
+          "template_used": "boundary_range"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2511.04651v1",
+    "paper_link": "http://arxiv.org/abs/2511.04651v1",
+    "theorems_cnt": 5,
+    "theorem": {
+      "env_name": "theorem",
+      "content": "\\label{main}\nOn the generic region of $X_t$,  the\nCalabi-Yau metric $\\omega_{{\\rm CY},t}$ converges in $C^0$-sense to the ansatz metric $\\omega_t$ as $t\\to 0$, namely\n\\[\n\\lim_{t\\to 0} \\|  \\omega_{{\\rm CY},t}- \\omega_t    \\|_{C^0(U_t, \\omega_t)} =0.\n\\]",
+      "start_pos": 8180,
+      "end_pos": 8460,
+      "label": "main"
+    },
+    "ref_dict": {
+      "DG3": "\\begin{corollary}\\label{DG3}\nThe following holds when $T$ is sufficiently large and\n$\n\\sup_{\\tb_1 } |\\psi| \\leq \\ve\\ll 1\n$\nis sufficiently small. In the coordinates $T^{1/2} \\zeta_1,\\ldots T^{1/2} \\zeta_m, z_{m+1},\\ldots z_n$, the Calabi-Yau metric $\\omega_T+ \\ddbar \\psi_T$ satisfies\n\\[\nT \\|  \\ddbar \\psi_T \\|_{ C^k(\\tb_{T^{-1/2}}(y), T\\omega_T^{\\rm ref}) }\\leq C(k) (\\ve+ T^{-\\alpha/2}) \\ll 1.\n\\]\n\\end{corollary}"
+    },
+    "post_theorem_intro_text_len": 4170,
+    "post_theorem_intro_text": "\\begin{rmk}\nIn fact, we prove $C^\\infty$ estimates for $\\omega_{{\\rm CY},t}$ with respect to a local Euclidean metric after stretching the base coordinates and the $T^m$-fibers by $|\\log|t||^{\\frac{1}{2}},$ see Corollary \\ref{DG3} for a precise statement.\n\\end{rmk}\n\n\\begin{rmk}\nFor a specific intermediate complex structure limit family with $m=1$, this result was known thanks to the work of Sun-Zhang \\cite{SZ} who in that case constructed the Calabi-Yau metrics $\\omega_{{\\rm CY},t}$ by a delicate gluing process.\n\\end{rmk}\n\nThe idea to prove this result is to adapt the proof of Savin's small perturbation theorem to our collapsing setup. One fundamental difference between the case $m=n$ of large complex structure limits in \\cite{Li} and our case $0<m<n$ of intermediate complex structure limits, is that in the first case the generic region of $X_t$ is modeled on a $T^n$-fibration over a ball in $\\mathbb{R}^n$, while in our case the model is a $Z$-fibration over a ball in $\\mathbb{R}^m$, where $Z$ is a compact manifold which is itself a  $T^m$-bundle over a compact Calabi-Yau $(n-m)$-fold $Y$.  In the case $m=n$ one can then ``unwrap'' the $T^n$-fibers, and directly apply Savin's small perturbation theorem to bootstrap uniform convergence to smooth convergence. In our case $0<m<n$ this idea fails, as one can still unwrap the $T^m$-fibers but not in general the Calabi-Yau manifold $Y$, which is still collapsing (albeit at a slower rate: the torus fibers have size $|\\log|t||^{-1}$ while $Y$ has size $|\\log|t||^{-\\frac{1}{2}}$). Our idea is then to adapt the proof of Savin's theorem in our setting, and prove the analogous main steps (a Harnack inequality and a De Giorgi type iteration), but only in a  truncated sense: these estimates will hold only up to the scale $|\\log|t||^{-1}$.\n\nTo prove these, we observe that the fiberwise maximum and minimum of the potential are respectively a subsolution and supersolution of the limiting real Monge-Amp\\`ere type equation. We apply ``half'' of Savin's results downstairs to these two functions, and working upstairs after unravelling the $T^m$-fibers, we are able to modify Savin's methods to close the proof of Harnack. In the De Giorgi iteration part, the approximating quadratic polynomials are now pulled back from the base, and arguing by contradiction, an important point is that the fiberwise maximum and minimum coincide in the limit. In the end we obtain a truncated H\\\"older bound, which is only valid up to the scale of the torus fibers. However, this bound is precisely what is needed to apply Savin's original theorem after rescaling the fibers, and thus conclude the proof.\n\n\\begin{rmk}\nIn \\cite{Li, Li3, Li4}, the first-named author used the higher order estimates on the generic region for the Ricci-flat metrics under a large complex structure limit, together with an implicit function theorem argument, to construct special Lagrangian torus fibrations on these generic regions. It seems likely that using our main theorem and some implicit function theorem argument, one could then construct coisotropic fibrations on the generic region of our intermediate complex structure limits $X_t$. We leave this question to the interested reader.\n\\end{rmk}\n\n\\begin{rmk}\nThe techniques of this paper can also be applied in the setting of \\cite{HT}, where one has a family of Ricci-flat K\\\"ahler metrics on a fixed Calabi-Yau manifold, which admits a holomorphic fibration over a lower-dimensional base, and the metrics are shrinking in the fiber directions (which can be an arbitrary Calabi-Yau manifold). However, the resulting higher order estimates one would obtain in this way will not recover the results in \\cite{HT} (which give in particular $C^\\infty$ estimates for the collapsing Ricci-flat metrics), but only the weaker estimates proved in \\cite[Theorem 1.1]{TZ} (which give $C^\\infty$ estimates for the Ricci-flat metrics after stretching out the base directions and rescaling).\n\\end{rmk}\n\n\\noindent\n{\\bf Acknowledgments.} The first-named author was supported by a Royal Society University Research Fellowship. The second-named author was partially supported by NSF grant DMS-2404599.",
+    "sketch": "To prove Theorem~\\ref{main}, the idea is to \"adapt the proof of Savin's small perturbation theorem to our collapsing setup.\" Compared with the case $m=n$ (large complex structure limits), where one can \"unwrap'' the $T^n$-fibers and \"directly apply Savin's small perturbation theorem to bootstrap uniform convergence to smooth convergence,\" the case $0<m<n$ is different since one can unwrap the $T^m$-fibers \"but not in general the Calabi-Yau manifold $Y$, which is still collapsing.\" The strategy is to adapt Savin's theorem by proving the analogous main steps \"(a Harnack inequality and a De Giorgi type iteration), but only in a truncated sense: these estimates will hold only up to the scale $|\\log|t||^{-1}$.\"\n\nTo establish these truncated steps, one \"observe[s] that the fiberwise maximum and minimum of the potential are respectively a subsolution and supersolution of the limiting real Monge-Amp\\`ere type equation.\" Then one applies \"\\\"half\\\" of Savin's results downstairs\" to these two functions, and \"working upstairs after unravelling the $T^m$-fibers\" one \"modify Savin's methods to close the proof of Harnack.\" For the De Giorgi iteration, \"the approximating quadratic polynomials are now pulled back from the base,\" and in a contradiction argument an important point is that \"the fiberwise maximum and minimum coincide in the limit.\" This yields \"a truncated H\\\"older bound\" valid up to the torus-fiber scale; this is \"precisely what is needed to apply Savin's original theorem after rescaling the fibers, and thus conclude the proof.\"",
+    "expanded_sketch": "No expanded sketch found.",
+    "expanded_theorem": "\\label{main}\nOn the generic region of $X_t$, the Calabi-Yau metric $\\omega_{{\\rm CY},t}$ converges in $C^0$-sense to the ansatz metric $\\omega_t$ as $t\\to 0$, namely\n\\[\n\\lim_{t\\to 0} \\|  \\omega_{{\\rm CY},t}- \\omega_t    \\|_{C^0(U_t, \\omega_t)} =0.\n\\]",
+    "theorem_type": [
+      "Asymptotic or Limit",
+      "Inequality or Bound"
+    ],
+    "mcq": {
+      "question": "Let $X_t$ be a family with generic region $U_t\\subset X_t$. On $U_t$, let $\\omega_{{\\rm CY},t}$ denote the Calabi--Yau metric and let $\\omega_t$ denote the ansatz metric. As $t\\to 0$, what is the strongest asymptotic conclusion about $\\omega_{{\\rm CY},t}-\\omega_t$ in the $C^0(U_t,\\omega_t)$-sense?",
+      "correct_choice": {
+        "label": "A",
+        "text": "One has $\\displaystyle \\lim_{t\\to 0}\\,\\|\\omega_{{\\rm CY},t}-\\omega_t\\|_{C^0(U_t,\\omega_t)}=0$, i.e. $\\omega_{{\\rm CY},t}$ converges to $\\omega_t$ uniformly on $U_t$ with respect to the $\\omega_t$-based $C^0$ norm."
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "There exists a constant $C>0$ independent of $t$ such that for all sufficiently small $t$ one has\n\\[\n\\|\\omega_{{\\rm CY},t}-\\omega_t\\|_{C^0(U_t,\\omega_t)}\\le C.\n\\]\nIn particular, the difference remains uniformly bounded on the generic region as $t\\to 0$."
+        },
+        {
+          "label": "C",
+          "text": "For every $\\varepsilon>0$ there exists $t_0>0$ such that for all $0<t<t_0$ one has\n\\[\n\\|\\omega_{{\\rm CY},t}-\\omega_t\\|_{C^0(K,\\omega_t)}<\\varepsilon\n\\]\nfor every compact set $K\\Subset U_t$ (i.e. $\\omega_{{\\rm CY},t}\\to\\omega_t$ in $C^0$ locally on the generic region)."
+        },
+        {
+          "label": "D",
+          "text": "There exist constants $C>0$ and $\\alpha>0$ independent of $t$ such that for all sufficiently small $t$ one has\n\\[\n\\|\\omega_{{\\rm CY},t}-\\omega_t\\|_{C^0(U_t,\\omega_t)}\\le C\\,|t|^{\\alpha},\n\\]\nso the convergence is polynomially fast in the $\\omega_t$-based $C^0$ norm."
+        },
+        {
+          "label": "E",
+          "text": "One has convergence in a stronger topology on the generic region, namely\n\\[\n\\lim_{t\\to 0}\\,\\|\\omega_{{\\rm CY},t}-\\omega_t\\|_{C^{1}(U_t,\\omega_t)}=0,\n\\]\nso $\\omega_{{\\rm CY},t}$ converges to $\\omega_t$ in $C^1$ with respect to $\\omega_t$."
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "B"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "other",
+          "tampered_component": "limit_to_zero_weakened_to_uniform_boundedness",
+          "template_used": "wildcard"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "regularity",
+          "tampered_component": "global_uniform_on_U_t_weakened_to_local_on_compacts",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "regularity",
+          "tampered_component": "nonquantitative_convergence_upgraded_to_rate",
+          "template_used": "uniformity_effectivity"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "regularity",
+          "tampered_component": "C0_convergence_upgraded_to_C1",
+          "template_used": "stronger_trap"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2511.04799v1",
+    "paper_link": "http://arxiv.org/abs/2511.04799v1",
+    "theorems_cnt": 4,
+    "theorem": {
+      "env_name": "thm",
+      "content": "\\label{Theorem : 1. main theorem}\n\nLet $\\psi=(\\psi_i)_{i=1}^k : I \\to G=\\prod_{i=1}^k G_i$ be a curve such that $\\mathcal{I}\\circ \\psi$ is a $C^l$-map for some $l >\\frac{2\\zeta_1} {\\zeta_k}$ and $(\\mathcal{I}_i\\circ\\psi_i)'(s) \\neq 0$  for all $1\\leq i\\leq k$ and almost every $s\\in I$. Suppose that \n\\begin{equation}\n    \\nu(\\{s \\in I : \\psi(s) \\in \\Delta_H\\}) = 0 \\text{ for all } H\\in\\mathcal{H} \\text{ such that } Gp_H \\text{ is closed and } Gp_H \\neq p_H.\n\\end{equation}\nThen, for every $f \\in C_c(L/\\Gamma)$, we have \n\\begin{equation}\n    \\lim_{t\\rightarrow \\infty} \\int_0^1 f(a(t)\\psi(s)x_0)ds = \\int_{L/\\Gamma} f\\, d\\mu_L,\n\\end{equation}\nwhere $x_0=e\\Gamma$, $\\overline{Gx_0}=L/\\Gamma$, and $\\mu_L$ is the unique $L$-invariant probability measure on $L/\\Gamma$.",
+      "start_pos": 14457,
+      "end_pos": 15248,
+      "label": "Theorem : 1. main theorem"
+    },
+    "ref_dict": {
+      "Theorem : 1. main theorem": "\\begin{thm} \\label{Theorem : 1. main theorem}\n\nLet $\\psi=(\\psi_i)_{i=1}^k : I \\to G=\\prod_{i=1}^k G_i$ be a curve such that $\\mathcal{I}\\circ \\psi$ is a $C^l$-map for some $l >\\frac{2\\zeta_1} {\\zeta_k}$ and $(\\mathcal{I}_i\\circ\\psi_i)'(s) \\neq 0$  for all $1\\leq i\\leq k$ and almost every $s\\in I$. Suppose that \n\\begin{equation}\n    \\nu(\\{s \\in I : \\psi(s) \\in \\Delta_H\\}) = 0 \\text{ for all } H\\in\\mathcal{H} \\text{ such that } Gp_H \\text{ is closed and } Gp_H \\neq p_H.\n\\end{equation}\nThen, for every $f \\in C_c(L/\\Gamma)$, we have \n\\begin{equation}\n    \\lim_{t\\rightarrow \\infty} \\int_0^1 f(a(t)\\psi(s)x_0)ds = \\int_{L/\\Gamma} f\\, d\\mu_L,\n\\end{equation}\nwhere $x_0=e\\Gamma$, $\\overline{Gx_0}=L/\\Gamma$, and $\\mu_L$ is the unique $L$-invariant probability measure on $L/\\Gamma$.\n\\end{thm}",
+      "Thm : 1. shrinking equidistribuiton at point": "\\begin{thm}[Equidistribution of expanding translate of shirinking  pieces of a curve]\\label{Thm : 1. shrinking equidistribuiton at point}\n    Let the notation and conditions be as in Theorem~\\ref{Theorem : 1. main theorem}.\n    Then, there exists a Lebesgue null set $E$ in $I$ such that for $m: = \\frac{\\zeta_k}{2}$ and for any $s_0 \\in I\\backslash E$, $f \\in C_c(X)$, a sequence $\\{s_n\\}_{n \\in \\N}$ in $I$ and a sequence $\\{t_n\\}_{n \\in\\N}$ in $\\R$ such that $s_n \\to s_0$ and $t_n \\to \\infty $ as $n \\to \\infty$, we have\n    \\begin{equation}\\label{equation: 1. equidist on shrinking curve}\n        \\lim_{n \\to \\infty}\\int^1_0 f\\big(a(t_n)\\psi(s_n + e^{-mt_n}\\eta)x_0\\big) \\, d\\eta = \\int_X f d\\mu_L.\n    \\end{equation}\n\\end{thm}"
+    },
+    "post_theorem_intro_text_len": 5202,
+    "post_theorem_intro_text": "We will deduce Theorem \\ref{Theorem : 1. main theorem} from a sharper result, Theorem \\ref{Thm : 1. shrinking equidistribuiton at point}.\n\\begin{thm}[Equidistribution of expanding translate of shirinking  pieces of a curve]\\label{Thm : 1. shrinking equidistribuiton at point}\n    Let the notation and conditions be as in Theorem~\\ref{Theorem : 1. main theorem}.\n    Then, there exists a Lebesgue null set $E$ in $I$ such that for $m: = \\frac{\\zeta_k}{2}$ and for any $s_0 \\in I\\backslash E$, $f \\in C_c(X)$, a sequence $\\{s_n\\}_{n \\in \\mathbb{N}}$ in $I$ and a sequence $\\{t_n\\}_{n \\in\\mathbb{N}}$ in $\\mathbb{R}$ such that $s_n \\to s_0$ and $t_n \\to \\infty $ as $n \\to \\infty$, we have\n    \\begin{equation}\\label{equation: 1. equidist on shrinking curve}\n        \\lim_{n \\to \\infty}\\int^1_0 f\\big(a(t_n)\\psi(s_n + e^{-mt_n}\\eta)x_0\\big) \\, d\\eta = \\int_X f d\\mu_L.\n    \\end{equation}\n\\end{thm}\n\n\\subsection{Paper Organization and Proof Outline}\nThe proof of equidistribution on homogeneous spaces typically involves three main steps. \n First, one proves the non-divergence (i.e., no escape of mass) of the limit measures.\n Next, it must be shown that the limit measure is invariant under a non-trivial unipotent subgroup. \n Finally, the linearization technique is employed to demonstrate that these measures do not accumulate on lower- dimensional unipotent-invariant subvarieties immersed in the homogeneous space. Ratner's theorem then guarantees that the limit measure is the $L$-invariant measure on its homogeneous space.\n\nIn previous works (for example, \\cite{Sha09SOn1smooth}, \\cite{Sha09SLnR}, \\cite{Sha09SOn1analytic}, and \\cite{LYangProduct}), the Nondivergence Theorem by  Dani, Kleinbock, and Margulis (See \\cite{DM93}, \\cite{KM98}) has been a key tool to establish non-divergence of limit measures. Applying this theorem requires the given curve to satisfy a certain growth property called $(C, \\alpha)$-goodness.\nHowever, while analytic functions possess this property, smooth functions generally do not. \nTo address this, following the approach of Shah and P. Yang (\\cite{ShahPYang24}), we approximate $\\mathcal{I}\\circ\\psi$ at each point $s_0 \\in I\\backslash E$ by an ($l-1$)-degree Taylor polynomial on shrinking intervals $Ie^{-mt}$ (for $m = \\frac{\\zeta_k}{2}$), to compensate for errors that expand due to the translation by $a(t)$.\nWe first demonstrate the equidistribution of parametric measures concentrated on these polynomial curves on the shrinking intervals through a sequence of arguments presented in Sections 2, 3, and 4. \n\nTo apply the linearization technique, a linear dynamical result, often called the ``basic lemma'', is required; this can be found in the aforementioned papers on equidistribution. \n\\cite{ShahPYang24} extended this result, originally for fixed-sized curves, to shrinking pieces of a curve for a particular case where $G = SL(n,\\mathbb{R})$. \n In Section \\ref{Section: Shrinking}, We prove that this linear dynamical result for shrinking pieces of a curve also holds when $G$ is a product of $\\mathrm{SO}(n,1)$'s. \n\nIn Section \\ref{Sec: nondiv and unip inv}, we follow standard schemes to establish the nondivergence and unipotent invariance of the limit measure for measures concentrated on shrinking pieces of polynomial curves. \n\nIn Section \\ref{Sec: Equidistribution}, we identify obstructions to equidistribution and demonstrate that avoiding them guarantees equidistribution of the limit measure for measures concentrated on shrinking pieces of polynomial curves, thereby providing the proofs of our main results: Theorem \\ref{Theorem : 1. main theorem} and Theorem \\ref{Thm : 1. shrinking equidistribuiton at point}. \n\nOur approach is as follows. For each $H \\in \\mathscr{H}$, when the $G$ orbit of a vector $p_H$ is not closed, we employ Kempf's invariant theory \\cite{Kempf78} and the technique developed by Shah and P.Yang \\cite{SY24}. \nTogether, these enable us to replace the given representation and vector whose $G$ orbit is not closed with a different pair, provided that the new pair meets certain conditions. \nWe explicitly construct a new, more comuptable pair that meets the required conditions by utilizing the standard representation $\\mathbb{R}^{n+1}$ of $\\mathrm{SO}(n,1)$.  Calculations with this new pair then show that the obstructions arising from this non-closed case are negligible, provided that the derivative of our curve in each component is non-zero almost everywhere. \nTherefore, the main obstructions originate from the case where $Gp_H$ is closed. In this closed orbit case, the obstructions that $\\mathcal{I}\\circ\\psi$ should avoid take the form of a M\\\"obius embedding of a product of subspheres into $\\prod_{i=1}^k\\mathbb{S}^{n_i-1}$. As $\\mathscr{H}$ is countable, the resulting set of obstructions $\\{ \\Delta_H: H\\in \\mathcal{H} \\text{ such that } Gp_H \\text{ is closed} \\} $ is countable. The countability of this set is essential. Unlike in the analytic case, a property holding for a smooth function on a set of positive measure does not imply it holds globally. Thus, the fact that the obstruction set is merely countable is what makes it possible for a smooth map to exist that avoids these conditions.",
+    "sketch": "The introduction says the proof follows the usual three-step strategy for equidistribution on homogeneous spaces: (1) prove non-divergence (no escape of mass) of limit measures; (2) show any limit measure is invariant under a non-trivial unipotent subgroup; (3) apply the linearization technique to show measures \"do not accumulate on lower-dimensional unipotent-invariant subvarieties\"; then \"Ratner's theorem guarantees that the limit measure is the $L$-invariant measure\".\n\nIt is also stated that Theorem~\\ref{Theorem : 1. main theorem} is deduced from the sharper Theorem~\\ref{Thm : 1. shrinking equidistribuiton at point}. To handle smooth (not analytic) curves in the nondivergence step, they \"approximate $\\mathcal{I}\\circ\\psi$ at each point $s_0\\in I\\backslash E$ by an ($l-1$)-degree Taylor polynomial on shrinking intervals $Ie^{-mt}$ (for $m=\\frac{\\zeta_k}{2}$), to compensate for errors that expand due to the translation by $a(t)$\", and first prove equidistribution for measures on these polynomial curves on shrinking intervals.\n\nFor linearization they need a \"basic lemma\"; they say they prove (in Section \\ref{Section: Shrinking}) the analogue for \"shrinking pieces of a curve\" when $G$ is a product of $\\mathrm{SO}(n,1)$'s. Nondivergence and unipotent invariance for measures on shrinking polynomial pieces are then established in Section \\ref{Sec: nondiv and unip inv}. In Section \\ref{Sec: Equidistribution} they \"identify obstructions to equidistribution\" and show that avoiding them yields equidistribution, giving the proofs of Theorem~\\ref{Theorem : 1. main theorem} and Theorem~\\ref{Thm : 1. shrinking equidistribuiton at point}.\n\nThey further outline how obstructions are treated: for $H\\in\\mathscr{H}$ with $Gp_H$ not closed, they use \"Kempf's invariant theory\" and Shah--P.Yang's technique to replace the representation/vector by a new pair (constructed using the standard representation $\\mathbb{R}^{n+1}$ of $\\mathrm{SO}(n,1)$) so computations show these non-closed-orbit obstructions are \"negligible\" if each component derivative is nonzero a.e. Hence \"the main obstructions originate from the case where $Gp_H$ is closed\"; in the closed-orbit case the obstructions are described as \"a M\\\"obius embedding of a product of subspheres\" into $\\prod_{i=1}^k\\mathbb{S}^{n_i-1}$, giving a countable family $\\{\\Delta_H\\}$ to be avoided, and the countability is emphasized as essential for smooth maps.",
+    "expanded_sketch": "No expanded sketch found.",
+    "expanded_theorem": "\\label{Theorem : 1. main theorem}\n\nLet $\\psi=(\\psi_i)_{i=1}^k : I \\to G=\\prod_{i=1}^k G_i$ be a curve such that $\\mathcal{I}\\circ \\psi$ is a $C^l$-map for some $l >\\frac{2\\zeta_1} {\\zeta_k}$ and $(\\mathcal{I}_i\\circ\\psi_i)'(s) \\neq 0$  for all $1\\leq i\\leq k$ and almost every $s\\in I$. Suppose that \n\\begin{equation}\n    \\nu(\\{s \\in I : \\psi(s) \\in \\Delta_H\\}) = 0 \\text{ for all } H\\in\\mathcal{H} \\text{ such that } Gp_H \\text{ is closed and } Gp_H \\neq p_H.\n\\end{equation}\nThen, for every $f \\in C_c(L/\\Gamma)$, we have \n\\begin{equation}\n    \\lim_{t\\rightarrow \\infty} \\int_0^1 f(a(t)\\psi(s)x_0)ds = \\int_{L/\\Gamma} f\\, d\\mu_L,\n\\end{equation}\nwhere $x_0=e\\Gamma$, $\\overline{Gx_0}=L/\\Gamma$, and $\\mu_L$ is the unique $L$-invariant probability measure on $L/\\Gamma$.,",
+    "theorem_type": [
+      "Asymptotic or Limit",
+      "Implication"
+    ],
+    "mcq": {
+      "question": "Let $\\psi=(\\psi_i)_{i=1}^k: I\\to G=\\prod_{i=1}^k G_i$ be a curve such that $\\mathcal I\\circ\\psi$ is a $C^l$ map for some $l>\\frac{2\\zeta_1}{\\zeta_k}$ and $(\\mathcal I_i\\circ\\psi_i)'(s)\\neq 0$ for all $1\\le i\\le k$ and for almost every $s\\in I$. Assume moreover that\n\\[\n\\nu(\\{s\\in I: \\psi(s)\\in\\Delta_H\\})=0\\quad\\text{for all }H\\in\\mathcal H\\text{ such that }Gp_H\\text{ is closed and }Gp_H\\ne p_H.\n\\]\nLet $x_0=e\\Gamma$ and suppose $\\overline{Gx_0}=L/\\Gamma$, where $\\mu_L$ denotes the unique $L$-invariant probability measure on $L/\\Gamma$. For $f\\in C_c(L/\\Gamma)$, as $t\\to\\infty$, what is the strongest justified limit for the averages $\\int_0^1 f(a(t)\\psi(s)x_0)\\,ds$?",
+      "correct_choice": {
+        "label": "A",
+        "text": "For every $f\\in C_c(L/\\Gamma)$,\n\\[\n\\lim_{t\\to\\infty}\\int_0^1 f\\big(a(t)\\psi(s)x_0\\big)\\,ds \\,=\\, \\int_{L/\\Gamma} f\\,d\\mu_L,\n\\]\nwhere $x_0=e\\Gamma$, $\\overline{Gx_0}=L/\\Gamma$, and $\\mu_L$ is the unique $L$-invariant probability measure on $L/\\Gamma$."
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "For every $f\\in C_c(L/\\Gamma)$, there exists a sequence $t_n\\to\\infty$ (depending on $f$) such that\n\\[\n\\lim_{n\\to\\infty}\\int_0^1 f\\big(a(t_n)\\psi(s)x_0\\big)\\,ds \\,=\\,\\int_{L/\\Gamma} f\\,d\\mu_L,\n\\]\nwhere $x_0=e\\Gamma$, $\\overline{Gx_0}=L/\\Gamma$, and $\\mu_L$ is the unique $L$-invariant probability measure on $L/\\Gamma$."
+        },
+        {
+          "label": "C",
+          "text": "For every $f\\in C_c(L/\\Gamma)$,\n\\[\n\\limsup_{t\\to\\infty}\\int_0^1 f\\big(a(t)\\psi(s)x_0\\big)\\,ds \\;\\le\\; \\int_{L/\\Gamma} f\\,d\\mu_L\n\\]\n(and equivalently $\\liminf_{t\\to\\infty}\\int_0^1 f(a(t)\\psi(s)x_0)\\,ds\\ge \\int f\\,d\\mu_L$ for $-f$), where $x_0=e\\Gamma$ and $\\mu_L$ is the unique $L$-invariant probability measure on $L/\\Gamma$."
+        },
+        {
+          "label": "D",
+          "text": "For every $f\\in C_c(L/\\Gamma)$,\n\\[\n\\lim_{t\\to\\infty}\\int_0^1 f\\big(a(t)\\psi(s)x_0\\big)\\,ds \\,=\\, \\int_{\\overline{Gx_0}} f\\,d\\mu_G,\n\\]\nwhere $\\mu_G$ denotes the unique $G$-invariant probability measure on $\\overline{Gx_0}=L/\\Gamma$."
+        },
+        {
+          "label": "E",
+          "text": "For every $f\\in C_c(L/\\Gamma)$,\n\\[\n\\lim_{t\\to\\infty}\\int_0^1 f\\big(a(t)\\psi(s)x_0\\big)\\,ds \\,=\\,\\int_{L/\\Gamma} f\\,d\\mu_L,\n\\]\nprovided only that $\\mathcal I\\circ\\psi$ is $C^1$ and $(\\mathcal I_i\\circ\\psi_i)'(s)\\neq 0$ for all $1\\le i\\le k$ and almost every $s\\in I$ (with no condition involving $\\nu(\\{s:\\psi(s)\\in\\Delta_H\\})$)."
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "D"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "other",
+          "tampered_component": "full-limit-in-t (replaced by subsequence depending on f)",
+          "template_used": "quantifier_dependence"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "other",
+          "tampered_component": "equality of limit (weakened to one-sided inequality via limsup/liminf)",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "other",
+          "tampered_component": "invariant measure/group (replaced L-invariant measure by purported G-invariant one on L/Γ)",
+          "template_used": "wildcard"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "regularity",
+          "tampered_component": "regularity + non-divergence hypothesis (dropped l>2ζ1/ζk and Δ_H-null condition)",
+          "template_used": "boundary_range"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2511.02790v1",
+    "paper_link": "http://arxiv.org/abs/2511.02790v1",
+    "theorems_cnt": 3,
+    "theorem": {
+      "env_name": "theorem",
+      "content": "\\label{Main theorem 1}\n   For any $g\\geqslant 3$, the set of base-$g$ Niven numbers is an asymptotic basis of order 3.",
+      "start_pos": 11081,
+      "end_pos": 11223,
+      "label": "Main theorem 1"
+    },
+    "ref_dict": {
+      "k cond N": "\\begin{align}\\label{k cond N}\n  (k_{i},k_{j})=1 \\textrm{ and }(k_{i},g)=1 \\textrm{ for }i,j=1,2,3 \\textrm{ and } i\\neq j.\n \\end{align}",
+      "Main theorem 1": "\\begin{theorem}\\label{Main theorem 1}\n   For any $g\\geq 3$, the set of base-$g$ Niven numbers is an asymptotic basis of order 3.\n\\end{theorem}",
+      "Main theorem N count": "\\begin{theorem}\\label{Main theorem N count}\nLet $g,K$ and $M$ be integers such that $g\\geq 3$, $K$ is sufficiently large in terms of $g$, and $M\\in (g^{K-1},g^{K}]$. Suppose that $k_{1},k_{2},k_{3}$ fulfil \\cref{k cond S} and \\cref{k cond N}, then\n\\[r_{\\mathcal{N}_{1}+\\mathcal{N}_{2}+\\mathcal{N}_{3}}(M)=\\frac{(g-1)^{2}c_{g}(k_{1},k_{2},k_{3})}{4k_{1}k_{2}k_{3}}r_{S_{1}+S_{2}+S_{3}}(M)+O_{g}(M^{2}K^{-29/6}).\\]\nIn particular,\n \\[r_{\\mathcal{N}_{1}+\\mathcal{N}_{2}+\\mathcal{N}_{3}}(M)=c_{g}(k_{1},k_{2},k_{3})\\frac{M^{2}}{(2\\pi\\sigma^{2})^{3/2}K^{9/2}}+O_{g}(M^{2}(\\log K)^{4}K^{-19/4}),\\]\n where $\\sigma^{2}=(g^{2}-1)/12$.\n\\end{theorem}",
+      "Main theorem S count": "\\begin{theorem}\\label{Main theorem S count} Let $g,K$ and $M$ be integers such that $g\\geq 3$, $K$ is sufficiently large in terms of $g$, and $M\\in (g^{K-1},g^{K}]$. Suppose that $k_{1},k_{2},k_{3}$ satisfy \\cref{k cond S}. Then\n    \\[r_{S_{1}+S_{2}+S_{3}}(M)=\\frac{(g-1)M^{2}}{2(2\\pi\\sigma^{2}K)^{3/2}}(1+O_{g}((\\log K)^{4}K^{-1/4})),\\]\nwhere $\\sigma^{2}=(g^{2}-1)/12$.\n\\end{theorem}",
+      "k cond S": "\\begin{equation}\\label{k cond S}\n    |k_{i}-\\mu_{K}|\\leq C_{g} \\textrm{ and } k_{1}+k_{2}+k_{3}\\equiv M\\md{g-1},\n\\end{equation}"
+    },
+    "post_theorem_intro_text_len": 4535,
+    "post_theorem_intro_text": "We first count, via the circle method, the number of representations of a sufficiently large integer $M$ as the sum of three integers with a near-average digit sum. By showing that a proportion of such representations have each summand being a Niven number, we provide a lower bound for the number of representations of $M$ as the sum of three Niven numbers. To state these results more precisely, we need the following notation.\n\nLet $s_{g}(n)$ denote the base-$g$ digit sum of $n$. Let $K\\geqslant 1$ be a sufficiently large integer, and let $M\\in (g^{K-1},g^{K}]$. For $k\\in \\N$, let\n\\[S_{g}(k)\\coloneq \\{n<g^{K}\\ensuremath{:} s_{g}(n)=k\\} \\textrm{ and }\\mathcal{N}_{g}(k)\\coloneq \\{n\\in S(k) \\ensuremath{:} k\\mid n\\}.\\]\nThus $\\mathcal{N}_{g}(k)$ is the set of Niven numbers in $S_{g}(k)$, that is, Niven numbers of a certain size with fixed digit sum. Let \\begin{equation*}\n    \\mu_{K}\\coloneq \\frac{(g-1)K}{2},\n\\end{equation*}\nwhich is the average digit sum of $n<g^{K}$. For a fixed choice of $k_{1},k_{2},k_{3}\\in \\N$, let $S_{i}\\coloneq S_{g}(k_{i})$ for $i=1,2,3$, and let $\\mathcal{N}_{i}\\coloneq \\mathcal{N}_{g}(k_{i})$ for $i=1,2,3$. Suppose that $k_{1},k_{2},k_{3}\\in \\N$ are such that\n\\begin{equation}\\label{k cond S}\n    |k_{i}-\\mu_{K}|\\leqslant C_{g} \\textrm{ and } k_{1}+k_{2}+k_{3}\\equiv M\\md{g-1},\n\\end{equation}\nwhere $C_g := g(g-1)\\prod_{p\\leqslant 10g^{2}}p$, and the product is over primes.  The specific choice of constant here is unimportant, and any sufficiently large value would do, but this value is large enough to ensure that $k_{i}$ with further desired properties exist. Let $r_{S_{1}+S_{2}+S_{3}}(M)$ be the number of representations of $M=s_{1}+s_{2}+s_{3}$, for $s_{i}\\in S_{i}$. Our main result is the following theorem, from which we can later deduce the corresponding result for $\\mathcal{N}_{i}\\subset S_{i}$.\n\\begin{theorem}\\label{Main theorem S count} Let $g,K$ and $M$ be integers such that $g\\geqslant 3$, $K$ is sufficiently large in terms of $g$, and $M\\in (g^{K-1},g^{K}]$. Suppose that $k_{1},k_{2},k_{3}$ satisfy \\cref{k cond S}. Then\n    \\[r_{S_{1}+S_{2}+S_{3}}(M)=\\frac{(g-1)M^{2}}{2(2\\pi\\sigma^{2}K)^{3/2}}(1+O_{g}((\\log K)^{4}K^{-1/4})),\\]\nwhere $\\sigma^{2}=(g^{2}-1)/12$.\n\\end{theorem}\nLet $r_{\\mathcal{N}_{1}+\\mathcal{N}_{2}+\\mathcal{N}_{3}}(M)$ be the number of representations of $M=n_{1}+n_{2}+n_{3}$, where $n_{i}\\in \\mathcal{N}_{i}$ for $i=1,2,3$. In order to relate the quantity $r_{S_{1}+S_{2}+S_{3}}(M)$ to $r_{\\mathcal{N}_{1}+\\mathcal{N}_{2}+\\mathcal{N}_{3}}(M)$, we require some further conditions on the choice of $k_{1},k_{2},k_{3}$. Throughout, $(a,b)$ denotes the greatest common divisor of $a$ and $b$. Suppose that $k_{1},k_{2},k_{3}\\in\\N$ also satisfy, in addition to \\cref{k cond S},\n\\begin{align}\\label{k cond N}\n  (k_{i},k_{j})=1 \\textrm{ and }(k_{i},g)=1 \\textrm{ for }i,j=1,2,3 \\textrm{ and } i\\neq j.\n \\end{align}\nLet \n\\[c_{g}(k_{1},k_{2},k_{3})\\coloneq \\frac{4}{(g-1)^{2}}\\prod_{i=1}^{3}(g-1,k_{i}).\\]\nThen we have the following theorem, from which \\cref{Main theorem 1} is a corollary after showing that such a choice of $k_{1},k_{2}$ and $k_{3}$ exist. \n\\begin{theorem}\\label{Main theorem N count}\nLet $g,K$ and $M$ be integers such that $g\\geqslant 3$, $K$ is sufficiently large in terms of $g$, and $M\\in (g^{K-1},g^{K}]$. Suppose that $k_{1},k_{2},k_{3}$ fulfil \\cref{k cond S} and \\cref{k cond N}, then\n\\[r_{\\mathcal{N}_{1}+\\mathcal{N}_{2}+\\mathcal{N}_{3}}(M)=\\frac{(g-1)^{2}c_{g}(k_{1},k_{2},k_{3})}{4k_{1}k_{2}k_{3}}r_{S_{1}+S_{2}+S_{3}}(M)+O_{g}(M^{2}K^{-29/6}).\\]\nIn particular,\n \\[r_{\\mathcal{N}_{1}+\\mathcal{N}_{2}+\\mathcal{N}_{3}}(M)=c_{g}(k_{1},k_{2},k_{3})\\frac{M^{2}}{(2\\pi\\sigma^{2})^{3/2}K^{9/2}}+O_{g}(M^{2}(\\log K)^{4}K^{-19/4}),\\]\n where $\\sigma^{2}=(g^{2}-1)/12$.\n\\end{theorem}\nOur methods can be adapted to show the analogous versions of \\cref{Main theorem 1}, \\cref{Main theorem S count} and \\cref{Main theorem N count} for base 2, however there is one main technical difference. For readability, we do not give the details here, but comment on the necessary changes in \\cref{Section: minor arc}.\n\\subsection{Notation}\\label{notation}\nThroughout, we consider $g$ to be fixed. Let $\\Vert x \\Vert_{\\R/\\Z}$ denote the distance of a real number $x$ to the nearest integer. We write $e(x)$ for $\\exp(2\\pi ix)$, and $e_{g-1}(x)$ for $e(x/(g-1))$. We require the quantity $\\ell$, defined to be\n\\begin{equation}\\label{l choice}\n    \\ell\\coloneqq \\lceil 384g^{3}\\log K\\rceil.\n\\end{equation}\nThroughout, $\\sigma=\\sqrt{(g^{2}-1)/12}.$\n\\stoptoc",
+    "sketch": "To prove Theorem~\\ref{Main theorem 1}, the introduction explains that they \\emph{“first count, via the circle method, the number of representations of a sufficiently large integer $M$ as the sum of three integers with a near-average digit sum.”} Concretely, they define digit-sum level sets $S_g(k)$ with $|k_i-\\mu_K|\\le C_g$ and $k_1+k_2+k_3\\equiv M\\pmod{g-1}$, and obtain an asymptotic for\n\\[r_{S_1+S_2+S_3}(M)\\]\n(Theorem~\\ref{Main theorem S count}).\n\nThey then pass from representations by $S_i$ to representations by the Niven subsets $\\mathcal N_i=\\{n\\in S_g(k_i):\\ k_i\\mid n\\}$: \\emph{“By showing that a proportion of such representations have each summand being a Niven number, we provide a lower bound for the number of representations of $M$ as the sum of three Niven numbers.”} This is made precise by imposing additional coprimality conditions $(k_i,k_j)=1$ and $(k_i,g)=1$ and relating\n\\[r_{\\mathcal N_1+\\mathcal N_2+\\mathcal N_3}(M)\\]\nto $r_{S_1+S_2+S_3}(M)$ with an explicit main factor plus error term (Theorem~\\ref{Main theorem N count}). Finally, they note that Theorem~\\ref{Main theorem 1} follows \\emph{as a corollary} of Theorem~\\ref{Main theorem N count} \\emph{“after showing that such a choice of $k_1,k_2$ and $k_3$ exist.”}",
+    "expanded_sketch": "To prove the main theorem, the introduction explains that they \\emph{“first count, via the circle method, the number of representations of a sufficiently large integer $M$ as the sum of three integers with a near-average digit sum.”} Concretely, they define digit-sum level sets $S_g(k)$ with $|k_i-\\mu_K|\\le C_g$ and $k_1+k_2+k_3\\equiv M\\pmod{g-1}$, and obtain an asymptotic for\n\\[r_{S_1+S_2+S_3}(M)\\]\nWe first prove the following theorem. \\begin{theorem}\\label{Main theorem S count} Let $g,K$ and $M$ be integers such that $g\\geq 3$, $K$ is sufficiently large in terms of $g$, and $M\\in (g^{K-1},g^{K}]$. Suppose that $k_{1},k_{2},k_{3}$ satisfy \\cref{k cond S}. Then\n    \\[r_{S_{1}+S_{2}+S_{3}}(M)=\\frac{(g-1)M^{2}}{2(2\\pi\\sigma^{2}K)^{3/2}}(1+O_{g}((\\log K)^{4}K^{-1/4})),\\]\nwhere $\\sigma^{2}=(g^{2}-1)/12$.\n\\end{theorem}\n\nThey then pass from representations by $S_i$ to representations by the Niven subsets $\\mathcal N_i=\\{n\\in S_g(k_i):\\ k_i\\mid n\\}$: \\emph{“By showing that a proportion of such representations have each summand being a Niven number, we provide a lower bound for the number of representations of $M$ as the sum of three Niven numbers.”} This is made precise by imposing additional coprimality conditions $(k_i,k_j)=1$ and $(k_i,g)=1$ and relating\n\\[r_{\\mathcal N_1+\\mathcal N_2+\\mathcal N_3}(M)\\]\nto the preceding theorem’s quantity $r_{S_1+S_2+S_3}(M)$ with an explicit main factor plus error term. We first prove the following theorem. \\begin{theorem}\\label{Main theorem N count}\nLet $g,K$ and $M$ be integers such that $g\\geq 3$, $K$ is sufficiently large in terms of $g$, and $M\\in (g^{K-1},g^{K}]$. Suppose that $k_{1},k_{2},k_{3}$ fulfil \\cref{k cond S} and \\cref{k cond N}, then\n\\[r_{\\mathcal{N}_{1}+\\mathcal{N}_{2}+\\mathcal{N}_{3}}(M)=\\frac{(g-1)^{2}c_{g}(k_{1},k_{2},k_{3})}{4k_{1}k_{2}k_{3}}r_{S_{1}+S_{2}+S_{3}}(M)+O_{g}(M^{2}K^{-29/6}).\\]\nIn particular,\n \\[r_{\\mathcal{N}_{1}+\\mathcal{N}_{2}+\\mathcal{N}_{3}}(M)=c_{g}(k_{1},k_{2},k_{3})\\frac{M^{2}}{(2\\pi\\sigma^{2})^{3/2}K^{9/2}}+O_{g}(M^{2}(\\log K)^{4}K^{-19/4}),\\]\n where $\\sigma^{2}=(g^{2}-1)/12$.\n\\end{theorem}\nFinally, they note that this completes the proof of the main theorem \\emph{as a corollary} of the theorem above \\emph{“after showing that such a choice of $k_1,k_2$ and $k_3$ exist.”}",
+    "expanded_theorem": "\\label{Main theorem 1}\n   For any $g\\geqslant 3$, the set of base-$g$ Niven numbers is an asymptotic basis of order 3.,",
+    "theorem_type": [
+      "Universal",
+      "Asymptotic or Limit"
+    ],
+    "mcq": {
+      "question": "Let $g\\ge 3$ be an integer, and call a positive integer $n$ a base-$g$ Niven number if $n$ is divisible by the sum of its base-$g$ digits. Let $\\mathcal N_g$ be the set of all base-$g$ Niven numbers. As $N\\to\\infty$ (i.e. for all sufficiently large integers $N$), what is the strongest additive representation conclusion that can be proved about $\\mathcal N_g$?",
+      "correct_choice": {
+        "label": "A",
+        "text": "For every integer $g\\ge 3$, $\\mathcal N_g$ is an asymptotic basis of order $3$: there exists $N_0=N_0(g)$ such that every integer $N\\ge N_0$ can be written as $N=n_1+n_2+n_3$ with $n_1,n_2,n_3\\in\\mathcal N_g$."
+      },
+      "choices": [
+        {
+          "label": "B",
+          "text": "For every integer $g\\ge 3$, $\\mathcal N_g$ is an asymptotic basis of order $3$ in the uniform sense that there exists an absolute constant $N_0$ (independent of $g$) such that every integer $N\\ge N_0$ can be written as $N=n_1+n_2+n_3$ with $n_1,n_2,n_3\\in\\mathcal N_g$."
+        },
+        {
+          "label": "C",
+          "text": "For every integer $g\\ge 3$, $\\mathcal N_g$ is an additive basis of order $3$ for all sufficiently large integers: there exists $N_0=N_0(g)$ such that every integer $N\\ge N_0$ can be written as $N=n_1+n_2+n_3$ with $n_1,n_2,n_3\\in\\mathcal N_g$, allowing repetitions among the $n_i$."
+        },
+        {
+          "label": "D",
+          "text": "For every integer $g\\ge 3$, $\\mathcal N_g$ is an asymptotic basis of order $2$: there exists $N_0=N_0(g)$ such that every integer $N\\ge N_0$ can be written as $N=n_1+n_2$ with $n_1,n_2\\in\\mathcal N_g$."
+        },
+        {
+          "label": "E",
+          "text": "For every integer $g\\ge 3$, $\\mathcal N_g$ is an asymptotic basis of order $3$ for integers in a fixed residue class modulo $g-1$: there exists a residue $a\\pmod{g-1}$ and $N_0=N_0(g)$ such that every integer $N\\ge N_0$ with $N\\equiv a\\pmod{g-1}$ can be written as $N=n_1+n_2+n_3$ with $n_1,n_2,n_3\\in\\mathcal N_g$."
+        }
+      ],
+      "meta": {
+        "weaker_true_label": "C",
+        "false_labels": [
+          "B",
+          "D",
+          "E"
+        ],
+        "wildcard_false_label": "E"
+      },
+      "sketch_usage_meta": [
+        {
+          "label": "B",
+          "sketch_hook_type": "uniformity_effectivity",
+          "tampered_component": "dependence of threshold $N_0$ on $g$ (non-uniform in $g$)",
+          "template_used": "uniformity_effectivity"
+        },
+        {
+          "label": "C",
+          "sketch_hook_type": "other",
+          "tampered_component": "drops the (implicit) distinctness/structured-choice issue; allows repetitions, yielding a weaker-but-true restatement of asymptotic basis order 3",
+          "template_used": "weaker_true"
+        },
+        {
+          "label": "D",
+          "sketch_hook_type": "counting_estimate",
+          "tampered_component": "reduces the number of summands from 3 to 2, contradicting the need for a three-variable circle method main term",
+          "template_used": "stronger_trap"
+        },
+        {
+          "label": "E",
+          "sketch_hook_type": "case_split",
+          "tampered_component": "misinterprets the congruence constraint $k_1+k_2+k_3\\equiv M\\pmod{g-1}$ as restricting $M$ to a single residue class mod $g-1$",
+          "template_used": "wildcard"
+        }
+      ]
+    }
+  }
+]
