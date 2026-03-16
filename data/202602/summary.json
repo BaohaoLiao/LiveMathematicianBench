@@ -1,0 +1,17 @@
+{
+  "month": "202602",
+  "full_count": 390,
+  "ge5_count": 188,
+  "hard_count": 50,
+  "hard_accuracy": 0.4,
+  "hard_correct": 20,
+  "hard_total": 50,
+  "hard_selection_summary": {
+    "pool_size": 243,
+    "eligible_after_min_score": 188,
+    "source_groups": 108,
+    "selected_count": 50,
+    "dropped_solved_sources": 58,
+    "min_score": 5.0
+  }
+}

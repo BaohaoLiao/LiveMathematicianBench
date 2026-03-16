@@ -1,0 +1,17 @@
+{
+  "month": "202511",
+  "full_count": 337,
+  "ge5_count": 141,
+  "hard_count": 29,
+  "hard_accuracy": 0.41379310344827586,
+  "hard_correct": 12,
+  "hard_total": 29,
+  "hard_selection_summary": {
+    "pool_size": 183,
+    "eligible_after_min_score": 146,
+    "source_groups": 81,
+    "selected_count": 29,
+    "dropped_solved_sources": 52,
+    "min_score": 5.0
+  }
+}

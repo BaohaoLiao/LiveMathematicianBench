@@ -40,55 +40,61 @@ def load_json(path):
         return json.load(f)
 
 
+def load_hard_data(month):
+    """Load hard QA data for a given month."""
+    fpath = DATA_DIR / month / "hard" / f"qaEval_{month}_ge5_hard.json"
+    if fpath.exists():
+        return load_json(fpath)
+    return []
+
+
 def collect_stats():
-    """Collect per-month, per-category question counts."""
+    """Collect per-month, per-category question counts from hard data."""
     stats = {}
     for month in MONTHS:
         stats[month] = {}
         for cat in CATEGORIES:
-            fpath = DATA_DIR / month / f"qa_{month}_{cat}.json"
-            if fpath.exists():
-                data = load_json(fpath)
-                stats[month][cat] = len(data)
-            else:
-                stats[month][cat] = 0
+            stats[month][cat] = 0
+        data = load_hard_data(month)
+        for item in data:
+            for t in item.get("theorem_type", []):
+                if t in CATEGORIES:
+                    stats[month][t] += 1
+        # Also store total hard questions (an item may span multiple categories)
+        stats[month]["_total"] = len(data)
     return stats
 
 
 def collect_examples():
-    """Collect a few example questions from each month."""
+    """Collect example questions from hard data for each month."""
     examples = []
     seen_ids = set()
     for month in MONTHS:
-        for cat in CATEGORIES:
-            fpath = DATA_DIR / month / f"qa_{month}_{cat}.json"
-            if not fpath.exists():
+        data = load_hard_data(month)
+        for item in data:
+            if item["id"] in seen_ids:
                 continue
-            data = load_json(fpath)
-            for item in data[:1]:  # take 1 from each category per month
-                if item["id"] in seen_ids:
-                    continue
-                seen_ids.add(item["id"])
-                examples.append({
-                    "id": item["id"],
-                    "month": month,
-                    "category": cat,
-                    "paper_link": item.get("paper_link", ""),
-                    "theorem": re.sub(r'\\\\?label\{[^}]*\}\s*', '', item.get("expanded_theorem", item.get("theorem", {}).get("content", ""))).strip(),
-                    "sketch": item.get("expanded_sketch", ""),
-                    "question": item.get("mcq", {}).get("question", ""),
-                    "correct_choice": item.get("mcq", {}).get("correct_choice", {}),
-                    "choices": item.get("mcq", {}).get("choices", []),
-                })
-                if len(examples) >= 40:
-                    break
+            seen_ids.add(item["id"])
+            types = item.get("theorem_type", [])
+            cat = next((t for t in types if t in CATEGORIES), types[0] if types else "General")
+            examples.append({
+                "id": item["id"],
+                "month": month,
+                "category": cat,
+                "paper_link": item.get("paper_link", ""),
+                "theorem": re.sub(r'\\\\?label\{[^}]*\}\s*', '', item.get("expanded_theorem", item.get("theorem", {}).get("content", ""))).strip(),
+                "sketch": item.get("expanded_sketch", ""),
+                "question": item.get("mcq", {}).get("question", ""),
+                "correct_choice": item.get("mcq", {}).get("correct_choice", {}),
+                "choices": item.get("mcq", {}).get("choices", []),
+            })
     return examples
 
 
 def collect_accuracy():
-    """Collect model accuracy results from accuracy_test files."""
+    """Collect model accuracy results from hard accuracy_test files."""
     results = []
-    for fpath in sorted(glob.glob(str(DATA_DIR / "*/accuracy_test_*.json"))):
+    for fpath in sorted(glob.glob(str(DATA_DIR / "*/hard/accuracy_test_*.json"))):
         # Skip .progress files (incomplete runs)
         if ".progress." in fpath:
             continue
@@ -500,18 +506,18 @@ def build():
   <!-- LEADERBOARD -->
   <div class="section active" id="sec-leaderboard">
     <h2 class="section-title">Model Leaderboard</h2>
-    <p class="section-desc">How well do frontier LLMs perform on research-level mathematics? Scores will be updated as more models are evaluated.</p>
+    <p class="section-desc">How well do frontier LLMs perform on the hard subset of research-level mathematics? Scores will be updated as more models are evaluated.</p>
     <div id="leaderboard-overall" class="leaderboard-card">
       <h3>Overall Accuracy</h3>
       <div class="table-wrap"><table id="lb-overall-table"></table></div>
     </div>
     <div id="leaderboard-category" class="leaderboard-card">
-      <h3>Per-Category Accuracy</h3>
+      <h3>Per-Month Accuracy</h3>
       <div class="table-wrap"><table id="lb-cat-table"></table></div>
     </div>
     <div class="chart-grid">
       <div class="chart-card" style="grid-column: 1 / -1;">
-        <h3>Model Accuracy by Category <span style="font-weight:400;font-size:0.8rem;color:var(--text-muted);margin-left:8px;">Click legend to hide/show a model</span></h3>
+        <h3>Model Accuracy by Month <span style="font-weight:400;font-size:0.8rem;color:var(--text-muted);margin-left:8px;">Click legend to hide/show a model</span></h3>
         <div class="chart-container" style="height:360px;"><canvas id="chart-model-cat"></canvas></div>
       </div>
     </div>
@@ -636,7 +642,7 @@ document.querySelectorAll('.nav-tab').forEach(tab => {{
 
 // ===== Overview Stats =====
 (function() {{
-  const totalAll = MONTHS.reduce((s,m) => s + CATEGORIES.reduce((a,c) => a + (STATS[m][c]||0), 0), 0);
+  const totalAll = MONTHS.reduce((s,m) => s + (STATS[m]['_total']||0), 0);
   const nMonths = MONTHS.length;
   const el = document.getElementById('overview-stats');
   el.innerHTML = `
@@ -649,7 +655,7 @@ document.querySelectorAll('.nav-tab').forEach(tab => {{
 
 // ===== Overview Charts =====
 (function() {{
-  const monthTotals = MONTHS.map(m => CATEGORIES.reduce((a,c) => a + (STATS[m][c]||0), 0));
+  const monthTotals = MONTHS.map(m => STATS[m]['_total']||0);
 
   new Chart(document.getElementById('chart-monthly'), {{
     type: 'bar',
@@ -718,7 +724,7 @@ document.querySelectorAll('.nav-tab').forEach(tab => {{
   const tdL = document.createElement('td'); tdL.textContent = 'Total'; trT.appendChild(tdL);
   let grandTotal = 0;
   MONTHS.forEach(m => {{
-    const v = CATEGORIES.reduce((a,c) => a + (STATS[m][c]||0), 0); grandTotal += v;
+    const v = STATS[m]['_total']||0; grandTotal += v;
     const td = document.createElement('td'); td.textContent = v; td.className = 'num'; trT.appendChild(td);
   }});
   const tdGT = document.createElement('td'); tdGT.textContent = grandTotal; tdGT.className = 'num'; trT.appendChild(tdGT);
@@ -853,15 +859,22 @@ document.querySelectorAll('.nav-tab').forEach(tab => {{
   html += '</tbody>';
   tbl.innerHTML = html;
 
-  // Per-category table
+  // Per-month table
   const catTbl = document.getElementById('lb-cat-table');
   let catHtml = '<thead><tr><th>Model</th><th>Config</th>';
-  CATEGORIES.forEach(c => catHtml += `<th class="num" style="font-size:0.7rem">${{c}}</th>`);
+  MONTHS.forEach(m => catHtml += `<th class="num" style="font-size:0.7rem">${{ml(m)}}</th>`);
   catHtml += '</tr></thead><tbody>';
+  // Group accuracy by model+config
+  const modelMap = {{}};
   sorted.forEach(r => {{
-    catHtml += `<tr><td style="font-weight:600;white-space:nowrap">${{r.model}}</td><td>${{r.reasoning_effort}}</td>`;
-    CATEGORIES.forEach(c => {{
-      const s = r.summary[c];
+    const key = r.model + '|' + r.reasoning_effort;
+    if (!modelMap[key]) modelMap[key] = {{ model: r.model, effort: r.reasoning_effort, months: {{}} }};
+    modelMap[key].months[r.month] = r.overall;
+  }});
+  Object.values(modelMap).forEach(entry => {{
+    catHtml += `<tr><td style="font-weight:600;white-space:nowrap">${{entry.model}}</td><td>${{entry.effort}}</td>`;
+    MONTHS.forEach(m => {{
+      const s = entry.months[m];
       if (s) {{
         const pct = (s.accuracy * 100).toFixed(0);
         catHtml += `<td class="num"><span class="accuracy-value ${{pctClass(s.accuracy)}}">${{pct}}%</span><br><span style="font-size:0.7rem;color:var(--text-muted)">${{s.correct}}/${{s.total}}</span></td>`;
@@ -874,24 +887,24 @@ document.querySelectorAll('.nav-tab').forEach(tab => {{
   catHtml += '</tbody>';
   catTbl.innerHTML = catHtml;
 
-  // Model accuracy chart
+  // Model accuracy chart (per-month bar chart)
   if (sorted.length > 0) {{
     const modelColors = ['#3b82f6','#ef4444','#10b981','#f59e0b','#8b5cf6','#ec4899'];
+    const modelEntries = Object.values(modelMap);
     new Chart(document.getElementById('chart-model-cat'), {{
-      type: 'radar',
+      type: 'bar',
       data: {{
-        labels: CATEGORIES.map(c => c.length > 18 ? c.slice(0,16) + '...' : c),
-        datasets: sorted.map((r, i) => ({{
-          label: `${{r.model}} (${{r.reasoning_effort}})`,
-          data: CATEGORIES.map(c => r.summary[c] ? (r.summary[c].accuracy * 100) : 0),
-          borderColor: modelColors[i % modelColors.length],
-          backgroundColor: modelColors[i % modelColors.length] + '20',
-          pointRadius: 3
+        labels: MONTHS.map(ml),
+        datasets: modelEntries.map((entry, i) => ({{
+          label: `${{entry.model}} (${{entry.effort}})`,
+          data: MONTHS.map(m => entry.months[m] ? (entry.months[m].accuracy * 100) : 0),
+          backgroundColor: modelColors[i % modelColors.length],
+          borderRadius: 4
         }}))
       }},
       options: {{
         responsive: true, maintainAspectRatio: false,
-        scales: {{ r: {{ beginAtZero: true, max: 100, ticks: {{ stepSize: 20 }} }} }},
+        scales: {{ y: {{ beginAtZero: true, max: 100, ticks: {{ stepSize: 20 }} }} }},
         plugins: {{ legend: {{ position: 'bottom' }} }}
       }}
     }});
