@@ -132,6 +132,9 @@ def evaluate_single(
         model_answer = None
         raw_response = None
         reasoning_tokens = None
+        prompt_tokens = None
+        completion_tokens = None
+        total_tokens = None
 
         try:
             kwargs = {
@@ -148,8 +151,12 @@ def evaluate_single(
             response = client.chat.completions.create(**kwargs)
             raw_response = response.choices[0].message.content or ""
             model_answer = extract_answer(raw_response)
-            if response.usage and response.usage.completion_tokens_details:
-                reasoning_tokens = response.usage.completion_tokens_details.reasoning_tokens
+            if response.usage:
+                prompt_tokens = response.usage.prompt_tokens
+                completion_tokens = response.usage.completion_tokens
+                total_tokens = response.usage.total_tokens
+                if response.usage.completion_tokens_details:
+                    reasoning_tokens = response.usage.completion_tokens_details.reasoning_tokens
         except Exception as e:
             error = str(e)
 
@@ -160,6 +167,9 @@ def evaluate_single(
             "model_answer": model_answer,
             "raw_response": raw_response,
             "is_correct": model_answer == correct_label,
+            "prompt_tokens": prompt_tokens,
+            "completion_tokens": completion_tokens,
+            "total_tokens": total_tokens,
             "reasoning_tokens": reasoning_tokens,
             "elapsed_seconds": elapsed,
             "error": error,
@@ -176,6 +186,9 @@ def evaluate_single(
         "raw_response": first["raw_response"],
         "is_correct": first["is_correct"],
         "reasoning_effort": reasoning_effort,
+        "prompt_tokens": first["prompt_tokens"],
+        "completion_tokens": first["completion_tokens"],
+        "total_tokens": first["total_tokens"],
         "reasoning_tokens": first["reasoning_tokens"],
         "elapsed_seconds": first["elapsed_seconds"],
         "error": first["error"],

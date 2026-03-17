@@ -149,6 +149,12 @@ def collect_accuracy():
                         "accuracy": cat_correct[c] / cat_total[c],
                     }
 
+            # Compute average completion tokens and elapsed time from detailed results
+            comp_tokens = [r.get("completion_tokens", 0) for r in data.get("detailed_results", []) if r.get("completion_tokens") is not None]
+            avg_completion_tokens = sum(comp_tokens) / len(comp_tokens) if comp_tokens else None
+            elapsed = [r.get("elapsed_seconds", 0) for r in data.get("detailed_results", []) if r.get("elapsed_seconds") is not None]
+            avg_elapsed_seconds = sum(elapsed) / len(elapsed) if elapsed else None
+
             results.append({
                 "file": os.path.basename(fpath),
                 "month": ti.get("month", ""),
@@ -157,6 +163,8 @@ def collect_accuracy():
                 "overall": data.get("overall", {}),
                 "summary": data.get("summary", {}),
                 "category_accuracy": category_accuracy,
+                "avg_completion_tokens": avg_completion_tokens,
+                "avg_elapsed_seconds": avg_elapsed_seconds,
             })
     return results
 
@@ -324,8 +332,8 @@ def build():
   }}
   th {{
     background: var(--table-header-bg);
-    font-weight: 600;
-    color: var(--text-muted);
+    font-weight: 700;
+    color: var(--text);
     font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 0.03em;
@@ -361,7 +369,7 @@ def build():
     padding: 20px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.04);
   }}
-  .chart-card h3 {{ font-size: 1rem; margin-bottom: 12px; color: var(--text-muted); }}
+  .chart-card h3 {{ font-size: 1rem; margin-bottom: 12px; color: var(--text); font-weight: 700; }}
   .chart-container {{ position: relative; height: 300px; }}
 
   /* Examples */
@@ -465,7 +473,8 @@ def build():
     padding: 16px 20px;
     border-bottom: 1px solid var(--border);
     font-size: 1rem;
-    color: var(--text-muted);
+    color: var(--text);
+    font-weight: 700;
     background: var(--table-header-bg);
   }}
   .accuracy-bar-wrap {{
@@ -945,26 +954,36 @@ document.querySelectorAll('.nav-tab').forEach(tab => {{
     const filtered = filterMonth ? sorted.filter(r => r.month === filterMonth) : sorted;
     filtered.forEach(r => {{
       const key = r.model + '|' + r.reasoning_effort;
-      if (!mm[key]) mm[key] = {{ model: r.model, effort: r.reasoning_effort, correct: 0, total: 0 }};
+      if (!mm[key]) mm[key] = {{ model: r.model, effort: r.reasoning_effort, correct: 0, total: 0, tokenSum: 0, tokenCount: 0, timeSum: 0, timeCount: 0 }};
       mm[key].correct += r.overall.correct || 0;
       mm[key].total += r.overall.total || 0;
+      if (r.avg_completion_tokens != null) {{
+        mm[key].tokenSum += r.avg_completion_tokens * (r.overall.total || 0);
+        mm[key].tokenCount += r.overall.total || 0;
+      }}
+      if (r.avg_elapsed_seconds != null) {{
+        mm[key].timeSum += r.avg_elapsed_seconds * (r.overall.total || 0);
+        mm[key].timeCount += r.overall.total || 0;
+      }}
     }});
-    const entries = Object.values(mm).map(e => ({{ ...e, accuracy: e.total > 0 ? e.correct / e.total : 0 }}));
+    const entries = Object.values(mm).map(e => ({{ ...e, accuracy: e.total > 0 ? e.correct / e.total : 0, avgTokens: e.tokenCount > 0 ? e.tokenSum / e.tokenCount : null, avgTime: e.timeCount > 0 ? e.timeSum / e.timeCount : null }}));
     entries.sort((a,b) => b.accuracy - a.accuracy);
 
-    let html = '<thead><tr><th>#</th><th>Model</th><th>Config</th><th>Correct</th><th>Total</th><th>Accuracy</th><th></th></tr></thead><tbody>';
+    let html = '<thead><tr><th>#</th><th>Model</th><th>Reasoning</th><th>Accuracy</th><th></th><th>Output Tokens / Task</th><th>Time / Task</th></tr></thead><tbody>';
     const medals = [String.fromCodePoint(0x1F947), String.fromCodePoint(0x1F948), String.fromCodePoint(0x1F949)];
     entries.forEach((r, i) => {{
       const pct = (r.accuracy * 100).toFixed(1);
       const rank = i < 3 ? medals[i] : (i+1);
+      const avgTok = r.avgTokens != null ? Math.round(r.avgTokens).toLocaleString() : '-';
+      const avgTime = r.avgTime != null ? r.avgTime.toFixed(1) + 's' : '-';
       html += `<tr>
         <td>${{rank}}</td>
         <td style="font-weight:600">${{displayModel(r.model)}}</td>
         <td>${{r.effort}}</td>
-        <td class="num">${{r.correct}}</td>
-        <td class="num">${{r.total}}</td>
         <td class="num"><span class="accuracy-value ${{pctClass(r.accuracy)}}">${{pct}}%</span></td>
         <td><div class="accuracy-bar-wrap"><div class="accuracy-bar" style="width:${{Math.max(pct, 1)}}%"></div></div></td>
+        <td class="num">${{avgTok}}</td>
+        <td class="num">${{avgTime}}</td>
       </tr>`;
     }});
     html += '</tbody>';
