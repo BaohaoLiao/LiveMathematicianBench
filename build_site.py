@@ -693,10 +693,13 @@ def build():
           <li>Asymptotic or Limit</li>
           <li>Biconditional or Equivalence</li>
           <li>Classification or Bijection</li>
-          <li>Existence / Uniqueness</li>
-          <li>Implication / Universal</li>
+          <li>Existence</li>
+          <li>Existential&ndash;Universal</li>
+          <li>Implication</li>
           <li>Inequality or Bound</li>
-          <li>Other / Existential&ndash;Universal</li>
+          <li>Uniqueness</li>
+          <li>Universal</li>
+          <li>Other</li>
         </ul>
       </div>
     </div>
