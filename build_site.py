@@ -347,8 +347,13 @@ def build():
   #lb-overall-table {{ font-size: 1rem; }}
   #lb-overall-table th {{ text-align: center; }}
   #lb-overall-table td {{ text-align: center; }}
-  #lb-overall-table th:nth-child(2),
-  #lb-overall-table td:nth-child(2) {{ text-align: left; }}
+  #lb-overall-table th:nth-child(3),
+  #lb-overall-table td:nth-child(3) {{ text-align: left; }}
+  #lb-monthly-table {{ font-size: 1rem; }}
+  #lb-monthly-table th {{ text-align: center; }}
+  #lb-monthly-table td {{ text-align: center; }}
+  #lb-monthly-table th:nth-child(3),
+  #lb-monthly-table td:nth-child(3) {{ text-align: left; }}
   td.num {{ text-align: right; font-variant-numeric: tabular-nums; }}
 
   /* Charts */
@@ -592,6 +597,10 @@ def build():
       </h3>
       <div class="table-wrap"><table id="lb-overall-table"></table></div>
     </div>
+    <div id="leaderboard-monthly" class="leaderboard-card">
+      <h3>Accuracy by Month</h3>
+      <div class="table-wrap"><table id="lb-monthly-table"></table></div>
+    </div>
     <div class="chart-grid">
       <div class="chart-card" style="grid-column: 1 / -1;">
         <h3>Accuracy by Category
@@ -722,7 +731,25 @@ const CAT_COLORS_LIGHT = CAT_COLORS.map(c => hexToRgba(c, 0.15));
 
 function ml(m) {{ return MONTH_LABELS[m] || m; }}
 function pctClass(v) {{ return v >= 0.5 ? 'pct-high' : v >= 0.25 ? 'pct-mid' : 'pct-low'; }}
-function displayModel(name) {{ return name.replace(/_\\d{{4}}-\\d{{2}}-\\d{{2}}/, '').replace(/^gpt-/i, 'GPT-'); }}
+function displayModel(name) {{ return name.replace(/_\\d{{4}}-\\d{{2}}-\\d{{2}}/, '').replace(/^gpt-/i, 'GPT-').replace(/^grok-4-1-fast-reasoning$/i, 'Grok-4.1 Fast Reasoning'); }}
+function providerLogo(model) {{
+  const m = model.toLowerCase();
+  const svgIcon = (path, vb) => "data:image/svg+xml," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="' + (vb||'0 0 24 24') + '"><path d="' + path + '"/></svg>');
+  const providers = [
+    {{ match: ['gpt', 'o1-', 'o3', 'o4'], name: 'OpenAI', logo: svgIcon('M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.759a.771.771 0 0 0 .78 0l5.843-3.369v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 7.896a4.485 4.485 0 0 1 2.366-1.973V11.6a.766.766 0 0 0 .388.676l5.815 3.355-2.02 1.168a.076.076 0 0 1-.071 0l-4.83-2.786A4.504 4.504 0 0 1 2.34 7.872zm16.597 3.855l-5.833-3.387L15.119 7.2a.076.076 0 0 1 .071 0l4.83 2.791a4.494 4.494 0 0 1-.676 8.105v-5.678a.79.79 0 0 0-.407-.667zm2.01-3.023l-.141-.085-4.774-2.782a.776.776 0 0 0-.785 0L9.409 9.23V6.897a.066.066 0 0 1 .028-.061l4.83-2.787a4.5 4.5 0 0 1 6.68 4.66zm-12.64 4.135l-2.02-1.164a.08.08 0 0 1-.038-.057V6.075a4.5 4.5 0 0 1 7.375-3.453l-.142.08L8.704 5.46a.795.795 0 0 0-.393.681zm1.097-2.365l2.602-1.5 2.607 1.5v2.999l-2.597 1.5-2.607-1.5z') }},
+    {{ match: ['claude'], name: 'Anthropic', logo: svgIcon('M16.31 3.866L12.491 15.58l-1.658-4.776 5.477-6.938zm-4.078 0H8.602L2.4 20.134h3.63l1.238-3.46h5.036l-.672-1.937H8.256l3.976-10.871zM15.07 20.134L21.6 3.866h-3.63l-6.53 16.268h3.63z', '0 0 24 24') }},
+    {{ match: ['gemini'], name: 'Google', logo: svgIcon('M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm0 3.6c2.903 0 5.507 1.257 7.345 3.243L17.16 9.028A7.16 7.16 0 0 0 12 6.72a7.163 7.163 0 0 0-7.028 5.749H1.728A10.36 10.36 0 0 1 12 3.6zm0 16.8a10.36 10.36 0 0 1-10.272-8.869H4.97A7.16 7.16 0 0 0 12 17.28a7.16 7.16 0 0 0 5.16-2.308l2.185 2.185A10.36 10.36 0 0 1 12 20.4z', '0 0 24 24') }},
+    {{ match: ['grok'], name: 'xAI', logo: svgIcon('M0 0L9.5 13.5L0 24h2.1l8.5-9.4L18 24h6L14 10 23 0h-2.1L12.5 8.9 6 0H0zm3 1.5h2.5L21 22.5h-2.5L3 1.5z', '0 0 24 24') }},
+    {{ match: ['llama'], name: 'Meta', logo: svgIcon('M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm3.8 14.4c-.5.8-1.3 1.2-2.1 1.2-.6 0-1.1-.2-1.6-.5L12 17l-.1.1c-.5.3-1 .5-1.6.5-.8 0-1.6-.4-2.1-1.2C7.1 14.6 6 12.2 6 10c0-1.7.9-2.8 2.3-2.8.7 0 1.4.3 2 .7l1.7 1.3 1.7-1.3c.6-.4 1.3-.7 2-.7 1.4 0 2.3 1.1 2.3 2.8 0 2.2-1.1 4.6-2.2 6.4z', '0 0 24 24') }},
+    {{ match: ['mistral'], name: 'Mistral', logo: svgIcon('M3 3h4v4H3zm14 0h4v4h-4zM3 9h4v4H3zm4 0h4v4H7zm4 0h4v4h-4zm4 0h4v4h-4zm4 0h4v4h-4zM3 15h4v4H3zm8 0h4v4h-4zm8 0h4v4h-4zM3 21h4v4H3zm14 0h4v4h-4z', '0 0 24 28') }},
+    {{ match: ['deepseek'], name: 'DeepSeek', logo: svgIcon('M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z', '0 0 24 24') }},
+    {{ match: ['qwen'], name: 'Alibaba', logo: svgIcon('M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.5 14h-9c-.28 0-.5-.22-.5-.5v-7c0-.28.22-.5.5-.5h9c.28 0 .5.22.5.5v7c0 .28-.22.5-.5.5z', '0 0 24 24') }},
+  ];
+  for (const p of providers) {{
+    if (p.match.some(k => m.includes(k))) return '<img src="' + p.logo + '" alt="' + p.name + '" title="' + p.name + '" style="height:18px;width:18px;vertical-align:middle;">';
+  }}
+  return '';
+}}
 
 // ===== Tab Navigation =====
 document.querySelectorAll('.nav-tab').forEach(tab => {{
@@ -969,7 +996,7 @@ document.querySelectorAll('.nav-tab').forEach(tab => {{
     const entries = Object.values(mm).map(e => ({{ ...e, accuracy: e.total > 0 ? e.correct / e.total : 0, avgTokens: e.tokenCount > 0 ? e.tokenSum / e.tokenCount : null, avgTime: e.timeCount > 0 ? e.timeSum / e.timeCount : null }}));
     entries.sort((a,b) => b.accuracy - a.accuracy);
 
-    let html = '<thead><tr><th>#</th><th>Model</th><th>Reasoning</th><th>Accuracy</th><th></th><th>Output Tokens / Task</th><th>Time / Task</th></tr></thead><tbody>';
+    let html = '<thead><tr><th>#</th><th>Provider</th><th>Model</th><th>Reasoning</th><th>Accuracy</th><th></th><th>Output Tokens / Task</th><th>Time / Task</th></tr></thead><tbody>';
     const medals = [String.fromCodePoint(0x1F947), String.fromCodePoint(0x1F948), String.fromCodePoint(0x1F949)];
     entries.forEach((r, i) => {{
       const pct = (r.accuracy * 100).toFixed(1);
@@ -978,6 +1005,7 @@ document.querySelectorAll('.nav-tab').forEach(tab => {{
       const avgTime = r.avgTime != null ? r.avgTime.toFixed(1) + 's' : '-';
       html += `<tr>
         <td>${{rank}}</td>
+        <td style="text-align:center">${{providerLogo(r.model)}}</td>
         <td style="font-weight:600">${{displayModel(r.model)}}</td>
         <td>${{r.effort}}</td>
         <td class="num"><span class="accuracy-value ${{pctClass(r.accuracy)}}">${{pct}}%</span></td>
@@ -992,6 +1020,46 @@ document.querySelectorAll('.nav-tab').forEach(tab => {{
 
   renderOverallTable('');
   lbMonthFilter.addEventListener('change', () => renderOverallTable(lbMonthFilter.value));
+
+  // Accuracy by Month table
+  (function() {{
+    const tblM = document.getElementById('lb-monthly-table');
+    // Group by model+config, collect per-month accuracy
+    const mm = {{}};
+    sorted.forEach(r => {{
+      const key = r.model + '|' + r.reasoning_effort;
+      if (!mm[key]) mm[key] = {{ model: r.model, effort: r.reasoning_effort, months: {{}}, totalCorrect: 0, totalAll: 0 }};
+      if (!mm[key].months[r.month]) mm[key].months[r.month] = {{ correct: 0, total: 0 }};
+      mm[key].months[r.month].correct += r.overall.correct || 0;
+      mm[key].months[r.month].total += r.overall.total || 0;
+      mm[key].totalCorrect += r.overall.correct || 0;
+      mm[key].totalAll += r.overall.total || 0;
+    }});
+    const entries = Object.values(mm).map(e => ({{ ...e, accuracy: e.totalAll > 0 ? e.totalCorrect / e.totalAll : 0 }}));
+    entries.sort((a,b) => b.accuracy - a.accuracy);
+
+    let html = '<thead><tr><th>#</th><th>Provider</th><th>Model</th><th>Reasoning</th>';
+    MONTHS.forEach(m => {{ html += `<th>${{ml(m)}}</th>`; }});
+    html += '<th>Overall</th></tr></thead><tbody>';
+    const medals = [String.fromCodePoint(0x1F947), String.fromCodePoint(0x1F948), String.fromCodePoint(0x1F949)];
+    entries.forEach((e, i) => {{
+      const rank = i < 3 ? medals[i] : (i+1);
+      const overallPct = (e.accuracy * 100).toFixed(1);
+      html += `<tr><td>${{rank}}</td><td style="text-align:center">${{providerLogo(e.model)}}</td><td style="font-weight:600">${{displayModel(e.model)}}</td><td>${{e.effort}}</td>`;
+      MONTHS.forEach(m => {{
+        const d = e.months[m];
+        if (d && d.total > 0) {{
+          const pct = (d.correct / d.total * 100).toFixed(1);
+          html += `<td class="num"><span class="accuracy-value ${{pctClass(d.correct / d.total)}}">${{pct}}%</span></td>`;
+        }} else {{
+          html += '<td class="num">-</td>';
+        }}
+      }});
+      html += `<td class="num"><span class="accuracy-value ${{pctClass(e.accuracy)}}">${{overallPct}}%</span></td></tr>`;
+    }});
+    html += '</tbody>';
+    tblM.innerHTML = html;
+  }})();
 
   // Group for radar chart
   const modelMap = {{}};
