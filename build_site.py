@@ -546,7 +546,7 @@ def build():
     <div class="badge">&#x1f4d0; Live Benchmark &mdash; Updated Regularly</div>
     <div style="display:flex;align-items:center;justify-content:center;gap:20px;margin:16px 0;">
       <img src="lmb_logo.svg" alt="LiveMathematicianBench" style="height:80px;width:80px;border-radius:50%;object-fit:cover;">
-      <h1 style="margin:0;"><span style="color:#fbbf24;">Live</span>MathematicianBench</h1>
+      <h1 style="margin:0;"><span style="color:#60a5fa;">Live</span>MathematicianBench</h1>
     </div>
     <p class="subtitle">
       A live benchmark for evaluating LLMs' capability as mathematicians,
@@ -704,9 +704,12 @@ const EXAMPLES = {examples_json};
 const ACCURACY = {accuracy_json};
 
 const CAT_COLORS = [
-  '#3b82f6','#8b5cf6','#06b6d4','#10b981','#f59e0b',
-  '#ef4444','#ec4899','#6366f1','#14b8a6','#f97316'
+  '#1e3a8a','#2563eb','#60a5fa','#bfdbfe',
+  '#9d174d','#ec4899','#f9a8d4',
+  '#92400e','#d97706','#fbbf24'
 ];
+function hexToRgba(hex, alpha) {{ const r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16); return `rgba(${{r}},${{g}},${{b}},${{alpha}})`; }}
+const CAT_COLORS_LIGHT = CAT_COLORS.map(c => hexToRgba(c, 0.15));
 
 function ml(m) {{ return MONTH_LABELS[m] || m; }}
 function pctClass(v) {{ return v >= 0.5 ? 'pct-high' : v >= 0.25 ? 'pct-mid' : 'pct-low'; }}
@@ -742,7 +745,7 @@ document.querySelectorAll('.nav-tab').forEach(tab => {{
     type: 'bar',
     data: {{
       labels: MONTHS.map(ml),
-      datasets: [{{ label: 'Questions', data: monthTotals, backgroundColor: 'transparent', borderColor: '#3b82f6', borderWidth: 3, borderRadius: 6 }}]
+      datasets: [{{ label: 'Questions', data: monthTotals, backgroundColor: hexToRgba('#3b82f6', 0.15), borderColor: '#3b82f6', borderWidth: 3, borderRadius: 6 }}]
     }},
     options: {{
       responsive: true, maintainAspectRatio: false,
@@ -759,7 +762,7 @@ document.querySelectorAll('.nav-tab').forEach(tab => {{
     type: 'doughnut',
     data: {{
       labels: CATEGORIES,
-      datasets: [{{ data: catTotals, backgroundColor: 'transparent', borderColor: CAT_COLORS, borderWidth: 3 }}]
+      datasets: [{{ data: catTotals, backgroundColor: CAT_COLORS_LIGHT, borderColor: CAT_COLORS, borderWidth: 3 }}]
     }},
     options: {{
       responsive: true, maintainAspectRatio: false,
@@ -773,7 +776,7 @@ document.querySelectorAll('.nav-tab').forEach(tab => {{
       labels: MONTHS.map(ml),
       datasets: CATEGORIES.map((c,i) => ({{
         label: c, data: MONTHS.map(m => STATS[m][c]||0),
-        backgroundColor: 'transparent', borderColor: CAT_COLORS[i], borderWidth: 3, borderRadius: 3
+        backgroundColor: CAT_COLORS_LIGHT[i], borderColor: CAT_COLORS[i], borderWidth: 3, borderRadius: 3
       }}))
     }},
     options: {{

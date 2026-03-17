@@ -4,13 +4,13 @@ set -euo pipefail
 #######################################
 # Configuration — edit these variables
 #######################################
-MODEL="gpt-5.4"
+MODEL="grok-4-1-fast-reasoning"
 ENDPOINT="https://e0271-miptdstj-eastus2.cognitiveservices.azure.com/"
 API_KEY="${AZURE_OPENAI_API_KEY:?Set AZURE_OPENAI_API_KEY environment variable}"
 API_VERSION="2024-12-01-preview"
 MONTHS="202511 202512 202601 202602"
-REASONING_EFFORT="xhigh"    # low, medium, high, or leave empty for default
-MAX_TOKENS=128000
+REASONING_EFFORT="high"    # low, medium, high, or leave empty for default
+MAX_TOKENS=65536
 CONCURRENCY=4
 SEED=42
 
