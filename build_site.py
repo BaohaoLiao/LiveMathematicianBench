@@ -11,6 +11,7 @@ import re
 from pathlib import Path
 
 DATA_DIR = Path("data")
+RESULTS_DIR = Path("results")
 OUTPUT_DIR = Path("docs")
 MONTHS = sorted([d.name for d in DATA_DIR.iterdir() if d.is_dir() and d.name.isdigit()])
 CATEGORIES = [
@@ -19,11 +20,11 @@ CATEGORIES = [
     "Classification or Bijection",
     "Existence",
     "Existential–Universal",
-    "General",
     "Implication",
     "Inequality or Bound",
     "Uniqueness",
     "Universal",
+    "Others",
 ]
 MONTH_LABELS = {
     "202511": "Nov 2025",
@@ -76,7 +77,7 @@ def collect_examples():
                 continue
             seen_ids.add(item["id"])
             types = item.get("theorem_type", [])
-            cat = next((t for t in types if t in CATEGORIES), types[0] if types else "General")
+            cat = next((t for t in types if t in CATEGORIES), types[0] if types else "Others")
             examples.append({
                 "id": item["id"],
                 "month": month,
@@ -91,23 +92,64 @@ def collect_examples():
     return examples
 
 
+def _build_category_map():
+    """Build a map from question id to its theorem categories across all months."""
+    cat_map = {}
+    for month in MONTHS:
+        for item in load_hard_data(month):
+            cat_map[item["id"]] = [t for t in item.get("theorem_type", []) if t in CATEGORIES]
+    return cat_map
+
+
 def collect_accuracy():
-    """Collect model accuracy results from hard accuracy_test files."""
+    """Collect model accuracy results from hard accuracy_test files in data/ and results/."""
+    cat_map = _build_category_map()
     results = []
-    for fpath in sorted(glob.glob(str(DATA_DIR / "*/hard/accuracy_test_*.json"))):
-        # Skip .progress files (incomplete runs)
-        if ".progress." in fpath:
-            continue
-        data = load_json(fpath)
-        ti = data.get("test_info", {})
-        results.append({
-            "file": os.path.basename(fpath),
-            "month": ti.get("month", ""),
-            "model": ti.get("model", ""),
-            "reasoning_effort": ti.get("reasoning_effort", ""),
-            "overall": data.get("overall", {}),
-            "summary": data.get("summary", {}),
-        })
+    seen = set()
+    search_patterns = [
+        str(DATA_DIR / "*/hard/accuracy_test_*.json"),
+        str(RESULTS_DIR / "*/accuracy_test_*.json"),
+    ]
+    for pattern in search_patterns:
+        for fpath in sorted(glob.glob(pattern)):
+            # Skip .progress files (incomplete runs)
+            if ".progress." in fpath:
+                continue
+            data = load_json(fpath)
+            ti = data.get("test_info", {})
+            # Deduplicate by (model, month, reasoning_effort)
+            key = (ti.get("model", ""), ti.get("month", ""), ti.get("reasoning_effort", ""))
+            if key in seen:
+                continue
+            seen.add(key)
+
+            # Compute per-category accuracy from detailed_results
+            cat_correct = {c: 0 for c in CATEGORIES}
+            cat_total = {c: 0 for c in CATEGORIES}
+            for r in data.get("detailed_results", []):
+                cats = cat_map.get(r.get("id", ""), [])
+                for c in cats:
+                    cat_total[c] += 1
+                    if r.get("is_correct"):
+                        cat_correct[c] += 1
+            category_accuracy = {}
+            for c in CATEGORIES:
+                if cat_total[c] > 0:
+                    category_accuracy[c] = {
+                        "correct": cat_correct[c],
+                        "total": cat_total[c],
+                        "accuracy": cat_correct[c] / cat_total[c],
+                    }
+
+            results.append({
+                "file": os.path.basename(fpath),
+                "month": ti.get("month", ""),
+                "model": ti.get("model", ""),
+                "reasoning_effort": ti.get("reasoning_effort", ""),
+                "overall": data.get("overall", {}),
+                "summary": data.get("summary", {}),
+                "category_accuracy": category_accuracy,
+            })
     return results
 
 
@@ -149,6 +191,9 @@ def build():
     --success: #059669;
     --warning: #d97706;
     --danger: #dc2626;
+    --table-header-bg: #f1f5f9;
+    --content-bg: #f8fafc;
+    --hover-bg: #f8fafc;
   }}
   * {{ margin: 0; padding: 0; box-sizing: border-box; }}
   body {{
@@ -161,7 +206,7 @@ def build():
 
   /* Hero */
   .hero {{
-    background: linear-gradient(135deg, #1e3a5f 0%, #1a56db 50%, #7c3aed 100%);
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
     color: white;
     padding: 80px 0 60px;
     text-align: center;
@@ -270,19 +315,24 @@ def build():
     border-bottom: 1px solid var(--border);
   }}
   th {{
-    background: #f1f5f9;
+    background: var(--table-header-bg);
     font-weight: 600;
     color: var(--text-muted);
     font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 0.03em;
   }}
-  #stats-table th {{
-    position: sticky;
-    top: 52px;
-    z-index: 10;
-  }}
-  tr:hover td {{ background: #f8fafc; }}
+  #stats-table {{ font-size: 1rem; }}
+  #stats-table th {{ text-align: center; }}
+  #stats-table td {{ text-align: center; }}
+  #stats-table th:first-child,
+  #stats-table td:first-child {{ text-align: left; }}
+  tr:hover td {{ background: var(--hover-bg); }}
+  #lb-overall-table {{ font-size: 1rem; }}
+  #lb-overall-table th {{ text-align: center; }}
+  #lb-overall-table td {{ text-align: center; }}
+  #lb-overall-table th:nth-child(2),
+  #lb-overall-table td:nth-child(2) {{ text-align: left; }}
   td.num {{ text-align: right; font-variant-numeric: tabular-nums; }}
 
   /* Charts */
@@ -350,7 +400,8 @@ def build():
     margin-bottom: 4px;
   }}
   .example-section .content {{
-    background: #f8fafc;
+    background: var(--content-bg);
+    border: 1px solid var(--border);
     border-radius: 8px;
     padding: 12px 16px;
     font-size: 0.95rem;
@@ -361,7 +412,7 @@ def build():
     padding: 8px 12px;
     margin: 4px 0;
     border-radius: 8px;
-    background: #f8fafc;
+    background: var(--content-bg);
     font-size: 0.9rem;
     border: 1px solid var(--border);
   }}
@@ -389,7 +440,7 @@ def build():
     border: 1px solid var(--border);
     border-radius: 8px;
     font-size: 0.9rem;
-    background: white;
+    background: var(--card-bg);
     color: var(--text);
   }}
 
@@ -406,16 +457,24 @@ def build():
     padding: 16px 20px;
     border-bottom: 1px solid var(--border);
     font-size: 1rem;
-    background: #f8fafc;
+    background: var(--table-header-bg);
+  }}
+  .accuracy-bar-wrap {{
+    display: inline-block;
+    width: 80px;
+    height: 8px;
+    border-radius: 4px;
+    background: #e2e8f0;
+    vertical-align: middle;
+    margin-left: 8px;
+    position: relative;
+    overflow: hidden;
   }}
   .accuracy-bar {{
-    display: inline-block;
-    height: 8px;
+    height: 100%;
     border-radius: 4px;
     background: var(--primary);
     min-width: 2px;
-    vertical-align: middle;
-    margin-left: 8px;
   }}
   .accuracy-value {{
     font-weight: 700;
@@ -436,7 +495,8 @@ def build():
     padding: 8px 16px;
     border: 1px solid var(--border);
     border-radius: 8px;
-    background: white;
+    background: var(--card-bg);
+    color: var(--text);
     cursor: pointer;
     font-size: 0.9rem;
     transition: all 0.2s;
@@ -474,9 +534,9 @@ def build():
 <!-- Hero -->
 <div class="hero">
   <div class="container">
-    <div class="badge">&#x1f4d0; Live Benchmark &mdash; Updated Monthly</div>
+    <div class="badge">&#x1f4d0; Live Benchmark &mdash; Updated Regularly</div>
     <div style="display:flex;align-items:center;justify-content:center;gap:20px;margin:16px 0;">
-      <img src="lmb_logo.svg" alt="LiveMathematicianBench" style="height:80px;">
+      <img src="lmb_logo.svg" alt="LiveMathematicianBench" style="height:80px;width:80px;border-radius:50%;object-fit:cover;">
       <h1 style="margin:0;"><span style="color:#fbbf24;">Live</span>MathematicianBench</h1>
     </div>
     <p class="subtitle">
@@ -485,7 +545,7 @@ def build():
     </p>
     <div class="hero-links">
       <a class="btn-primary" href="https://github.com/BaohaoLiao/LiveMathematicianBench" target="_blank" rel="noopener">GitHub</a>
-      <a class="btn-primary" href="https://huggingface.co/datasets/hendrydong/bench0303" target="_blank" rel="noopener">Dataset</a>
+      <a class="btn-primary" href="https://huggingface.co/datasets/hendrydong/livemath-v7-0316" target="_blank" rel="noopener">Dataset</a>
     </div>
   </div>
 </div>
@@ -506,19 +566,23 @@ def build():
   <!-- LEADERBOARD -->
   <div class="section active" id="sec-leaderboard">
     <h2 class="section-title">Model Leaderboard</h2>
-    <p class="section-desc">How well do frontier LLMs perform on the hard subset of research-level mathematics? Scores will be updated as more models are evaluated.</p>
     <div id="leaderboard-overall" class="leaderboard-card">
-      <h3>Overall Accuracy</h3>
+      <h3>Overall Accuracy
+        <select id="lb-month-filter" style="margin-left:12px;font-size:0.85rem;font-weight:400;padding:4px 8px;border-radius:6px;border:1px solid var(--border);">
+          <option value="">All Months</option>
+        </select>
+      </h3>
       <div class="table-wrap"><table id="lb-overall-table"></table></div>
-    </div>
-    <div id="leaderboard-category" class="leaderboard-card">
-      <h3>Per-Month Accuracy</h3>
-      <div class="table-wrap"><table id="lb-cat-table"></table></div>
     </div>
     <div class="chart-grid">
       <div class="chart-card" style="grid-column: 1 / -1;">
-        <h3>Model Accuracy by Month <span style="font-weight:400;font-size:0.8rem;color:var(--text-muted);margin-left:8px;">Click legend to hide/show a model</span></h3>
-        <div class="chart-container" style="height:360px;"><canvas id="chart-model-cat"></canvas></div>
+        <h3>Accuracy by Category
+          <select id="radar-month-filter" style="margin-left:12px;font-size:0.85rem;font-weight:400;padding:4px 8px;border-radius:6px;border:1px solid var(--border);">
+            <option value="">All Months</option>
+          </select>
+          <span style="font-weight:400;font-size:0.8rem;color:var(--text-muted);margin-left:8px;">Click legend to hide/show a model</span>
+        </h3>
+        <div class="chart-container" style="height:480px;"><canvas id="chart-model-cat"></canvas></div>
       </div>
     </div>
   </div>
@@ -544,13 +608,16 @@ def build():
         <div class="chart-container" style="height:360px;"><canvas id="chart-cat-monthly"></canvas></div>
       </div>
     </div>
-    <h3 style="font-size:1.2rem; margin-top:32px; margin-bottom:16px;">Detailed Statistics</h3>
-    <div class="card table-wrap">
+    <div class="leaderboard-card">
+      <h3>Detailed Statistics</h3>
+      <div class="table-wrap">
       <table id="stats-table">
         <thead><tr><th>Category</th></tr></thead>
         <tbody></tbody>
       </table>
+      </div>
     </div>
+    <p style="color:var(--text-muted);font-size:0.85rem;margin-top:8px;font-style:italic;">*: One question might have different categories at the same time.</p>
   </div>
 
   <!-- EXAMPLES -->
@@ -584,9 +651,11 @@ def build():
       </div>
       <div class="card about-card">
         <h3>Question Format</h3>
-        <p>Each question presents a theorem statement along with a proof sketch, then
-           asks the model to identify the correct mathematical conclusion from five
-           carefully crafted choices (one correct, one weaker-but-true, and three false).</p>
+        <p>Questions and choices are constructed from theorem statements and proof sketches
+           extracted from arXiv papers. Each question has five carefully crafted choices
+           (one correct, one weaker-but-true, and three false).
+           <strong>Only the question and choices are used as input for the model</strong>&mdash;the
+           original theorem and proof sketch are not provided.</p>
       </div>
       <div class="card about-card">
         <h3>Theorem Categories</h3>
@@ -597,7 +666,7 @@ def build():
           <li>Existence / Uniqueness</li>
           <li>Implication / Universal</li>
           <li>Inequality or Bound</li>
-          <li>General / Existential&ndash;Universal</li>
+          <li>Others / Existential&ndash;Universal</li>
         </ul>
       </div>
     </div>
@@ -609,11 +678,14 @@ def build():
   <div class="container">
     LiveMathematicianBench &copy; 2025&ndash;2026 &middot;
     <a href="https://github.com/BaohaoLiao/LiveMathematicianBench" target="_blank" rel="noopener">GitHub</a> &middot;
-    <a href="https://huggingface.co/datasets/hendrydong/bench0303" target="_blank" rel="noopener">HuggingFace</a>
+    <a href="https://huggingface.co/datasets/hendrydong/livemath-v7-0316" target="_blank" rel="noopener">HuggingFace</a>
   </div>
 </footer>
 
 <script>
+Chart.defaults.color = '#1e293b';
+Chart.defaults.borderColor = 'rgba(0,0,0,0.1)';
+
 // ===== Embedded Data =====
 const MONTHS = {months_json};
 const CATEGORIES = {categories_json};
@@ -629,6 +701,7 @@ const CAT_COLORS = [
 
 function ml(m) {{ return MONTH_LABELS[m] || m; }}
 function pctClass(v) {{ return v >= 0.5 ? 'pct-high' : v >= 0.25 ? 'pct-mid' : 'pct-low'; }}
+function displayModel(name) {{ return name.replace(/_\\d{{4}}-\\d{{2}}-\\d{{2}}/, '').replace(/^gpt-/i, 'GPT-'); }}
 
 // ===== Tab Navigation =====
 document.querySelectorAll('.nav-tab').forEach(tab => {{
@@ -649,7 +722,6 @@ document.querySelectorAll('.nav-tab').forEach(tab => {{
     <div class="stat-box"><div class="stat-value">${{totalAll}}</div><div class="stat-label">Total Questions</div></div>
     <div class="stat-box"><div class="stat-value">${{nMonths}}</div><div class="stat-label">Monthly Snapshots</div></div>
     <div class="stat-box"><div class="stat-value">${{CATEGORIES.length}}</div><div class="stat-label">Theorem Categories</div></div>
-    <div class="stat-box"><div class="stat-value">${{ACCURACY.length > 0 ? ACCURACY.length : '&mdash;'}}</div><div class="stat-label">Model Evaluations</div></div>
   `;
 }})();
 
@@ -661,12 +733,15 @@ document.querySelectorAll('.nav-tab').forEach(tab => {{
     type: 'bar',
     data: {{
       labels: MONTHS.map(ml),
-      datasets: [{{ label: 'Questions', data: monthTotals, backgroundColor: '#3b82f6', borderRadius: 6 }}]
+      datasets: [{{ label: 'Questions', data: monthTotals, backgroundColor: 'transparent', borderColor: '#3b82f6', borderWidth: 3, borderRadius: 6 }}]
     }},
     options: {{
       responsive: true, maintainAspectRatio: false,
       plugins: {{ legend: {{ display: false }} }},
-      scales: {{ y: {{ beginAtZero: true, ticks: {{ precision: 0 }} }} }}
+      scales: {{
+        x: {{ ticks: {{ color: '#1e293b', font: {{ size: 14 }} }}, grid: {{ display: false }} }},
+        y: {{ beginAtZero: true, ticks: {{ precision: 0, color: '#1e293b', font: {{ size: 14 }} }}, grid: {{ display: false }} }}
+      }}
     }}
   }});
 
@@ -675,11 +750,11 @@ document.querySelectorAll('.nav-tab').forEach(tab => {{
     type: 'doughnut',
     data: {{
       labels: CATEGORIES,
-      datasets: [{{ data: catTotals, backgroundColor: CAT_COLORS }}]
+      datasets: [{{ data: catTotals, backgroundColor: 'transparent', borderColor: CAT_COLORS, borderWidth: 3 }}]
     }},
     options: {{
       responsive: true, maintainAspectRatio: false,
-      plugins: {{ legend: {{ position: 'right', labels: {{ font: {{ size: 11 }} }} }} }}
+      plugins: {{ legend: {{ position: 'right', labels: {{ usePointStyle: true, pointStyle: 'circle', boxWidth: 6, boxHeight: 6, font: {{ size: 14 }}, color: '#1e293b' }} }} }}
     }}
   }});
 
@@ -689,13 +764,16 @@ document.querySelectorAll('.nav-tab').forEach(tab => {{
       labels: MONTHS.map(ml),
       datasets: CATEGORIES.map((c,i) => ({{
         label: c, data: MONTHS.map(m => STATS[m][c]||0),
-        backgroundColor: CAT_COLORS[i], borderRadius: 3
+        backgroundColor: 'transparent', borderColor: CAT_COLORS[i], borderWidth: 3, borderRadius: 3
       }}))
     }},
     options: {{
       responsive: true, maintainAspectRatio: false,
-      plugins: {{ legend: {{ position: 'bottom', labels: {{ font: {{ size: 10 }} }} }} }},
-      scales: {{ x: {{ stacked: true }}, y: {{ stacked: true, beginAtZero: true, ticks: {{ precision: 0 }} }} }}
+      plugins: {{ legend: {{ position: 'right', labels: {{ usePointStyle: true, pointStyle: 'circle', boxWidth: 6, boxHeight: 6, font: {{ size: 14 }}, color: '#1e293b' }} }} }},
+      scales: {{
+        x: {{ stacked: true, ticks: {{ color: '#1e293b', font: {{ size: 14 }} }}, grid: {{ display: false }} }},
+        y: {{ stacked: true, beginAtZero: true, ticks: {{ precision: 0, color: '#1e293b', font: {{ size: 14 }} }}, grid: {{ display: false }} }}
+      }}
     }}
   }});
 }})();
@@ -703,8 +781,8 @@ document.querySelectorAll('.nav-tab').forEach(tab => {{
 // ===== Statistics Table =====
 (function() {{
   const thead = document.querySelector('#stats-table thead tr');
-  MONTHS.forEach(m => {{ const th = document.createElement('th'); th.textContent = ml(m); th.className = 'num'; thead.appendChild(th); }});
-  const thTotal = document.createElement('th'); thTotal.textContent = 'Total'; thTotal.className = 'num'; thead.appendChild(thTotal);
+  MONTHS.forEach(m => {{ const th = document.createElement('th'); th.textContent = ml(m); thead.appendChild(th); }});
+  const thTotal = document.createElement('th'); thTotal.textContent = 'Total'; thead.appendChild(thTotal);
 
   const tbody = document.querySelector('#stats-table tbody');
   CATEGORIES.forEach(cat => {{
@@ -713,21 +791,21 @@ document.querySelectorAll('.nav-tab').forEach(tab => {{
     let rowTotal = 0;
     MONTHS.forEach(m => {{
       const v = STATS[m][cat]||0; rowTotal += v;
-      const td = document.createElement('td'); td.textContent = v; td.className = 'num'; tr.appendChild(td);
+      const td = document.createElement('td'); td.textContent = v; tr.appendChild(td);
     }});
-    const tdT = document.createElement('td'); tdT.textContent = rowTotal; tdT.className = 'num'; tdT.style.fontWeight = '700'; tr.appendChild(tdT);
+    const tdT = document.createElement('td'); tdT.textContent = rowTotal; tdT.style.fontWeight = '700'; tr.appendChild(tdT);
     tbody.appendChild(tr);
   }});
 
   // Total row
   const trT = document.createElement('tr'); trT.style.fontWeight = '700'; trT.style.borderTop = '2px solid var(--border)';
-  const tdL = document.createElement('td'); tdL.textContent = 'Total'; trT.appendChild(tdL);
+  const tdL = document.createElement('td'); tdL.textContent = 'Total*'; trT.appendChild(tdL);
   let grandTotal = 0;
   MONTHS.forEach(m => {{
     const v = STATS[m]['_total']||0; grandTotal += v;
-    const td = document.createElement('td'); td.textContent = v; td.className = 'num'; trT.appendChild(td);
+    const td = document.createElement('td'); td.textContent = v; trT.appendChild(td);
   }});
-  const tdGT = document.createElement('td'); tdGT.textContent = grandTotal; tdGT.className = 'num'; trT.appendChild(tdGT);
+  const tdGT = document.createElement('td'); tdGT.textContent = grandTotal; trT.appendChild(tdGT);
   tbody.appendChild(trT);
 }})();
 
@@ -839,75 +917,152 @@ document.querySelectorAll('.nav-tab').forEach(tab => {{
     return;
   }}
 
-  // Overall table
+  // Overall table with month filter
   const tbl = document.getElementById('lb-overall-table');
-  let html = '<thead><tr><th>#</th><th>Model</th><th>Config</th><th>Month</th><th>Correct</th><th>Total</th><th>Accuracy</th><th></th></tr></thead><tbody>';
   const sorted = [...ACCURACY].sort((a,b) => (b.overall.accuracy||0) - (a.overall.accuracy||0));
-  sorted.forEach((r, i) => {{
-    const pct = (r.overall.accuracy * 100).toFixed(1);
-    html += `<tr>
-      <td>${{i+1}}</td>
-      <td style="font-weight:600">${{r.model}}</td>
-      <td>${{r.reasoning_effort}}</td>
-      <td>${{ml(r.month)}}</td>
-      <td class="num">${{r.overall.correct}}</td>
-      <td class="num">${{r.overall.total}}</td>
-      <td class="num"><span class="accuracy-value ${{pctClass(r.overall.accuracy)}}">${{pct}}%</span></td>
-      <td><div class="accuracy-bar" style="width:${{Math.max(pct * 1.5, 3)}}px"></div></td>
-    </tr>`;
-  }});
-  html += '</tbody>';
-  tbl.innerHTML = html;
 
-  // Per-month table
-  const catTbl = document.getElementById('lb-cat-table');
-  let catHtml = '<thead><tr><th>Model</th><th>Config</th>';
-  MONTHS.forEach(m => catHtml += `<th class="num" style="font-size:0.7rem">${{ml(m)}}</th>`);
-  catHtml += '</tr></thead><tbody>';
-  // Group accuracy by model+config
+  // Populate month filter
+  const lbMonthFilter = document.getElementById('lb-month-filter');
+  MONTHS.forEach(m => {{
+    const o = document.createElement('option');
+    o.value = m; o.textContent = ml(m);
+    lbMonthFilter.appendChild(o);
+  }});
+
+  function renderOverallTable(filterMonth) {{
+    // Group by model+config, aggregate across months
+    const mm = {{}};
+    const filtered = filterMonth ? sorted.filter(r => r.month === filterMonth) : sorted;
+    filtered.forEach(r => {{
+      const key = r.model + '|' + r.reasoning_effort;
+      if (!mm[key]) mm[key] = {{ model: r.model, effort: r.reasoning_effort, correct: 0, total: 0 }};
+      mm[key].correct += r.overall.correct || 0;
+      mm[key].total += r.overall.total || 0;
+    }});
+    const entries = Object.values(mm).map(e => ({{ ...e, accuracy: e.total > 0 ? e.correct / e.total : 0 }}));
+    entries.sort((a,b) => b.accuracy - a.accuracy);
+
+    let html = '<thead><tr><th>#</th><th>Model</th><th>Config</th><th>Correct</th><th>Total</th><th>Accuracy</th><th></th></tr></thead><tbody>';
+    const medals = [String.fromCodePoint(0x1F947), String.fromCodePoint(0x1F948), String.fromCodePoint(0x1F949)];
+    entries.forEach((r, i) => {{
+      const pct = (r.accuracy * 100).toFixed(1);
+      const rank = i < 3 ? medals[i] : (i+1);
+      html += `<tr>
+        <td>${{rank}}</td>
+        <td style="font-weight:600">${{displayModel(r.model)}}</td>
+        <td>${{r.effort}}</td>
+        <td class="num">${{r.correct}}</td>
+        <td class="num">${{r.total}}</td>
+        <td class="num"><span class="accuracy-value ${{pctClass(r.accuracy)}}">${{pct}}%</span></td>
+        <td><div class="accuracy-bar-wrap"><div class="accuracy-bar" style="width:${{Math.max(pct, 1)}}%"></div></div></td>
+      </tr>`;
+    }});
+    html += '</tbody>';
+    tbl.innerHTML = html;
+  }}
+
+  renderOverallTable('');
+  lbMonthFilter.addEventListener('change', () => renderOverallTable(lbMonthFilter.value));
+
+  // Group for radar chart
   const modelMap = {{}};
   sorted.forEach(r => {{
     const key = r.model + '|' + r.reasoning_effort;
     if (!modelMap[key]) modelMap[key] = {{ model: r.model, effort: r.reasoning_effort, months: {{}} }};
     modelMap[key].months[r.month] = r.overall;
   }});
-  Object.values(modelMap).forEach(entry => {{
-    catHtml += `<tr><td style="font-weight:600;white-space:nowrap">${{entry.model}}</td><td>${{entry.effort}}</td>`;
-    MONTHS.forEach(m => {{
-      const s = entry.months[m];
-      if (s) {{
-        const pct = (s.accuracy * 100).toFixed(0);
-        catHtml += `<td class="num"><span class="accuracy-value ${{pctClass(s.accuracy)}}">${{pct}}%</span><br><span style="font-size:0.7rem;color:var(--text-muted)">${{s.correct}}/${{s.total}}</span></td>`;
-      }} else {{
-        catHtml += '<td class="num">&mdash;</td>';
-      }}
-    }});
-    catHtml += '</tr>';
-  }});
-  catHtml += '</tbody>';
-  catTbl.innerHTML = catHtml;
 
-  // Model accuracy chart (per-month bar chart)
+  // Model accuracy radar chart (per-category)
   if (sorted.length > 0) {{
-    const modelColors = ['#3b82f6','#ef4444','#10b981','#f59e0b','#8b5cf6','#ec4899'];
-    const modelEntries = Object.values(modelMap);
-    new Chart(document.getElementById('chart-model-cat'), {{
-      type: 'bar',
-      data: {{
-        labels: MONTHS.map(ml),
-        datasets: modelEntries.map((entry, i) => ({{
-          label: `${{entry.model}} (${{entry.effort}})`,
-          data: MONTHS.map(m => entry.months[m] ? (entry.months[m].accuracy * 100) : 0),
-          backgroundColor: modelColors[i % modelColors.length],
-          borderRadius: 4
-        }}))
-      }},
-      options: {{
-        responsive: true, maintainAspectRatio: false,
-        scales: {{ y: {{ beginAtZero: true, max: 100, ticks: {{ stepSize: 20 }} }} }},
-        plugins: {{ legend: {{ position: 'bottom' }} }}
-      }}
+    const modelColors = [
+      {{bg: 'rgba(59,130,246,0.15)', border: '#3b82f6'}},
+      {{bg: 'rgba(239,68,68,0.15)', border: '#ef4444'}},
+      {{bg: 'rgba(16,185,129,0.15)', border: '#10b981'}},
+      {{bg: 'rgba(245,158,11,0.15)', border: '#f59e0b'}},
+      {{bg: 'rgba(139,92,246,0.15)', border: '#8b5cf6'}},
+      {{bg: 'rgba(236,72,153,0.15)', border: '#ec4899'}},
+      {{bg: 'rgba(99,102,241,0.15)', border: '#6366f1'}},
+      {{bg: 'rgba(20,184,166,0.15)', border: '#14b8a6'}},
+    ];
+
+    // Populate month filter dropdown
+    const radarFilter = document.getElementById('radar-month-filter');
+    MONTHS.forEach(m => {{
+      const o = document.createElement('option');
+      o.value = m; o.textContent = ml(m);
+      radarFilter.appendChild(o);
     }});
+
+    let radarChart = null;
+
+    function buildRadarData(filterMonth) {{
+      // Group by model+config, aggregate category accuracy
+      const radarMap = {{}};
+      const filtered = filterMonth ? sorted.filter(r => r.month === filterMonth) : sorted;
+      filtered.forEach(r => {{
+        const key = r.model + '|' + r.reasoning_effort;
+        if (!radarMap[key]) radarMap[key] = {{ model: r.model, effort: r.reasoning_effort, catCorrect: {{}}, catTotal: {{}} }};
+        const entry = radarMap[key];
+        const ca = r.category_accuracy || {{}};
+        CATEGORIES.forEach(c => {{
+          if (ca[c]) {{
+            entry.catCorrect[c] = (entry.catCorrect[c] || 0) + ca[c].correct;
+            entry.catTotal[c] = (entry.catTotal[c] || 0) + ca[c].total;
+          }}
+        }});
+      }});
+
+      return Object.values(radarMap).map((entry, i) => {{
+        const col = modelColors[i % modelColors.length];
+        return {{
+          label: `${{displayModel(entry.model)}} (${{entry.effort}})`,
+          data: CATEGORIES.map(c => entry.catTotal[c] ? (entry.catCorrect[c] / entry.catTotal[c] * 100) : null),
+          backgroundColor: col.bg,
+          borderColor: col.border,
+          borderWidth: 2,
+          pointBackgroundColor: col.border,
+          pointRadius: 4,
+          fill: true,
+        }};
+      }});
+    }}
+
+    function renderRadar(filterMonth) {{
+      const datasets = buildRadarData(filterMonth);
+      if (radarChart) radarChart.destroy();
+      radarChart = new Chart(document.getElementById('chart-model-cat'), {{
+        type: 'radar',
+        data: {{
+          labels: CATEGORIES,
+          datasets: datasets
+        }},
+        options: {{
+          responsive: true, maintainAspectRatio: false,
+          scales: {{
+            r: {{
+              beginAtZero: true, max: 100,
+              ticks: {{ stepSize: 20, font: {{ size: 14 }}, backdropColor: 'transparent', color: '#1e293b' }},
+              pointLabels: {{ font: {{ size: 14 }}, color: '#1e293b' }},
+              grid: {{ color: 'rgba(0,0,0,0.1)' }},
+              angleLines: {{ color: 'rgba(0,0,0,0.1)' }}
+            }}
+          }},
+          plugins: {{
+            legend: {{ position: 'right', labels: {{ usePointStyle: true, pointStyle: 'circle', boxWidth: 6, boxHeight: 6, font: {{ size: 14 }}, padding: 16, color: '#1e293b' }} }},
+            tooltip: {{
+              callbacks: {{
+                label: function(ctx) {{
+                  return ctx.dataset.label + ': ' + (ctx.raw !== null ? ctx.raw.toFixed(1) + '%' : 'N/A');
+                }}
+              }}
+            }}
+          }}
+        }}
+      }});
+    }}
+
+    renderRadar('');
+    radarFilter.addEventListener('change', () => renderRadar(radarFilter.value));
   }}
 }})();
 </script>
