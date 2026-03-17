@@ -1,6 +1,6 @@
 {
   "test_info": {
-    "date": "0317_082656",
+    "date": "0317_125914",
     "model": "gpt-5.4",
     "month": "202511",
     "reasoning_effort": "medium",
@@ -9,7 +9,7 @@
     "n_samples": 1,
     "total_candidates": 29,
     "total_tested": 29,
-    "timestamp": "2026-03-17 08:26:56"
+    "timestamp": "2026-03-17 12:59:14"
   },
   "summary": {
     "all": {

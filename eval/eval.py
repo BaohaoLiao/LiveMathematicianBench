@@ -224,12 +224,14 @@ def main():
     parser.add_argument("--seed", type=int, default=42, help="Random seed for choice shuffling")
     parser.add_argument("--n", type=int, default=1, help="Number of generations to sample per question (for avg@n, pass@n)")
     parser.add_argument("--resume", action="store_true", help="Resume from previous run, skip already answered questions")
+    parser.add_argument("--timeout", type=int, default=3600, help="HTTP timeout in seconds (default: 3600)")
     args = parser.parse_args()
 
     client = AzureOpenAI(
         azure_endpoint=args.endpoint,
         api_key=args.api_key,
         api_version=args.api_version,
+        timeout=args.timeout,
     )
 
     RESULTS_DIR.mkdir(exist_ok=True)

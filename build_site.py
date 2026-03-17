@@ -341,18 +341,18 @@ def build():
     letter-spacing: 0.03em;
   }}
   #stats-table {{ font-size: 1rem; }}
-  #stats-table th {{ text-align: center; }}
+  #stats-table th {{ text-align: center; background: #fff; }}
   #stats-table td {{ text-align: center; }}
   #stats-table th:first-child,
   #stats-table td:first-child {{ text-align: left; }}
   tr:hover td {{ background: var(--hover-bg); }}
   #lb-overall-table {{ font-size: 1rem; }}
-  #lb-overall-table th {{ text-align: center; }}
+  #lb-overall-table th {{ text-align: center; background: #fff; }}
   #lb-overall-table td {{ text-align: center; }}
   #lb-overall-table th:nth-child(3),
   #lb-overall-table td:nth-child(3) {{ text-align: left; }}
   #lb-monthly-table {{ font-size: 1rem; }}
-  #lb-monthly-table th {{ text-align: center; }}
+  #lb-monthly-table th {{ text-align: center; background: #fff; }}
   #lb-monthly-table td {{ text-align: center; }}
   #lb-monthly-table th:nth-child(3),
   #lb-monthly-table td:nth-child(3) {{ text-align: left; }}
@@ -593,7 +593,7 @@ def build():
   <div class="section active" id="sec-leaderboard">
     <h2 class="section-title">Model Leaderboard</h2>
     <div id="leaderboard-overall" class="leaderboard-card">
-      <h3>Overall Accuracy
+      <h3 style="background:#fff;">Overall Accuracy
         <select id="lb-month-filter" style="margin-left:12px;font-size:0.85rem;font-weight:400;padding:4px 8px;border-radius:6px;border:1px solid var(--border);">
           <option value="">All Months</option>
         </select>
@@ -601,7 +601,7 @@ def build():
       <div class="table-wrap"><table id="lb-overall-table"></table></div>
     </div>
     <div id="leaderboard-monthly" class="leaderboard-card">
-      <h3>Accuracy by Month</h3>
+      <h3 style="background:#fff;">Accuracy by Month</h3>
       <div class="table-wrap"><table id="lb-monthly-table"></table></div>
     </div>
     <div class="chart-grid">
@@ -639,7 +639,7 @@ def build():
       </div>
     </div>
     <div class="leaderboard-card">
-      <h3>Detailed Statistics</h3>
+      <h3 style="background:#fff;">Detailed Statistics</h3>
       <div class="table-wrap">
       <table id="stats-table">
         <thead><tr><th>Category</th></tr></thead>
@@ -736,8 +736,8 @@ function hexToRgba(hex, alpha) {{ const r = parseInt(hex.slice(1,3),16), g = par
 const CAT_COLORS_LIGHT = CAT_COLORS.map(c => hexToRgba(c, 0.15));
 
 function ml(m) {{ return MONTH_LABELS[m] || m; }}
-function pctClass(v) {{ return v >= 0.5 ? 'pct-high' : v >= 0.25 ? 'pct-mid' : 'pct-low'; }}
-function displayModel(name) {{ return name.replace(/_\\d{{4}}-\\d{{2}}-\\d{{2}}/, '').replace(/^gpt-/i, 'GPT-').replace(/^grok-4-1-fast-reasoning$/i, 'Grok-4.1 Fast Reasoning'); }}
+function pctClass(v) {{ return v >= 0.5 ? 'pct-high' : v > 0.2 ? 'pct-mid' : 'pct-low'; }}
+function displayModel(name) {{ return name.replace(/_\\d{{4}}-\\d{{2}}-\\d{{2}}/, '').replace(/^random$/i, 'Random').replace(/^gpt-oss-120b$/i, 'GPT-OSS-120B').replace(/^gpt-/i, 'GPT-').replace(/^grok-4-1-fast-reasoning$/i, 'Grok-4.1 Fast Reasoning'); }}
 function providerLogo(model) {{
   const m = model.toLowerCase();
   const svgIcon = (path, vb) => "data:image/svg+xml," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="' + (vb||'0 0 24 24') + '"><path d="' + path + '"/></svg>');
@@ -754,6 +754,7 @@ function providerLogo(model) {{
   for (const p of providers) {{
     if (p.match.some(k => m.includes(k))) return '<img src="' + p.logo + '" alt="' + p.name + '" title="' + p.name + '" style="height:18px;width:18px;vertical-align:middle;">';
   }}
+  if (m === 'random') return '<span style="font-size:18px;vertical-align:middle;">🎲</span>';
   return '';
 }}
 
@@ -1000,16 +1001,19 @@ document.querySelectorAll('.nav-tab').forEach(tab => {{
       }}
     }});
     const entries = Object.values(mm).map(e => ({{ ...e, accuracy: e.total > 0 ? e.correct / e.total : 0, avgTokens: e.tokenCount > 0 ? e.tokenSum / e.tokenCount : null, avgTime: e.timeCount > 0 ? e.timeSum / e.timeCount : null }}));
+    entries.push({{ model: 'random', effort: '-', correct: 0, total: 0, accuracy: 0.2, avgTokens: null, avgTime: null }});
     entries.sort((a,b) => b.accuracy - a.accuracy);
 
     let html = '<thead><tr><th>#</th><th>Provider</th><th>Model</th><th>Reasoning</th><th>Accuracy</th><th></th><th>Output Tokens / Task</th><th>Time / Task</th></tr></thead><tbody>';
     const medals = [String.fromCodePoint(0x1F947), String.fromCodePoint(0x1F948), String.fromCodePoint(0x1F949)];
     entries.forEach((r, i) => {{
+      const isRandom = r.model === 'random';
       const pct = (r.accuracy * 100).toFixed(1);
       const rank = i < 3 ? medals[i] : (i+1);
       const avgTok = r.avgTokens != null ? Math.round(r.avgTokens).toLocaleString() : '-';
       const avgTime = r.avgTime != null ? r.avgTime.toFixed(1) + 's' : '-';
-      html += `<tr>
+      const rowStyle = isRandom ? ' style="background:#f1f5f9;color:#64748b;"' : '';
+      html += `<tr${{rowStyle}}>
         <td>${{rank}}</td>
         <td style="text-align:center">${{providerLogo(r.model)}}</td>
         <td style="font-weight:600">${{displayModel(r.model)}}</td>
@@ -1042,6 +1046,9 @@ document.querySelectorAll('.nav-tab').forEach(tab => {{
       mm[key].totalAll += r.overall.total || 0;
     }});
     const entries = Object.values(mm).map(e => ({{ ...e, accuracy: e.totalAll > 0 ? e.totalCorrect / e.totalAll : 0 }}));
+    const randomMonths = {{}};
+    MONTHS.forEach(m => {{ randomMonths[m] = {{ correct: 20, total: 100 }}; }});
+    entries.push({{ model: 'random', effort: '-', months: randomMonths, totalCorrect: 0, totalAll: 0, accuracy: 0.2 }});
     entries.sort((a,b) => b.accuracy - a.accuracy);
 
     let html = '<thead><tr><th>#</th><th>Provider</th><th>Model</th><th>Reasoning</th>';
@@ -1049,9 +1056,11 @@ document.querySelectorAll('.nav-tab').forEach(tab => {{
     html += '<th>Overall</th></tr></thead><tbody>';
     const medals = [String.fromCodePoint(0x1F947), String.fromCodePoint(0x1F948), String.fromCodePoint(0x1F949)];
     entries.forEach((e, i) => {{
+      const isRandom = e.model === 'random';
       const rank = i < 3 ? medals[i] : (i+1);
       const overallPct = (e.accuracy * 100).toFixed(1);
-      html += `<tr><td>${{rank}}</td><td style="text-align:center">${{providerLogo(e.model)}}</td><td style="font-weight:600">${{displayModel(e.model)}}</td><td>${{e.effort}}</td>`;
+      const rowStyle = isRandom ? ' style="background:#f1f5f9;color:#64748b;"' : '';
+      html += `<tr${{rowStyle}}><td>${{rank}}</td><td style="text-align:center">${{providerLogo(e.model)}}</td><td style="font-weight:600">${{displayModel(e.model)}}</td><td>${{e.effort}}</td>`;
       MONTHS.forEach(m => {{
         const d = e.months[m];
         if (d && d.total > 0) {{
@@ -1132,6 +1141,17 @@ document.querySelectorAll('.nav-tab').forEach(tab => {{
 
     function renderRadar(filterMonth) {{
       const datasets = buildRadarData(filterMonth);
+      datasets.push({{
+        label: 'Random',
+        data: CATEGORIES.map(() => 20),
+        backgroundColor: 'rgba(148,163,184,0.10)',
+        borderColor: '#94a3b8',
+        borderWidth: 2,
+        borderDash: [6, 4],
+        pointBackgroundColor: '#94a3b8',
+        pointRadius: 3,
+        fill: true,
+      }});
       if (radarChart) radarChart.destroy();
       radarChart = new Chart(document.getElementById('chart-model-cat'), {{
         type: 'radar',
