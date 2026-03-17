@@ -564,7 +564,7 @@ def build():
   <div class="container">
     <div class="nav-tab active" data-tab="leaderboard">Leaderboard</div>
     <div class="nav-tab" data-tab="overview">Overview</div>
-    <div class="nav-tab" data-tab="examples">Examples</div>
+    <div class="nav-tab" data-tab="examples">Tasks</div>
     <div class="nav-tab" data-tab="about">About</div>
   </div>
 </div>
@@ -631,8 +631,8 @@ def build():
 
   <!-- EXAMPLES -->
   <div class="section" id="sec-examples">
-    <h2 class="section-title">Example Questions</h2>
-    <p class="section-desc">Browse sample MCQs from the benchmark. Each question is derived from a real arXiv paper theorem.</p>
+    <h2 class="section-title">Tasks</h2>
+    <p class="section-desc">Browse MCQs from the benchmark. Each question is derived from a real arXiv paper theorem.</p>
     <div class="filter-bar">
       <select id="filter-month"><option value="">All Months</option></select>
       <select id="filter-cat"><option value="">All Categories</option></select>
