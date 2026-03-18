@@ -352,6 +352,7 @@ def main():
         default=1,
         help="Number of generations to sample per question (for avg@n, pass@n)",
     )
+    parser.add_argument("--debug", action="store_true", help="Debug mode: evaluate only one question per month")
     parser.add_argument("--resume", action="store_true", help="Resume from previous run, skip already answered questions")
     args = parser.parse_args()
 
@@ -369,6 +370,8 @@ def main():
         print(f"{'=' * 60}")
 
         data = load_hard_set(month)
+        if args.debug:
+            data = data[:1]
         print(f"Loaded {len(data)} questions")
 
         effort_tag = args.reasoning_effort or "default"
