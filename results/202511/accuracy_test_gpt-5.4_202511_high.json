@@ -1,6 +1,6 @@
 {
   "test_info": {
-    "date": "0317_090332",
+    "date": "0318_060703",
     "model": "gpt-5.4",
     "month": "202511",
     "reasoning_effort": "high",
@@ -9,7 +9,7 @@
     "n_samples": 1,
     "total_candidates": 29,
     "total_tested": 29,
-    "timestamp": "2026-03-17 09:03:32"
+    "timestamp": "2026-03-18 06:07:03"
   },
   "summary": {
     "all": {
@@ -181,7 +181,7 @@
       "completion_tokens": null,
       "total_tokens": null,
       "reasoning_tokens": null,
-      "elapsed_seconds": 1801.8806927204132,
+      "elapsed_seconds": 10802.154826402664,
       "error": "Request timed out.",
       "n_samples": 1,
       "samples": null
@@ -235,7 +235,7 @@
       "completion_tokens": null,
       "total_tokens": null,
       "reasoning_tokens": null,
-      "elapsed_seconds": 1801.8181359767914,
+      "elapsed_seconds": 10802.18860411644,
       "error": "Request timed out.",
       "n_samples": 1,
       "samples": null
@@ -451,7 +451,7 @@
       "completion_tokens": null,
       "total_tokens": null,
       "reasoning_tokens": null,
-      "elapsed_seconds": 1801.8102691173553,
+      "elapsed_seconds": 10802.126141786575,
       "error": "Request timed out.",
       "n_samples": 1,
       "samples": null

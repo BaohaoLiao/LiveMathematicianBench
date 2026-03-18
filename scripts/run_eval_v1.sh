@@ -10,8 +10,8 @@ API_KEY="${AZURE_OPENAI_API_KEY:?Set AZURE_OPENAI_API_KEY environment variable}"
 API_VERSION="2024-12-01-preview"
 MONTHS="202511 202512 202601 202602"
 REASONING_EFFORT="high"    # low, medium, high, or leave empty for default
-MAX_TOKENS=128000
-CONCURRENCY=1
+MAX_TOKENS=65000
+CONCURRENCY=2
 SEED=42
 
 #######################################
