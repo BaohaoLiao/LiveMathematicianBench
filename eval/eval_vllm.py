@@ -118,6 +118,8 @@ def evaluate_single(
     seed: int,
     max_tokens: int,
     reasoning_effort: str | None,
+    temperature: float = 1.0,
+    top_p: float = 0.95,
     n_samples: int = 1,
 ) -> dict:
     """Evaluate a single question with n_samples generations. Returns a result dict."""
@@ -143,6 +145,8 @@ def evaluate_single(
                     {"role": "user", "content": user_prompt},
                 ],
                 "max_completion_tokens": max_tokens,
+                "temperature": temperature,
+                "top_p": top_p,
             }
             if reasoning_effort:
                 kwargs["reasoning_effort"] = reasoning_effort
@@ -216,6 +220,8 @@ def main():
         help="Reasoning effort level (optional)",
     )
     parser.add_argument("--max-tokens", type=int, default=16384, help="Max completion tokens")
+    parser.add_argument("--temperature", type=float, default=1.0, help="Sampling temperature (default: 1.0)")
+    parser.add_argument("--top-p", type=float, default=0.95, help="Top-p (nucleus) sampling (default: 0.95)")
     parser.add_argument("--concurrency", type=int, default=4, help="Number of parallel requests")
     parser.add_argument("--seed", type=int, default=42, help="Random seed for choice shuffling")
     parser.add_argument("--n", type=int, default=1, help="Number of generations to sample per question (for avg@n, pass@n)")
@@ -275,6 +281,8 @@ def main():
                     per_item_seed,
                     args.max_tokens,
                     args.reasoning_effort,
+                    args.temperature,
+                    args.top_p,
                     args.n,
                 )
                 futures[future] = item["id"]
