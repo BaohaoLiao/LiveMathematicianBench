@@ -1,22 +1,23 @@
 #!/usr/bin/env python3
 """
-Evaluate a vLLM-served model on the LiveMathematicianBench hard set
-using the OpenAI-compatible API.
+Evaluate a Claude model (via Anthropic API) on the LiveMathematicianBench hard set.
 
 Usage:
-    python eval/eval_vllm.py \
-        --model Qwen/Qwen2.5-72B-Instruct \
-        --base-url http://localhost:8000/v1 \
+    python eval/eval_claude.py \
+        --model claude-opus-4.6 \
+        --base-url http://localhost:4141 \
+        --api-key unused \
         --month 202511 \
+        --reasoning-effort high \
+        --thinking-budget 60000 \
         --max-tokens 16384 \
         --concurrency 4
 
-Results are saved to results/<month>/accuracy_test_<model>_<month>_<reasoning_effort>.json
+Results are saved to results/<month>/accuracy_test_<model>_<month>_<effort>.json
 """
 
 import argparse
 import json
-import os
 import random
 import re
 import sys
@@ -25,7 +26,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime
 from pathlib import Path
 
-from openai import OpenAI
+import anthropic
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT_DIR / "data"
@@ -111,18 +112,29 @@ def extract_answer(response_text: str) -> str | None:
     return None
 
 
+def extract_response_parts(response) -> tuple[str, str | None]:
+    """Extract text and thinking content from an Anthropic response.
+    Returns (text, thinking) tuple."""
+    text = ""
+    thinking = None
+    for block in response.content:
+        if block.type == "thinking":
+            thinking = block.thinking
+        elif block.type == "text":
+            text = block.text
+    return text, thinking
+
+
 def evaluate_single(
-    client: OpenAI,
+    client: anthropic.Anthropic,
     model: str,
     item: dict,
     seed: int,
     max_tokens: int,
     reasoning_effort: str | None,
-    temperature: float = 1.0,
-    top_p: float = 0.95,
+    thinking_budget: int | None,
     n_samples: int = 1,
     request_timeout: int | None = None,
-    use_responses_api: bool = False,
 ) -> dict:
     """Evaluate a single question with n_samples generations. Returns a result dict."""
     choices, correct_label = build_choices(item, seed)
@@ -134,67 +146,41 @@ def evaluate_single(
         error = None
         model_answer = None
         raw_response = None
+        raw_thinking = None
         reasoning_tokens = None
         prompt_tokens = None
         completion_tokens = None
         total_tokens = None
 
         try:
-            if use_responses_api:
-                kwargs = {
-                    "model": model,
-                    "instructions": SYSTEM_PROMPT,
-                    "input": user_prompt,
-                    "max_output_tokens": max_tokens,
-                    "temperature": temperature,
-                }
-                if reasoning_effort:
-                    kwargs["reasoning"] = {"effort": reasoning_effort}
-                if request_timeout:
-                    kwargs["timeout"] = request_timeout
+            kwargs = {
+                "model": model,
+                "system": SYSTEM_PROMPT,
+                "messages": [
+                    {"role": "user", "content": user_prompt},
+                ],
+                "max_tokens": max_tokens,
+            }
+            if reasoning_effort:
+                kwargs["output_config"] = {"effort": reasoning_effort}
+            if thinking_budget is not None:
+                kwargs["thinking"] = {"type": "enabled", "budget_tokens": thinking_budget}
+            if request_timeout:
+                kwargs["timeout"] = request_timeout
 
-                response = client.responses.create(**kwargs)
-                raw_response = response.output_text or ""
-                model_answer = extract_answer(raw_response)
-                if response.usage:
-                    prompt_tokens = response.usage.input_tokens
-                    completion_tokens = response.usage.output_tokens
-                    total_tokens = response.usage.total_tokens
-                    api_reasoning = None
-                    if hasattr(response.usage, 'output_tokens_details') and response.usage.output_tokens_details:
-                        api_reasoning = getattr(response.usage.output_tokens_details, 'reasoning_tokens', None)
-                    reasoning_tokens = api_reasoning
-            else:
-                kwargs = {
-                    "model": model,
-                    "messages": [
-                        {"role": "system", "content": SYSTEM_PROMPT},
-                        {"role": "user", "content": user_prompt},
-                    ],
-                    "max_completion_tokens": max_tokens,
-                    "temperature": temperature,
-                    "top_p": top_p,
-                }
-                if reasoning_effort:
-                    kwargs["reasoning_effort"] = reasoning_effort
-                if request_timeout:
-                    kwargs["timeout"] = request_timeout
-
-                response = client.chat.completions.create(**kwargs)
-                raw_response = response.choices[0].message.content or ""
-                model_answer = extract_answer(raw_response)
-                if response.usage:
-                    prompt_tokens = response.usage.prompt_tokens
-                    api_completion = response.usage.completion_tokens
-                    total_tokens = response.usage.total_tokens
-                    # Try response.usage.reasoning_tokens first (e.g. Gemini),
-                    # then fall back to completion_tokens_details.reasoning_tokens (e.g. OpenAI)
-                    api_reasoning = getattr(response.usage, 'reasoning_tokens', None)
-                    if api_reasoning is None and hasattr(response.usage, 'completion_tokens_details') and response.usage.completion_tokens_details:
-                        api_reasoning = getattr(response.usage.completion_tokens_details, 'reasoning_tokens', None)
-                    reasoning_tokens = api_reasoning
-                    # completion_tokens = text + reasoning (to match OpenAI convention)
-                    completion_tokens = api_completion + (api_reasoning or 0)
+            response = client.messages.create(**kwargs)
+            raw_response, raw_thinking = extract_response_parts(response)
+            model_answer = extract_answer(raw_response)
+            if response.usage:
+                prompt_tokens = response.usage.input_tokens
+                # Anthropic exposes output_tokens (text only) and reasoning tokens
+                # To match OpenAI: completion_tokens = text + reasoning
+                api_completion = response.usage.output_tokens
+                api_reasoning = getattr(response.usage, 'reasoning_tokens', None) or 0
+                reasoning_tokens = api_reasoning if api_reasoning else None
+                # completion_tokens = text tokens + reasoning tokens (matching OpenAI convention)
+                completion_tokens = api_completion + api_reasoning
+                total_tokens = prompt_tokens + completion_tokens
         except Exception as e:
             error = str(e)
 
@@ -204,6 +190,7 @@ def evaluate_single(
             "sample_idx": sample_idx,
             "model_answer": model_answer,
             "raw_response": raw_response,
+            "raw_thinking": raw_thinking,
             "is_correct": model_answer == correct_label,
             "prompt_tokens": prompt_tokens,
             "completion_tokens": completion_tokens,
@@ -222,6 +209,7 @@ def evaluate_single(
         "correct_answer": correct_label,
         "model_answer": first["model_answer"],
         "raw_response": first["raw_response"],
+        "raw_thinking": first["raw_thinking"],
         "is_correct": first["is_correct"],
         "reasoning_effort": reasoning_effort,
         "prompt_tokens": first["prompt_tokens"],
@@ -237,11 +225,11 @@ def evaluate_single(
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Evaluate a vLLM-served model on LiveMathematicianBench hard set (OpenAI-compatible API)"
+        description="Evaluate a Claude model on LiveMathematicianBench hard set"
     )
-    parser.add_argument("--model", required=True, help="Model name (e.g. Qwen/Qwen2.5-72B-Instruct)")
-    parser.add_argument("--base-url", required=True, help="vLLM OpenAI-compatible server base URL (e.g. http://localhost:8000/v1)")
-    parser.add_argument("--api-key", default="EMPTY", help="API key (default: EMPTY, not needed for local vLLM)")
+    parser.add_argument("--model", required=True, help="Model name (e.g. claude-opus-4.6)")
+    parser.add_argument("--base-url", required=True, help="Anthropic API base URL")
+    parser.add_argument("--api-key", default="unused", help="Anthropic API key (default: unused)")
     parser.add_argument(
         "--month",
         required=True,
@@ -251,27 +239,30 @@ def main():
     parser.add_argument(
         "--reasoning-effort",
         default=None,
-        choices=["low", "medium", "high", "xhigh"],
-        help="Reasoning effort level (optional)",
+        choices=["low", "medium", "high"],
+        help="Reasoning effort level (maps to output_config.effort)",
     )
-    parser.add_argument("--max-tokens", type=int, default=16384, help="Max completion tokens")
-    parser.add_argument("--temperature", type=float, default=1.0, help="Sampling temperature (default: 1.0)")
-    parser.add_argument("--top-p", type=float, default=0.95, help="Top-p (nucleus) sampling (default: 0.95)")
+    parser.add_argument("--max-tokens", type=int, default=16384, help="Max tokens")
+    parser.add_argument(
+        "--thinking-budget", type=int, default=None,
+        help="Thinking budget tokens (enables extended thinking when set)",
+    )
     parser.add_argument("--concurrency", type=int, default=4, help="Number of parallel requests")
     parser.add_argument("--seed", type=int, default=42, help="Random seed for choice shuffling")
-    parser.add_argument("--n", type=int, default=1, help="Number of generations to sample per question (for avg@n, pass@n)")
-    parser.add_argument("--resume", action="store_true", help="Resume from previous run, skip already answered questions")
-    parser.add_argument("--timeout", type=int, default=3600, help="HTTP client timeout in seconds (default: 3600)")
+    parser.add_argument(
+        "--n", type=int, default=1,
+        help="Number of generations to sample per question (for avg@n, pass@n)",
+    )
+    parser.add_argument(
+        "--resume", action="store_true",
+        help="Resume from previous run, skip already answered questions",
+    )
+    parser.add_argument("--timeout", type=int, default=7200, help="HTTP client timeout in seconds (default: 7200)")
     parser.add_argument("--request-timeout", type=int, default=3600, help="Per-request timeout in seconds for each sample (default: 3600)")
-    parser.add_argument("--use-responses-api", action="store_true", help="Use OpenAI Responses API (client.responses.create) instead of Chat Completions. Auto-enabled for gpt-5.4.")
     parser.add_argument("--debug", action="store_true", help="Debug mode: only evaluate 1 question per month")
     args = parser.parse_args()
 
-    # Auto-enable responses API for gpt-5.4
-    if "gpt-5.4" in args.model:
-        args.use_responses_api = True
-
-    client = OpenAI(
+    client = anthropic.Anthropic(
         base_url=args.base_url,
         api_key=args.api_key,
         timeout=args.timeout,
@@ -327,11 +318,9 @@ def main():
                     per_item_seed,
                     args.max_tokens,
                     args.reasoning_effort,
-                    args.temperature,
-                    args.top_p,
+                    args.thinking_budget,
                     args.n,
                     args.request_timeout,
-                    args.use_responses_api,
                 )
                 futures[future] = item["id"]
 

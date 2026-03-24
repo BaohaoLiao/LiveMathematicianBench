@@ -1,6 +1,6 @@
 {
   "test_info": {
-    "date": "0318_063245",
+    "date": "0323_064055",
     "model": "grok-4-1-fast-reasoning",
     "month": "202511",
     "reasoning_effort": "high",
@@ -9,7 +9,7 @@
     "n_samples": 1,
     "total_candidates": 29,
     "total_tested": 29,
-    "timestamp": "2026-03-18 06:32:45"
+    "timestamp": "2026-03-23 06:40:55"
   },
   "summary": {
     "all": {

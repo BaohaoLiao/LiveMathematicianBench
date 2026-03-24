@@ -4,15 +4,16 @@ set -euo pipefail
 #######################################
 # Configuration — edit these variables
 #######################################
-MODEL="gpt-5.4"
-ENDPOINT="https://e0271-miptdstj-eastus2.cognitiveservices.azure.com/"
-API_KEY="${AZURE_OPENAI_API_KEY:?Set AZURE_OPENAI_API_KEY environment variable}"
-API_VERSION="2024-12-01-preview"
+MODEL="claude-opus-4.6"
+BASE_URL="http://localhost:4141"
+API_KEY="${ANTHROPIC_API_KEY:-unused}"
 MONTHS="202511 202512 202601 202602"
 REASONING_EFFORT="high"    # low, medium, high, or leave empty for default
-MAX_TOKENS=128000
-CONCURRENCY=4
+MAX_TOKENS=65000
+THINKING_BUDGET=62000      # set to empty to disable extended thinking
+CONCURRENCY=2
 SEED=42
+DEBUG=false          # set to true to only evaluate 1 question per month
 
 #######################################
 # Run
@@ -29,9 +30,8 @@ fi
 
 ARGS=(
     --model "$MODEL"
-    --endpoint "$ENDPOINT"
+    --base-url "$BASE_URL"
     --api-key "$API_KEY"
-    --api-version "$API_VERSION"
     --month $MONTHS
     --max-tokens "$MAX_TOKENS"
     --concurrency "$CONCURRENCY"
@@ -43,4 +43,12 @@ if [[ -n "$REASONING_EFFORT" ]]; then
     ARGS+=(--reasoning-effort "$REASONING_EFFORT")
 fi
 
-python eval/eval.py "${ARGS[@]}"
+if [[ -n "$THINKING_BUDGET" ]]; then
+    ARGS+=(--thinking-budget "$THINKING_BUDGET")
+fi
+
+if [[ "$DEBUG" == "true" ]]; then
+    ARGS+=(--debug)
+fi
+
+python eval/eval_claude.py "${ARGS[@]}"

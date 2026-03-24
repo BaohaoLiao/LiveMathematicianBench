@@ -120,6 +120,8 @@ def evaluate_single(
     max_tokens: int,
     reasoning_effort: str | None,
     n_samples: int = 1,
+    request_timeout: int | None = None,
+    use_responses_api: bool = False,
 ) -> dict:
     """Evaluate a single question with n_samples generations. Returns a result dict."""
     choices, correct_label = build_choices(item, seed)
@@ -137,26 +139,52 @@ def evaluate_single(
         total_tokens = None
 
         try:
-            kwargs = {
-                "model": model,
-                "messages": [
-                    {"role": "system", "content": SYSTEM_PROMPT},
-                    {"role": "user", "content": user_prompt},
-                ],
-                "max_completion_tokens": max_tokens,
-            }
-            if reasoning_effort:
-                kwargs["reasoning_effort"] = reasoning_effort
+            if use_responses_api:
+                kwargs = {
+                    "model": model,
+                    "instructions": SYSTEM_PROMPT,
+                    "input": user_prompt,
+                    "max_output_tokens": max_tokens,
+                }
+                if reasoning_effort:
+                    kwargs["reasoning"] = {"effort": reasoning_effort}
+                if request_timeout:
+                    kwargs["timeout"] = request_timeout
 
-            response = client.chat.completions.create(**kwargs)
-            raw_response = response.choices[0].message.content or ""
-            model_answer = extract_answer(raw_response)
-            if response.usage:
-                prompt_tokens = response.usage.prompt_tokens
-                completion_tokens = response.usage.completion_tokens
-                total_tokens = response.usage.total_tokens
-                if response.usage.completion_tokens_details:
-                    reasoning_tokens = response.usage.completion_tokens_details.reasoning_tokens
+                response = client.responses.create(**kwargs)
+                raw_response = response.output_text or ""
+                model_answer = extract_answer(raw_response)
+                if response.usage:
+                    prompt_tokens = response.usage.input_tokens
+                    completion_tokens = response.usage.output_tokens
+                    total_tokens = response.usage.total_tokens
+                    api_reasoning = None
+                    if hasattr(response.usage, 'output_tokens_details') and response.usage.output_tokens_details:
+                        api_reasoning = getattr(response.usage.output_tokens_details, 'reasoning_tokens', None)
+                    reasoning_tokens = api_reasoning
+            else:
+                kwargs = {
+                    "model": model,
+                    "messages": [
+                        {"role": "system", "content": SYSTEM_PROMPT},
+                        {"role": "user", "content": user_prompt},
+                    ],
+                    "max_completion_tokens": max_tokens,
+                }
+                if reasoning_effort:
+                    kwargs["reasoning_effort"] = reasoning_effort
+                if request_timeout:
+                    kwargs["timeout"] = request_timeout
+
+                response = client.chat.completions.create(**kwargs)
+                raw_response = response.choices[0].message.content or ""
+                model_answer = extract_answer(raw_response)
+                if response.usage:
+                    prompt_tokens = response.usage.prompt_tokens
+                    completion_tokens = response.usage.completion_tokens
+                    total_tokens = response.usage.total_tokens
+                    if response.usage.completion_tokens_details:
+                        reasoning_tokens = response.usage.completion_tokens_details.reasoning_tokens
         except Exception as e:
             error = str(e)
 
@@ -224,8 +252,14 @@ def main():
     parser.add_argument("--seed", type=int, default=42, help="Random seed for choice shuffling")
     parser.add_argument("--n", type=int, default=1, help="Number of generations to sample per question (for avg@n, pass@n)")
     parser.add_argument("--resume", action="store_true", help="Resume from previous run, skip already answered questions")
-    parser.add_argument("--timeout", type=int, default=3600, help="HTTP timeout in seconds (default: 3600)")
+    parser.add_argument("--timeout", type=int, default=7200, help="HTTP client timeout in seconds (default: 7200)")
+    parser.add_argument("--request-timeout", type=int, default=3600, help="Per-request timeout in seconds for each sample (default: 3600)")
+    parser.add_argument("--use-responses-api", action="store_true", help="Use OpenAI Responses API (client.responses.create) instead of Chat Completions. Auto-enabled for gpt-5.4.")
     args = parser.parse_args()
+
+    # Auto-enable responses API for gpt-5.4
+    if "gpt-5.4" in args.model:
+        args.use_responses_api = True
 
     client = AzureOpenAI(
         azure_endpoint=args.endpoint,
@@ -281,6 +315,8 @@ def main():
                     args.max_tokens,
                     args.reasoning_effort,
                     args.n,
+                    args.request_timeout,
+                    args.use_responses_api,
                 )
                 futures[future] = item["id"]
 

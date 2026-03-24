@@ -4,15 +4,17 @@ set -euo pipefail
 #######################################
 # Configuration — edit these variables
 #######################################
-MODEL="gpt-5.4"
-ENDPOINT="https://e0271-miptdstj-eastus2.cognitiveservices.azure.com/"
-API_KEY="${AZURE_OPENAI_API_KEY:?Set AZURE_OPENAI_API_KEY environment variable}"
-API_VERSION="2024-12-01-preview"
+MODEL="gemini-3.1-pro-preview"
+BASE_URL="http://localhost:4141/v1"
+API_KEY="dummy"
 MONTHS="202511 202512 202601 202602"
-REASONING_EFFORT="high"    # low, medium, high, or leave empty for default
-MAX_TOKENS=128000
+REASONING_EFFORT="high"         # low, medium, high, xhigh, or leave empty for default
+MAX_TOKENS=65000
+TEMPERATURE=1.0
+TOP_P=0.95
 CONCURRENCY=4
 SEED=42
+DEBUG=false          # set to true to only evaluate 1 question per month
 
 #######################################
 # Run
@@ -29,11 +31,12 @@ fi
 
 ARGS=(
     --model "$MODEL"
-    --endpoint "$ENDPOINT"
+    --base-url "$BASE_URL"
     --api-key "$API_KEY"
-    --api-version "$API_VERSION"
     --month $MONTHS
     --max-tokens "$MAX_TOKENS"
+    --temperature "$TEMPERATURE"
+    --top-p "$TOP_P"
     --concurrency "$CONCURRENCY"
     --seed "$SEED"
     --resume
@@ -43,4 +46,8 @@ if [[ -n "$REASONING_EFFORT" ]]; then
     ARGS+=(--reasoning-effort "$REASONING_EFFORT")
 fi
 
-python eval/eval.py "${ARGS[@]}"
+if [[ "$DEBUG" == "true" ]]; then
+    ARGS+=(--debug)
+fi
+
+python eval/eval_vllm.py "${ARGS[@]}"
