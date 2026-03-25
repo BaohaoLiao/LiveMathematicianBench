@@ -1153,19 +1153,29 @@ document.querySelectorAll('.nav-tab').forEach(tab => {{
       const randomMonths = {{}};
       selectedMonths.forEach(m => {{ randomMonths[m] = {{ correct: 20, total: 100 }}; }});
       entries.push({{ model: 'random', effort: '-', months: randomMonths, totalCorrect: 0, totalAll: 0, accuracy: 0.2 }});
-      entries.sort((a,b) => b.accuracy - a.accuracy);
 
-      let html = '<thead><tr><th>#</th><th></th><th>Model</th><th>Reasoning</th>';
+      // Compute average ranking across months
+      selectedMonths.forEach(m => {{
+        const withData = entries.filter(e => e.months[m] && e.months[m].total > 0);
+        withData.sort((a, b) => (b.months[m].correct / b.months[m].total) - (a.months[m].correct / a.months[m].total));
+        withData.forEach((e, idx) => {{
+          if (!e._ranks) e._ranks = [];
+          e._ranks.push(idx + 1);
+        }});
+      }});
+      entries.forEach(e => {{
+        e.avgRank = e._ranks && e._ranks.length > 0 ? e._ranks.reduce((a, b) => a + b, 0) / e._ranks.length : Infinity;
+      }});
+
+      entries.sort((a,b) => a.avgRank - b.avgRank);
+
+      let html = '<thead><tr><th>Avg Rank</th><th></th><th>Model</th><th>Reasoning</th>';
       selectedMonths.forEach(m => {{ html += `<th>${{ml(m)}}</th>`; }});
-      if (selectedMonths.length > 1) html += '<th>Overall</th>';
       html += '</tr></thead><tbody>';
-      const medals = [String.fromCodePoint(0x1F947), String.fromCodePoint(0x1F948), String.fromCodePoint(0x1F949)];
       entries.forEach((e, i) => {{
         const isRandom = e.model === 'random';
-        const rank = i < 3 ? medals[i] : (i+1);
-        const overallPct = (e.accuracy * 100).toFixed(1);
         const rowStyle = isRandom ? ' style="background:#f1f5f9;color:#64748b;"' : '';
-        html += `<tr${{rowStyle}}><td>${{rank}}</td><td style="text-align:center">${{providerLogo(e.model)}}</td><td style="font-weight:600">${{displayModel(e.model)}}</td><td>${{e.effort || '-'}}</td>`;
+        html += `<tr${{rowStyle}}><td class="num">${{e.avgRank === Infinity ? '-' : e.avgRank.toFixed(1)}}</td><td style="text-align:center">${{providerLogo(e.model)}}</td><td style="font-weight:600">${{displayModel(e.model)}}</td><td>${{e.effort || '-'}}</td>`;
         selectedMonths.forEach(m => {{
           const d = e.months[m];
           if (d && d.total > 0) {{
@@ -1175,7 +1185,6 @@ document.querySelectorAll('.nav-tab').forEach(tab => {{
             html += '<td class="num">-</td>';
           }}
         }});
-        if (selectedMonths.length > 1) html += `<td class="num"><span class="accuracy-value ${{pctClass(e.accuracy)}}">${{overallPct}}%</span></td>`;
         html += '</tr>';
       }});
       html += '</tbody>';
@@ -1269,18 +1278,22 @@ document.querySelectorAll('.nav-tab').forEach(tab => {{
             {{
               label: 'Without Sketch',
               data: rows.map(r => r.baseAcc),
-              backgroundColor: 'rgba(59,130,246,0.7)',
-              borderColor: '#3b82f6',
-              borderWidth: 1,
+              backgroundColor: 'rgba(59,130,246,0.25)',
+              borderColor: '#2563eb',
+              borderWidth: 2,
               borderRadius: 4,
+              barPercentage: 0.5,
+              categoryPercentage: 0.6,
             }},
             {{
               label: 'With Sketch',
               data: rows.map(r => r.sketchAcc),
-              backgroundColor: 'rgba(16,185,129,0.7)',
-              borderColor: '#10b981',
-              borderWidth: 1,
+              backgroundColor: 'rgba(16,185,129,0.25)',
+              borderColor: '#059669',
+              borderWidth: 2,
               borderRadius: 4,
+              barPercentage: 0.5,
+              categoryPercentage: 0.6,
             }}
           ]
         }},
