@@ -15,6 +15,7 @@ TOP_P=0.95
 CONCURRENCY=4
 SEED=42
 DEBUG=false          # set to true to only evaluate 1 question per month
+ADD_SKETCH=true     # set to true to append proof sketch as hints to the prompt
 
 #######################################
 # Run
@@ -44,6 +45,10 @@ ARGS=(
 
 if [[ -n "$REASONING_EFFORT" ]]; then
     ARGS+=(--reasoning-effort "$REASONING_EFFORT")
+fi
+
+if [[ "$ADD_SKETCH" == "true" ]]; then
+    ARGS+=(--add-sketch)
 fi
 
 if [[ "$DEBUG" == "true" ]]; then

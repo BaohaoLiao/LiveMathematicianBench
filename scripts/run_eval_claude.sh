@@ -4,7 +4,7 @@ set -euo pipefail
 #######################################
 # Configuration — edit these variables
 #######################################
-MODEL="claude-opus-4.6"
+MODEL="claude-sonnet-4.6"
 BASE_URL="http://localhost:4141"
 API_KEY="${ANTHROPIC_API_KEY:-unused}"
 MONTHS="202511 202512 202601 202602"

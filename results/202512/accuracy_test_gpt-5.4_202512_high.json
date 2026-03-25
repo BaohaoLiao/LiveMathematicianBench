@@ -1,6 +1,6 @@
 {
   "test_info": {
-    "date": "0323_161734",
+    "date": "0324_074742",
     "model": "gpt-5.4",
     "month": "202512",
     "reasoning_effort": "high",
@@ -9,19 +9,19 @@
     "n_samples": 1,
     "total_candidates": 52,
     "total_tested": 52,
-    "timestamp": "2026-03-23 16:17:34"
+    "timestamp": "2026-03-24 07:47:42"
   },
   "summary": {
     "all": {
-      "correct": 17,
+      "correct": 18,
       "total": 52,
-      "accuracy": 0.3269230769230769
+      "accuracy": 0.34615384615384615
     }
   },
   "overall": {
-    "correct": 17,
+    "correct": 18,
     "total": 52,
-    "accuracy": 0.3269230769230769
+    "accuracy": 0.34615384615384615
   },
   "detailed_results": [
     {
@@ -577,8 +577,8 @@
       "completion_tokens": null,
       "total_tokens": null,
       "reasoning_tokens": null,
-      "elapsed_seconds": 863.6429584026337,
-      "error": "Error code: 500 - {'error': {'message': 'The operation timed out.', 'type': 'error'}}",
+      "elapsed_seconds": 10801.622786998749,
+      "error": "Request timed out.",
       "n_samples": 1,
       "samples": null
     },
@@ -605,16 +605,16 @@
       "theorem_type": "all",
       "score": null,
       "correct_answer": "D",
-      "model_answer": null,
-      "raw_response": null,
-      "is_correct": false,
+      "model_answer": "D",
+      "raw_response": "The known result is stronger than any single concrete statement listed: one can choose elements from a single conjugacy class in \\(S\\), and these elements can be taken so that all nontrivial powers are fixed-point-free on \\(\\Omega\\). Thus (A), (B), and (E) are consequences, while (C) is not true in general.\n\nSo the best answer is  \n\\[\n\\boxed{D}\n\\]",
+      "is_correct": true,
       "reasoning_effort": "high",
-      "prompt_tokens": null,
-      "completion_tokens": null,
-      "total_tokens": null,
-      "reasoning_tokens": null,
-      "elapsed_seconds": 863.6417660713196,
-      "error": "Error code: 500 - {'error': {'message': 'The operation timed out.', 'type': 'error'}}",
+      "prompt_tokens": 404,
+      "completion_tokens": 15424,
+      "total_tokens": 15828,
+      "reasoning_tokens": 15329,
+      "elapsed_seconds": 807.0361731052399,
+      "error": null,
       "n_samples": 1,
       "samples": null
     },

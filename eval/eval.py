@@ -85,14 +85,19 @@ def format_choices(choices: list[dict]) -> str:
     return "\n\n".join(lines)
 
 
-def build_prompt(item: dict, choices: list[dict]) -> str:
+def build_prompt(item: dict, choices: list[dict], add_sketch: bool = False) -> str:
     question = item["mcq"]["question"]
     choices_text = format_choices(choices)
 
-    return USER_PROMPT_TEMPLATE.format(
+    prompt = USER_PROMPT_TEMPLATE.format(
         question=question,
         choices_text=choices_text,
     )
+    if add_sketch:
+        sketch = item.get("expanded_sketch") or item.get("sketch") or ""
+        if sketch:
+            prompt += f"\n\n## Useful Hints\n\n{sketch}"
+    return prompt
 
 
 def extract_answer(response_text: str) -> str | None:
@@ -122,10 +127,11 @@ def evaluate_single(
     n_samples: int = 1,
     request_timeout: int | None = None,
     use_responses_api: bool = False,
+    add_sketch: bool = False,
 ) -> dict:
     """Evaluate a single question with n_samples generations. Returns a result dict."""
     choices, correct_label = build_choices(item, seed)
-    user_prompt = build_prompt(item, choices)
+    user_prompt = build_prompt(item, choices, add_sketch=add_sketch)
 
     samples = []
     for sample_idx in range(n_samples):
@@ -255,6 +261,7 @@ def main():
     parser.add_argument("--timeout", type=int, default=7200, help="HTTP client timeout in seconds (default: 7200)")
     parser.add_argument("--request-timeout", type=int, default=3600, help="Per-request timeout in seconds for each sample (default: 3600)")
     parser.add_argument("--use-responses-api", action="store_true", help="Use OpenAI Responses API (client.responses.create) instead of Chat Completions. Auto-enabled for gpt-5.4.")
+    parser.add_argument("--add-sketch", action="store_true", help="Append proof sketch as hints to the prompt (uses expanded_sketch if available, otherwise sketch)")
     args = parser.parse_args()
 
     # Auto-enable responses API for gpt-5.4
@@ -283,7 +290,7 @@ def main():
         safe_model = re.sub(r'[^\w\-.]', '_', args.model)
         month_dir = RESULTS_DIR / month
         month_dir.mkdir(parents=True, exist_ok=True)
-        out_path = month_dir / f"accuracy_test_{safe_model}_{month}_{effort_tag}.json"
+        out_path = month_dir / f"accuracy_test_{safe_model}_{month}_{effort_tag}{'_sketch' if args.add_sketch else ''}.json"
 
         prev_results = {}
         if args.resume and out_path.exists():
@@ -317,6 +324,7 @@ def main():
                     args.n,
                     args.request_timeout,
                     args.use_responses_api,
+                    args.add_sketch,
                 )
                 futures[future] = item["id"]
 

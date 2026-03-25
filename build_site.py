@@ -124,6 +124,9 @@ def collect_accuracy():
             # Skip .progress files (incomplete runs)
             if ".progress." in fpath:
                 continue
+            # Skip sketch result files (those are for the sketch comparison section)
+            if "_sketch" in os.path.basename(fpath):
+                continue
             data = load_json(fpath)
             ti = data.get("test_info", {})
             # Deduplicate by (model, month, reasoning_effort)
@@ -177,15 +180,51 @@ def collect_accuracy():
     return results
 
 
+def collect_sketch_accuracy():
+    """Collect sketch result files (ending with _sketch.json) for comparison."""
+    results = []
+    seen = set()
+    search_patterns = [
+        str(DATA_DIR / "*/hard/accuracy_test_*_sketch.json"),
+        str(RESULTS_DIR / "*/accuracy_test_*_sketch.json"),
+    ]
+    for pattern in search_patterns:
+        for fpath in sorted(glob.glob(pattern)):
+            if ".progress." in fpath:
+                continue
+            data = load_json(fpath)
+            ti = data.get("test_info", {})
+            key = (ti.get("model", ""), ti.get("month", ""), ti.get("reasoning_effort", ""))
+            if key in seen:
+                continue
+            seen.add(key)
+
+            model = ti.get("model", "")
+            reasoning_effort = ti.get("reasoning_effort", "")
+            if not reasoning_effort and any(k in model for k in ["Qwen3.5-397B-A17B", "Kimi-K2.5", "MiniMax-M2.5"]):
+                reasoning_effort = "enabled"
+
+            results.append({
+                "file": os.path.basename(fpath),
+                "month": ti.get("month", ""),
+                "model": model,
+                "reasoning_effort": reasoning_effort,
+                "overall": data.get("overall", {}),
+            })
+    return results
+
+
 def build():
     stats = collect_stats()
     examples = collect_examples()
     accuracy = collect_accuracy()
+    sketch_accuracy = collect_sketch_accuracy()
 
     # JSON-encode data for embedding
     stats_json = json.dumps(stats)
     examples_json = json.dumps(examples)
     accuracy_json = json.dumps(accuracy)
+    sketch_accuracy_json = json.dumps(sketch_accuracy)
     months_json = json.dumps(MONTHS)
     categories_json = json.dumps(CATEGORIES)
     month_labels_json = json.dumps(MONTH_LABELS)
@@ -630,6 +669,18 @@ def build():
         <div class="chart-container" style="height:480px;"><canvas id="chart-model-cat"></canvas></div>
       </div>
     </div>
+    <div id="leaderboard-sketch" class="leaderboard-card">
+      <h3 style="background:#fff;">Sketch Comparison
+        <span style="margin-left:12px;font-size:0.85rem;font-weight:400;">
+          <select id="sketch-month-from" style="font-size:0.85rem;padding:4px 8px;border-radius:6px;border:1px solid var(--border);"></select>
+          <span style="margin:0 4px;">&ndash;</span>
+          <select id="sketch-month-to" style="font-size:0.85rem;padding:4px 8px;border-radius:6px;border:1px solid var(--border);"></select>
+        </span>
+        <span style="font-weight:400;font-size:0.8rem;color:var(--text-muted);margin-left:8px;">Performance with vs. without proof sketch</span>
+      </h3>
+      <div class="chart-container" style="height:400px;padding:16px;"><canvas id="chart-sketch"></canvas></div>
+      <div id="sketch-empty" style="display:none;text-align:center;padding:32px;color:var(--text-muted);">No sketch comparison data available for the selected months.</div>
+    </div>
   </div>
 
   <!-- OVERVIEW -->
@@ -741,6 +792,7 @@ const MONTH_LABELS = {month_labels_json};
 const STATS = {stats_json};
 const EXAMPLES = {examples_json};
 const ACCURACY = {accuracy_json};
+const SKETCH_ACCURACY = {sketch_accuracy_json};
 
 const CAT_COLORS = [
   '#1e3a8a','#2563eb','#60a5fa','#bfdbfe',
@@ -1139,6 +1191,136 @@ document.querySelectorAll('.nav-tab').forEach(tab => {{
     }}
     mFrom.addEventListener('change', onMonthlyRangeChange);
     mTo.addEventListener('change', onMonthlyRangeChange);
+  }})();
+
+  // Sketch comparison bar chart
+  (function() {{
+    const sketchCanvas = document.getElementById('chart-sketch');
+    const sketchCard = sketchCanvas.closest('.leaderboard-card');
+    const sketchEmpty = document.getElementById('sketch-empty');
+    const sFrom = document.getElementById('sketch-month-from');
+    const sTo = document.getElementById('sketch-month-to');
+    if (!SKETCH_ACCURACY || SKETCH_ACCURACY.length === 0) {{
+      sketchCard.style.display = 'none';
+      return;
+    }}
+    MONTHS.forEach(m => {{
+      const o1 = document.createElement('option');
+      o1.value = m; o1.textContent = ml(m);
+      sFrom.appendChild(o1);
+      const o2 = document.createElement('option');
+      o2.value = m; o2.textContent = ml(m);
+      sTo.appendChild(o2);
+    }});
+    sFrom.value = MONTHS[0];
+    sTo.value = MONTHS[MONTHS.length - 1];
+
+    let sketchChart = null;
+
+    function renderSketchChart() {{
+      const fi = MONTHS.indexOf(sFrom.value);
+      const ti = MONTHS.indexOf(sTo.value);
+      const selectedMonths = MONTHS.slice(Math.min(fi, ti), Math.max(fi, ti) + 1);
+      const sketchMap = {{}};
+      SKETCH_ACCURACY.filter(r => selectedMonths.includes(r.month)).forEach(r => {{
+        const key = r.model + '|' + r.reasoning_effort;
+        if (!sketchMap[key]) sketchMap[key] = {{ model: r.model, effort: r.reasoning_effort, correct: 0, total: 0 }};
+        sketchMap[key].correct += r.overall.correct || 0;
+        sketchMap[key].total += r.overall.total || 0;
+      }});
+      const baseMap = {{}};
+      sorted.filter(r => selectedMonths.includes(r.month)).forEach(r => {{
+        const key = r.model + '|' + r.reasoning_effort;
+        if (!baseMap[key]) baseMap[key] = {{ model: r.model, effort: r.reasoning_effort, correct: 0, total: 0 }};
+        baseMap[key].correct += r.overall.correct || 0;
+        baseMap[key].total += r.overall.total || 0;
+      }});
+      const rows = [];
+      Object.keys(sketchMap).forEach(key => {{
+        const s = sketchMap[key];
+        const b = baseMap[key];
+        if (!b) return;
+        const sAcc = s.total > 0 ? (s.correct / s.total) * 100 : 0;
+        const bAcc = b.total > 0 ? (b.correct / b.total) * 100 : 0;
+        rows.push({{ model: s.model, effort: s.effort, baseAcc: bAcc, sketchAcc: sAcc }});
+      }});
+      rows.sort((a, b) => b.sketchAcc - a.sketchAcc);
+
+      if (sketchChart) sketchChart.destroy();
+      if (rows.length === 0) {{
+        sketchCanvas.style.display = 'none';
+        sketchEmpty.style.display = 'block';
+        return;
+      }}
+      sketchCanvas.style.display = 'block';
+      sketchEmpty.style.display = 'none';
+
+      const labels = rows.map(r => {{
+        let name = displayModel(r.model);
+        if (r.effort && r.effort !== '-') name += ' (' + r.effort + ')';
+        return name;
+      }});
+
+      sketchChart = new Chart(sketchCanvas, {{
+        type: 'bar',
+        data: {{
+          labels: labels,
+          datasets: [
+            {{
+              label: 'Without Sketch',
+              data: rows.map(r => r.baseAcc),
+              backgroundColor: 'rgba(59,130,246,0.7)',
+              borderColor: '#3b82f6',
+              borderWidth: 1,
+              borderRadius: 4,
+            }},
+            {{
+              label: 'With Sketch',
+              data: rows.map(r => r.sketchAcc),
+              backgroundColor: 'rgba(16,185,129,0.7)',
+              borderColor: '#10b981',
+              borderWidth: 1,
+              borderRadius: 4,
+            }}
+          ]
+        }},
+        options: {{
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {{
+            y: {{
+              beginAtZero: true,
+              max: 100,
+              ticks: {{ callback: v => v + '%', font: {{ size: 13 }} }},
+              title: {{ display: true, text: 'Accuracy (%)', font: {{ size: 14 }} }}
+            }},
+            x: {{
+              ticks: {{ font: {{ size: 13 }} }}
+            }}
+          }},
+          plugins: {{
+            legend: {{ position: 'top', labels: {{ usePointStyle: true, pointStyle: 'rectRounded', boxWidth: 12, font: {{ size: 14 }}, padding: 16, color: '#1e293b' }} }},
+            tooltip: {{
+              callbacks: {{
+                label: function(ctx) {{
+                  return ctx.dataset.label + ': ' + ctx.raw.toFixed(1) + '%';
+                }}
+              }}
+            }}
+          }}
+        }}
+      }});
+    }}
+
+    renderSketchChart();
+    function onSketchRangeChange() {{
+      const fi = MONTHS.indexOf(sFrom.value);
+      const ti = MONTHS.indexOf(sTo.value);
+      if (fi > ti) sTo.value = sFrom.value;
+      renderSketchChart();
+    }}
+    sFrom.addEventListener('change', onSketchRangeChange);
+    sTo.addEventListener('change', onSketchRangeChange);
   }})();
 
   // Group for radar chart

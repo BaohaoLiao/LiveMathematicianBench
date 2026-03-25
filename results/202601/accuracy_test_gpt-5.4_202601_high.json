@@ -1,6 +1,6 @@
 {
   "test_info": {
-    "date": "0323_163234",
+    "date": "0324_031545",
     "model": "gpt-5.4",
     "month": "202601",
     "reasoning_effort": "high",
@@ -9,7 +9,7 @@
     "n_samples": 1,
     "total_candidates": 46,
     "total_tested": 46,
-    "timestamp": "2026-03-23 16:32:34"
+    "timestamp": "2026-03-24 03:15:45"
   },
   "summary": {
     "all": {
@@ -451,7 +451,7 @@
       "completion_tokens": null,
       "total_tokens": null,
       "reasoning_tokens": null,
-      "elapsed_seconds": 899.9819781780243,
+      "elapsed_seconds": 899.9824974536896,
       "error": "Error code: 500 - {'error': {'message': 'The operation timed out.', 'type': 'error'}}",
       "n_samples": 1,
       "samples": null
