@@ -1278,9 +1278,9 @@ document.querySelectorAll('.nav-tab').forEach(tab => {{
             {{
               label: 'Without Sketch',
               data: rows.map(r => r.baseAcc),
-              backgroundColor: 'rgba(59,130,246,0.25)',
+              backgroundColor: 'rgba(59,130,246,0.1)',
               borderColor: '#2563eb',
-              borderWidth: 2,
+              borderWidth: 3,
               borderRadius: 4,
               barPercentage: 0.5,
               categoryPercentage: 0.6,
@@ -1288,9 +1288,9 @@ document.querySelectorAll('.nav-tab').forEach(tab => {{
             {{
               label: 'With Sketch',
               data: rows.map(r => r.sketchAcc),
-              backgroundColor: 'rgba(16,185,129,0.25)',
+              backgroundColor: 'rgba(16,185,129,0.1)',
               borderColor: '#059669',
-              borderWidth: 2,
+              borderWidth: 3,
               borderRadius: 4,
               barPercentage: 0.5,
               categoryPercentage: 0.6,
