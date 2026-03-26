@@ -2,16 +2,18 @@
 set -euo pipefail
 
 #######################################
-# Configuration - edit these variables
+# Configuration — edit these variables
 #######################################
-MODEL="gcp-chat-completions-chat-gemini-3-pro-preview-sandbox"
+MODEL="gcp-chat-completions-anthropic-claude-opus-4.6-sandbox"
+ENDPOINT="https://chomskygw6cont.pp.vip.ebay.com/api/v1/genai"
 MONTHS=(202511 202512 202601 202602)
-REASONING_EFFORT="high"   # low, medium, high, or leave empty for default
+REASONING_EFFORT="max"   # low, medium, high, max, xhigh, or leave empty for default
 MAX_TOKENS=16384
+TEMPERATURE=1.0
+THINKING_TYPE="adaptive"
 CONCURRENCY=4
 SEED=42
 N=1
-INCLUDE_THOUGHTS=true
 
 #######################################
 # Run
@@ -27,8 +29,11 @@ fi
 
 ARGS=(
     --model "$MODEL"
+    --endpoint "$ENDPOINT"
     --month "${MONTHS[@]}"
     --max-tokens "$MAX_TOKENS"
+    --temperature "$TEMPERATURE"
+    --thinking-type "$THINKING_TYPE"
     --concurrency "$CONCURRENCY"
     --seed "$SEED"
     --n "$N"
@@ -39,10 +44,4 @@ if [[ -n "$REASONING_EFFORT" ]]; then
     ARGS+=(--reasoning-effort "$REASONING_EFFORT")
 fi
 
-if [[ "$INCLUDE_THOUGHTS" == "true" ]]; then
-    ARGS+=(--include-thoughts)
-else
-    ARGS+=(--no-include-thoughts)
-fi
-
-python3 eval/eval_gemini.py "${ARGS[@]}" "$@"
+python3 eval/eval_pychomsky.py "${ARGS[@]}" "$@"
