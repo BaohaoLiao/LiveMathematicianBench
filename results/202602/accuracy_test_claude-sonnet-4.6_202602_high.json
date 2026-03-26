@@ -1,6 +1,6 @@
 {
   "test_info": {
-    "date": "0324_211059",
+    "date": "0325_192902",
     "model": "claude-sonnet-4.6",
     "month": "202602",
     "reasoning_effort": "high",
@@ -9,7 +9,7 @@
     "n_samples": 1,
     "total_candidates": 50,
     "total_tested": 50,
-    "timestamp": "2026-03-24 21:10:59"
+    "timestamp": "2026-03-25 19:29:02"
   },
   "summary": {
     "all": {
@@ -114,7 +114,7 @@
       "completion_tokens": null,
       "total_tokens": null,
       "reasoning_tokens": null,
-      "elapsed_seconds": 901.3080072402954,
+      "elapsed_seconds": 901.2691671848297,
       "error": "Error code: 500 - {'error': {'message': 'The operation timed out.', 'type': 'error'}}",
       "n_samples": 1,
       "samples": null
@@ -171,7 +171,7 @@
       "completion_tokens": null,
       "total_tokens": null,
       "reasoning_tokens": null,
-      "elapsed_seconds": 901.3083446025848,
+      "elapsed_seconds": 901.2664744853973,
       "error": "Error code: 500 - {'error': {'message': 'The operation timed out.', 'type': 'error'}}",
       "n_samples": 1,
       "samples": null
@@ -190,7 +190,7 @@
       "completion_tokens": null,
       "total_tokens": null,
       "reasoning_tokens": null,
-      "elapsed_seconds": 900.3922939300537,
+      "elapsed_seconds": 900.4046185016632,
       "error": "Error code: 500 - {'error': {'message': 'The operation timed out.', 'type': 'error'}}",
       "n_samples": 1,
       "samples": null
@@ -456,7 +456,7 @@
       "completion_tokens": null,
       "total_tokens": null,
       "reasoning_tokens": null,
-      "elapsed_seconds": 874.0129625797272,
+      "elapsed_seconds": 900.4044709205627,
       "error": "Error code: 500 - {'error': {'message': 'The operation timed out.', 'type': 'error'}}",
       "n_samples": 1,
       "samples": null
@@ -475,7 +475,7 @@
       "completion_tokens": null,
       "total_tokens": null,
       "reasoning_tokens": null,
-      "elapsed_seconds": 899.9999351501465,
+      "elapsed_seconds": 901.2415020465851,
       "error": "Error code: 500 - {'error': {'message': 'The operation timed out.', 'type': 'error'}}",
       "n_samples": 1,
       "samples": null
@@ -570,7 +570,7 @@
       "completion_tokens": null,
       "total_tokens": null,
       "reasoning_tokens": null,
-      "elapsed_seconds": 900.0002794265747,
+      "elapsed_seconds": 901.2389523983002,
       "error": "Error code: 500 - {'error': {'message': 'The operation timed out.', 'type': 'error'}}",
       "n_samples": 1,
       "samples": null
@@ -608,7 +608,7 @@
       "completion_tokens": null,
       "total_tokens": null,
       "reasoning_tokens": null,
-      "elapsed_seconds": 900.000173330307,
+      "elapsed_seconds": 901.2076618671417,
       "error": "Error code: 500 - {'error': {'message': 'The operation timed out.', 'type': 'error'}}",
       "n_samples": 1,
       "samples": null
@@ -646,7 +646,7 @@
       "completion_tokens": null,
       "total_tokens": null,
       "reasoning_tokens": null,
-      "elapsed_seconds": 899.9997253417969,
+      "elapsed_seconds": 901.20769572258,
       "error": "Error code: 500 - {'error': {'message': 'The operation timed out.', 'type': 'error'}}",
       "n_samples": 1,
       "samples": null
@@ -703,7 +703,7 @@
       "completion_tokens": null,
       "total_tokens": null,
       "reasoning_tokens": null,
-      "elapsed_seconds": 899.99951338768,
+      "elapsed_seconds": 901.2396092414856,
       "error": "Error code: 500 - {'error': {'message': 'The operation timed out.', 'type': 'error'}}",
       "n_samples": 1,
       "samples": null
@@ -779,7 +779,7 @@
       "completion_tokens": null,
       "total_tokens": null,
       "reasoning_tokens": null,
-      "elapsed_seconds": 900.0002639293671,
+      "elapsed_seconds": 901.2399127483368,
       "error": "Error code: 500 - {'error': {'message': 'The operation timed out.', 'type': 'error'}}",
       "n_samples": 1,
       "samples": null
@@ -893,7 +893,7 @@
       "completion_tokens": null,
       "total_tokens": null,
       "reasoning_tokens": null,
-      "elapsed_seconds": 886.8353037834167,
+      "elapsed_seconds": 901.2162461280823,
       "error": "Error code: 500 - {'error': {'message': 'The operation timed out.', 'type': 'error'}}",
       "n_samples": 1,
       "samples": null
@@ -950,7 +950,7 @@
       "completion_tokens": null,
       "total_tokens": null,
       "reasoning_tokens": null,
-      "elapsed_seconds": 901.3780722618103,
+      "elapsed_seconds": 901.2140815258026,
       "error": "Error code: 500 - {'error': {'message': 'The operation timed out.', 'type': 'error'}}",
       "n_samples": 1,
       "samples": null
