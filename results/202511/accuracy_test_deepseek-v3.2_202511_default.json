@@ -1,0 +1,46 @@
+{
+  "test_info": {
+    "date": "0401_085151",
+    "model": "deepseek-v3.2",
+    "month": "202511",
+    "reasoning_effort": null,
+    "max_tokens": 65000,
+    "seed": 42,
+    "n_samples": 1,
+    "total_candidates": 1,
+    "total_tested": 1,
+    "timestamp": "2026-04-01 08:51:51"
+  },
+  "summary": {
+    "all": {
+      "correct": 0,
+      "total": 1,
+      "accuracy": 0.0
+    }
+  },
+  "overall": {
+    "correct": 0,
+    "total": 1,
+    "accuracy": 0.0
+  },
+  "detailed_results": [
+    {
+      "id": "2511.04651v1::alt1",
+      "theorem_type": "all",
+      "score": null,
+      "correct_answer": "E",
+      "model_answer": "A",
+      "raw_response": "Let’s break this down.\n\nThe setup describes a family \\( X_t \\) in a Fano manifold \\( M \\), with \\(-K_M = d L\\) for ample \\( L \\).  \nWe have a generic region \\( U_t \\) on which an **ansatz metric** \\( \\omega_t \\) is defined, and the actual Calabi–Yau metric \\( \\omega_{\\text{CY},t} \\) on \\( X_t \\).  \nThe question asks what is guaranteed in the limit \\( t \\to 0 \\).\n\nThis looks like a typical setting in **collapsing Calabi–Yau metrics** near a large complex structure limit (or a degeneration to a normal crossings divisor).  \nThe ansatz metric is often a semi-flat approximation away from singular fibers.  \n\nFrom known theory (e.g., Gross–Wilson, Tosatti, etc., for elliptically fibered K3; and later extended to higher dimensional degenerations by Tosatti–Weinkove–Yang and others),  \n- In the generic region (where the torus fibers are of bounded size after appropriate scaling), the CY metric is close to a semi-flat metric in certain norms, but there are distinctions depending on scaling and norms.  \n\nGoing through options:\n\n**(A)** Says: after **unwrapping** \\(T^m\\)-fibers via \\(\\zeta_i = -T^{-1} \\log z_i\\), pullbacks converge in \\(C^{0,\\alpha}\\) on fixed-size coordinate balls in unwrapped coordinates.  \nThis seems plausible: the unwrapping turns the small fibers into large flat tori in the cover; convergence in Hölder norm is known in many cases after suitable unwrapping.\n\n**(B)** Claims uniform \\(C^0\\) convergence of \\(\\omega_{CY,t} - \\omega_t\\) on \\(U_t\\) measured by fixed ambient metric.  \nThis is known to be **false** in general: the difference may not tend to 0 uniformly in \\(C^0\\) because the ansatz metric may not capture certain curvature corrections, though it might tend to 0 in weighted norms or after rescaling.\n\n**(C)** Says they are uniformly bi-Lipschitz equivalent on \\(U_t\\). This is not guaranteed in all collapsing situations — the bi-Lipschitz constant might depend on \\(t\\) unless you choose a suitable comparison metric and scaling, but often the approximation is in a weaker sense.\n\n**(D)** Scale-free convergence after rescaling to **any** collapsing scale between fiber scale \\(|\\log |t||^{-1}\\) and base scale \\(|\\log |t||^{-1/2}\\). That’s very strong and not generally true — different scales see different limits (e.g., at fiber scale one sees flat tori, at intermediate scales one sees possibly a semi-flat metric, at base scale one sees a metric on the base).  \n\nGiven known results (e.g., from recent works on collapsing Calabi–Yau metrics near a large complex structure limit by Tosatti–Weinkove–Yang and others), the correct statement is essentially **(A)**: after unwrapping the torus fibers, the Calabi–Yau metric converges to the semi-flat metric (here the ansatz) in \\(C^{0,\\alpha}\\) on compact sets of the universal cover.  \n\nThis is a known theorem: the \\(C^{0,\\alpha}\\) convergence on unwrapped coordinates is a standard final conclusion of the “approximation by semi-flat metric” literature, whereas smooth convergence fails due to rapid oscillation of fibers unless averaged. Also, **(E)** says “one of the remaining options is correct, but a stronger result can be proven” — this is a distractor; in fact, (A) is often the proven result, not a weaker one.\n\nSo I believe the guaranteed statement is **(A)**.\n\n\\[\n\\boxed{A}\n\\]",
+      "is_correct": false,
+      "reasoning_effort": null,
+      "prompt_tokens": 540,
+      "completion_tokens": 792,
+      "total_tokens": 1332,
+      "reasoning_tokens": 0,
+      "elapsed_seconds": 14.05908989906311,
+      "error": null,
+      "n_samples": 1,
+      "samples": null
+    }
+  ]
+}
